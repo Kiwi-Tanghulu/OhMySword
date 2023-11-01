@@ -70,12 +70,11 @@ namespace Server
                 return false;
         }
 
-        public void AddPlayer(ushort id, ClientSession session)
+        public void AddPlayer(ushort id, Player player)
         {
             if (players.ContainsKey(id))
                 return;
 
-            Player player = new Player(id, session);
             players.Add(id, player);
         }
         #endregion
