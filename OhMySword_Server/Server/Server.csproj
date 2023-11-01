@@ -7,4 +7,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Packets\Packets.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="H00N.Network">
+      <HintPath>..\H00N.Network.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
