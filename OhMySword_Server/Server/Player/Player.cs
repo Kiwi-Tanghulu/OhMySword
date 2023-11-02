@@ -18,6 +18,15 @@ namespace Server
             this.hp = 1;
         }
 
+        public void Hit(ushort damage)
+        {
+            hp -= damage;
+            if (hp > 0)
+                return;
+
+            // 이거 해야됨
+        }
+
         public static implicit operator PlayerPacket(Player right)
         {
             return new PlayerPacket(right.objectID, right.score, right.nickname, right.position, right.rotation);

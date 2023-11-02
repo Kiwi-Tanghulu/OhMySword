@@ -30,6 +30,9 @@ namespace Server
 
             packetFactories.Add((ushort)PacketID.C_RoomExitPacket, PacketUtility.CreatePacket<C_RoomExitPacket>);
             packetHandlers.Add((ushort)PacketID.C_RoomExitPacket, PacketHandler.C_RoomExitPacket);
+
+            packetFactories.Add((ushort)PacketID.C_AttackPacket, PacketUtility.CreatePacket<C_AttackPacket>);
+            packetHandlers.Add((ushort)PacketID.C_AttackPacket, PacketHandler.C_AttackPacket);
         }
 
         public Packet CreatePacket(ArraySegment<byte> buffer)

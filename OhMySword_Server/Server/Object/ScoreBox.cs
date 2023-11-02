@@ -17,5 +17,14 @@ namespace Server
             this.hp = hp;
             this.objectType = (ushort)type;
         }
+
+        public void Hit(ushort damage)
+        {
+            hp -= damage;
+            if (hp > 0)
+                return;
+
+            // 이거 해야됨
+        }
     }
 }

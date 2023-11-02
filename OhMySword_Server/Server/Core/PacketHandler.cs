@@ -18,7 +18,7 @@ namespace Server
             player.rotation = playerPacket.objectPacket.rotation;
 
             S_PlayerPacket broadcastPacket = playerPacket;
-            room.Broadcast(broadcastPacket, clientSession.UserID);
+            room.AddJob(() => room.Broadcast(broadcastPacket, clientSession.UserID));
         }
 
         public static void C_RoomEnterPacket(Session session, Packet packet)
@@ -38,7 +38,7 @@ namespace Server
             });
 
             S_OtherJoinPacket broadcastPacket = new S_OtherJoinPacket(player.nickname, player.objectID, (ushort)posIndex);
-            room.Broadcast(broadcastPacket, clientSession.UserID);
+            room.AddJob(() => room.Broadcast(broadcastPacket, clientSession.UserID));
 
             List<PlayerPacket> playerList = room.GetPlayerList(player.objectID);
             List<ObjectPacket> objectList = room.GetObjectList();
@@ -53,12 +53,34 @@ namespace Server
 
             ushort playerID = clientSession.Player.objectID;
 
-            room.ReleasePlayer(clientSession.Player);
+            room.AddJob(() => room.ReleasePlayer(clientSession.Player));
             clientSession.Player = null;
             clientSession.Room = null;
 
             S_OtherExitPacket broadcastPackt = new S_OtherExitPacket(playerID);
-            room.Broadcast(broadcastPackt, playerID);
+            room.AddJob(() => room.Broadcast(broadcastPackt, playerID));
+        }
+
+        public static void C_AttackPacket(Session session, Packet packet)
+        {
+            ClientSession clientSession = session as ClientSession;
+            C_AttackPacket attackPacket = packet as C_AttackPacket;
+            GameRoom room = clientSession.Room;
+            // 플레이어일 때 & 상자일 때 구분해야 함
+
+            S_AttackPacket broadcastPacket = attackPacket;
+            room.AddJob(() => room.Broadcast(broadcastPacket, ushort.MaxValue));
+
+            if (attackPacket.hitObjectType == (ushort)ObjectType.Player)
+            {
+                if (room.GetPlayer(attackPacket.hitObjectID, out Player hitPlayer))
+                    hitPlayer.Hit(attackPacket.damage);
+            }
+            else
+            {
+                if (room.GetObject<ScoreBox>(attackPacket.hitObjectID, out ScoreBox scoreBox))
+                    scoreBox.Hit(attackPacket.damage);
+            }
         }
     }
 }

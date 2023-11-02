@@ -1,7 +1,5 @@
 ﻿using H00N.Network;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Packets
 {
