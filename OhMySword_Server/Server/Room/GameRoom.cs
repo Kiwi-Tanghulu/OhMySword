@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Server.Core;
 
 namespace Server
 {
     public class GameRoom : Room
     {
-        public int maxPlayerCount;
+        public int maxPlayerCount = 5;
         public ushort RoomID;
 
         public int Capacity => (maxPlayerCount - players.Count);
+
+        public GameRoom()
+        {
+            ScoreBox scoreBox = new ScoreBox(100, 10, ObjectType.WoodenScoreBox);
+            PublishObject(scoreBox);
+        }
     }
 }

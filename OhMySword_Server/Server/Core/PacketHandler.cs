@@ -40,7 +40,9 @@ namespace Server
             S_OtherJoinPacket broadcastPacket = new S_OtherJoinPacket(player.nickname, player.objectID, (ushort)posIndex);
             room.Broadcast(broadcastPacket, clientSession.UserID);
 
-            S_RoomEnterPacket replyPacket = new S_RoomEnterPacket(player.objectID, (ushort)posIndex, room.GetPlayerList(player.objectID), room.GetObjectList());
+            List<PlayerPacket> playerList = room.GetPlayerList(player.objectID);
+            List<ObjectPacket> objectList = room.GetObjectList();
+            S_RoomEnterPacket replyPacket = new S_RoomEnterPacket(player.objectID, (ushort)posIndex, playerList, objectList);
             clientSession.Send(replyPacket.Serialize());
         }
 

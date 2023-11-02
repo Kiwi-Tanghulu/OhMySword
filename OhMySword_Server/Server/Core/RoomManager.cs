@@ -21,14 +21,12 @@ namespace Server
                 p.Value.AddJob(p.Value.Clear);
         }
 
-        public ushort PublishRoomID(GameRoom room)
+        public void PublishRoomID(GameRoom room)
         {
             lock (locker)
             {
-                ushort id = roomIDPublisher++;
-                gameRooms.Add(id, room);
-
-                return id;
+                room.RoomID = roomIDPublisher++;
+                gameRooms.Add(room.RoomID, room);
             }
         }
 

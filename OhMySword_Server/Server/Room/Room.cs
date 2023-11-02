@@ -77,7 +77,6 @@ namespace Server
         public void ReleaseObject(ObjectBase obj)
         {
             objects.Remove(obj.objectID);
-            obj.session = null;
             obj.objectID = 0;
         }
 

@@ -11,11 +11,11 @@ namespace Server
         public ushort provideScore;
         public ushort hp;
 
-        public ScoreBox(ClientSession session, ushort score, ushort hp)
+        public ScoreBox(ushort score, ushort hp, ObjectType type)
         {
-            this.session = session;
             this.provideScore = score;
             this.hp = hp;
+            this.objectType = (ushort)type;
         }
     }
 }

@@ -5,12 +5,14 @@ namespace Server
 {
     public class Player : ObjectBase
     {
+        public ClientSession session;
         public string nickname;
         public ushort score;
         public ushort hp;
 
         public Player(ClientSession session, string name)
         {
+            objectType = (ushort)ObjectType.Player;
             this.session = session;
             this.nickname = name;
             this.hp = 1;

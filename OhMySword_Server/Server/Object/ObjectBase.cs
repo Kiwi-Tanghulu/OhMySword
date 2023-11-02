@@ -9,8 +9,8 @@ namespace Server
 {
     public abstract class ObjectBase
     {
-        public ClientSession session;
         public ushort objectID;
+        public ushort objectType;
         public Vector3 position;
         public Vector3 rotation;
 
