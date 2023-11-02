@@ -1,4 +1,5 @@
 using H00N.Network;
+using Packets;
 using System;
 using System.Net;
 
@@ -14,6 +15,8 @@ namespace Server
             Console.WriteLine($"{endPoint} : 클라이언트가 접속했습니다.");
 
             UserID = NetworkManager.Instance.PublishUserID(this);
+            S_LogInPacket logInPacket = new S_LogInPacket() { userID = UserID };
+            Send(logInPacket.Serialize());
         }
 
         public override void OnDisconnected(EndPoint endPoint)

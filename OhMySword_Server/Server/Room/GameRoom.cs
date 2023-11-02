@@ -8,7 +8,10 @@ namespace Server
 {
     public class GameRoom : Room
     {
+        public int maxPlayerCount;
         public ushort RoomID;
+
+        public int Capacity => (maxPlayerCount - players.Count);
 
         public GameRoom()
         {
