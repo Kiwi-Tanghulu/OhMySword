@@ -27,6 +27,9 @@ namespace Server
 
             packetFactories.Add((ushort)PacketID.C_RoomEnterPacket, PacketUtility.CreatePacket<C_RoomEnterPacket>);
             packetHandlers.Add((ushort)PacketID.C_RoomEnterPacket, PacketHandler.C_RoomEnterPacket);
+
+            packetFactories.Add((ushort)PacketID.C_RoomExitPacket, PacketUtility.CreatePacket<C_RoomExitPacket>);
+            packetHandlers.Add((ushort)PacketID.C_RoomExitPacket, PacketHandler.C_RoomExitPacket);
         }
 
         public Packet CreatePacket(ArraySegment<byte> buffer)

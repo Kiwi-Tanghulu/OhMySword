@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using System.Net;
 
-namespace Server.Core
+namespace Server
 {
     public class NetworkManager
     {

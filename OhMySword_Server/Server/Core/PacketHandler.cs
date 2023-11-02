@@ -23,14 +23,40 @@ namespace Server
 
         public static void C_RoomEnterPacket(Session session, Packet packet)
         {
+            ClientSession clientSession = session as ClientSession;
             C_RoomEnterPacket enterPacket = packet as C_RoomEnterPacket;
 
             GameRoom room = RoomManager.Instance.GetRoom();
             Player player = new Player(session as ClientSession, enterPacket.nickname);
+            
+            int posIndex = Random.Range(0, DEFINE.PlayerSpawnTable.Length);
+            player.position = DEFINE.PlayerSpawnTable[posIndex];
 
-            room.AddJob(() => room.PublishPlayer(player));
+            room.AddJob(() => {
+                room.PublishPlayer(player);
+                clientSession.Player = player;
+            });
 
-            // ¿©±â ÇØ¾ßµÊ
+            S_OtherJoinPacket broadcastPacket = new S_OtherJoinPacket(player.nickname, player.objectID, (ushort)posIndex);
+            room.Broadcast(broadcastPacket, clientSession.UserID);
+
+            S_RoomEnterPacket replyPacket = new S_RoomEnterPacket(player.objectID, (ushort)posIndex, room.GetPlayerList(player.objectID), room.GetObjectList());
+            clientSession.Send(replyPacket.Serialize());
+        }
+
+        public static void C_RoomExitPacket(Session session, Packet packet)
+        {
+            ClientSession clientSession = session as ClientSession;
+            GameRoom room = clientSession.Room;
+
+            ushort playerID = clientSession.Player.objectID;
+
+            room.ReleasePlayer(clientSession.Player);
+            clientSession.Player = null;
+            clientSession.Room = null;
+
+            S_OtherExitPacket broadcastPackt = new S_OtherExitPacket(playerID);
+            room.Broadcast(broadcastPackt, playerID);
         }
     }
 }

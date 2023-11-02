@@ -9,6 +9,7 @@ namespace Server
     {
         public ushort UserID;
         public GameRoom Room;
+        public Player Player;
 
         public override void OnConnected(EndPoint endPoint)
         {
