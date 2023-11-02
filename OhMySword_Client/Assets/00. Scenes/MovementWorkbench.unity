@@ -14931,8 +14931,8 @@ Rigidbody:
   m_GameObject: {fileID: 4672915264243229502}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -14956,7 +14956,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4672915264243229502}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 719450f09ac683447971c72120781be4, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -16422,7 +16422,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3187856544463926703}
   serializedVersion: 4
-  m_Mass: 0.1
+  m_Mass: 2
   m_Drag: 1
   m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -17041,6 +17041,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5873915037955209877}
   - component: {fileID: 532685137995423983}
+  - component: {fileID: 6543596356866760752}
   m_Layer: 0
   m_Name: Ninja_Demo@T-Pose (4)
   m_TagString: Untagged
@@ -17048,6 +17049,31 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6543596356866760752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6543596356866760751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hip: {fileID: 5907798254586527134}
+  moveSpeed: 2
+  moveDir: {x: 0, y: 0, z: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  leftFoot: {fileID: 0}
+  rightFoot: {fileID: 0}
+  hips: {fileID: 0}
+  shouldMoveDistance: 0.5
+  moveDistance: 0.5
+  moveHeight: 0.3
+  footMoveTime: 1
 --- !u!1 &6547198000676746227
 GameObject:
   m_ObjectHideFlags: 0
@@ -19690,8 +19716,8 @@ Rigidbody:
   m_GameObject: {fileID: 2373980228885270532}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -19715,7 +19741,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2373980228885270532}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 719450f09ac683447971c72120781be4, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
