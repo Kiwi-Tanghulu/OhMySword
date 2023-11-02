@@ -68,12 +68,17 @@ namespace Server
             return (obj != null);
         }
 
-        public ushort PublishObject(ObjectBase obj)
+        public void PublishObject(ObjectBase obj)
         {
-            ushort id = objectIDPublisher++;
-            objects.Add(id, obj);
+            obj.objectID = objectIDPublisher++;
+            objects.Add(obj.objectID, obj);
+        }
 
-            return id;
+        public void ReleaseObject(ObjectBase obj)
+        {
+            objects.Remove(obj.objectID);
+            obj.session = null;
+            obj.objectID = 0;
         }
 
         public bool GetPlayer(ushort id, out Player player)
@@ -89,12 +94,17 @@ namespace Server
                 return false;
         }
 
-        public ushort PublishPlayer(Player player)
+        public void PublishPlayer(Player player)
         {
-            ushort id = playerIDPublisher++;
-            players.Add(id, player);
+            player.objectID = playerIDPublisher++;
+            players.Add(player.objectID, player);
+        }
 
-            return id;
+        public void ReleasePlayer(Player player)
+        {
+            players.Remove(player.objectID);
+            player.session = null;
+            player.objectID = 0;
         }
         #endregion
     }
