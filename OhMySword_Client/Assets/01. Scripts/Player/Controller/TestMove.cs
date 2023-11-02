@@ -53,6 +53,9 @@ public class TestMove : MonoBehaviour
     {
         moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
+        hip.constraints = moveDir.x == 0 ? RigidbodyConstraints.FreezePositionX : RigidbodyConstraints.None;
+        hip.constraints = moveDir.z == 0 ? RigidbodyConstraints.FreezePositionZ : RigidbodyConstraints.None;
+
         hip.AddForce(moveDir * moveSpeed); //+= moveDir * moveSpeed * Time.deltaTime;
     }
 
@@ -83,7 +86,6 @@ public class TestMove : MonoBehaviour
             Vector3.down, out righttHit, 10, groundLayer))
         {                                   //foot toe distance
                 rightHitPos = righttHit.point + Vector3.up * 0.2f;
-            
 
             if (Vector3.Distance(rightHitPos, rightFootPos) >= shouldMoveDistance)
             {
