@@ -23,14 +23,22 @@ namespace Server
 
         public static void C_RoomEnterPacket(Session session, Packet packet)
         {
+            ClientSession clientSession = session as ClientSession;
             C_RoomEnterPacket enterPacket = packet as C_RoomEnterPacket;
 
             GameRoom room = RoomManager.Instance.GetRoom();
             Player player = new Player(session as ClientSession, enterPacket.nickname);
+            
+            int posIndex = Random.Range(0, DEFINE.PlayerSpawnTable.Length);
+            player.position = DEFINE.PlayerSpawnTable[posIndex];
 
             room.AddJob(() => room.PublishPlayer(player));
 
-            // ¿©±â ÇØ¾ßµÊ
+            S_OtherJoinPacket broadcastPacket = new S_OtherJoinPacket(player.nickname, player.objectID, (ushort)posIndex);
+            room.Broadcast(broadcastPacket, clientSession.UserID);
+
+            S_RoomEnterPacket replyPacket = new S_RoomEnterPacket(player.objectID, (ushort)posIndex, room.GetPlayerList(player.objectID), room.GetObjectList());
+            clientSession.Send(replyPacket.Serialize());
         }
     }
 }

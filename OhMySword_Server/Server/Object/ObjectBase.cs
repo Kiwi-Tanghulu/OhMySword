@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Packets;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,10 @@ namespace Server
         public ushort objectID;
         public Vector3 position;
         public Vector3 rotation;
+
+        public static implicit operator ObjectPacket(ObjectBase right)
+        {
+            return new ObjectPacket(right.objectID, right.position, right.rotation);
+        }
     }
 }

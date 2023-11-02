@@ -1,4 +1,5 @@
 using H00N.Network;
+using Packets;
 
 namespace Server
 {
@@ -39,6 +40,22 @@ namespace Server
                 }
             }
         }
+
+        public List<PlayerPacket> GetPlayerList(ushort except)
+        {
+            List<PlayerPacket> playerList = new List<PlayerPacket>();
+
+            foreach (KeyValuePair<ushort, Player> p in players)
+            {
+                Player player = p.Value;
+                if (player.objectID != except)
+                    playerList.Add(player);
+            }
+
+            return playerList;
+        }
+
+        public List<ObjectPacket> GetObjectList() => objects.Select(i => (ObjectPacket)i.Value).ToList();
 
         #region Managing Obejcts
         public bool GetObject<T>(ushort id, out T obj) where T : ObjectBase

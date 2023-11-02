@@ -31,5 +31,6 @@ namespace Server
         }
 
         public static implicit operator Vector3(VectorPacket right) =>  new Vector3(right.x, right.y, right.z);
+        public static implicit operator VectorPacket(Vector3 right) =>  new VectorPacket(right.x, right.y, right.z);
     }
 }
