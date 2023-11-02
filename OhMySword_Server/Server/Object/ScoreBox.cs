@@ -14,7 +14,7 @@ namespace Server
             this.objectType = (ushort)type;
         }
 
-        public void Hit(ushort damage)
+        public override void Hit(ushort damage)
         {
             hp -= damage;
             if (hp > 0)

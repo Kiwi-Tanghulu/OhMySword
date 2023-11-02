@@ -20,7 +20,7 @@ namespace Server
             this.hp = 1;
         }
 
-        public void Hit(ushort damage)
+        public override void Hit(ushort damage)
         {
             hp -= damage;
             if (hp > 0)

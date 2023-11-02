@@ -15,5 +15,10 @@ namespace Server
             this.room = room;
             this.xp = xp;
         }
+
+        public override void Hit(ushort damage)
+        {
+            // 이거 채워야 함
+        }
     }
 }

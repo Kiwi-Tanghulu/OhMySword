@@ -68,6 +68,16 @@ namespace Server
             return (obj != null);
         }
 
+        public bool GetObject(ushort id, out ObjectBase obj)
+        {
+            obj = null;
+
+            if (objects.ContainsKey(id))
+                obj = objects[id];
+
+            return (obj != null);
+        }
+
         public void PublishObject(ObjectBase obj)
         {
             obj.objectID = objectIDPublisher++;

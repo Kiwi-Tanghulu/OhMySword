@@ -78,8 +78,8 @@ namespace Server
             }
             else
             {
-                if (room.GetObject<ScoreBox>(attackPacket.hitObjectID, out ScoreBox scoreBox))
-                    scoreBox.Hit(attackPacket.damage);
+                if (room.GetObject(attackPacket.hitObjectID, out ObjectBase obj))
+                    obj.Hit(attackPacket.damage);
             }
         }
     }
