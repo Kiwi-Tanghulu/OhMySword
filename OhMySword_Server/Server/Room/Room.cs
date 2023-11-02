@@ -79,14 +79,6 @@ namespace Server
 
             return id;
         }
-
-        public void AddPlayer(ushort id, Player player)
-        {
-            if (players.ContainsKey(id))
-                return;
-
-            players.Add(id, player);
-        }
         #endregion
     }
 }

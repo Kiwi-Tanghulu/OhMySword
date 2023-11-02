@@ -1,4 +1,5 @@
 using H00N.Network;
+using Packets;
 using System;
 using System.Collections.Generic;
 
@@ -21,8 +22,11 @@ namespace Server
 
         private void RegisterHandler()
         {
-            //packetFactories.Add((ushort)PacketID., PacketUtility.CreatePacket<>);
-            //packetHandlers.Add((ushort)PakcetID., PacketHandler.);
+            packetFactories.Add((ushort)PacketID.C_PlayerPacket, PacketUtility.CreatePacket<C_PlayerPacket>);
+            packetHandlers.Add((ushort)PacketID.C_PlayerPacket, PacketHandler.C_PlayerPacket);
+
+            packetFactories.Add((ushort)PacketID.C_RoomEnterPacket, PacketUtility.CreatePacket<C_RoomEnterPacket>);
+            packetHandlers.Add((ushort)PacketID.C_RoomEnterPacket, PacketHandler.C_RoomEnterPacket);
         }
 
         public Packet CreatePacket(ArraySegment<byte> buffer)
