@@ -20,9 +20,9 @@ namespace Packets
 
         public VectorPacket(float x, float y, float z)
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+            this.x = (short)x;
+            this.y = (short)y;
+            this.z = (short)z;
         }
 
         public override ushort Deserialize(ArraySegment<byte> buffer, int offset)

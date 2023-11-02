@@ -21,7 +21,7 @@ namespace Server
         }
 
         public void AddJob(Action job) => jobQueue.Push(job);
-        public void Broadcast(Packet packet, ushort except) => broadcastQueue.Enqueue(new BroadcastPacket(packet, except));
+        public void Broadcast(Packet packet, ushort except = ushort.MaxValue) => broadcastQueue.Enqueue(new BroadcastPacket(packet, except));
 
         public void FlushBroadcastQueue()
         {

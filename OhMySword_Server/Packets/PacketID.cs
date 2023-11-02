@@ -14,5 +14,6 @@
         S_ScorePacket,      // 서버가 클라들에게 누군가가 성장했다는 것을 알리는 패킷
         C_PlayerPacket,     // 클라가 서버에게 전송하는 플레이어 정보 패킷
         S_PlayerPacket,     // 서버가 클라들에게 전송하는 플레이어 정보 패킷
+        S_ScoreBoxPacket,   // 서버가 클라들에게 전송하는 점수 구조물 정보 패킷
     }
 }

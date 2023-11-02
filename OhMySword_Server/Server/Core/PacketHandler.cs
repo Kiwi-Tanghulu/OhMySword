@@ -69,7 +69,7 @@ namespace Server
             // 플레이어일 때 & 상자일 때 구분해야 함
 
             S_AttackPacket broadcastPacket = attackPacket;
-            room.AddJob(() => room.Broadcast(broadcastPacket, ushort.MaxValue));
+            room.AddJob(() => room.Broadcast(broadcastPacket));
 
             if (attackPacket.hitObjectType == (ushort)ObjectType.Player)
             {

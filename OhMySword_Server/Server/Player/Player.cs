@@ -10,9 +10,11 @@ namespace Server
         public ushort score;
         public ushort hp;
 
-        public Player(ClientSession session, string name)
+        public Player(ClientSession session, GameRoom room, string name)
         {
-            objectType = (ushort)ObjectType.Player;
+            this.objectType = (ushort)ObjectType.Player;
+            this.room = room;
+
             this.session = session;
             this.nickname = name;
             this.hp = 1;
