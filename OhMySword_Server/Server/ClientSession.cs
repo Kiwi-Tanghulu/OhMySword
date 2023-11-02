@@ -6,9 +6,14 @@ namespace Server
 {
     public class ClientSession : Session
     {
+        public ushort UserID;
+        public GameRoom Room;
+
         public override void OnConnected(EndPoint endPoint)
         {
             Console.WriteLine($"{endPoint} : 클라이언트가 접속했습니다.");
+
+            UserID = NetworkManager.Instance.PublishUserID(this);
         }
 
         public override void OnDisconnected(EndPoint endPoint)

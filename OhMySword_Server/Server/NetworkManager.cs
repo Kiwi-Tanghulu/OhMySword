@@ -12,6 +12,9 @@ namespace Server
         private Dictionary<ushort, GameRoom> gameRooms = new Dictionary<ushort, GameRoom>();
         private Dictionary<ushort, ClientSession> users = new Dictionary<ushort, ClientSession>();
 
+        private ushort userIDPublisher = 0;
+        private ushort roomIDPublisher = 0;
+
         private object locker = new object();
 
         public void Clear()
@@ -27,6 +30,28 @@ namespace Server
                     p.Value.Close();
 
                 users.Clear();
+            }
+        }
+
+        public ushort PublishUserID(ClientSession session)
+        {
+            lock(locker)
+            {
+                ushort id = userIDPublisher++;
+                users.Add(id, session);
+             
+                return id;
+            }
+        }
+
+        public ushort PublushRoomID(GameRoom room)
+        {
+            lock(locker)
+            {
+                ushort id = roomIDPublisher++;
+                gameRooms.Add(id, room);
+
+                return id;
             }
         }
 

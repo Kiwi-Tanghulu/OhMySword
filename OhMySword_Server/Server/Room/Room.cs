@@ -1,5 +1,4 @@
 using H00N.Network;
-using System.Numerics;
 
 namespace Server
 {
@@ -10,6 +9,9 @@ namespace Server
 
         protected JobQueue jobQueue = new JobQueue();
         protected Queue<BroadcastPacket> broadcastQueue = new Queue<BroadcastPacket>();
+
+        public ushort playerIDPublisher = 0;
+        public ushort objectIDPublisher = 0;
 
         public virtual void Clear()
         {
@@ -30,7 +32,7 @@ namespace Server
                 foreach (KeyValuePair<ushort, Player> p in players)
                 {
                     Player player = p.Value;
-                    if (player.objectID == packet.except)
+                    if (player.session.UserID == packet.except)
                         continue;
 
                     player.session.Send(buffer);
@@ -46,15 +48,15 @@ namespace Server
             if (objects.ContainsKey(id))
                 obj = objects[id] as T;
 
-            return (obj == null);
+            return (obj != null);
         }
-        
-        public void AddObject(ushort id, ObjectBase obj)
-        {
-            if (objects.ContainsKey(id))
-                return;
 
+        public ushort PublishObject(ObjectBase obj)
+        {
+            ushort id = objectIDPublisher++;
             objects.Add(id, obj);
+
+            return id;
         }
 
         public bool GetPlayer(ushort id, out Player player)
@@ -68,6 +70,14 @@ namespace Server
             }
             else
                 return false;
+        }
+
+        public ushort PublishPlayer(Player player)
+        {
+            ushort id = playerIDPublisher++;
+            players.Add(id, player);
+
+            return id;
         }
 
         public void AddPlayer(ushort id, Player player)

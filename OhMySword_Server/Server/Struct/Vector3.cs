@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Packets;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -28,5 +29,7 @@ namespace Server
 
             return left;
         }
+
+        public static implicit operator Vector3(VectorPacket right) =>  new Vector3(right.x, right.y, right.z);
     }
 }

@@ -11,9 +11,8 @@ namespace Server
         public ushort provideScore;
         public ushort hp;
 
-        public ScoreBox(ushort id, ClientSession session, ushort score, ushort hp)
+        public ScoreBox(ClientSession session, ushort score, ushort hp)
         {
-            this.objectID = id;
             this.session = session;
             this.provideScore = score;
             this.hp = hp;

@@ -5,4 +5,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="H00N.Network">
+      <HintPath>..\H00N.Network.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

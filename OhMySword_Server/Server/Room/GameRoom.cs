@@ -8,15 +8,11 @@ namespace Server
 {
     public class GameRoom : Room
     {
+        public ushort RoomID;
 
-        public override void Init()
+        public GameRoom()
         {
-            base.Init();
-            objects.Clear();
-        }
-
-        public void AddObject(ushort id, ObjectBase obj)
-        {
+            RoomID = NetworkManager.Instance.PublushRoomID(this);
         }
     }
 }

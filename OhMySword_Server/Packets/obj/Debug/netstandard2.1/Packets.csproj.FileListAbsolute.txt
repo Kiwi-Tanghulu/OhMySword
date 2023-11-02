@@ -1,0 +1,12 @@
+D:\GitHub\OhMySword\OhMySword_Server\Packets\bin\Debug\netstandard2.1\Packets.deps.json
+D:\GitHub\OhMySword\OhMySword_Server\Packets\bin\Debug\netstandard2.1\Packets.dll
+D:\GitHub\OhMySword\OhMySword_Server\Packets\bin\Debug\netstandard2.1\Packets.pdb
+D:\GitHub\OhMySword\OhMySword_Server\Packets\bin\Debug\netstandard2.1\H00N.Network.dll
+D:\GitHub\OhMySword\OhMySword_Server\Packets\obj\Debug\netstandard2.1\Packets.csproj.AssemblyReference.cache
+D:\GitHub\OhMySword\OhMySword_Server\Packets\obj\Debug\netstandard2.1\Packets.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub\OhMySword\OhMySword_Server\Packets\obj\Debug\netstandard2.1\Packets.AssemblyInfoInputs.cache
+D:\GitHub\OhMySword\OhMySword_Server\Packets\obj\Debug\netstandard2.1\Packets.AssemblyInfo.cs
+D:\GitHub\OhMySword\OhMySword_Server\Packets\obj\Debug\netstandard2.1\Packets.csproj.CoreCompileInputs.cache
+D:\GitHub\OhMySword\OhMySword_Server\Packets\obj\Debug\netstandard2.1\Packets.csproj.CopyComplete
+D:\GitHub\OhMySword\OhMySword_Server\Packets\obj\Debug\netstandard2.1\Packets.dll
+D:\GitHub\OhMySword\OhMySword_Server\Packets\obj\Debug\netstandard2.1\Packets.pdb

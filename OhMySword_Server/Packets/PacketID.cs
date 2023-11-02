@@ -12,9 +12,7 @@
         S_AttackPacket,     // 서버가 클라들에게 누군가가 공격당했다는 것을 알리는 패킷
         C_ScorePacket,      // 클라가 점수를 획득했을 때 서버에게 전송할 패킷
         S_ScorePacket,      // 서버가 클라들에게 누군가가 성장했다는 것을 알리는 패킷
-        C_MovePacket,       // 클라가 움직였을 때 서버에게 전송할 패킷
-        S_MovePacket,       // 서버가 클라들에게 누군가가 움직였다는 것을 알릴 패킷
-        C_RotatePacket,     // 클라가 회전했을 때 서버에게 전송할 패킷
-        S_RotatePacket,     // 서버가 클라들에게 누군가가 회전했다는 것을 알릴 패킷
+        C_PlayerPacket,     // 클라가 서버에게 전송하는 플레이어 정보 패킷
+        S_PlayerPacket,     // 서버가 클라들에게 전송하는 플레이어 정보 패킷
     }
 }
