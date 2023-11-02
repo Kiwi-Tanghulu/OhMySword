@@ -10,14 +10,14 @@ public class TestMove : MonoBehaviour
 
     [Space]
     public LayerMask groundLayer;
-    public Transform leftFoot;
-    public Transform rightFoot;
+    public Transform leftFootTarget;
+    public Transform rightFootTarget;
     public Transform hips;
-    public float shouldMoveDistance = 0.5f;
+    public float shouldMoveDistance = 0.35f;
     [Tooltip("shouldMoveDistance보다 작아야 함")]
-    public float moveDistance = 0.5f;
-    public float moveHeight = 0.3f;
-    public float footMoveTime = 1f;
+    public float moveDistance = 0.3f;
+    public float movePivotHeight = 1f;
+    public float footMoveTime = 0.2f;
 
     //where feet should be
     private Vector3 leftFootPos;
@@ -35,18 +35,18 @@ public class TestMove : MonoBehaviour
 
     private void Start()
     {
-        //leftFootPos = leftFoot.position;
-        //rightFootPos = rightFoot.position;
-        //prevLeftFootPos = leftFootPos;
-        //prevRightFootPos = rightFootPos;
-        //leftFootOffset = leftFoot.position - hips.position;
-        //rightFootOffset = rightFoot.position - hips.position;
+        leftFootPos = leftFootTarget.position;
+        rightFootPos = rightFootTarget.position;
+        prevLeftFootPos = leftFootPos;
+        prevRightFootPos = rightFootPos;
+        leftFootOffset = leftFootTarget.position - hips.position;
+        rightFootOffset = rightFootTarget.position - hips.position;
     }
 
     private void Update()
     {
         Move();
-        //FootMove();
+        FootMove();
     }
 
     private void Move()
@@ -58,8 +58,8 @@ public class TestMove : MonoBehaviour
 
     private void FootMove()
     {
-        leftFoot.position = leftFootPos;
-        rightFoot.position = rightFootPos;
+        leftFootTarget.position = leftFootPos;
+        rightFootTarget.position = rightFootPos;
 
         RaycastHit lefttHit = default;
         RaycastHit righttHit = default;
@@ -67,41 +67,48 @@ public class TestMove : MonoBehaviour
         if (Physics.Raycast(new Vector3(hips.position.x + leftFootOffset.x, hips.position.y, hips.position.z + leftFootOffset.z),
             Vector3.down, out lefttHit, 10, groundLayer))
         {                                 //foot toe distance
-            leftHitPos = lefttHit.point + Vector3.up * 0.2f;
+                leftHitPos = lefttHit.point + Vector3.up * 0.2f;
+            
             //left, right distance
             if (Vector3.Distance(leftHitPos, leftFootPos) >= shouldMoveDistance * 1.7f)
             {
                 Vector3 footMoveDir = (leftHitPos - leftFootPos).normalized;
                 prevLeftFootPos = leftFootPos;
                 leftFootPos = new Vector3(leftHitPos.x + footMoveDir.x * moveDistance, leftHitPos.y, leftHitPos.z + footMoveDir.z * moveDistance);
-                StartCoroutine(FootMoveAnimation(leftFoot, leftFootPos, prevLeftFootPos));
+                StartCoroutine(FootMoveAnimation(leftFootTarget, prevLeftFootPos, leftFootPos));
             }
         }
 
         if (Physics.Raycast(new Vector3(hips.position.x + rightFootOffset.x, hips.position.y, hips.position.z + rightFootOffset.z),
             Vector3.down, out righttHit, 10, groundLayer))
         {                                   //foot toe distance
-            rightHitPos = righttHit.point + Vector3.up * 0.2f;
+                rightHitPos = righttHit.point + Vector3.up * 0.2f;
+            
 
             if (Vector3.Distance(rightHitPos, rightFootPos) >= shouldMoveDistance)
             {
                 Vector3 footMoveDir = (rightHitPos - rightFootPos).normalized;
                 prevRightFootPos = rightFootPos;
                 rightFootPos = new Vector3(rightHitPos.x + footMoveDir.x * moveDistance, rightHitPos.y, rightHitPos.z + footMoveDir.z * moveDistance);
-                StartCoroutine(FootMoveAnimation(rightFoot, rightFootPos, prevRightFootPos));
+                StartCoroutine(FootMoveAnimation(rightFootTarget, prevRightFootPos, rightFootPos));
             }
         }
     }
 
-    private IEnumerator FootMoveAnimation(Transform foot, Vector3 next, Vector3 prev)
+    private IEnumerator FootMoveAnimation(Transform foot, Vector3 start, Vector3 end)
     {
         float percent = 0;
+        Vector3 heightPivotVector = new Vector3((end - start).x / 2f + start.x, start.y + movePivotHeight, (end - start).z / 2f + start.z);
+        Vector3 startToPivotLerp;
+        Vector3 pivotToEndLerp;
 
         while (percent <= 1)
         {
-            percent += Time.deltaTime / footMoveTime;
+            startToPivotLerp = Vector3.Lerp(start, heightPivotVector, percent);
+            pivotToEndLerp = Vector3.Lerp(heightPivotVector, end, percent);
+            foot.position = Vector3.Slerp(startToPivotLerp, pivotToEndLerp, percent);
 
-            foot.position = Vector3.Slerp(prev, next, percent);
+            percent += Time.deltaTime / footMoveTime;
 
             yield return null;
         }
