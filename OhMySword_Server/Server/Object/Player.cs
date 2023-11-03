@@ -12,21 +12,28 @@ namespace Server
 
         public Player(ClientSession session, GameRoom room, string name)
         {
-            this.objectType = (ushort)ObjectType.Player;
+            objectType = (ushort)ObjectType.Player;
             this.room = room;
 
             this.session = session;
-            this.nickname = name;
-            this.hp = 1;
+            nickname = name;
+            hp = 1;
         }
 
-        public override void Hit(ushort damage)
+        public override void Hit(ushort damage, ushort attacker)
         {
             hp -= damage;
             if (hp > 0)
                 return;
 
             // 이거 해야됨
+        }
+
+        public void AddXP(ushort amount)
+        {
+            score += amount;
+            S_ScorePacket broadcastPackt = new S_ScorePacket(objectID, score);
+            room?.AddJob(() => room.Broadcast(broadcastPackt));
         }
 
         public static implicit operator PlayerPacket(Player right)

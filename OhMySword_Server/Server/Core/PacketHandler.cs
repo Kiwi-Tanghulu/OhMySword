@@ -1,5 +1,6 @@
 using H00N.Network;
 using Packets;
+using Server.Object;
 
 namespace Server
 {
@@ -79,7 +80,7 @@ namespace Server
             else
             {
                 if (room.GetObject(attackPacket.hitObjectID, out ObjectBase obj))
-                    obj.Hit(attackPacket.damage);
+                    obj.Hit(attackPacket.damage, attackPacket.attackerID);
             }
         }
     }

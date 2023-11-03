@@ -15,7 +15,13 @@ namespace Server
         public Vector3 position;
         public Vector3 rotation;
 
-        public virtual void Hit(ushort damage) { }
+        public virtual void Hit(ushort damage, ushort attackerID) { }
+
+        public void BroadcastDestroy()
+        {
+            S_ObjectDestroyPacket broadcastPacket = new S_ObjectDestroyPacket(objectType, objectID);
+            room?.AddJob(() => room?.Broadcast(broadcastPacket));
+        }
 
         public static implicit operator ObjectPacket(ObjectBase right)
         {

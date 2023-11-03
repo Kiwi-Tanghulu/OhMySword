@@ -16,9 +16,13 @@ namespace Server
             this.xp = xp;
         }
 
-        public override void Hit(ushort damage)
+        public override void Hit(ushort damage, ushort attackerID)
         {
-            // 이거 채워야 함
+            if (room.GetPlayer(attackerID, out Player player) == false)
+                return;
+
+            player.AddXP(xp);
+            BroadcastDestroy();
         }
     }
 }
