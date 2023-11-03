@@ -1,5 +1,4 @@
-﻿
-using Packets;
+﻿using Packets;
 
 namespace Server
 {
@@ -26,7 +25,14 @@ namespace Server
             if (hp > 0)
                 return;
 
-            // 이거 해야됨
+            // 경험치가 생성되고
+            // 나머지 클라한테 죽었음을 알리고
+            // 나는 퇴장되고
+            List<VectorPacket> positions = new List<VectorPacket>();
+            CreateXP(positions);
+
+            S_PlayerDiePacket broadcastPacket = new S_PlayerDiePacket(attacker, objectID, score, positions);
+            room?.AddJob(() => room?.Broadcast(broadcastPacket));
         }
 
         public void AddXP(ushort amount)
@@ -34,6 +40,24 @@ namespace Server
             score += amount;
             S_ScorePacket broadcastPackt = new S_ScorePacket(objectID, score);
             room?.AddJob(() => room.Broadcast(broadcastPackt));
+        }
+
+        private void CreateXP(List<VectorPacket> container)
+        {
+            int score = this.score;
+            int cursor = (int)MathF.Pow(10, score.ToString().Length - 1);
+            while (cursor > 0)
+            {
+                int number = score / cursor;
+                for(int i = 0; i < number; i++)
+                {
+                    Vector3 randInCircle = Random.InCircle(10f);
+                    container.Add(new VectorPacket(randInCircle.x, 2f, randInCircle.z));
+                }
+
+                score %= cursor;
+                cursor /= 10;
+            }
         }
 
         public static implicit operator PlayerPacket(Player right)

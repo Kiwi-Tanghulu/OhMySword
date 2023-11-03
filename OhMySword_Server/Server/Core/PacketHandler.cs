@@ -1,6 +1,5 @@
 using H00N.Network;
 using Packets;
-using Server.Object;
 
 namespace Server
 {
@@ -28,7 +27,7 @@ namespace Server
             C_RoomEnterPacket enterPacket = packet as C_RoomEnterPacket;
 
             GameRoom room = RoomManager.Instance.GetRoom();
-            Player player = new Player(session as ClientSession, enterPacket.nickname);
+            Player player = new Player(session as ClientSession, room, enterPacket.nickname);
             
             int posIndex = Random.Range(0, DEFINE.PlayerSpawnTable.Length);
             player.position = DEFINE.PlayerSpawnTable[posIndex];
@@ -75,7 +74,7 @@ namespace Server
             if (attackPacket.hitObjectType == (ushort)ObjectType.Player)
             {
                 if (room.GetPlayer(attackPacket.hitObjectID, out Player hitPlayer))
-                    hitPlayer.Hit(attackPacket.damage);
+                    hitPlayer.Hit(attackPacket.damage, attackPacket.attackerID);
             }
             else
             {

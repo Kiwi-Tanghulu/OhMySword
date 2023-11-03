@@ -20,5 +20,8 @@ namespace Server
                 new Vector3[] { new Vector3(4, 4, 4), new Vector3(5, 5, 5) }, // 1 경험치
             },
         };
+
+        public const float Rad2Deg = 180f / MathF.PI;
+        public const float Deg2Rad = MathF.PI / 180f;
     }
 }

@@ -1,6 +1,5 @@
 using H00N.Network;
 using Packets;
-using Server.Object;
 
 namespace Server
 {

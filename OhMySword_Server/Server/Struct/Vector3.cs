@@ -30,6 +30,14 @@ namespace Server
             return left;
         }
 
+        public static Vector3 operator*(Vector3 left, float right)
+        {
+            left.x *= right;
+            left.y *= right;
+            left.z *= right;
+            return left;
+        }
+
         public static implicit operator Vector3(VectorPacket right) =>  new Vector3(right.x, right.y, right.z);
         public static implicit operator VectorPacket(Vector3 right) =>  new VectorPacket(right.x, right.y, right.z);
     }

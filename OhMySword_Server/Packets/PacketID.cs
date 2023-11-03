@@ -15,5 +15,6 @@
         S_PlayerPacket,         // 서버가 클라들에게 전송하는 플레이어 정보 패킷
         S_ScoreBoxPacket,       // 서버가 클라들에게 전송하는 점수 구조물 정보 패킷
         S_ObjectDestroyPacket,  // 서버가 클라들에게 오브젝트가 삭제되었다는 걸 알리는 패킷
+        S_PlayerDiePacket,      // 서버가 클라들에게 플레이어가 죽었다는 걸 알리는 패킷
     }
 }

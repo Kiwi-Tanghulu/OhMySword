@@ -14,5 +14,16 @@ namespace Server
         {
             return min + (random.Next() % (max - min));
         }
+
+        public static float Range(float min, float max)
+        {
+            return min + (random.Next() % (max - min));
+        }
+
+        public static Vector3 InCircle(float radius)
+        {
+            float angle = Range(0, 360f) * DEFINE.Deg2Rad;
+            return (new Vector3(MathF.Cos(angle), MathF.Sin(angle), 0f) * radius);
+        }
     }
 }
