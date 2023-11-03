@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TestMove : MonoBehaviour
@@ -13,13 +14,13 @@ public class TestMove : MonoBehaviour
     public Transform leftFootTarget;
     public Transform rightFootTarget;
     public Transform hips;
+    public Transform hipAnchor;
     public float shouldMoveDistance = 0.35f;
     [Tooltip("shouldMoveDistance보다 작아야 함")]
     public float moveDistance = 0.3f;
     public float movePivotHeight = 1f;
     public float footMoveTime = 0.2f;
     public float elasticitySpeed = 1f;
-    public float proneHeight = 0.2f;
 
     //where feet should be
     private Vector3 leftFootPos;
@@ -46,7 +47,6 @@ public class TestMove : MonoBehaviour
         leftFootOffset = leftFootTarget.position - hips.position;
         rightFootOffset = rightFootTarget.position - hips.position;
         footMiddlePos = (leftFootPos - rightFootPos) / 2f + rightFootPos;
-        hip.transform.position -= Vector3.up * proneHeight;
     }
 
     private void Update()
@@ -146,7 +146,7 @@ public class TestMove : MonoBehaviour
         //Debug.Log(123);
         Debug.Log(Vector3.Lerp(hip.position, footMiddlePos, elasticitySpeed * Time.deltaTime));
         hip.transform.position = Vector3.Lerp(hip.transform.position, 
-            new Vector3(footMiddlePos.x, hip.transform.position.y, footMiddlePos.z), elasticitySpeed * Time.deltaTime);
+            new Vector3(footMiddlePos.x, hipAnchor.position.y, footMiddlePos.z), elasticitySpeed * Time.deltaTime);
     }
 
 #if UNITY_EDITOR
