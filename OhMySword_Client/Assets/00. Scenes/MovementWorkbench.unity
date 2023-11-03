@@ -792,8 +792,8 @@ MonoBehaviour:
   moveDistance: 0.55
   movePivotHeight: 1
   footMoveTime: 0.15
-  elasticitySpeed: 1
-  proneHeight: 0.5
+  elasticitySpeed: 2.5
+  proneHeight: 0.15
 --- !u!114 &34498917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11826,7 +11826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &1067731205
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15808,7 +15808,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &1279589634
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16479,7 +16479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &1366315746
 CapsuleCollider:
   m_ObjectHideFlags: 0

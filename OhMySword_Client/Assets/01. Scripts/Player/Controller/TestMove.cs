@@ -46,7 +46,7 @@ public class TestMove : MonoBehaviour
         leftFootOffset = leftFootTarget.position - hips.position;
         rightFootOffset = rightFootTarget.position - hips.position;
         footMiddlePos = (leftFootPos - rightFootPos) / 2f + rightFootPos;
-        hip.position -= Vector3.up * proneHeight;
+        hip.transform.position -= Vector3.up * proneHeight;
     }
 
     private void Update()
@@ -144,8 +144,9 @@ public class TestMove : MonoBehaviour
     {
         Vector3 dir = ((footMiddlePos + Vector3.up * hip.position.y) - hip.position).normalized;
         //Debug.Log(123);
-        //Debug.Log(Vector3.Lerp(hip.position, footMiddlePos, elasticitySpeed * Time.deltaTime));
-        //hip.position = Vector3.Lerp(hip.position, footMiddlePos, elasticitySpeed * Time.deltaTime);
+        Debug.Log(Vector3.Lerp(hip.position, footMiddlePos, elasticitySpeed * Time.deltaTime));
+        hip.transform.position = Vector3.Lerp(hip.transform.position, 
+            new Vector3(footMiddlePos.x, hip.transform.position.y, footMiddlePos.z), elasticitySpeed * Time.deltaTime);
     }
 
 #if UNITY_EDITOR
