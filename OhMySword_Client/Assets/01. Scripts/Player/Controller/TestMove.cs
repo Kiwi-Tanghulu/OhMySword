@@ -19,6 +19,7 @@ public class TestMove : MonoBehaviour
     public float movePivotHeight = 1f;
     public float footMoveTime = 0.2f;
     public float elasticitySpeed = 1f;
+    public float proneHeight = 0.2f;
 
     //where feet should be
     private Vector3 leftFootPos;
@@ -45,7 +46,7 @@ public class TestMove : MonoBehaviour
         leftFootOffset = leftFootTarget.position - hips.position;
         rightFootOffset = rightFootTarget.position - hips.position;
         footMiddlePos = (leftFootPos - rightFootPos) / 2f + rightFootPos;
-        hip.constraints = RigidbodyConstraints.FreezePositionY;
+        hip.position -= Vector3.up * proneHeight;
     }
 
     private void Update()
@@ -74,7 +75,7 @@ public class TestMove : MonoBehaviour
         //hip.AddForce(moveDir * moveSpeed);
         //hip.velocity = new Vector3(hip.velocity.x, 0, hip.velocity.z);
 
-        hip.velocity = moveDir * moveSpeed - Vector3.up * hip.velocity.y;
+        hip.velocity = moveDir * moveSpeed;
     }
 
     private void FootMove()
@@ -90,16 +91,28 @@ public class TestMove : MonoBehaviour
                 
                 if(Vector3.Distance(hipToGround.point, leftFootPos) > Vector3.Distance(hipToGround.point, rightFootPos))
                 {
+                    RaycastHit lefttHit = default;
+                    Physics.Raycast(new Vector3(hips.position.x + leftFootOffset.x + moveDir.x * moveDistance, 
+                        hips.position.y, hips.position.z + leftFootOffset.z + moveDir.z * moveDistance), Vector3.down, out lefttHit, 10, groundLayer);
+
+                    leftHitPos = lefttHit.point + Vector3.up * 0.2f;
                     prevLeftFootPos = leftFootPos;
-                    leftFootPos = new Vector3(hip.position.x + leftFootOffset.x + moveDir.x * moveDistance, leftFootPos.y,
-                        hip.position.z + leftFootOffset.z + moveDir.z * moveDistance);
+                    leftFootPos = leftHitPos;
+                    //leftFootPos = new Vector3(hip.position.x + leftFootOffset.x + moveDir.x * moveDistance, leftFootPos.y,
+                    //    hip.position.z + leftFootOffset.z + moveDir.z * moveDistance);
                     StartCoroutine(FootMoveAnimation(leftFootTarget, prevLeftFootPos, leftFootPos));
                 }
                 else
                 {
+                    RaycastHit righttHit = default;
+                    Physics.Raycast(new Vector3(hips.position.x + rightFootOffset.x + moveDir.x * moveDistance, hips.position.y, 
+                        hips.position.z + rightFootOffset.z + moveDir.z * moveDistance), Vector3.down, out righttHit, 10, groundLayer);
+
+                    rightHitPos = righttHit.point + Vector3.up * 0.2f;
                     prevRightFootPos = rightFootPos;
-                    rightFootPos = new Vector3(hip.position.x + rightFootOffset.x + moveDir.x * moveDistance, rightFootPos.y,
-                        hip.position.z + rightFootOffset.z + moveDir.z * moveDistance);
+                    rightFootPos = rightHitPos;
+                    //rightFootPos = new Vector3(hip.position.x + rightFootOffset.x + moveDir.x * moveDistance, rightFootPos.y,
+                    //    hip.position.z + rightFootOffset.z + moveDir.z * moveDistance);
                     StartCoroutine(FootMoveAnimation(rightFootTarget, prevRightFootPos, rightFootPos));
                 }
 
@@ -130,8 +143,9 @@ public class TestMove : MonoBehaviour
     private void HipElasticity()
     {
         Vector3 dir = ((footMiddlePos + Vector3.up * hip.position.y) - hip.position).normalized;
-        Debug.Log(123);
-        hip.position = Vector3.Lerp(hip.position, new Vector3(footMiddlePos.x, hip.position.y, footMiddlePos.z), elasticitySpeed * Time.deltaTime);
+        //Debug.Log(123);
+        //Debug.Log(Vector3.Lerp(hip.position, footMiddlePos, elasticitySpeed * Time.deltaTime));
+        //hip.position = Vector3.Lerp(hip.position, footMiddlePos, elasticitySpeed * Time.deltaTime);
     }
 
 #if UNITY_EDITOR
@@ -141,6 +155,8 @@ public class TestMove : MonoBehaviour
 
         Gizmos.DrawWireSphere(footMiddlePos, shouldMoveDistance);
         Gizmos.DrawSphere(footMiddlePos, 0.1f);
+        Gizmos.DrawSphere(leftHitPos, 0.1f);
+        Gizmos.DrawSphere(rightHitPos, 0.1f);
     }
 #endif
 
