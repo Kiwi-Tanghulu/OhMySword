@@ -18,6 +18,7 @@ public class TestMove : MonoBehaviour
     public float moveDistance = 0.3f;
     public float movePivotHeight = 1f;
     public float footMoveTime = 0.2f;
+    public float elasticitySpeed = 1f;
 
     //where feet should be
     private Vector3 leftFootPos;
@@ -29,9 +30,11 @@ public class TestMove : MonoBehaviour
     private Vector3 leftHitPos;
     private Vector3 rightHitPos;
 
-    //Distance between body and feet, Only used x and y
+    //Distance between body and feet, Only used x and z
     private Vector3 leftFootOffset;
     private Vector3 rightFootOffset;
+
+    private Vector3 footMiddlePos;
 
     private void Start()
     {
@@ -41,12 +44,14 @@ public class TestMove : MonoBehaviour
         prevRightFootPos = rightFootPos;
         leftFootOffset = leftFootTarget.position - hips.position;
         rightFootOffset = rightFootTarget.position - hips.position;
+        footMiddlePos = (leftFootPos - rightFootPos) / 2f + rightFootPos;
+        hip.constraints = RigidbodyConstraints.FreezePositionY;
     }
 
     private void Update()
     {
         Move();
-        //FootMove();
+        FootMove();
     }
 
     private void Move()
@@ -56,6 +61,7 @@ public class TestMove : MonoBehaviour
         if (moveDir == Vector3.zero)
         {
             hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+            HipElasticity();
         }
         else if (moveDir.x == 0)
             hip.constraints = RigidbodyConstraints.FreezePositionX;
@@ -63,10 +69,12 @@ public class TestMove : MonoBehaviour
             hip.constraints = RigidbodyConstraints.FreezePositionZ;
         else
             hip.constraints = RigidbodyConstraints.None;
+        hip.constraints |= RigidbodyConstraints.FreezePositionY;
 
         //hip.AddForce(moveDir * moveSpeed);
         //hip.velocity = new Vector3(hip.velocity.x, 0, hip.velocity.z);
-        hip.velocity = moveDir * moveSpeed;
+
+        hip.velocity = moveDir * moveSpeed - Vector3.up * hip.velocity.y;
     }
 
     private void FootMove()
@@ -74,35 +82,28 @@ public class TestMove : MonoBehaviour
         leftFootTarget.position = leftFootPos;
         rightFootTarget.position = rightFootPos;
 
-        RaycastHit lefttHit = default;
-        RaycastHit righttHit = default;
-
-        if (Physics.Raycast(new Vector3(hips.position.x + leftFootOffset.x, hips.position.y, hips.position.z + leftFootOffset.z),
-            Vector3.down, out lefttHit, 10, groundLayer))
-        {                                 //foot toe distance
-                leftHitPos = lefttHit.point + Vector3.up * 0.2f;
-            
-            //left, right distance
-            if (Vector3.Distance(leftHitPos, leftFootPos) >= shouldMoveDistance * 1.7f)
+        if(Physics.Raycast(hip.position, Vector3.down, out RaycastHit hipToGround, 1, groundLayer))
+        {
+            if(Vector3.Distance(hipToGround.point, footMiddlePos) >= shouldMoveDistance)
             {
-                Vector3 footMoveDir = (leftHitPos - leftFootPos).normalized;
-                prevLeftFootPos = leftFootPos;
-                leftFootPos = new Vector3(leftHitPos.x + footMoveDir.x * moveDistance, leftHitPos.y, leftHitPos.z + footMoveDir.z * moveDistance);
-                StartCoroutine(FootMoveAnimation(leftFootTarget, prevLeftFootPos, leftFootPos));
-            }
-        }
+                Vector3 moveDir = (hipToGround.point - footMiddlePos).normalized;
+                
+                if(Vector3.Distance(hipToGround.point, leftFootPos) > Vector3.Distance(hipToGround.point, rightFootPos))
+                {
+                    prevLeftFootPos = leftFootPos;
+                    leftFootPos = new Vector3(hip.position.x + leftFootOffset.x + moveDir.x * moveDistance, leftFootPos.y,
+                        hip.position.z + leftFootOffset.z + moveDir.z * moveDistance);
+                    StartCoroutine(FootMoveAnimation(leftFootTarget, prevLeftFootPos, leftFootPos));
+                }
+                else
+                {
+                    prevRightFootPos = rightFootPos;
+                    rightFootPos = new Vector3(hip.position.x + rightFootOffset.x + moveDir.x * moveDistance, rightFootPos.y,
+                        hip.position.z + rightFootOffset.z + moveDir.z * moveDistance);
+                    StartCoroutine(FootMoveAnimation(rightFootTarget, prevRightFootPos, rightFootPos));
+                }
 
-        if (Physics.Raycast(new Vector3(hips.position.x + rightFootOffset.x, hips.position.y, hips.position.z + rightFootOffset.z),
-            Vector3.down, out righttHit, 10, groundLayer))
-        {                                   //foot toe distance
-                rightHitPos = righttHit.point + Vector3.up * 0.2f;
-
-            if (Vector3.Distance(rightHitPos, rightFootPos) >= shouldMoveDistance)
-            {
-                Vector3 footMoveDir = (rightHitPos - rightFootPos).normalized;
-                prevRightFootPos = rightFootPos;
-                rightFootPos = new Vector3(rightHitPos.x + footMoveDir.x * moveDistance, rightHitPos.y, rightHitPos.z + footMoveDir.z * moveDistance);
-                StartCoroutine(FootMoveAnimation(rightFootTarget, prevRightFootPos, rightFootPos));
+                footMiddlePos = (leftFootPos - rightFootPos) / 2f + rightFootPos;
             }
         }
     }
@@ -125,4 +126,61 @@ public class TestMove : MonoBehaviour
             yield return null;
         }
     }
+
+    private void HipElasticity()
+    {
+        Vector3 dir = ((footMiddlePos + Vector3.up * hip.position.y) - hip.position).normalized;
+        Debug.Log(123);
+        hip.position = Vector3.Lerp(hip.position, new Vector3(footMiddlePos.x, hip.position.y, footMiddlePos.z), elasticitySpeed * Time.deltaTime);
+    }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+
+        Gizmos.DrawWireSphere(footMiddlePos, shouldMoveDistance);
+        Gizmos.DrawSphere(footMiddlePos, 0.1f);
+    }
+#endif
+
+    #region dispose
+    //private void FootMove()
+    //{
+    //    leftFootTarget.position = leftFootPos;
+    //    rightFootTarget.position = rightFootPos;
+
+    //    RaycastHit lefttHit = default;
+    //    RaycastHit righttHit = default;
+
+    //    if (Physics.Raycast(new Vector3(hips.position.x + leftFootOffset.x, hips.position.y, hips.position.z + leftFootOffset.z),
+    //        Vector3.down, out lefttHit, 10, groundLayer))
+    //    {                                 //foot toe distance
+    //        leftHitPos = lefttHit.point + Vector3.up * 0.2f;
+
+    //        //left, right distance
+    //        if (Vector3.Distance(leftHitPos, leftFootPos) >= shouldMoveDistance * 1.7f)
+    //        {
+    //            Vector3 footMoveDir = (leftHitPos - leftFootPos).normalized;
+    //            prevLeftFootPos = leftFootPos;
+    //            leftFootPos = new Vector3(leftHitPos.x + footMoveDir.x * moveDistance, leftHitPos.y, leftHitPos.z + footMoveDir.z * moveDistance);
+    //            StartCoroutine(FootMoveAnimation(leftFootTarget, prevLeftFootPos, leftFootPos));
+    //        }
+    //    }
+
+    //    if (Physics.Raycast(new Vector3(hips.position.x + rightFootOffset.x, hips.position.y, hips.position.z + rightFootOffset.z),
+    //        Vector3.down, out righttHit, 10, groundLayer))
+    //    {                                   //foot toe distance
+    //        rightHitPos = righttHit.point + Vector3.up * 0.2f;
+
+    //        if (Vector3.Distance(rightHitPos, rightFootPos) >= shouldMoveDistance)
+    //        {
+    //            Vector3 footMoveDir = (rightHitPos - rightFootPos).normalized;
+    //            prevRightFootPos = rightFootPos;
+    //            rightFootPos = new Vector3(rightHitPos.x + footMoveDir.x * moveDistance, rightHitPos.y, rightHitPos.z + footMoveDir.z * moveDistance);
+    //            StartCoroutine(FootMoveAnimation(rightFootTarget, prevRightFootPos, rightFootPos));
+    //        }
+    //    }
+    //}
+    #endregion
 }
