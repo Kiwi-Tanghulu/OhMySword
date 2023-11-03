@@ -759,42 +759,13 @@ GameObject:
   - component: {fileID: 34498919}
   - component: {fileID: 34498918}
   - component: {fileID: 34498917}
-  - component: {fileID: 34498916}
   m_Layer: 6
-  m_Name: Player (1)
+  m_Name: Hip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &34498916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34498915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hip: {fileID: 34498921}
-  moveSpeed: 5
-  moveDir: {x: 0, y: 0, z: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  leftFootTarget: {fileID: 46187292}
-  rightFootTarget: {fileID: 1676623006}
-  hips: {fileID: 34498922}
-  hipAnchor: {fileID: 1198649355}
-  shouldMoveDistance: 0.55
-  moveDistance: 0.55
-  movePivotHeight: 1
-  footMoveTime: 0.15
-  elasticitySpeed: 2.5
-  proneHeight: 0
 --- !u!114 &34498917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -889,7 +860,7 @@ Transform:
   m_GameObject: {fileID: 34498915}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000033289514, y: 1, z: -1.3298913e-12, w: -0.00000039947417}
-  m_LocalPosition: {x: 0, y: 1.55, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -898,8 +869,7 @@ Transform:
   - {fileID: 1279589637}
   - {fileID: 421048020}
   - {fileID: 447621466}
-  - {fileID: 1198649355}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1659643402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &44147775
 GameObject:
@@ -4574,19 +4544,18 @@ MonoBehaviour:
   hip: {fileID: 322219539}
   moveSpeed: 3
   moveDir: {x: 0, y: 0, z: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
   leftFootTarget: {fileID: 2040262913}
   rightFootTarget: {fileID: 1769790247}
   hips: {fileID: 322219540}
   hipAnchor: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
   shouldMoveDistance: 0.5
   moveDistance: 0.48
   movePivotHeight: 1
   footMoveTime: 0.2
   elasticitySpeed: 1
-  proneHeight: 0.2
 --- !u!114 &322219535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14128,12 +14097,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198649354}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000033289514, y: -1, z: 1.3298913e-12, w: -0.00000039947417}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 34498922}
+  m_Father: {fileID: 1659643402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1201598481
 GameObject:
@@ -14479,19 +14448,18 @@ MonoBehaviour:
   hip: {fileID: 1227892788}
   moveSpeed: 25
   moveDir: {x: 0, y: 0, z: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
   leftFootTarget: {fileID: 443154058}
   rightFootTarget: {fileID: 895020714}
   hips: {fileID: 1227892789}
   hipAnchor: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
   shouldMoveDistance: 0.5
   moveDistance: 0.48
   movePivotHeight: 1
   footMoveTime: 0.2
   elasticitySpeed: 1
-  proneHeight: 0.2
 --- !u!114 &1227892784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20543,6 +20511,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1844304932}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1659643401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1659643402}
+  - component: {fileID: 1659643403}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1659643402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659643401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.574, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 34498922}
+  - {fileID: 1198649355}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1659643403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659643401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hip: {fileID: 34498921}
+  moveSpeed: 5
+  moveDir: {x: 0, y: 0, z: 0}
+  leftFootTarget: {fileID: 46187292}
+  rightFootTarget: {fileID: 1676623006}
+  hips: {fileID: 34498922}
+  hipAnchor: {fileID: 1198649355}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  shouldMoveDistance: 0.55
+  moveDistance: 0.55
+  movePivotHeight: 1
+  footMoveTime: 0.15
+  elasticitySpeed: 2.5
 --- !u!1 &1661272904
 GameObject:
   m_ObjectHideFlags: 0
@@ -31021,19 +31050,18 @@ MonoBehaviour:
   hip: {fileID: 5907798254586527134}
   moveSpeed: 14
   moveDir: {x: 0, y: 0, z: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
   leftFootTarget: {fileID: 883785646}
   rightFootTarget: {fileID: 254980412}
   hips: {fileID: 5907798254586527132}
   hipAnchor: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
   shouldMoveDistance: 0.35
   moveDistance: 0.34
   movePivotHeight: 1
   footMoveTime: 0.2
   elasticitySpeed: 1
-  proneHeight: 0.2
 --- !u!1 &6547198000676746227
 GameObject:
   m_ObjectHideFlags: 0
@@ -34373,5 +34401,5 @@ SceneRoots:
   - {fileID: 5873915037955209877}
   - {fileID: 1227892789}
   - {fileID: 322219540}
-  - {fileID: 34498922}
   - {fileID: 1489775286}
+  - {fileID: 1659643402}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class TestMove : MonoBehaviour
@@ -10,11 +11,12 @@ public class TestMove : MonoBehaviour
     public Vector3 moveDir;
 
     [Space]
-    public LayerMask groundLayer;
     public Transform leftFootTarget;
     public Transform rightFootTarget;
     public Transform hips;
     public Transform hipAnchor;
+    [Space]
+    public LayerMask groundLayer;
     public float shouldMoveDistance = 0.35f;
     [Tooltip("shouldMoveDistance보다 작아야 함")]
     public float moveDistance = 0.3f;
@@ -36,6 +38,7 @@ public class TestMove : MonoBehaviour
     private Vector3 leftFootOffset;
     private Vector3 rightFootOffset;
 
+    //between pos of foot
     private Vector3 footMiddlePos;
 
     private void Start()
@@ -72,9 +75,6 @@ public class TestMove : MonoBehaviour
             hip.constraints = RigidbodyConstraints.None;
         hip.constraints |= RigidbodyConstraints.FreezePositionY;
 
-        //hip.AddForce(moveDir * moveSpeed);
-        //hip.velocity = new Vector3(hip.velocity.x, 0, hip.velocity.z);
-
         hip.velocity = moveDir * moveSpeed;
     }
 
@@ -98,8 +98,7 @@ public class TestMove : MonoBehaviour
                     leftHitPos = lefttHit.point + Vector3.up * 0.2f;
                     prevLeftFootPos = leftFootPos;
                     leftFootPos = leftHitPos;
-                    //leftFootPos = new Vector3(hip.position.x + leftFootOffset.x + moveDir.x * moveDistance, leftFootPos.y,
-                    //    hip.position.z + leftFootOffset.z + moveDir.z * moveDistance);
+
                     StartCoroutine(FootMoveAnimation(leftFootTarget, prevLeftFootPos, leftFootPos));
                 }
                 else
@@ -111,8 +110,7 @@ public class TestMove : MonoBehaviour
                     rightHitPos = righttHit.point + Vector3.up * 0.2f;
                     prevRightFootPos = rightFootPos;
                     rightFootPos = rightHitPos;
-                    //rightFootPos = new Vector3(hip.position.x + rightFootOffset.x + moveDir.x * moveDistance, rightFootPos.y,
-                    //    hip.position.z + rightFootOffset.z + moveDir.z * moveDistance);
+
                     StartCoroutine(FootMoveAnimation(rightFootTarget, prevRightFootPos, rightFootPos));
                 }
 
@@ -132,7 +130,7 @@ public class TestMove : MonoBehaviour
         {
             startToPivotLerp = Vector3.Lerp(start, heightPivotVector, percent);
             pivotToEndLerp = Vector3.Lerp(heightPivotVector, end, percent);
-            foot.position = Vector3.Slerp(startToPivotLerp, pivotToEndLerp, percent);
+            foot.position = Vector3.Lerp(startToPivotLerp, pivotToEndLerp, percent);
 
             percent += Time.deltaTime / footMoveTime;
 
@@ -140,11 +138,9 @@ public class TestMove : MonoBehaviour
         }
     }
 
+    // body lerping
     private void HipElasticity()
     {
-        Vector3 dir = ((footMiddlePos + Vector3.up * hip.position.y) - hip.position).normalized;
-        //Debug.Log(123);
-        Debug.Log(Vector3.Lerp(hip.position, footMiddlePos, elasticitySpeed * Time.deltaTime));
         hip.transform.position = Vector3.Lerp(hip.transform.position, 
             new Vector3(footMiddlePos.x, hipAnchor.position.y, footMiddlePos.z), elasticitySpeed * Time.deltaTime);
     }
