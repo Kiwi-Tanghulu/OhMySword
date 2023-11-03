@@ -46,17 +46,27 @@ public class TestMove : MonoBehaviour
     private void Update()
     {
         Move();
-        FootMove();
+        //FootMove();
     }
 
     private void Move()
     {
         moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
-        hip.constraints = moveDir.x == 0 ? RigidbodyConstraints.FreezePositionX : RigidbodyConstraints.None;
-        hip.constraints = moveDir.z == 0 ? RigidbodyConstraints.FreezePositionZ : RigidbodyConstraints.None;
+        if (moveDir == Vector3.zero)
+        {
+            hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        }
+        else if (moveDir.x == 0)
+            hip.constraints = RigidbodyConstraints.FreezePositionX;
+        else if (moveDir.z == 0)
+            hip.constraints = RigidbodyConstraints.FreezePositionZ;
+        else
+            hip.constraints = RigidbodyConstraints.None;
 
-        hip.AddForce(moveDir * moveSpeed); //+= moveDir * moveSpeed * Time.deltaTime;
+        //hip.AddForce(moveDir * moveSpeed);
+        //hip.velocity = new Vector3(hip.velocity.x, 0, hip.velocity.z);
+        hip.velocity = moveDir * moveSpeed;
     }
 
     private void FootMove()
