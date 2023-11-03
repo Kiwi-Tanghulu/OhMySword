@@ -28,10 +28,10 @@ namespace Server
             // 경험치가 생성되고
             // 나머지 클라한테 죽었음을 알리고
             // 나는 퇴장되고
-            List<VectorPacket> positions = new List<VectorPacket>();
-            CreateXP(positions);
+            List<ObjectPacket> objects = new List<ObjectPacket>();
+            CreateXP(objects);
 
-            S_PlayerDiePacket broadcastPacket = new S_PlayerDiePacket(attacker, objectID, score, positions);
+            S_PlayerDiePacket broadcastPacket = new S_PlayerDiePacket(attacker, objectID, score, objects);
             room?.AddJob(() => room?.Broadcast(broadcastPacket));
         }
 
@@ -42,7 +42,7 @@ namespace Server
             room?.AddJob(() => room.Broadcast(broadcastPackt));
         }
 
-        private void CreateXP(List<VectorPacket> container)
+        private void CreateXP(List<ObjectPacket> container)
         {
             int score = this.score;
             int cursor = (int)MathF.Pow(10, score.ToString().Length - 1);
@@ -52,7 +52,11 @@ namespace Server
                 for(int i = 0; i < number; i++)
                 {
                     Vector3 randInCircle = Random.InCircle(10f);
-                    container.Add(new VectorPacket(randInCircle.x, 2f, randInCircle.z));
+
+                    XPObject xp = new XPObject(room, (ushort)cursor);
+                    xp.position = new Vector3(randInCircle.x, 2f, randInCircle.z);
+                    room.PublishObject(xp);
+                    container.Add(xp);
                 }
 
                 score %= cursor;

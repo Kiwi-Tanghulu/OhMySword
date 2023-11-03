@@ -41,9 +41,10 @@ namespace Server
         {
             for(int i = 0; i < 3; i++)
             {
+                ushort xpAmount = (ushort)MathF.Pow(10, i);
                 foreach (Vector3 pos in XPSpawnTable[objectType][i])
                 {
-                    XPObject xp = new XPObject(room, (ushort)MathF.Pow(10, i));
+                    XPObject xp = new XPObject(room, xpAmount);
                     xp.position = pos;
                     room.PublishObject(xp);
                 }

@@ -1,5 +1,6 @@
 ﻿using H00N.Network;
 using System;
+using System.Collections.Generic;
 
 namespace Packets
 {
@@ -9,6 +10,7 @@ namespace Packets
 
         public ushort objectID;
         public ushort posTableIndex;
+        public List<UShortPacket> ids = new List<UShortPacket>();
 
         public S_ScoreBoxPacket() { }
 
@@ -27,6 +29,7 @@ namespace Packets
 
             process += PacketUtility.ReadUShortData(buffer, process, out objectID);
             process += PacketUtility.ReadUShortData(buffer, process, out posTableIndex);
+            process += PacketUtility.ReadListData<UShortPacket>(buffer, process, out ids);
         }
 
         public override ArraySegment<byte> Serialize()
@@ -38,6 +41,7 @@ namespace Packets
             process += PacketUtility.AppendUShortData(this.ID, buffer, process);
             process += PacketUtility.AppendUShortData(this.objectID, buffer, process);
             process += PacketUtility.AppendUShortData(this.posTableIndex, buffer, process);
+            process += PacketUtility.AppendListData<UShortPacket>(this.ids, buffer, process);
             PacketUtility.AppendUShortData(process, buffer, 0);
 
             return UniqueBuffer.Close(process);

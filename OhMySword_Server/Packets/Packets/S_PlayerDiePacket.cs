@@ -12,16 +12,16 @@ namespace Packets
         public ushort attakerID;
         public ushort playerID;
         public ushort score;
-        public List<VectorPacket> positions;
+        public List<ObjectPacket> objects;
 
         public S_PlayerDiePacket() { }
 
-        public S_PlayerDiePacket(ushort attakerID, ushort playerID, ushort score, List<VectorPacket> positions)
+        public S_PlayerDiePacket(ushort attakerID, ushort playerID, ushort score, List<ObjectPacket> objects)
         {
             this.attakerID = attakerID;
             this.playerID = playerID;
             this.score = score;
-            this.positions = positions;
+            this.objects = objects;
         }
 
         public override void Deserialize(ArraySegment<byte> buffer)
@@ -34,7 +34,7 @@ namespace Packets
             process += PacketUtility.ReadUShortData(buffer, process, out attakerID);
             process += PacketUtility.ReadUShortData(buffer, process, out playerID);
             process += PacketUtility.ReadUShortData(buffer, process, out score);
-            process += PacketUtility.ReadListData<VectorPacket>(buffer, process, out positions);
+            process += PacketUtility.ReadListData<ObjectPacket>(buffer, process, out objects);
         }
 
         public override ArraySegment<byte> Serialize()
@@ -47,7 +47,7 @@ namespace Packets
             process += PacketUtility.AppendUShortData(this.attakerID, buffer, process);
             process += PacketUtility.AppendUShortData(this.playerID, buffer, process);
             process += PacketUtility.AppendUShortData(this.score, buffer, process);
-            process += PacketUtility.AppendListData<VectorPacket>(this.positions, buffer, process);
+            process += PacketUtility.AppendListData<ObjectPacket>(this.objects, buffer, process);
             PacketUtility.AppendUShortData(process, buffer, 0);
 
             return UniqueBuffer.Close(process);
