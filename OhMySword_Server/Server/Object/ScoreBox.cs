@@ -14,7 +14,7 @@ namespace Server
             this.objectType = (ushort)type;
         }
 
-        public override void Hit(ushort damage)
+        public override void Hit(ushort damage, ushort attacker)
         {
             hp -= damage;
             if (hp > 0)
@@ -44,6 +44,7 @@ namespace Server
                 foreach (Vector3 pos in XPSpawnTable[objectType][i])
                 {
                     XPObject xp = new XPObject(room, (ushort)MathF.Pow(10, i));
+                    xp.position = pos;
                     room.PublishObject(xp);
                 }
             }
