@@ -25,10 +25,10 @@ public class TestMove : MonoBehaviour
     public float elasticitySpeed = 1f;
 
     //where feet should be
-    private Vector3 leftFootPos;
-    private Vector3 rightFootPos;
-    private Vector3 prevLeftFootPos;
-    private Vector3 prevRightFootPos;
+    private Vector3 leftFootTargetPos;
+    private Vector3 rightFootTargetPos;
+    private Vector3 prevLeftFootTargetPos;
+    private Vector3 prevRightFootTargetPos;
 
     //The location where the ray was fired from the body and reached the ground.
     private Vector3 leftHitPos;
@@ -43,13 +43,13 @@ public class TestMove : MonoBehaviour
 
     private void Start()
     {
-        leftFootPos = leftFootTarget.position;
-        rightFootPos = rightFootTarget.position;
-        prevLeftFootPos = leftFootPos;
-        prevRightFootPos = rightFootPos;
+        leftFootTargetPos = leftFootTarget.position;
+        rightFootTargetPos = rightFootTarget.position;
+        prevLeftFootTargetPos = leftFootTargetPos;
+        prevRightFootTargetPos = rightFootTargetPos;
         leftFootOffset = leftFootTarget.position - hips.position;
         rightFootOffset = rightFootTarget.position - hips.position;
-        footMiddlePos = (leftFootPos - rightFootPos) / 2f + rightFootPos;
+        footMiddlePos = (leftFootTargetPos - rightFootTargetPos) / 2f + rightFootTargetPos;
     }
 
     private void Update()
@@ -80,8 +80,8 @@ public class TestMove : MonoBehaviour
 
     private void FootMove()
     {
-        leftFootTarget.position = leftFootPos;
-        rightFootTarget.position = rightFootPos;
+        leftFootTarget.position = leftFootTargetPos;
+        rightFootTarget.position = rightFootTargetPos;
 
         if(Physics.Raycast(hip.position, Vector3.down, out RaycastHit hipToGround, 1, groundLayer))
         {
@@ -89,17 +89,17 @@ public class TestMove : MonoBehaviour
             {
                 Vector3 moveDir = (hipToGround.point - footMiddlePos).normalized;
                 
-                if(Vector3.Distance(hipToGround.point, leftFootPos) > Vector3.Distance(hipToGround.point, rightFootPos))
+                if(Vector3.Distance(hipToGround.point, leftFootTargetPos) > Vector3.Distance(hipToGround.point, rightFootTargetPos))
                 {
                     RaycastHit lefttHit = default;
                     Physics.Raycast(new Vector3(hips.position.x + leftFootOffset.x + moveDir.x * moveDistance, 
                         hips.position.y, hips.position.z + leftFootOffset.z + moveDir.z * moveDistance), Vector3.down, out lefttHit, 10, groundLayer);
 
                     leftHitPos = lefttHit.point + Vector3.up * 0.2f;
-                    prevLeftFootPos = leftFootPos;
-                    leftFootPos = leftHitPos;
+                    prevLeftFootTargetPos = leftFootTargetPos;
+                    leftFootTargetPos = leftHitPos;
 
-                    StartCoroutine(FootMoveAnimation(leftFootTarget, prevLeftFootPos, leftFootPos));
+                    StartCoroutine(FootMoveAnimation(leftFootTarget, prevLeftFootTargetPos, leftFootTargetPos));
                 }
                 else
                 {
@@ -108,13 +108,13 @@ public class TestMove : MonoBehaviour
                         hips.position.z + rightFootOffset.z + moveDir.z * moveDistance), Vector3.down, out righttHit, 10, groundLayer);
 
                     rightHitPos = righttHit.point + Vector3.up * 0.2f;
-                    prevRightFootPos = rightFootPos;
-                    rightFootPos = rightHitPos;
+                    prevRightFootTargetPos = rightFootTargetPos;
+                    rightFootTargetPos = rightHitPos;
 
-                    StartCoroutine(FootMoveAnimation(rightFootTarget, prevRightFootPos, rightFootPos));
+                    StartCoroutine(FootMoveAnimation(rightFootTarget, prevRightFootTargetPos, rightFootTargetPos));
                 }
 
-                footMiddlePos = (leftFootPos - rightFootPos) / 2f + rightFootPos;
+                footMiddlePos = (leftFootTargetPos - rightFootTargetPos) / 2f + rightFootTargetPos;
             }
         }
     }
