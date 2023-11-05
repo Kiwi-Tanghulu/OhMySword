@@ -14,7 +14,7 @@ public class ServerSession : Session
     public override void OnDisconnected(EndPoint endPoint)
     {
         Debug.Log($"{endPoint} : 접속 해제!");
-        NetworkManager.Instance.IsConnected = true;
+        NetworkManager.Instance.IsConnected = false;
     }
 
     public override void OnPacketReceived(ArraySegment<byte> buffer)

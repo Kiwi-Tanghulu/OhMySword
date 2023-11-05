@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Base.Network;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Table/PrefabTable")]
 public class SyncableObjectPrefabTableSO : ScriptableObject
 {
     [System.Serializable]

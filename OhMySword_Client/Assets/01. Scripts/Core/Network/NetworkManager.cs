@@ -1,6 +1,7 @@
 using System.Net;
 using System.Collections.Generic;
 using H00N.Network;
+using System;
 
 public class NetworkManager
 {
@@ -45,6 +46,12 @@ public class NetworkManager
                 PacketManager.Instance.HandlePacket(session, packet);
             }
         }
+    }
+
+    public void Disconnect()
+    {
+        if(IsConnected)
+            session.Close();
     }
 
     public void Send(Packet packet)

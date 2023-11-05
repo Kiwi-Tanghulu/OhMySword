@@ -22,6 +22,7 @@ public class RoomManager : MonoBehaviour
             DestroyImmediate(Instance.gameObject);
 
         Instance = this;
+        prefabTable.Init();
     }
 
     public void CreatePlayer(ushort id, ushort posIndex, string nickname)

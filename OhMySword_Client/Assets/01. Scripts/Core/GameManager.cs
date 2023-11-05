@@ -35,4 +35,12 @@ public class GameManager : MonoBehaviour
     {
         NetworkManager.Instance.FlushPacketQueue();
     }
+
+    private void OnDestroy()
+    {
+        if(Instance != this)
+            return;
+
+        NetworkManager.Instance.Disconnect();
+    }
 }
