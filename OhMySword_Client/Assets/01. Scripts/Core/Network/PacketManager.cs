@@ -41,7 +41,7 @@ public class PacketManager
     private void RegisterHandler()
     {
         RegisterHandler<S_LogInPacket>(PacketID.S_LogInPacket, PacketHandler.S_LogInPacket);
-        // RegisterHandler<S_LogInPacket>(PacketID.S_LogInPacket, PacketHandler.S_LogInPacket);
+        RegisterHandler<S_RoomEnterPacket>(PacketID.S_RoomEnterPacket, PacketHandler.S_RoomEnterPacket);
         // RegisterHandler<S_LogInPacket>(PacketID.S_LogInPacket, PacketHandler.S_LogInPacket);
         // RegisterHandler<S_LogInPacket>(PacketID.S_LogInPacket, PacketHandler.S_LogInPacket);
         // RegisterHandler<S_LogInPacket>(PacketID.S_LogInPacket, PacketHandler.S_LogInPacket);

@@ -13,7 +13,7 @@ namespace Server
 
         public override void OnConnected(EndPoint endPoint)
         {
-            Console.WriteLine($"[Session] : Client Connected | {endPoint}.");
+            Console.WriteLine($"[Session] Client Connected : {endPoint}.");
 
             UserID = NetworkManager.Instance.PublishUserID(this);
             S_LogInPacket logInPacket = new S_LogInPacket() { userID = UserID };
@@ -22,20 +22,20 @@ namespace Server
 
         public override void OnDisconnected(EndPoint endPoint)
         {
-            Console.WriteLine($"[Session] : Client Disconnected | {endPoint}.");
+            Console.WriteLine($"[Session] Client Disconnected : {endPoint}.");
             NetworkManager.Instance.ReleaseUser(this);
         }
 
         public override void OnPacketReceived(ArraySegment<byte> buffer)
         {
-            Console.WriteLine($"[Session] : Packet Received | {buffer.Count}");
+            Console.WriteLine($"[Session] Packet Received : {buffer.Count}");
             Packet packet = PacketManager.Instance.CreatePacket(buffer);
             PacketManager.Instance.HandlePacket(this, packet);
         }
 
         public override void OnSent(int length)
         {
-            Console.WriteLine($"[Session] : Data Sent | {length}");
+            Console.WriteLine($"[Session] Data Sent : {length}");
         }
     }
 }

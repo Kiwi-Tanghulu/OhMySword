@@ -11,14 +11,17 @@ namespace Server
 
         static void Main(string[] args)
         {
+            RoomManager.Instance = new RoomManager();
             PacketManager.Instance = new PacketManager();
             NetworkManager.Instance = new NetworkManager();
 
             if (NetworkManager.Instance.Listen(IPAddress, PORT) == false)
             {
-                Console.WriteLine("문제가 생겼습니다");
+                Console.WriteLine($"[Core] Something Problem Detected With Opening Server");
                 return;
             }
+
+            Console.WriteLine($"[Core] Server Opened : {IPAddress}:{PORT}");
 
             while(true)
             {

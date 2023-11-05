@@ -5,7 +5,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance = null;
 
     public ushort UserID = 0;
-    public ushort PlayerID = 0;
 
     private void Awake()
     {
@@ -19,6 +18,8 @@ public class GameManager : MonoBehaviour
             DestroyImmediate(gameObject);
             return;
         }
+
+        SceneLoader.Instance = gameObject.AddComponent<SceneLoader>();
 
         PacketManager.Instance = new PacketManager();
         NetworkManager.Instance = new NetworkManager();
