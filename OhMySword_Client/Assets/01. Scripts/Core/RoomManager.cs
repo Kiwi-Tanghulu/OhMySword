@@ -1,14 +1,20 @@
 using System.Collections.Generic;
 using Packets;
 using UnityEngine;
+using OhMySword.Player;
+using Base.Network;
 
 public class RoomManager : MonoBehaviour
 {
     public static RoomManager Instance = null;
 
+    [SerializeField] SyncableObjectPrefabTableSO prefabTable;
+    [SerializeField] PositionTableSO playerSpawnTable;
+
     public ushort PlayerID { get; private set; }
     
-    private Dictionary<ushort, PlayerControl> players = new Dictionary<ushort, PlayerControl>();
+    private Dictionary<ushort, PlayerController> players = new Dictionary<ushort, PlayerController>();
+    private Dictionary<ushort, SyncableObject> objects = new Dictionary<ushort, SyncableObject>();
 
 	private void Awake()
     {
@@ -20,19 +26,29 @@ public class RoomManager : MonoBehaviour
 
     public void CreatePlayer(ushort id, ushort posIndex, string nickname)
     {
+        PlayerController player = Instantiate(prefabTable[ObjectType.Player]) as PlayerController;
+        player.Init(id, playerSpawnTable[posIndex], Vector3.zero);
+        player.SetNickname(nickname);
+
+        players.Add(id, player);
         PlayerID = id;
-        // 풀링으로 생성해야 함
-        // players.Add()
     }
 
     public void InitRoom(List<PlayerPacket> playerList, List<ObjectPacket> objectList)
     {
         playerList.ForEach(p => {
-            // 생성 & 추가
+            PlayerController player = Instantiate(prefabTable[ObjectType.Player]) as PlayerController;
+            player.Init(p.objectID, p.position.Vector3(), p.rotation.Vector3());
+            player.SetNickname(p.nickname);
+            
+            players.Add(player.ObjectID, player);
         });
 
         objectList.ForEach(o => {
-            // 생성 & 추가
+            SyncableObject obj = Instantiate(prefabTable[(ObjectType)o.objectType]);
+            obj.Init(o.objectID, o.position.Vector3(), o.rotation.Vector3());
+            
+            objects.Add(obj.ObjectID, obj);
         });
     }
 }
