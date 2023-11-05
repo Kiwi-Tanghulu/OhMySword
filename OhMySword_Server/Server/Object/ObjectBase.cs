@@ -25,7 +25,7 @@ namespace Server
 
         public static implicit operator ObjectPacket(ObjectBase right)
         {
-            return new ObjectPacket(right.objectID, right.position, right.rotation);
+            return new ObjectPacket(right.objectID, right.objectType, right.position, right.rotation);
         }
     }
 }
