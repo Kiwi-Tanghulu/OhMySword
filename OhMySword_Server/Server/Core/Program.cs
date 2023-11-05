@@ -1,12 +1,13 @@
 ﻿using System.Net;
-using Server.Core;
+using Server;
 
 namespace Server
 {
     public class Program
     {
-        private static string IPAddress = "172.31.3.230";
-        private static int PORT = 8081;
+        //private static string IPAddress = "172.31.3.230";
+        private static string IPAddress = "172.30.1.16";
+        private static int PORT = 2651;
 
         static void Main(string[] args)
         {

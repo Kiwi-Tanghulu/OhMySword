@@ -9,5 +9,6 @@ public class PacketHandler
         S_LogInPacket logInPacket = packet as S_LogInPacket;
         
         GameManager.Instance.UserID = logInPacket.userID;
+        GameObject.Find("Canvas/BlockPanel").SetActive(false);
     }
 }

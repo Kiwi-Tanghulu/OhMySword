@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour
         NetworkManager.Instance = new NetworkManager();
     }
 
+    private void Start()
+    {
+        NetworkManager.Instance.Connect("172.30.1.16", 2651);
+    }
+
     private void Update()
     {
         NetworkManager.Instance.FlushPacketQueue();

@@ -39,6 +39,19 @@ namespace Server
             }
         }
 
+        public void ReleaseUser(ClientSession session)
+        {
+            lock(locker)
+            {
+                if (users.ContainsKey(session.UserID) == false)
+                    return;
+
+                users.Remove(session.UserID);
+                session.Room?.AddJob(() => session.Room.ReleasePlayer(session.Player));
+                session.Close();
+            }
+        }
+
         public bool Listen(string ip, int port)
         {
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(ip), port);
