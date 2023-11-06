@@ -23,10 +23,7 @@ namespace Server
 
             Console.WriteLine($"[Core] Server Opened : {IPAddress}:{PORT}");
 
-            while(true)
-            {
-                // loop
-            }
+            RoomManager.Instance.FlushLoop(50);
         }
     }
 }

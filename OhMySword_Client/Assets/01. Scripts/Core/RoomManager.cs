@@ -35,21 +35,29 @@ public class RoomManager : MonoBehaviour
         PlayerID = id;
     }
 
+    public void AddRemotePlayer(ushort objectID, Vector3 position, Vector3 rotation, string nickname)
+    {
+        PlayerController player = Instantiate(prefabTable[ObjectType.Player]) as PlayerController;
+        player.Init(objectID, position, rotation);
+        player.SetNickname(nickname);
+
+        players.Add(objectID, player);
+    }
+
+    public void AddRemotePlayer(ushort objectID, ushort posIndex, string nickname)
+        => AddRemotePlayer(objectID, playerSpawnTable[posIndex], Vector3.zero, nickname);
+
+    public void AddRemoteObject(ushort objectID, ObjectType objectType, Vector3 position, Vector3 rotation)
+    {
+        SyncableObject obj = Instantiate(prefabTable[objectType]);
+        obj.Init(objectID, position, rotation);
+
+        objects.Add(objectID, obj);
+    }
+
     public void InitRoom(List<PlayerPacket> playerList, List<ObjectPacket> objectList)
     {
-        playerList.ForEach(p => {
-            PlayerController player = Instantiate(prefabTable[ObjectType.Player]) as PlayerController;
-            player.Init(p.objectID, p.position.Vector3(), p.rotation.Vector3());
-            player.SetNickname(p.nickname);
-            
-            players.Add(player.ObjectID, player);
-        });
-
-        objectList.ForEach(o => {
-            SyncableObject obj = Instantiate(prefabTable[(ObjectType)o.objectType]);
-            obj.Init(o.objectID, o.position.Vector3(), o.rotation.Vector3());
-            
-            objects.Add(obj.ObjectID, obj);
-        });
+        playerList.ForEach(p => AddRemotePlayer(p.objectID, p.position.Vector3(), p.rotation.Vector3(), p.nickname));
+        objectList.ForEach(o => AddRemoteObject(o.objectID, (ObjectType)o.objectType, o.position.Vector3(), o.rotation.Vector3()));
     }
 }

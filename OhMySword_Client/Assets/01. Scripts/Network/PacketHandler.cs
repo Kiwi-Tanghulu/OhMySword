@@ -24,4 +24,10 @@ public class PacketHandler
             RoomManager.Instance.InitRoom(enterPacket.players, enterPacket.objects);
         });
     }
+
+    public static void S_OtherJoinPacket(Session session, Packet packet)
+    {
+        S_OtherJoinPacket joinPacket = packet as S_OtherJoinPacket;
+        RoomManager.Instance.AddRemotePlayer(joinPacket.playerID, joinPacket.posTableIndex, joinPacket.nickname);
+    }
 }
