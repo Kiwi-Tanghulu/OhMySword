@@ -1,6 +1,7 @@
 ﻿using H00N.Network;
 using System.Net.Sockets;
 using System.Net;
+using Packets;
 
 namespace Server
 {
@@ -36,6 +37,20 @@ namespace Server
                 users.Add(id, session);
 
                 return id;
+            }
+        }
+
+        public void ReleaseUser(ClientSession session)
+        {
+            lock(locker)
+            {
+                if (users.ContainsKey(session.UserID) == false)
+                    return;
+
+                users.Remove(session.UserID);
+
+                session.Room?.AddJob(() => session.Room?.ReleasePlayer(session.Player));
+                session.Close();
             }
         }
 

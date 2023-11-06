@@ -1,4 +1,5 @@
-﻿using System;
+﻿using H00N.Network;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,41 @@ namespace Server
         private ushort roomIDPublisher = 0;
 
         private object locker = new object();
+
+        //public async Task FlushRoomPackets()
+        //{
+        //    await Task.Run(() => {
+        //        foreach(GameRoom room in gameRooms.Values)
+        //            room.FlushBroadcastQueue();
+        //    });
+        //}
+
+        public void FlushLoop(int delay)
+        {
+            int lastFlushTime = Environment.TickCount;
+
+            while (true)
+            {
+                int currentTime = Environment.TickCount;
+                if (currentTime - lastFlushTime > delay)
+                {
+                    FlushRoomPackets();
+                    lastFlushTime = currentTime;
+                }
+            }
+        }
+
+        private void FlushRoomPackets()
+        {
+            foreach (GameRoom room in gameRooms.Values)
+            {
+                room.AddJob(() => {
+                    int packetCount = room.FlushBroadcastQueue();
+                    if(packetCount > 0)
+                        Console.WriteLine($"[Room] {packetCount} Packets Flushed");
+                });
+            }
+        }
 
         public void Clear()
         {

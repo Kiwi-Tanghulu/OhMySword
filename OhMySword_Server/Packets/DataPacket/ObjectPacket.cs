@@ -6,14 +6,16 @@ namespace Packets
     public class ObjectPacket : DataPacket
     {
         public ushort objectID;
+        public ushort objectType;
         public VectorPacket position;
         public VectorPacket rotation;
 
         public ObjectPacket() { }
 
-        public ObjectPacket(ushort objectID, VectorPacket position, VectorPacket rotation)
+        public ObjectPacket(ushort objectID, ushort objectType, VectorPacket position, VectorPacket rotation)
         {
             this.objectID = objectID;
+            this.objectType = objectType;
             this.position = position;
             this.rotation = rotation;
         }

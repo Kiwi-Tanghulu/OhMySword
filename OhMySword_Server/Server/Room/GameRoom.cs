@@ -15,8 +15,8 @@ namespace Server
 
         public GameRoom()
         {
-            ScoreBox scoreBox = new ScoreBox(this, 10, ObjectType.WoodenScoreBox);
-            PublishObject(scoreBox);
+            //ScoreBox scoreBox = new ScoreBox(this, 10, ObjectType.WoodenScoreBox);
+            //PublishObject(scoreBox);
         }
     }
 }
