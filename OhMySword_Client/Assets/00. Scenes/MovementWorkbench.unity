@@ -4634,6 +4634,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyLerping: 1
+  canMove: 1
+  canFootMove: 1
   hip: {fileID: 322219539}
   moveSpeed: 3
   moveDir: {x: 0, y: 0, z: 0}
@@ -15027,6 +15030,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyLerping: 1
+  canMove: 1
+  canFootMove: 1
   hip: {fileID: 1227892788}
   moveSpeed: 25
   moveDir: {x: 0, y: 0, z: 0}
@@ -21416,7 +21422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1659643402
 Transform:
   m_ObjectHideFlags: 0
@@ -21446,6 +21452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyLerping: 1
+  canMove: 1
+  canFootMove: 1
   hip: {fileID: 34498921}
   moveSpeed: 5
   moveDir: {x: 0, y: 0, z: 0}
@@ -33749,6 +33758,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyLerping: 1
+  canMove: 1
+  canFootMove: 1
   hip: {fileID: 5907798254586527134}
   moveSpeed: 14
   moveDir: {x: 0, y: 0, z: 0}

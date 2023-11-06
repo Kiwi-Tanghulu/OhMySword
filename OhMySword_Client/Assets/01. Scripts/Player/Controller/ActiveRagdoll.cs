@@ -4,8 +4,13 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class TestMove : MonoBehaviour
+public class ActiveRagdoll : MonoBehaviour
 {
+    public bool bodyLerping = true;
+    public bool canMove = true;
+    public bool canFootMove = true;
+
+    [Space]
     public Rigidbody hip;
     public float moveSpeed = 5f;
     public Vector3 moveDir;
@@ -60,6 +65,9 @@ public class TestMove : MonoBehaviour
 
     private void Move()
     {
+        if (!canMove)
+            return; 
+
         moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
         if (moveDir == Vector3.zero)
@@ -80,6 +88,9 @@ public class TestMove : MonoBehaviour
 
     private void FootMove()
     {
+        if (!canFootMove)
+            return;
+
         leftFootTarget.position = leftFootTargetPos;
         rightFootTarget.position = rightFootTargetPos;
 
@@ -118,7 +129,6 @@ public class TestMove : MonoBehaviour
             }
         }
     }
-
     private IEnumerator FootMoveAnimation(Transform foot, Vector3 start, Vector3 end)
     {
         float percent = 0;
@@ -141,6 +151,8 @@ public class TestMove : MonoBehaviour
     // body lerping
     private void HipElasticity()
     {
+        if (!bodyLerping)
+            return;
         hip.transform.position = Vector3.Lerp(hip.transform.position, 
             new Vector3(footMiddlePos.x, hipAnchor.position.y, footMiddlePos.z), elasticitySpeed * Time.deltaTime);
     }
@@ -156,44 +168,4 @@ public class TestMove : MonoBehaviour
         Gizmos.DrawSphere(rightHitPos, 0.1f);
     }
 #endif
-
-    #region dispose
-    //private void FootMove()
-    //{
-    //    leftFootTarget.position = leftFootPos;
-    //    rightFootTarget.position = rightFootPos;
-
-    //    RaycastHit lefttHit = default;
-    //    RaycastHit righttHit = default;
-
-    //    if (Physics.Raycast(new Vector3(hips.position.x + leftFootOffset.x, hips.position.y, hips.position.z + leftFootOffset.z),
-    //        Vector3.down, out lefttHit, 10, groundLayer))
-    //    {                                 //foot toe distance
-    //        leftHitPos = lefttHit.point + Vector3.up * 0.2f;
-
-    //        //left, right distance
-    //        if (Vector3.Distance(leftHitPos, leftFootPos) >= shouldMoveDistance * 1.7f)
-    //        {
-    //            Vector3 footMoveDir = (leftHitPos - leftFootPos).normalized;
-    //            prevLeftFootPos = leftFootPos;
-    //            leftFootPos = new Vector3(leftHitPos.x + footMoveDir.x * moveDistance, leftHitPos.y, leftHitPos.z + footMoveDir.z * moveDistance);
-    //            StartCoroutine(FootMoveAnimation(leftFootTarget, prevLeftFootPos, leftFootPos));
-    //        }
-    //    }
-
-    //    if (Physics.Raycast(new Vector3(hips.position.x + rightFootOffset.x, hips.position.y, hips.position.z + rightFootOffset.z),
-    //        Vector3.down, out righttHit, 10, groundLayer))
-    //    {                                   //foot toe distance
-    //        rightHitPos = righttHit.point + Vector3.up * 0.2f;
-
-    //        if (Vector3.Distance(rightHitPos, rightFootPos) >= shouldMoveDistance)
-    //        {
-    //            Vector3 footMoveDir = (rightHitPos - rightFootPos).normalized;
-    //            prevRightFootPos = rightFootPos;
-    //            rightFootPos = new Vector3(rightHitPos.x + footMoveDir.x * moveDistance, rightHitPos.y, rightHitPos.z + footMoveDir.z * moveDistance);
-    //            StartCoroutine(FootMoveAnimation(rightFootTarget, prevRightFootPos, rightFootPos));
-    //        }
-    //    }
-    //}
-    #endregion
 }

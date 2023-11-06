@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class RagdollMove : MonoBehaviour
+public class RagdollMove2 : MonoBehaviour
 {
     //¿Ãµø
     public float moveSpeed;
