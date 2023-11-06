@@ -4638,8 +4638,6 @@ MonoBehaviour:
   canMove: 1
   canFootMove: 1
   hip: {fileID: 322219539}
-  moveSpeed: 3
-  moveDir: {x: 0, y: 0, z: 0}
   leftFootTarget: {fileID: 2040262913}
   rightFootTarget: {fileID: 1769790247}
   hips: {fileID: 322219540}
@@ -15034,8 +15032,6 @@ MonoBehaviour:
   canMove: 1
   canFootMove: 1
   hip: {fileID: 1227892788}
-  moveSpeed: 25
-  moveDir: {x: 0, y: 0, z: 0}
   leftFootTarget: {fileID: 443154058}
   rightFootTarget: {fileID: 895020714}
   hips: {fileID: 1227892789}
@@ -21415,6 +21411,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1659643402}
+  - component: {fileID: 1659643405}
+  - component: {fileID: 1659643404}
   - component: {fileID: 1659643403}
   m_Layer: 0
   m_Name: Player
@@ -21456,8 +21454,6 @@ MonoBehaviour:
   canMove: 1
   canFootMove: 1
   hip: {fileID: 34498921}
-  moveSpeed: 5
-  moveDir: {x: 0, y: 0, z: 0}
   leftFootTarget: {fileID: 46187292}
   rightFootTarget: {fileID: 1676623006}
   hips: {fileID: 34498922}
@@ -21470,6 +21466,31 @@ MonoBehaviour:
   movePivotHeight: 1
   footMoveTime: 0.15
   elasticitySpeed: 6.5
+--- !u!114 &1659643404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659643401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf2a74d6b7c46147a686d0f422e2e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+--- !u!114 &1659643405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659643401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c504229e665546e408be5ba0884754d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1661272904
 GameObject:
   m_ObjectHideFlags: 0
@@ -33762,8 +33783,6 @@ MonoBehaviour:
   canMove: 1
   canFootMove: 1
   hip: {fileID: 5907798254586527134}
-  moveSpeed: 14
-  moveDir: {x: 0, y: 0, z: 0}
   leftFootTarget: {fileID: 883785646}
   rightFootTarget: {fileID: 254980412}
   hips: {fileID: 5907798254586527132}

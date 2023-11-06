@@ -6,7 +6,7 @@ namespace Base.Network
     {
         public ushort ObjectID { get; protected set; }
 
-        private Vector3 targetPosition = Vector3.zero;
+        protected Vector3 targetPosition = Vector3.zero;
 
         public void SetID(ushort id) => ObjectID = id;
 

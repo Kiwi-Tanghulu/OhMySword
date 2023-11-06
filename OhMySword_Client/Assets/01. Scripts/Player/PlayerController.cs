@@ -6,9 +6,11 @@ namespace OhMySword.Player
 {
     public class PlayerController : SyncableObject, IDamageable, IHitable
     {
+        private PlayerMove movement;
+
         public override void OnCreated()
         {
-            
+            movement = GetComponent<PlayerMove>();
         }
 
         public override void OnDeleted()
@@ -43,6 +45,12 @@ namespace OhMySword.Player
         public void Die()
         {
             
+        }
+
+        public override void SetPosition(Vector3 position, bool immediately = false)
+        {
+            base.SetPosition(position, immediately);
+            movement.SetTargetPosition(targetPosition);
         }
     }
 }
