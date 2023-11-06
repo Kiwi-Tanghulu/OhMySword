@@ -35,6 +35,7 @@ namespace Server
             room.AddJob(() => {
                 room.PublishPlayer(player);
                 clientSession.Player = player;
+                clientSession.Room = room;
             });
 
             S_OtherJoinPacket broadcastPacket = new S_OtherJoinPacket(player.nickname, player.objectID, (ushort)posIndex);
@@ -56,9 +57,6 @@ namespace Server
             room.AddJob(() => room.ReleasePlayer(clientSession.Player));
             clientSession.Player = null;
             clientSession.Room = null;
-
-            S_OtherExitPacket broadcastPackt = new S_OtherExitPacket(playerID);
-            room.AddJob(() => room.Broadcast(broadcastPackt, playerID));
         }
 
         public static void C_AttackPacket(Session session, Packet packet)

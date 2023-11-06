@@ -10,6 +10,9 @@ namespace Base.Network
 
         public void SetID(ushort id) => ObjectID = id;
 
+        public abstract void OnCreated();
+        public abstract void OnDeleted();
+
         private void Awake()
         {
             targetPosition = transform.position;
@@ -39,5 +42,6 @@ namespace Base.Network
         {
             transform.rotation = Quaternion.Euler(rotation);
         }
+
     }
 }

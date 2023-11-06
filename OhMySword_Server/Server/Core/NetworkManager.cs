@@ -1,6 +1,7 @@
 ﻿using H00N.Network;
 using System.Net.Sockets;
 using System.Net;
+using Packets;
 
 namespace Server
 {
@@ -47,7 +48,8 @@ namespace Server
                     return;
 
                 users.Remove(session.UserID);
-                session.Room?.AddJob(() => session.Room.ReleasePlayer(session.Player));
+
+                session.Room?.AddJob(() => session.Room?.ReleasePlayer(session.Player));
                 session.Close();
             }
         }

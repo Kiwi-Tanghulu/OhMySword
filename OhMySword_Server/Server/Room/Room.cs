@@ -114,6 +114,9 @@ namespace Server
 
         public void ReleasePlayer(Player player)
         {
+            S_OtherExitPacket broadcastPackt = new S_OtherExitPacket(player.objectID);
+            Broadcast(broadcastPackt, player.session.UserID);
+
             players.Remove(player.objectID);
             player.session = null;
             player.objectID = 0;

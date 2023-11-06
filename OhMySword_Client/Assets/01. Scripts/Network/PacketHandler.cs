@@ -28,6 +28,12 @@ public class PacketHandler
     public static void S_OtherJoinPacket(Session session, Packet packet)
     {
         S_OtherJoinPacket joinPacket = packet as S_OtherJoinPacket;
-        RoomManager.Instance.AddRemotePlayer(joinPacket.playerID, joinPacket.posTableIndex, joinPacket.nickname);
+        RoomManager.Instance.AddPlayer(joinPacket.playerID, joinPacket.posTableIndex, joinPacket.nickname);
+    }
+
+    public static void S_OtherExitPacket(Session session, Packet packet)
+    {
+        S_OtherExitPacket exitPacket = packet as S_OtherExitPacket;
+        RoomManager.Instance.DeletePlayer(exitPacket.playerID);
     }
 }
