@@ -16,7 +16,7 @@ public class PacketManager
         packetFactories.Clear();
         packetHandlers.Clear();
 
-        RegisterHandler();
+        RegisterHandlers();
     }
 
     public Packet CreatePacket(ArraySegment<byte> buffer)
@@ -38,13 +38,14 @@ public class PacketManager
             packetHandlers[packet.ID]?.Invoke(session, packet);
     }
 
-    private void RegisterHandler()
+    private void RegisterHandlers()
     {
         RegisterHandler<S_LogInPacket>(PacketID.S_LogInPacket, PacketHandler.S_LogInPacket);
         RegisterHandler<S_RoomEnterPacket>(PacketID.S_RoomEnterPacket, PacketHandler.S_RoomEnterPacket);
         RegisterHandler<S_OtherJoinPacket>(PacketID.S_OtherJoinPacket, PacketHandler.S_OtherJoinPacket);
         RegisterHandler<S_OtherExitPacket>(PacketID.S_OtherExitPacket, PacketHandler.S_OtherExitPacket);
         RegisterHandler<S_AttackPacket>(PacketID.S_AttackPacket, PacketHandler.S_AttackPacket);
+        RegisterHandler<S_PlayerPacket>(PacketID.S_PlayerPacket, PacketHandler.S_PlayerPacket);
     }
 
     private void RegisterHandler<T>(PacketID id, Action<Session, Packet> handler) where T : Packet, new()
