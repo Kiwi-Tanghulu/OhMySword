@@ -78,7 +78,7 @@ public class PacketHandler
         PlayerController player = RoomManager.Instance.GetPlayer(diePacket.playerID);
         PlayerController attacker = RoomManager.Instance.GetPlayer(diePacket.attackerID);
 
-        player.Die();
+        player.Die(attacker);
 
         int i = 0;
         int score = diePacket.score;
@@ -102,5 +102,16 @@ public class PacketHandler
             score %= cursor;
             cursor /= 10;
         }
+    }
+
+    public static void S_ScorePacket(Session session, Packet packet)
+    {
+        S_ScorePacket scorePacket = packet as S_ScorePacket;
+        PlayerController player = RoomManager.Instance.GetPlayer(scorePacket.playerID);
+        
+        if(player == null)
+            return;
+
+        player.GetXP(scorePacket.score);
     }
 }

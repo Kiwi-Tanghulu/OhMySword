@@ -41,12 +41,12 @@ namespace OhMySword.Player
             
         }
 
-        public void GetXP()
+        public void GetXP(ushort amount)
         {
 
         }
 
-        public void Die()
+        public void Die(SyncableObject attacker)
         {
             
         }
