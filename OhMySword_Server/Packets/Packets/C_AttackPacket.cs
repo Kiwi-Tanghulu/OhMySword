@@ -12,6 +12,16 @@ namespace Packets
         public ushort attackerID;
         public ushort damage;
 
+        public C_AttackPacket() { }
+
+        public C_AttackPacket(ushort hitObjectType, ushort hitObjectID, ushort attackerID, ushort damage)
+        {
+            this.hitObjectType = hitObjectType;
+            this.hitObjectID = hitObjectID;
+            this.attackerID = attackerID;
+            this.damage = damage;
+        }
+
         public override void Deserialize(ArraySegment<byte> buffer)
         {
             ushort process = 0;

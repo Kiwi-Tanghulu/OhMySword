@@ -44,7 +44,7 @@ public class PacketManager
         RegisterHandler<S_RoomEnterPacket>(PacketID.S_RoomEnterPacket, PacketHandler.S_RoomEnterPacket);
         RegisterHandler<S_OtherJoinPacket>(PacketID.S_OtherJoinPacket, PacketHandler.S_OtherJoinPacket);
         RegisterHandler<S_OtherExitPacket>(PacketID.S_OtherExitPacket, PacketHandler.S_OtherExitPacket);
-        // RegisterHandler<S_LogInPacket>(PacketID.S_LogInPacket, PacketHandler.S_LogInPacket);
+        RegisterHandler<S_AttackPacket>(PacketID.S_AttackPacket, PacketHandler.S_AttackPacket);
     }
 
     private void RegisterHandler<T>(PacketID id, Action<Session, Packet> handler) where T : Packet, new()
