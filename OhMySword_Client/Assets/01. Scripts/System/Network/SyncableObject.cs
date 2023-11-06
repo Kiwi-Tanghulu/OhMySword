@@ -13,12 +13,12 @@ namespace Base.Network
         public abstract void OnCreated();
         public abstract void OnDeleted();
 
-        private void Awake()
+        protected virtual void Awake()
         {
             targetPosition = transform.position;
         }
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
             // 포지션 러핑
         }

@@ -25,6 +25,22 @@ public class RoomManager : MonoBehaviour
         prefabTable.Init();
     }
 
+    public PlayerController GetPlayer(ushort id)
+    {
+        if(players.ContainsKey(id) == false)
+            return null;
+
+        return players[id];
+    }
+
+    public SyncableObject GetObject(ushort id)
+    {
+        if(objects.ContainsKey(id) == false)
+            return null;
+
+        return objects[id];
+    }
+
     public void CreatePlayer(ushort id, ushort posIndex, string nickname)
     {
         PlayerController player = AddPlayer(id, posIndex, nickname);

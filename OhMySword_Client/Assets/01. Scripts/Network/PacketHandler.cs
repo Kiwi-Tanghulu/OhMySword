@@ -1,5 +1,7 @@
 using System;
+using Base.Network;
 using H00N.Network;
+using OhMySword.Player;
 using Packets;
 using UnityEngine;
 
@@ -35,5 +37,38 @@ public class PacketHandler
     {
         S_OtherExitPacket exitPacket = packet as S_OtherExitPacket;
         RoomManager.Instance.DeletePlayer(exitPacket.playerID);
+    }
+
+    public static void S_AttackPacket(Session session, Packet packet)
+    {
+        S_AttackPacket attackPacket = packet as S_AttackPacket;
+        PlayerController attacker = RoomManager.Instance.GetPlayer(attackPacket.attackerID);
+
+        if(attackPacket.hitObjectType == (ushort)ObjectType.Player)
+        {
+            if(attackPacket.hitObjectID == RoomManager.Instance.PlayerID)
+            {
+                // 내가 맞았을 때 뭐 특별한 처리 해주면 됨
+            }
+
+            RoomManager.Instance.GetPlayer(attackPacket.hitObjectID)?.Hit(attacker);
+        }
+        else
+        {
+            IHitable hitObject = RoomManager.Instance.GetObject(attackPacket.hitObjectID) as IHitable;
+            hitObject?.Hit(attacker);
+        }
+    }
+
+    public static void S_PlayerPacket(Session session, Packet packet)
+    {
+        S_PlayerPacket playerPacket = packet as S_PlayerPacket;
+        PlayerController player = RoomManager.Instance.GetPlayer(playerPacket.objectPacket.objectID);
+        
+        if(player == null)
+            return;
+
+        player.SetPosition(playerPacket.objectPacket.position.Vector3());
+        player.SetRotation(playerPacket.objectPacket.rotation.Vector3());
     }
 }
