@@ -46,6 +46,7 @@ public class PacketManager
         RegisterHandler<S_OtherExitPacket>(PacketID.S_OtherExitPacket, PacketHandler.S_OtherExitPacket);
         RegisterHandler<S_AttackPacket>(PacketID.S_AttackPacket, PacketHandler.S_AttackPacket);
         RegisterHandler<S_PlayerPacket>(PacketID.S_PlayerPacket, PacketHandler.S_PlayerPacket);
+        RegisterHandler<S_PlayerDiePacket>(PacketID.S_PlayerDiePacket, PacketHandler.S_PlayerDiePacket);
     }
 
     private void RegisterHandler<T>(PacketID id, Action<Session, Packet> handler) where T : Packet, new()

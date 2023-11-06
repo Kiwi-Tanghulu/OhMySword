@@ -9,16 +9,16 @@ namespace Packets
     {
         public override ushort ID => (ushort)PacketID.S_PlayerDiePacket;
 
-        public ushort attakerID;
+        public ushort attackerID;
         public ushort playerID;
         public ushort score;
         public List<ObjectPacket> objects;
 
         public S_PlayerDiePacket() { }
 
-        public S_PlayerDiePacket(ushort attakerID, ushort playerID, ushort score, List<ObjectPacket> objects)
+        public S_PlayerDiePacket(ushort attackerID, ushort playerID, ushort score, List<ObjectPacket> objects)
         {
-            this.attakerID = attakerID;
+            this.attackerID = attackerID;
             this.playerID = playerID;
             this.score = score;
             this.objects = objects;
@@ -31,7 +31,7 @@ namespace Packets
             process += sizeof(ushort);
             process += sizeof(ushort);
 
-            process += PacketUtility.ReadUShortData(buffer, process, out attakerID);
+            process += PacketUtility.ReadUShortData(buffer, process, out attackerID);
             process += PacketUtility.ReadUShortData(buffer, process, out playerID);
             process += PacketUtility.ReadUShortData(buffer, process, out score);
             process += PacketUtility.ReadListData<ObjectPacket>(buffer, process, out objects);
@@ -44,7 +44,7 @@ namespace Packets
 
             process += sizeof(ushort);
             process += PacketUtility.AppendUShortData(this.ID, buffer, process);
-            process += PacketUtility.AppendUShortData(this.attakerID, buffer, process);
+            process += PacketUtility.AppendUShortData(this.attackerID, buffer, process);
             process += PacketUtility.AppendUShortData(this.playerID, buffer, process);
             process += PacketUtility.AppendUShortData(this.score, buffer, process);
             process += PacketUtility.AppendListData<ObjectPacket>(this.objects, buffer, process);

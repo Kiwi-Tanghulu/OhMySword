@@ -71,4 +71,29 @@ public class PacketHandler
         player.SetPosition(playerPacket.objectPacket.position.Vector3());
         player.SetRotation(playerPacket.objectPacket.rotation.Vector3());
     }
+
+    public static void S_PlayerDiePacket(Session session, Packet packet)
+    {
+        S_PlayerDiePacket diePacket = packet as S_PlayerDiePacket;
+        PlayerController player = RoomManager.Instance.GetPlayer(diePacket.playerID);
+        PlayerController attacker = RoomManager.Instance.GetPlayer(diePacket.attackerID);
+
+        player.Die();
+
+        int i = 0;
+        int score = diePacket.score;
+        int cursor = (int)MathF.Pow(10, score.ToString().Length - 1);
+        while (cursor > 0)
+        {
+            int number = score / cursor;
+            for (int j = 0; j < number; j++, i++)
+            {
+                ObjectPacket obj = diePacket.objects[i];
+                RoomManager.Instance.AddObject(obj.objectID, ObjectType.XPObject, obj.position.Vector3(), obj.rotation.Vector3());
+            }
+
+            score %= cursor;
+            cursor /= 10;
+        }
+    }
 }
