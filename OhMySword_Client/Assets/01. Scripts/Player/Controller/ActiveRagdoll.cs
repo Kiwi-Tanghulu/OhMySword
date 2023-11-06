@@ -12,8 +12,6 @@ public class ActiveRagdoll : MonoBehaviour
 
     [Space]
     public Rigidbody hip;
-    public float moveSpeed = 5f;
-    public Vector3 moveDir;
 
     [Space]
     public Transform leftFootTarget;
@@ -59,31 +57,28 @@ public class ActiveRagdoll : MonoBehaviour
 
     private void Update()
     {
-        Move();
         FootMove();
     }
 
-    private void Move()
+    public void Move(Vector3 velocity)
     {
         if (!canMove)
             return; 
 
-        moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-
-        if (moveDir == Vector3.zero)
+        if (velocity == Vector3.zero)
         {
             hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
             HipElasticity();
         }
-        else if (moveDir.x == 0)
+        else if (velocity.x == 0)
             hip.constraints = RigidbodyConstraints.FreezePositionX;
-        else if (moveDir.z == 0)
+        else if (velocity.z == 0)
             hip.constraints = RigidbodyConstraints.FreezePositionZ;
         else
             hip.constraints = RigidbodyConstraints.None;
         hip.constraints |= RigidbodyConstraints.FreezePositionY;
 
-        hip.velocity = moveDir * moveSpeed;
+        hip.velocity = velocity;
     }
 
     private void FootMove()
