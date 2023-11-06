@@ -1,12 +1,16 @@
 using Base.Network;
 using Packets;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace OhMySword.Player
 {
     public class PlayerController : SyncableObject, IDamageable, IHitable
     {
         private PlayerMove movement;
+
+        public UnityEvent<SyncableObject> OnHitEvent;
+        public UnityEvent<SyncableObject> OnDieEvent;
 
         public override void OnCreated()
         {

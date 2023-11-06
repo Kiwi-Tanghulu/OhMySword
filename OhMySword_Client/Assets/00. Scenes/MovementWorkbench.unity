@@ -4634,9 +4634,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyLerping: 1
-  canMove: 1
-  canFootMove: 1
+  <bodyLerping>k__BackingField: 1
+  <footMove>k__BackingField: 1
   hip: {fileID: 322219539}
   leftFootTarget: {fileID: 2040262913}
   rightFootTarget: {fileID: 1769790247}
@@ -15028,9 +15027,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyLerping: 1
-  canMove: 1
-  canFootMove: 1
+  <bodyLerping>k__BackingField: 1
+  <footMove>k__BackingField: 1
   hip: {fileID: 1227892788}
   leftFootTarget: {fileID: 443154058}
   rightFootTarget: {fileID: 895020714}
@@ -21450,9 +21448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyLerping: 1
-  canMove: 1
-  canFootMove: 1
+  <bodyLerping>k__BackingField: 1
+  <footMove>k__BackingField: 1
   hip: {fileID: 34498921}
   leftFootTarget: {fileID: 46187292}
   rightFootTarget: {fileID: 1676623006}
@@ -21478,6 +21475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf2a74d6b7c46147a686d0f422e2e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 1
   moveSpeed: 5
 --- !u!114 &1659643405
 MonoBehaviour:
@@ -21491,6 +21489,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c504229e665546e408be5ba0884754d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1659643404}
+        m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
+        m_MethodName: Stun
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.3
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDieEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1659643403}
+        m_TargetAssemblyTypeName: ActiveRagdoll, Assembly-CSharp
+        m_MethodName: set_bodyLerping
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1659643403}
+        m_TargetAssemblyTypeName: ActiveRagdoll, Assembly-CSharp
+        m_MethodName: set_footMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1661272904
 GameObject:
   m_ObjectHideFlags: 0
@@ -33779,9 +33819,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyLerping: 1
-  canMove: 1
-  canFootMove: 1
+  <bodyLerping>k__BackingField: 1
+  <footMove>k__BackingField: 1
   hip: {fileID: 5907798254586527134}
   leftFootTarget: {fileID: 883785646}
   rightFootTarget: {fileID: 254980412}

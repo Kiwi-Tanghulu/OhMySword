@@ -6,6 +6,8 @@ public class PlayerMove : MonoBehaviour
 {
     private ActiveRagdoll ragdoll;
 
+    public bool canMove = true;
+
     private Vector3 prevTargetPos;
     private Vector3 targetPos;
     private Vector3 moveDir;
@@ -21,7 +23,15 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        ragdoll.Move(velocity);
+        Move();   
+    }
+
+    private void Move()
+    {
+        if(canMove)
+            ragdoll.Move(velocity);
+        else
+            ragdoll.Move(Vector3.zero);
     }
 
     public void SetTargetPosition(Vector3 pos)
@@ -31,5 +41,19 @@ public class PlayerMove : MonoBehaviour
         targetPos = pos;
         moveDir = (targetPos - prevTargetPos).normalized;
         velocity = moveDir * moveSpeed;
+    }
+
+    public void Stun(float time)
+    {
+        StartCoroutine(StunCo(time));
+    }
+
+    private IEnumerator StunCo(float time)
+    {
+        canMove = false;
+
+        yield return new WaitForSeconds(time);
+
+        canMove = true;
     }
 }

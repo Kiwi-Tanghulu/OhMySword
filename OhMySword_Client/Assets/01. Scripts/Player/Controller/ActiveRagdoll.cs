@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class ActiveRagdoll : MonoBehaviour
 {
-    public bool bodyLerping = true;
-    public bool canMove = true;
-    public bool canFootMove = true;
+    [field: SerializeField]
+    public bool bodyLerping { get; set; } = true;
+    [field: SerializeField]
+    public bool footMove { get; set; } = true;
 
     [Space]
     public Rigidbody hip;
@@ -62,9 +63,6 @@ public class ActiveRagdoll : MonoBehaviour
 
     public void Move(Vector3 velocity)
     {
-        if (!canMove)
-            return; 
-
         if (velocity == Vector3.zero)
         {
             hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
@@ -83,7 +81,7 @@ public class ActiveRagdoll : MonoBehaviour
 
     private void FootMove()
     {
-        if (!canFootMove)
+        if (!footMove)
             return;
 
         leftFootTarget.position = leftFootTargetPos;
