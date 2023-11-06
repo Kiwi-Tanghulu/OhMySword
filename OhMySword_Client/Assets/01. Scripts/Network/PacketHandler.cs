@@ -89,7 +89,14 @@ public class PacketHandler
             for (int j = 0; j < number; j++, i++)
             {
                 ObjectPacket obj = diePacket.objects[i];
-                RoomManager.Instance.AddObject(obj.objectID, ObjectType.XPObject, obj.position.Vector3(), obj.rotation.Vector3());
+                XPObject xp = RoomManager.Instance.AddObject(
+                    obj.objectID, 
+                    ObjectType.XPObject, 
+                    obj.position.Vector3(), 
+                    obj.rotation.Vector3()
+                ) as XPObject;
+
+                xp.SetXP((ushort)cursor);
             }
 
             score %= cursor;

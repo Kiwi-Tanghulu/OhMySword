@@ -61,13 +61,14 @@ public class RoomManager : MonoBehaviour
     public PlayerController AddPlayer(ushort objectID, ushort posIndex, string nickname) 
         => AddPlayer(objectID, playerSpawnTable[posIndex], Vector3.zero, nickname);
 
-    public void AddObject(ushort objectID, ObjectType objectType, Vector3 position, Vector3 rotation)
+    public SyncableObject AddObject(ushort objectID, ObjectType objectType, Vector3 position, Vector3 rotation)
     {
         SyncableObject obj = Instantiate(prefabTable[objectType]);
         obj.Init(objectID, position, rotation);
         obj.OnCreated();
 
         objects.Add(objectID, obj);
+        return obj;
     }
 
     public void DeletePlayer(ushort id)
