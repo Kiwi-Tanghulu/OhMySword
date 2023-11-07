@@ -43,11 +43,12 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
             XPObject xp = RoomManager.Instance.AddObject(
                 ids[index], 
                 ObjectType.XPObject, 
-                transform.position + dropTable[index], 
+                transform.position, 
                 Vector3.zero
             ) as XPObject;
 
             xp.SetXP(digit);
+            xp.SetPosition(transform.position + dropTable[index], true);
         });
     }
 
