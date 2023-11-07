@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using H00N.Network;
 using Packets;
-using UnityEngine;
 
 public class PacketManager
 {
@@ -48,6 +47,7 @@ public class PacketManager
         RegisterHandler<S_PlayerPacket>(PacketID.S_PlayerPacket, PacketHandler.S_PlayerPacket);
         RegisterHandler<S_PlayerDiePacket>(PacketID.S_PlayerDiePacket, PacketHandler.S_PlayerDiePacket);
         RegisterHandler<S_ScorePacket>(PacketID.S_ScorePacket, PacketHandler.S_ScorePacket);
+        RegisterHandler<S_ObjectDestroyPacket>(PacketID.S_ObjectDestroyPacket, PacketHandler.S_ObjectDestroyPacket);
     }
 
     private void RegisterHandler<T>(PacketID id, Action<Session, Packet> handler) where T : Packet, new()

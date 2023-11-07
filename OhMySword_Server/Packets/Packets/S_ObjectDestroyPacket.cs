@@ -7,14 +7,12 @@ namespace Packets
     {
         public override ushort ID => (ushort)PacketID.S_ObjectDestroyPacket;
 
-        public ushort objectType;
         public ushort objectID;
 
         public S_ObjectDestroyPacket() { }
 
-        public S_ObjectDestroyPacket(ushort objectType, ushort objectID)
+        public S_ObjectDestroyPacket(ushort objectID)
         {
-            this.objectType = objectType;
             this.objectID = objectID;
         }
 
@@ -25,7 +23,6 @@ namespace Packets
             process += sizeof(ushort);
             process += sizeof(ushort);
 
-            process += PacketUtility.ReadUShortData(buffer, process, out objectType);
             process += PacketUtility.ReadUShortData(buffer, process, out objectID);
         }
 
@@ -36,7 +33,6 @@ namespace Packets
 
             process += sizeof(ushort);
             process += PacketUtility.AppendUShortData(this.ID, buffer, process);
-            process += PacketUtility.AppendUShortData(this.objectType, buffer, process);
             process += PacketUtility.AppendUShortData(this.objectID, buffer, process);
             PacketUtility.AppendUShortData(process, buffer, 0);
 

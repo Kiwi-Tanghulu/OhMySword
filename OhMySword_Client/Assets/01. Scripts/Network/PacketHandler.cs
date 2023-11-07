@@ -114,4 +114,10 @@ public class PacketHandler
 
         player.GetXP(scorePacket.score);
     }
+
+    public static void S_ObjectDestroyPacket(Session session, Packet packet)
+    {
+        S_ObjectDestroyPacket destroyPacket = packet as S_ObjectDestroyPacket;
+        RoomManager.Instance.DeleteObject(destroyPacket.objectID);
+    }
 }
