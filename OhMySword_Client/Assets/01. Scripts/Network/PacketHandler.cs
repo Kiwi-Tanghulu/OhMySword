@@ -80,28 +80,17 @@ public class PacketHandler
 
         player.Die(attacker);
 
-        int i = 0;
-        int score = diePacket.score;
-        int cursor = (int)MathF.Pow(10, score.ToString().Length - 1);
-        while (cursor > 0)
-        {
-            int number = score / cursor;
-            for (int j = 0; j < number; j++, i++)
-            {
-                ObjectPacket obj = diePacket.objects[i];
-                XPObject xp = RoomManager.Instance.AddObject(
-                    obj.objectID, 
-                    ObjectType.XPObject, 
-                    obj.position.Vector3(), 
-                    obj.rotation.Vector3()
-                ) as XPObject;
+        diePacket.score.ForEachDigit((digit, number, index) => {
+            ObjectPacket obj = diePacket.objects[index];
+            XPObject xp = RoomManager.Instance.AddObject(
+                obj.objectID, 
+                ObjectType.XPObject, 
+                player.transform.position + obj.position.Vector3(), 
+                obj.rotation.Vector3()
+            ) as XPObject;
 
-                xp.SetXP((ushort)cursor);
-            }
-
-            score %= cursor;
-            cursor /= 10;
-        }
+            xp.SetXP(digit);
+        });
     }
 
     public static void S_ScorePacket(Session session, Packet packet)
@@ -119,5 +108,14 @@ public class PacketHandler
     {
         S_ObjectDestroyPacket destroyPacket = packet as S_ObjectDestroyPacket;
         RoomManager.Instance.DeleteObject(destroyPacket.objectID);
+    }
+
+    public static void S_ScoreBoxPacket(Session session, Packet packet)
+    {
+        S_ScoreBoxPacket scoreBoxPacket = packet as S_ScoreBoxPacket;
+        ScoreBox box = RoomManager.Instance.GetObject(scoreBoxPacket.objectID) as ScoreBox;
+
+        box?.CreateXP(scoreBoxPacket.ids);
+        box?.SetPosition(scoreBoxPacket.posTableIndex);
     }
 }

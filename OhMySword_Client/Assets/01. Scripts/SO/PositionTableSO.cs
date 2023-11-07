@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Table/PositionTable")]
 public class PositionTableSO : ScriptableObject
 {
-    [SerializeField] List<Vector3> table = new List<Vector3>();
+    [SerializeField] Vector3[] table;
 
     public Vector3 this[ushort index] => table[index];
 }

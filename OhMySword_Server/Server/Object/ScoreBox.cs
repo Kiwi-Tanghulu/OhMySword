@@ -40,15 +40,21 @@ namespace Server
 
         private void GenerateXP()
         {
-            for(int i = 0; i < 3; i++)
+            int i = 0;
+            int score = XPSpawnTable[objectType].score;
+            int cursor = (int)MathF.Pow(10, score.ToString().Length - 1);
+            while (cursor > 0)
             {
-                ushort xpAmount = (ushort)MathF.Pow(10, i);
-                foreach (Vector3 pos in XPSpawnTable[objectType][i])
+                int number = score / cursor;
+                for (int j = 0; j < number; j++, i++)
                 {
-                    XPObject xp = new XPObject(room, xpAmount);
-                    xp.position = pos;
+                    XPObject xp = new XPObject(room, (ushort)cursor);
+                    xp.position = XPSpawnTable[objectType].positions[i];
                     room.PublishObject(xp);
                 }
+
+                score %= cursor;
+                cursor /= 10;
             }
         }
     }

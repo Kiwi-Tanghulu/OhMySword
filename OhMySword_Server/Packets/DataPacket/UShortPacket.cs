@@ -31,5 +31,7 @@ namespace Packets
 
             return process;
         }
+
+        public static implicit operator ushort(UShortPacket left) => left.data;
     }
 }
