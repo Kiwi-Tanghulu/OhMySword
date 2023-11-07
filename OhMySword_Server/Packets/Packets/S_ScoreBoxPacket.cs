@@ -10,14 +10,15 @@ namespace Packets
 
         public ushort objectID;
         public ushort posTableIndex;
-        public List<UShortPacket> ids = new List<UShortPacket>();
+        public List<UShortPacket> ids;
 
         public S_ScoreBoxPacket() { }
 
-        public S_ScoreBoxPacket(ushort objectID, ushort posTableIndex)
+        public S_ScoreBoxPacket(ushort objectID, ushort posTableIndex, List<UShortPacket> ids)
         {
             this.objectID = objectID;
             this.posTableIndex = posTableIndex;
+            this.ids = ids;
         }
 
         public override void Deserialize(ArraySegment<byte> buffer)

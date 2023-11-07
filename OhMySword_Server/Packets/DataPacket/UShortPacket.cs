@@ -33,5 +33,6 @@ namespace Packets
         }
 
         public static implicit operator ushort(UShortPacket left) => left.data;
+        public static implicit operator UShortPacket(ushort left) => new UShortPacket(left);
     }
 }
