@@ -2,11 +2,15 @@ using System.Collections.Generic;
 using Base.Network;
 using Packets;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScoreBox : SyncableObject, IDamageable, IHitable
 {
     [SerializeField] ScoreBoxDropTableSO dropTable = null;
     [SerializeField] PositionTableSO positionTable = null;
+
+    [Space(10f)]
+    [SerializeField] UnityEvent OnMovedEvent;
 
     public override void OnCreated()
     {
@@ -50,5 +54,6 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
     public void SetPosition(ushort posIndex)
     {
         SetPosition(positionTable[posIndex], true);
+        OnMovedEvent?.Invoke();
     }
 }
