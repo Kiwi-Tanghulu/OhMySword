@@ -8,6 +8,7 @@ namespace OhMySword.Player
     public class PlayerController : SyncableObject, IDamageable, IHitable
     {
         private PlayerMove movement;
+        private PlayerWeapon playerWeapon;
 
         public UnityEvent<SyncableObject> OnHitEvent;
         public UnityEvent<SyncableObject> OnDieEvent;
@@ -43,7 +44,7 @@ namespace OhMySword.Player
 
         public void GetXP(ushort amount)
         {
-
+            playerWeapon.SetScore(amount);
         }
 
         public void Die(SyncableObject attacker)
