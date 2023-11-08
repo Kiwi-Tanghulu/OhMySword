@@ -65,24 +65,7 @@ public class ActiveRagdoll : MonoBehaviour
     {
         FootMove();
         SetBodyAncherPos();
-    }
-
-    public void Move(Vector3 velocity)
-    {
-        if (velocity == Vector3.zero)
-        {
-            hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-            HipElasticity();
-        }
-        else if (velocity.x == 0)
-            hip.constraints = RigidbodyConstraints.FreezePositionX;
-        else if (velocity.z == 0)
-            hip.constraints = RigidbodyConstraints.FreezePositionZ;
-        else
-            hip.constraints = RigidbodyConstraints.None;
-        hip.constraints |= RigidbodyConstraints.FreezePositionY;
-
-        hip.velocity = velocity;
+        HipElasticity();
     }
 
     private void FootMove()
@@ -158,7 +141,7 @@ public class ActiveRagdoll : MonoBehaviour
     // body lerping
     private void HipElasticity()
     {
-        if (!bodyLerping)
+        if (!bodyLerping || hip.velocity != Vector3.zero)
             return;
 
         hip.transform.position = Vector3.Lerp(hip.transform.position,
