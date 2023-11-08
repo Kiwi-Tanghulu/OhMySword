@@ -21,15 +21,10 @@ public class PlayerMove : MonoBehaviour
         prevTargetPos = targetPos;
     }
 
-    private void Update()
-    {
-        Move();   
-    }
-
-    private void Move()
+    public void Move(Vector3 movedir)
     {
         if(canMove)
-            ragdoll.Move(velocity);
+            ragdoll.Move(movedir * moveSpeed);
         else
             ragdoll.Move(Vector3.zero);
     }
