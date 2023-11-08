@@ -6,29 +6,53 @@ public class PlayerMove : MonoBehaviour
 {
     private ActiveRagdoll ragdoll;
 
-    public bool canMove = true;
+    [SerializeField] private Rigidbody hip;
 
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private bool canMove = true;
     private Vector3 prevTargetPos;
     private Vector3 targetPos;
     private Vector3 moveDir;
     private Vector3 velocity;
-    [SerializeField] private float moveSpeed;
+
+    private PlayerView cam;
 
     private void Start()
     {
         ragdoll = GetComponent<ActiveRagdoll>();
+        cam = GetComponent<PlayerView>();
         targetPos = transform.position;
         prevTargetPos = targetPos;
     }
 
-    public void Move(Vector3 movedir)
+    private void Update()
     {
-        if(canMove)
-            ragdoll.Move(movedir * moveSpeed);
-        else
-            ragdoll.Move(Vector3.zero);
+        Move();
     }
 
+    private void Move()
+    {
+        if (moveDir == Vector3.zero)
+            hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        else if (moveDir.x == 0)
+            hip.constraints = RigidbodyConstraints.FreezePositionX;
+        else if (moveDir.z == 0)
+            hip.constraints = RigidbodyConstraints.FreezePositionZ;
+        else
+            hip.constraints = RigidbodyConstraints.None;
+        hip.constraints |= RigidbodyConstraints.FreezePositionY;
+
+        hip.velocity = moveDir * moveSpeed;
+    }
+
+    //플레이어용
+    public void SetMoveDirection(Vector3 input)
+    {
+        moveDir = cam.forward * input.z + cam.right * input.x;
+        Debug.Log(moveDir);
+    }
+
+    //클라용
     public void SetTargetPosition(Vector3 pos)
     {
         prevTargetPos = targetPos;
