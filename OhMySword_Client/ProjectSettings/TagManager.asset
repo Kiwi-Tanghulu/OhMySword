@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - NoSelfCollision
+  - NoSelfCollision_Arm
+  - Ground
   - 
   - 
   - 
