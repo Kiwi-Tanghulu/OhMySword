@@ -9,6 +9,7 @@ public class XPObject : SyncableObject, IDamageable
     [Space(10f)]
     [SerializeField] float jumpPower = 1.5f;
     [SerializeField] float jumpDuration = 1f;
+    [SerializeField] AnimationCurve easeCurve;
     
     private ushort xpAmount = 0;
 
@@ -54,6 +55,6 @@ public class XPObject : SyncableObject, IDamageable
         base.SetPosition(position, false);
 
         float factor = 1f + xpAmount.ToString().Length * 0.5f;
-        transform.DOJump(position, jumpPower * factor, 1, jumpDuration);
+        transform.DOJump(position, jumpPower * factor, 1, jumpDuration).SetEase(easeCurve);
     }
 }

@@ -196,7 +196,30 @@ MonoBehaviour:
   rotateSpeed: 90
   jumpPower: 2
   jumpDuration: 0.75
-  xpAmount: 100
+  easeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.5700586
+      outSlope: 1.5700586
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.03228621
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.4824154
+      outSlope: 1.4824154
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03315884
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!33 &3297410219384276815
 MeshFilter:
   m_ObjectHideFlags: 0
