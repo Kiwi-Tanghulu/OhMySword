@@ -9,6 +9,8 @@ public class ActiveRagdoll : MonoBehaviour
     [field: SerializeField]
     public bool bodyLerping { get; set; } = true;
     [field: SerializeField]
+    public bool armLerping { get; set; } = true;
+    [field: SerializeField]
     public bool footMove { get; set; } = true;
 
     [Space]
@@ -26,13 +28,16 @@ public class ActiveRagdoll : MonoBehaviour
     public float moveDistance = 0.3f;
     public float movePivotHeight = 1f;
     public float footMoveTime = 0.2f;
-    public float elasticitySpeed = 1f;
+    public float hipElasticitySpeed = 6f;
+    public float footToeOffset = 0.1f;
+    public float hipHeight = 0.55f;
 
     //where feet should be
     private Vector3 leftFootTargetPos;
     private Vector3 rightFootTargetPos;
     private Vector3 prevLeftFootTargetPos;
     private Vector3 prevRightFootTargetPos;
+    private Vector3 hipToGroundPos;
 
     //The location where the ray was fired from the body and reached the ground.
     private Vector3 leftHitPos;
@@ -59,6 +64,7 @@ public class ActiveRagdoll : MonoBehaviour
     private void Update()
     {
         FootMove();
+        SetBodyAncherPos();
     }
 
     public void Move(Vector3 velocity)
@@ -89,17 +95,19 @@ public class ActiveRagdoll : MonoBehaviour
 
         if(Physics.Raycast(hip.position, Vector3.down, out RaycastHit hipToGround, 1, groundLayer))
         {
-            if(Vector3.Distance(hipToGround.point, footMiddlePos) >= shouldMoveDistance)
+            hipToGroundPos = hipToGround.point;
+
+            if (Vector3.Distance(hipToGroundPos, footMiddlePos) >= shouldMoveDistance)
             {
-                Vector3 moveDir = (hipToGround.point - footMiddlePos).normalized;
+                Vector3 moveDir = (hipToGroundPos - footMiddlePos).normalized;
                 
-                if(Vector3.Distance(hipToGround.point, leftFootTargetPos) > Vector3.Distance(hipToGround.point, rightFootTargetPos))
+                if(Vector3.Distance(hipToGroundPos, leftFootTargetPos) > Vector3.Distance(hipToGroundPos, rightFootTargetPos))
                 {
                     RaycastHit lefttHit = default;
                     Physics.Raycast(new Vector3(hips.position.x + leftFootOffset.x + moveDir.x * moveDistance, 
                         hips.position.y, hips.position.z + leftFootOffset.z + moveDir.z * moveDistance), Vector3.down, out lefttHit, 10, groundLayer);
 
-                    leftHitPos = lefttHit.point + Vector3.up * 0.2f;
+                    leftHitPos = lefttHit.point + Vector3.up * footToeOffset;
                     prevLeftFootTargetPos = leftFootTargetPos;
                     leftFootTargetPos = leftHitPos;
 
@@ -111,7 +119,7 @@ public class ActiveRagdoll : MonoBehaviour
                     Physics.Raycast(new Vector3(hips.position.x + rightFootOffset.x + moveDir.x * moveDistance, hips.position.y, 
                         hips.position.z + rightFootOffset.z + moveDir.z * moveDistance), Vector3.down, out righttHit, 10, groundLayer);
 
-                    rightHitPos = righttHit.point + Vector3.up * 0.2f;
+                    rightHitPos = righttHit.point + Vector3.up * footToeOffset;
                     prevRightFootTargetPos = rightFootTargetPos;
                     rightFootTargetPos = rightHitPos;
 
@@ -122,6 +130,12 @@ public class ActiveRagdoll : MonoBehaviour
             }
         }
     }
+
+    private void SetBodyAncherPos()
+    {
+        hipAnchor.position = hipToGroundPos + Vector3.up * hipHeight;
+    }
+
     private IEnumerator FootMoveAnimation(Transform foot, Vector3 start, Vector3 end)
     {
         float percent = 0;
@@ -146,8 +160,9 @@ public class ActiveRagdoll : MonoBehaviour
     {
         if (!bodyLerping)
             return;
-        hip.transform.position = Vector3.Lerp(hip.transform.position, 
-            new Vector3(footMiddlePos.x, hipAnchor.position.y, footMiddlePos.z), elasticitySpeed * Time.deltaTime);
+
+        hip.transform.position = Vector3.Lerp(hip.transform.position,
+            new Vector3(footMiddlePos.x, hipAnchor.position.y, footMiddlePos.z), hipElasticitySpeed * Time.deltaTime);
     }
 
 #if UNITY_EDITOR
