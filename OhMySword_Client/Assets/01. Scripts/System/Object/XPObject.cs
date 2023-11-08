@@ -5,13 +5,30 @@ using UnityEngine;
 public class XPObject : SyncableObject, IDamageable
 {
     [SerializeField] float rotateSpeed = 30f;
+
+    [Space(10f)]
+    [SerializeField] Material[] materials = new Material[4];
     
     [Space(10f)]
     [SerializeField] float jumpPower = 1.5f;
     [SerializeField] float jumpDuration = 1f;
     [SerializeField] AnimationCurve easeCurve;
-    
-    private ushort xpAmount = 0;
+
+    private TrailRenderer trail = null;
+    private MeshRenderer meshRenderer = null;
+    [SerializeField] private ushort xpAmount = 0;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        trail = transform.Find("Trail")?.GetComponent<TrailRenderer>();
+        meshRenderer = GetComponent<MeshRenderer>();
+    }
+
+    private void Start()
+    {
+        SetXP(xpAmount);
+    }
 
     private void Update()
     {
@@ -32,7 +49,10 @@ public class XPObject : SyncableObject, IDamageable
     public void SetXP(ushort amount)
     {
         xpAmount = amount;
-        // 뭐 대충 이펙트 하면 되겠지
+
+        Material mat = materials[xpAmount.ToString().Length - 1];
+        meshRenderer.material = mat;
+        trail.startColor = mat.GetColor("_GlowingColor");
     }
 
     public override void OnCreated()
