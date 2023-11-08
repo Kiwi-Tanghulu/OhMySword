@@ -2,11 +2,15 @@ using System.Collections.Generic;
 using Base.Network;
 using Packets;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScoreBox : SyncableObject, IDamageable, IHitable
 {
     [SerializeField] ScoreBoxDropTableSO dropTable = null;
     [SerializeField] PositionTableSO positionTable = null;
+
+    [Space(10f)]
+    [SerializeField] UnityEvent OnMovedEvent;
 
     public override void OnCreated()
     {
@@ -39,16 +43,18 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
             XPObject xp = RoomManager.Instance.AddObject(
                 ids[index], 
                 ObjectType.XPObject, 
-                transform.position + dropTable[index], 
+                transform.position, 
                 Vector3.zero
             ) as XPObject;
 
             xp.SetXP(digit);
+            xp.SetPosition(transform.position + dropTable[index], true);
         });
     }
 
     public void SetPosition(ushort posIndex)
     {
         SetPosition(positionTable[posIndex], true);
+        OnMovedEvent?.Invoke();
     }
 }
