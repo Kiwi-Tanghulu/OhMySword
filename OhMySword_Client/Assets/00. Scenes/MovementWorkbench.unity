@@ -4644,11 +4644,28 @@ MonoBehaviour:
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
   <footRotate>k__BackingField: 1
-  hip: {fileID: 322219539}
-  leftFootTarget: {fileID: 2040262913}
-  rightFootTarget: {fileID: 1769790247}
-  hips: {fileID: 322219540}
+  <isGround>k__BackingField: 0
+  hip: {fileID: 0}
+  hips: {fileID: 0}
   hipAnchor: {fileID: 0}
+  leftFoot:
+    foot: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+  rightFoot:
+    foot: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+  beforeMoveFoot:
+    foot: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -4656,6 +4673,7 @@ MonoBehaviour:
   moveDistance: 0.48
   movePivotHeight: 1
   footMoveTime: 0.2
+  alignTime: 0.2
   hipElasticitySpeed: 1
   footToeOffset: 1
   hipHeight: 0.55
@@ -5371,7 +5389,7 @@ GameObject:
   - component: {fileID: 389659080}
   - component: {fileID: 389659079}
   - component: {fileID: 389659078}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5458,7 +5476,7 @@ Transform:
   m_GameObject: {fileID: 389659077}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.43, y: 0, z: 5.48}
+  m_LocalPosition: {x: -1.63, y: -6.45, z: 2.57}
   m_LocalScale: {x: 12.608, y: 14.749, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10917,9 +10935,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850694315}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20985536, y: 0.0000000067996737, z: -0.0000000014594462,
-    w: 0.9777325}
-  m_LocalPosition: {x: 0, y: 2.9500003, z: -4}
+  m_LocalRotation: {x: 0.2098553, y: 0.0000000067996737, z: -0.0000000014594459, w: 0.9777325}
+  m_LocalPosition: {x: 0, y: 2.9499998, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14687,6 +14704,12 @@ MonoBehaviour:
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
+--- !u!4 &1194234497 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7535511431209098528, guid: cee7a592542af7b4ea5a7b6c88647476,
+    type: 3}
+  m_PrefabInstance: {fileID: 1604457182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1194882656
 GameObject:
   m_ObjectHideFlags: 0
@@ -15347,11 +15370,28 @@ MonoBehaviour:
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
   <footRotate>k__BackingField: 1
-  hip: {fileID: 1227892788}
-  leftFootTarget: {fileID: 443154058}
-  rightFootTarget: {fileID: 895020714}
-  hips: {fileID: 1227892789}
+  <isGround>k__BackingField: 0
+  hip: {fileID: 0}
+  hips: {fileID: 0}
   hipAnchor: {fileID: 0}
+  leftFoot:
+    foot: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+  rightFoot:
+    foot: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+  beforeMoveFoot:
+    foot: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -15359,6 +15399,7 @@ MonoBehaviour:
   moveDistance: 0.48
   movePivotHeight: 1
   footMoveTime: 0.2
+  alignTime: 0.2
   hipElasticitySpeed: 1
   footToeOffset: 1
   hipHeight: 0.55
@@ -17961,6 +18002,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2052914601}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1388470396 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7852736681686144821, guid: cee7a592542af7b4ea5a7b6c88647476,
+    type: 3}
+  m_PrefabInstance: {fileID: 1604457182}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1391577902
 GameObject:
   m_ObjectHideFlags: 0
@@ -18111,9 +18164,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396650936}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20985536, y: 0.0000000067996737, z: -0.0000000014594462,
-    w: 0.9777325}
-  m_LocalPosition: {x: -4.7868357, y: 3.5500004, z: -2.7509503}
+  m_LocalRotation: {x: 0.2098553, y: 0.0000000067996737, z: -0.0000000014594459, w: 0.9777325}
+  m_LocalPosition: {x: -4.7868357, y: 8.82, z: -2.7509503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20703,6 +20755,18 @@ Transform:
   - {fileID: 768750117}
   m_Father: {fileID: 1880671787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1546545148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2178425503621982274, guid: cee7a592542af7b4ea5a7b6c88647476,
+    type: 3}
+  m_PrefabInstance: {fileID: 1604457182}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1555814035
 GameObject:
   m_ObjectHideFlags: 0
@@ -21173,6 +21237,36 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1530380227552680393, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: rig
+      value: 
+      objectReference: {fileID: 1798813682}
+    - target: {fileID: 1530380227552680393, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: alignTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530380227552680393, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: leftFoot.ik
+      value: 
+      objectReference: {fileID: 1546545148}
+    - target: {fileID: 1530380227552680393, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: rightFoot.ik
+      value: 
+      objectReference: {fileID: 1388470396}
+    - target: {fileID: 1530380227552680393, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: leftFoot.foot
+      value: 
+      objectReference: {fileID: 1989631666}
+    - target: {fileID: 1530380227552680393, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: rightFoot.foot
+      value: 
+      objectReference: {fileID: 1194234497}
     - target: {fileID: 2178425503621982274, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
       propertyPath: m_Data.m_TargetRotationWeight
@@ -21187,6 +21281,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471301299305318823, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
@@ -21231,7 +21330,7 @@ PrefabInstance:
     - target: {fileID: 5217929324103290745, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6
+      value: 5.87
       objectReference: {fileID: 0}
     - target: {fileID: 5217929324103290745, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
@@ -21278,6 +21377,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6046329549788214544, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046329549788214544, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6307984860134197635, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -21317,6 +21426,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036392629138835851, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036392629138835851, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036392629138835851, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7670752108039622676, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
@@ -22082,11 +22206,28 @@ MonoBehaviour:
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
   <footRotate>k__BackingField: 1
-  hip: {fileID: 34498921}
-  leftFootTarget: {fileID: 46187292}
-  rightFootTarget: {fileID: 1676623006}
-  hips: {fileID: 34498922}
-  hipAnchor: {fileID: 1198649355}
+  <isGround>k__BackingField: 0
+  hip: {fileID: 0}
+  hips: {fileID: 0}
+  hipAnchor: {fileID: 0}
+  leftFoot:
+    foot: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+  rightFoot:
+    foot: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+  beforeMoveFoot:
+    foot: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -22094,6 +22235,7 @@ MonoBehaviour:
   moveDistance: 0.55
   movePivotHeight: 1
   footMoveTime: 0.15
+  alignTime: 0.2
   hipElasticitySpeed: 1
   footToeOffset: 0.2
   hipHeight: 0.55
@@ -22933,6 +23075,18 @@ Transform:
   - {fileID: 143500096}
   m_Father: {fileID: 160137866}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1798813682 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4141567537994532289, guid: cee7a592542af7b4ea5a7b6c88647476,
+    type: 3}
+  m_PrefabInstance: {fileID: 1604457182}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1802606485
 GameObject:
   m_ObjectHideFlags: 0
@@ -24784,6 +24938,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 732784401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1989631666 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6672092411309089627, guid: cee7a592542af7b4ea5a7b6c88647476,
+    type: 3}
+  m_PrefabInstance: {fileID: 1604457182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1992877015
 GameObject:
   m_ObjectHideFlags: 0
@@ -34476,11 +34636,28 @@ MonoBehaviour:
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
   <footRotate>k__BackingField: 1
-  hip: {fileID: 5907798254586527134}
-  leftFootTarget: {fileID: 883785646}
-  rightFootTarget: {fileID: 254980412}
-  hips: {fileID: 5907798254586527132}
+  <isGround>k__BackingField: 0
+  hip: {fileID: 0}
+  hips: {fileID: 0}
   hipAnchor: {fileID: 0}
+  leftFoot:
+    foot: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+  rightFoot:
+    foot: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+  beforeMoveFoot:
+    foot: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -34488,6 +34665,7 @@ MonoBehaviour:
   moveDistance: 0.34
   movePivotHeight: 1
   footMoveTime: 0.2
+  alignTime: 0.2
   hipElasticitySpeed: 1
   footToeOffset: 1
   hipHeight: 0.55

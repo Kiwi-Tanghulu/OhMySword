@@ -33,17 +33,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Move()
     {
-        //if (moveDir == Vector3.zero)
-        //    hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-        //else if (moveDir.x == 0)
-        //    hip.constraints = RigidbodyConstraints.FreezePositionX;
-        //else if (moveDir.z == 0)
-        //    hip.constraints = RigidbodyConstraints.FreezePositionZ;
-        //else
-        //    hip.constraints = RigidbodyConstraints.None;
-        //hip.constraints |= RigidbodyConstraints.FreezePositionY;
-
-        //hip.velocity = moveDir * moveSpeed;
+        ragdoll.SetVelocity(moveDir * moveSpeed);
     }
 
     //플레이어용
