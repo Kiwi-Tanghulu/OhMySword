@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 prevTargetPos;
     private Vector3 targetPos;
     private Vector3 moveDir;
+    private Vector3 prevMoveDir;
     private Vector3 velocity;
 
     private PlayerView cam;
@@ -32,24 +33,24 @@ public class PlayerMove : MonoBehaviour
 
     private void Move()
     {
-        if (moveDir == Vector3.zero)
-            hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-        else if (moveDir.x == 0)
-            hip.constraints = RigidbodyConstraints.FreezePositionX;
-        else if (moveDir.z == 0)
-            hip.constraints = RigidbodyConstraints.FreezePositionZ;
-        else
-            hip.constraints = RigidbodyConstraints.None;
-        hip.constraints |= RigidbodyConstraints.FreezePositionY;
+        //if (moveDir == Vector3.zero)
+        //    hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        //else if (moveDir.x == 0)
+        //    hip.constraints = RigidbodyConstraints.FreezePositionX;
+        //else if (moveDir.z == 0)
+        //    hip.constraints = RigidbodyConstraints.FreezePositionZ;
+        //else
+        //    hip.constraints = RigidbodyConstraints.None;
+        //hip.constraints |= RigidbodyConstraints.FreezePositionY;
 
-        hip.velocity = moveDir * moveSpeed;
+        //hip.velocity = moveDir * moveSpeed;
     }
 
     //플레이어용
     public void SetMoveDirection(Vector3 input)
     {
+        prevMoveDir = moveDir;
         moveDir = cam.forward * input.z + cam.right * input.x;
-        Debug.Log(moveDir);
     }
 
     //클라용
