@@ -1,26 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
+
 public class LobbyGameTitle : MonoBehaviour
 {
-
-    private void Awake()
+    [System.Serializable]
+    public class JumpInfo
     {
-        RectTransform rectTransform = GetComponent<RectTransform>();
-
-        //DOTween.To(() => rectTransform.anchoredPosition, x => rectTransform.anchoredPosition = x, new Vector2(0, -300f), 1f).SetEase(Ease.InOutBounce);
-    }
-    void Start()
-    {
-        
+        public Vector3 destination;
+        public float power;
+        public float duration;
     }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] JumpInfo[] jumpInfos;
+    [SerializeField] Ease ease = Ease.InOutQuad;
+
+    private void Start()
     {
-        
+        DoJump();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+            DoJump();
+    }
+
+    private void DoJump()
+    {
+        transform.localPosition = jumpInfos[0].destination;
+
+        Sequence seq = DOTween.Sequence();
+        for(int i = 1; i < jumpInfos.Length; i++)
+            seq.Append(transform.DOLocalJump(jumpInfos[i].destination, jumpInfos[i].power, 1, jumpInfos[i].duration).SetEase(ease));
+    }
+
+    private void OnDisable()
+    {
+        transform.DOKill();
     }
 }
