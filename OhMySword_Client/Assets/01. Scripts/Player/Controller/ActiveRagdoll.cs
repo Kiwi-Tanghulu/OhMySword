@@ -12,6 +12,8 @@ public class ActiveRagdoll : MonoBehaviour
     public bool armLerping { get; set; } = true;
     [field: SerializeField]
     public bool footMove { get; set; } = true;
+    [field: SerializeField]
+    public bool footRotate { get; set; } = true;
 
     [Space]
     public Rigidbody hip;
@@ -59,13 +61,14 @@ public class ActiveRagdoll : MonoBehaviour
         leftFootOffset = leftFootTarget.position - hips.position;
         rightFootOffset = rightFootTarget.position - hips.position;
         leftFootOffset.y = 0f;
-        rightFootOffset = 0f;
+        rightFootOffset.y = 0f;
         footMiddlePos = (leftFootTargetPos - rightFootTargetPos) / 2f + rightFootTargetPos;
     }
 
     private void Update()
     {
         FootMove();
+        //FootRotate();
         SetBodyAncherPos();
         HipElasticity();
     }
@@ -90,7 +93,8 @@ public class ActiveRagdoll : MonoBehaviour
                 {
                     RaycastHit lefttHit = default;
                     Physics.Raycast(new Vector3(hips.position.x + leftFootOffset.x + moveDir.x * moveDistance, 
-                        hips.position.y, hips.position.z + leftFootOffset.z + moveDir.z * moveDistance), Vector3.down, out lefttHit, 10, groundLayer);
+                        hips.position.y, hips.position.z + leftFootOffset.z + moveDir.z * moveDistance), 
+                        Vector3.down, out lefttHit, 10, groundLayer);
 
                     leftHitPos = lefttHit.point + Vector3.up * footToeOffset;
                     prevLeftFootTargetPos = leftFootTargetPos;
@@ -102,7 +106,8 @@ public class ActiveRagdoll : MonoBehaviour
                 {
                     RaycastHit righttHit = default;
                     Physics.Raycast(new Vector3(hips.position.x + rightFootOffset.x + moveDir.x * moveDistance, hips.position.y, 
-                        hips.position.z + rightFootOffset.z + moveDir.z * moveDistance), Vector3.down, out righttHit, 10, groundLayer);
+                        hips.position.z + rightFootOffset.z + moveDir.z * moveDistance), 
+                        Vector3.down, out righttHit, 10, groundLayer);
 
                     rightHitPos = righttHit.point + Vector3.up * footToeOffset;
                     prevRightFootTargetPos = rightFootTargetPos;
@@ -114,6 +119,16 @@ public class ActiveRagdoll : MonoBehaviour
                 footMiddlePos = (leftFootTargetPos - rightFootTargetPos) / 2f + rightFootTargetPos;
             }
         }
+    }
+    private void FootRotate()
+    {
+        RaycastHit lefttHit = default;
+        RaycastHit righttHit = default;
+        Physics.Raycast(hips.position + hips.rotation * leftFootOffset, Vector3.down, out lefttHit, 10, groundLayer);
+        Physics.Raycast(hips.position + hips.rotation * rightFootOffset, Vector3.down, out righttHit, 10, groundLayer);
+
+        leftFootTargetPos = lefttHit.point + Vector3.up * footToeOffset;
+        rightFootTargetPos = righttHit.point + Vector3.up * footToeOffset;
     }
 
     private void SetBodyAncherPos()
@@ -128,6 +143,8 @@ public class ActiveRagdoll : MonoBehaviour
         Vector3 startToPivotLerp;
         Vector3 pivotToEndLerp;
 
+        footRotate = false;
+
         while (percent <= 1)
         {
             startToPivotLerp = Vector3.Lerp(start, heightPivotVector, percent);
@@ -138,6 +155,8 @@ public class ActiveRagdoll : MonoBehaviour
 
             yield return null;
         }
+
+        footRotate = true;
     }
 
     // body lerping
@@ -156,9 +175,10 @@ public class ActiveRagdoll : MonoBehaviour
         Gizmos.color = Color.blue;
 
         Gizmos.DrawWireSphere(footMiddlePos, shouldMoveDistance);
-        Gizmos.DrawSphere(footMiddlePos, 0.1f);
+        Gizmos.DrawCube(footMiddlePos, new Vector3(0.05f, 0.05f, 0.05f));
         Gizmos.DrawSphere(leftHitPos, 0.1f);
         Gizmos.DrawSphere(rightHitPos, 0.1f);
+
     }
 #endif
 }

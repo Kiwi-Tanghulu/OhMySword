@@ -4643,6 +4643,7 @@ MonoBehaviour:
   <bodyLerping>k__BackingField: 1
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
+  <footRotate>k__BackingField: 1
   hip: {fileID: 322219539}
   leftFootTarget: {fileID: 2040262913}
   rightFootTarget: {fileID: 1769790247}
@@ -12725,7 +12726,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 20, y: 1, z: 20}
+  m_LocalScale: {x: 100, y: 1, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -15345,6 +15346,7 @@ MonoBehaviour:
   <bodyLerping>k__BackingField: 1
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
+  <footRotate>k__BackingField: 1
   hip: {fileID: 1227892788}
   leftFootTarget: {fileID: 443154058}
   rightFootTarget: {fileID: 895020714}
@@ -21306,6 +21308,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6629152693581216958, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: m_AngularYZLimitSpring.spring
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 6880185308143275362, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -21336,6 +21343,16 @@ PrefabInstance:
       propertyPath: m_Data.m_MaintainTargetPositionOffset
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8812281239984539620, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 8812281239984539620, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8982285357403392631, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
       propertyPath: hip
@@ -21345,6 +21362,11 @@ PrefabInstance:
         type: 3}
       propertyPath: moveSpeed
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9170074105972036373, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: m_AngularYZLimitSpring.spring
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22059,6 +22081,7 @@ MonoBehaviour:
   <bodyLerping>k__BackingField: 1
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
+  <footRotate>k__BackingField: 1
   hip: {fileID: 34498921}
   leftFootTarget: {fileID: 46187292}
   rightFootTarget: {fileID: 1676623006}
@@ -34452,6 +34475,7 @@ MonoBehaviour:
   <bodyLerping>k__BackingField: 1
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
+  <footRotate>k__BackingField: 1
   hip: {fileID: 5907798254586527134}
   leftFootTarget: {fileID: 883785646}
   rightFootTarget: {fileID: 254980412}
