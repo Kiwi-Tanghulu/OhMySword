@@ -58,6 +58,8 @@ public class ActiveRagdoll : MonoBehaviour
         prevRightFootTargetPos = rightFootTargetPos;
         leftFootOffset = leftFootTarget.position - hips.position;
         rightFootOffset = rightFootTarget.position - hips.position;
+        leftFootOffset.y = 0f;
+        rightFootOffset = 0f;
         footMiddlePos = (leftFootTargetPos - rightFootTargetPos) / 2f + rightFootTargetPos;
     }
 
