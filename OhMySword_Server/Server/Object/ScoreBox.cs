@@ -20,6 +20,9 @@ namespace Server
             if (hp > 0)
                 return;
 
+            if (room.GetPlayer(attacker, out Player player))
+                player.destroyCount += 1;
+
             // 테이블에서 경험치 테이블 인덱스 뽑아야 함
             // 이놈 아이디 정보, 새로운 포지션 인덱스 정보 전송해야 함
             hp = 10;

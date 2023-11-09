@@ -9,6 +9,8 @@ namespace Server
         public ushort score;
         public ushort hp;
 
+        public ushort destroyCount;
+
         public Player(ClientSession session, GameRoom room, string name)
         {
             objectType = (ushort)ObjectType.Player;
@@ -16,6 +18,7 @@ namespace Server
 
             this.session = session;
             nickname = name;
+            destroyCount = 0;
             hp = 1;
         }
 
@@ -31,7 +34,7 @@ namespace Server
             List<ObjectPacket> objects = new List<ObjectPacket>();
             CreateXP(objects);
 
-            S_PlayerDiePacket broadcastPacket = new S_PlayerDiePacket(attacker, objectID, score, objects);
+            S_PlayerDiePacket broadcastPacket = new S_PlayerDiePacket(attacker, objectID, score, destroyCount, objects);
             room?.AddJob(() => room?.Broadcast(broadcastPacket));
         }
 

@@ -51,7 +51,7 @@ namespace OhMySword.Player
             playerWeapon.SetScore(amount);
         }
 
-        public void Die(SyncableObject attacker)
+        public void Die(SyncableObject attacker, ushort destroyCount)
         {
             
         }
