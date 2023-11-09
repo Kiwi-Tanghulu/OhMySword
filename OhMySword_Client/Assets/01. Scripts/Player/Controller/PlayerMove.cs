@@ -50,7 +50,7 @@ public class PlayerMove : MonoBehaviour
     #region OTHER MOVE
     public void SetTargetPosition(Vector3 pos)
     {
-        if (Vector3.Distance(pos, prevTargetPos) < 0.1f)
+        if (Vector3.Distance(pos, hip.transform.position) < 0.1f)
             return;
 
         prevTargetPos = targetPos;
@@ -59,7 +59,9 @@ public class PlayerMove : MonoBehaviour
         moveDistance = moveDir.magnitude;
         moveDir.Normalize();
 
-        //SetVelocity();
+        //if (Vector3.Distance(pos, hip.transform.position) < 0.1f)
+        //    return;
+        SetVelocity();
     }
 
     private void SetVelocity()
