@@ -252,7 +252,7 @@ public class ActiveRagdoll : MonoBehaviour
         //    - hips.rotation * beforeMoveFoot.offset;
 
         //foot align
-        //SetFootTargetPos(nextMoveFoot, hips.rotation * nextMoveFoot.offset, false);
+        SetFootTargetPos(nextMoveFoot, hips.rotation * nextMoveFoot.offset, false);
 
         //body align
         while (percent <= 1)

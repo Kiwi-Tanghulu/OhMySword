@@ -21158,8 +21158,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1530380227552680393, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
+      propertyPath: moveDistance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530380227552680393, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
       propertyPath: movePivotHeight
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530380227552680393, guid: cee7a592542af7b4ea5a7b6c88647476,
+        type: 3}
+      propertyPath: shouldMoveDistance
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 5217929324103290745, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
