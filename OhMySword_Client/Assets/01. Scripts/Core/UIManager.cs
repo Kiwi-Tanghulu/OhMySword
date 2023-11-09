@@ -14,6 +14,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private RoomPanel roomPanel = null;
+    public RoomPanel RoomPanel {
+        get {
+            if(roomPanel == null)
+                roomPanel = MainCanvas?.Find("Panels/GameStartPanelPivot/RoomPanel")?.GetComponent<RoomPanel>();
+            return roomPanel;
+        }
+    }
+
     private ChattingPanel chattingPanel = null;
     public ChattingPanel ChattingPanel {
         get {

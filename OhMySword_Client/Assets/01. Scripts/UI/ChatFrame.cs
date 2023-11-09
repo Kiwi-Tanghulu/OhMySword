@@ -1,5 +1,6 @@
 using MyUI;
 using TMPro;
+using UnityEngine;
 
 public class ChatFrame : PanelUI
 {
@@ -9,15 +10,13 @@ public class ChatFrame : PanelUI
     {
         base.Awake();
         textUI = transform.Find("Text")?.GetComponent<TMP_Text>();
-    } 
-    
-	private void Start()
-    {
         textUI.text = "";
-    }
+    } 
 
     public void SetText(string text)
     {
+        Debug.Log(text);
         textUI.text = text;
+        Debug.Log(textUI.text);
     }
 }

@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 1189114600}
   - component: {fileID: 1189114599}
   m_Layer: 0
-  m_Name: InputField_WriteMessage
+  m_Name: TextField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_CaretWidth: 5
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: db2fbe74d20c979409b73d6f653d583f, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
@@ -805,8 +805,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e0962d31f1f084fa3ba7147d76f5b6e8, type: 2}
-  m_sharedMaterial: {fileID: 1653631458307283989, guid: e0962d31f1f084fa3ba7147d76f5b6e8,
+  m_fontAsset: {fileID: 11400000, guid: db2fbe74d20c979409b73d6f653d583f, type: 2}
+  m_sharedMaterial: {fileID: -8929882066938840941, guid: db2fbe74d20c979409b73d6f653d583f,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1119,8 +1119,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Write your message...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e0962d31f1f084fa3ba7147d76f5b6e8, type: 2}
-  m_sharedMaterial: {fileID: 1653631458307283989, guid: e0962d31f1f084fa3ba7147d76f5b6e8,
+  m_fontAsset: {fileID: 11400000, guid: db2fbe74d20c979409b73d6f653d583f, type: 2}
+  m_sharedMaterial: {fileID: -8929882066938840941, guid: db2fbe74d20c979409b73d6f653d583f,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
