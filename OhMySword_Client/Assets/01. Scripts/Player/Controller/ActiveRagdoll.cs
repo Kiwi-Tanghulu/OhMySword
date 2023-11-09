@@ -47,6 +47,7 @@ public class ActiveRagdoll : MonoBehaviour
     [SerializeField] private Foot leftFoot;
     [SerializeField] private Foot rightFoot;
     [SerializeField] private Foot beforeMoveFoot;
+    [SerializeField] private Foot beforeAlignFoot;
 
     [Space]
     public LayerMask groundLayer;
@@ -55,7 +56,6 @@ public class ActiveRagdoll : MonoBehaviour
     public float moveDistance = 0.3f;
     public float movePivotHeight = 1f;
     public float footMoveTime = 0.2f;
-    public float alignTime = 0.2f;
     public float hipElasticitySpeed = 6f;
     public float footToeOffset = 0.1f;
     public float hipHeight = 0.55f;
@@ -68,8 +68,6 @@ public class ActiveRagdoll : MonoBehaviour
 
     //between pos of foot
     private Vector3 footMiddlePos;
-
-    private Vector3 prevHipVelocity;
 
     private void Start()
     {
@@ -94,8 +92,6 @@ public class ActiveRagdoll : MonoBehaviour
         SetBodyAncherPos();
         HipElasticity();
         FootMove();
-
-        prevHipVelocity = hip.velocity;
     }
 
     #region MOVE
@@ -107,7 +103,7 @@ public class ActiveRagdoll : MonoBehaviour
     private void CheckGround()
     {
         beforeIsGround = isGround;
-        isGround = Physics.Raycast(hip.position, Vector3.down, out RaycastHit hipToGround, hipHeight + 0.1f, groundLayer);
+        isGround = Physics.Raycast(hip.position, Vector3.down, out RaycastHit hipToGround, hipHeight * 2, groundLayer);
         hipToGroundPos = hipToGround.point;
 
         if(isGround != beforeIsGround)
@@ -147,16 +143,26 @@ public class ActiveRagdoll : MonoBehaviour
             if (Vector3.Distance(hipToGroundPos, leftFoot.targetPos) > Vector3.Distance(hipToGroundPos, rightFoot.targetPos))
             {
                 SetFootTargetPos(leftFoot, moveDir * moveDistance);
-
-                StartCoroutine(FootMoveAnimation(leftFoot, footMoveTime));
+                beforeMoveFoot = leftFoot;
             }
             else
             {
                 SetFootTargetPos(rightFoot, moveDir * moveDistance);
-
-                StartCoroutine(FootMoveAnimation(rightFoot, footMoveTime));
+                beforeMoveFoot = rightFoot;
             }
         }
+    }
+    private void SetFootTargetPos(Foot foot, Vector3 offset)
+    {
+        RaycastHit hit = default;
+        Physics.Raycast(new Vector3(beforeMoveFoot.targetPos.x, hips.position.y, beforeMoveFoot.targetPos.z) 
+            + offset + hips.rotation * foot.offset, Vector3.down, out hit, 10, groundLayer);
+
+        foot.SetTargetPos(hit.point + Vector3.up * footToeOffset);
+        beforeMoveFoot = foot;
+
+        SetFootMiddlePos();
+        StartCoroutine(FootMoveAnimation(foot, footMoveTime));
     }
     private IEnumerator FootMoveAnimation(Foot foot, float time)
     {
@@ -183,18 +189,7 @@ public class ActiveRagdoll : MonoBehaviour
 
         footRotate = true;
         SetFootMiddlePos();
-        //AlignFoot();
-    }
-    private void SetFootTargetPos(Foot foot, Vector3 offset)
-    {
-        RaycastHit hit = default;
-        Physics.Raycast(new Vector3(hips.position.x, hips.position.y, hips.position.z) + offset + hips.rotation * foot.offset,
-            Vector3.down, out hit, 10, groundLayer);
-
-        foot.SetTargetPos(hit.point + Vector3.up * footToeOffset);
-        beforeMoveFoot = foot;
-
-        SetFootMiddlePos();
+        AlignFoot();
     }
     private void SetFootMiddlePos()
     {
@@ -235,58 +230,51 @@ public class ActiveRagdoll : MonoBehaviour
     }
     #endregion
 
+    #region
+    private void AlignFoot()
+    {
+        if (beforeAlignFoot == beforeMoveFoot)
+            return;
 
+        if (hip.velocity == Vector3.zero && beforeMoveFoot != null)
+        {
+            StopCoroutine(Align());
+            StartCoroutine(Align());
+        }
+    }
 
-    //private void AlignFoot()
-    //{
-    //    Debug.Log(1);
-    //    if (hip.velocity == Vector3.zero && beforeMoveFoot != null)
-    //    {
-    //        StopCoroutine(Align());
-    //        StartCoroutine(Align());
-    //    }
-    //}
+    private IEnumerator Align()
+    {
+        float percent = 0;
+        Vector3 hipStart = hipAnchor.position;
+        Vector3 hipEnd = new Vector3(beforeMoveFoot.targetPos.x, hipAnchor.position.y, beforeMoveFoot.targetPos.z);
 
-    //private IEnumerator Align()
-    //{
-    //    float percent = 0;
-    //    Vector3 hipStart = hipAnchor.position;
-    //    Vector3 hipEnd = new Vector3(beforeMoveFoot.position.x, hipAnchor.position.y, beforeMoveFoot.position.z);
+        hipEnd -= beforeMoveFoot == rightFoot ? rightFoot.offset : leftFoot.offset;
 
-    //    hipEnd -= beforeMoveFoot == rightFootTarget ? rightFootOffset : leftFootOffset;
+        if(beforeMoveFoot == rightFoot)
+        {
+            SetFootTargetPos(leftFoot, hips.rotation * leftFoot.offset);
+            //beforeAlignFoot = leftFoot;
+            //beforeMoveFoot = leftFoot;
+        }
+        else
+        {
+            SetFootTargetPos(rightFoot, hips.rotation * rightFoot.offset);
+            //beforeAlignFoot = rightFoot;
+            //beforeMoveFoot = rightFoot;
+        }
 
-    //    //foot align
-    //    //if (beforeMoveFoot == rightFootTarget)
-    //    //{
-    //    //    prevLeftFootTargetPos = leftFootTargetPos;
-    //    //    leftFootTargetPos = beforeMoveFoot.position +
-    //    //        hips.rotation * new Vector3(leftFootOffset.x * 2, 0, leftFootOffset.z);
+        //body dlign
+        while (percent <= 1)
+        {
+            percent += Time.deltaTime / footMoveTime;
 
-    //    //    FootMoveAnimation(leftFootTarget, prevLeftFootTargetPos, leftFootTargetPos, alignTime);
-    //    //}
-    //    //else
-    //    //{
-    //    //    prevLeftFootTargetPos = rightFootTargetPos;
-    //    //    rightFootTargetPos = beforeMoveFoot.position +
-    //    //        hips.rotation * new Vector3(rightFootOffset.x * 2, 0, rightFootOffset.z);
-    //    //    FootMoveAnimation(rightFootTarget, prevRightFootTargetPos, rightFootTargetPos, alignTime);
-    //    //}
+            hipAnchor.position = Vector3.Lerp(hipStart, hipEnd, percent);
 
-    //    ////set foot middle pos
-    //    //footMiddlePos = (leftFootTargetPos - rightFootTargetPos) / 2f + rightFootTargetPos;
-
-    //    //body dlign
-    //    while (percent <= 1)
-    //    {
-    //        Debug.Log(132);
-    //        percent += Time.deltaTime / alignTime;
-
-    //        hipAnchor.position = Vector3.Lerp(hipStart, hipEnd, percent);
-
-    //        yield return null;
-    //    }
-    //}
-
+            yield return null;
+        }
+    }
+    #endregion
 
 
 #if UNITY_EDITOR
