@@ -33,6 +33,9 @@ namespace Server
 
             packetFactories.Add((ushort)PacketID.C_AttackPacket, PacketUtility.CreatePacket<C_AttackPacket>);
             packetHandlers.Add((ushort)PacketID.C_AttackPacket, PacketHandler.C_AttackPacket);
+
+            packetFactories.Add((ushort)PacketID.C_ChattingPacket, PacketUtility.CreatePacket<C_ChattingPacket>);
+            packetHandlers.Add((ushort)PacketID.C_ChattingPacket, PacketHandler.C_ChattingPacket);
         }
 
         public Packet CreatePacket(ArraySegment<byte> buffer)

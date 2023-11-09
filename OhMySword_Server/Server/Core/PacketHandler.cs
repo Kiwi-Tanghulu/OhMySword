@@ -80,5 +80,15 @@ namespace Server
                     obj.Hit(attackPacket.damage, attackPacket.attackerID);
             }
         }
+
+        public static void C_ChattingPacket(Session session, Packet packet)
+        {
+            ClientSession clientSession = session as ClientSession;
+            C_ChattingPacket chattingPacket = packet as C_ChattingPacket;
+            GameRoom room = clientSession.Room;
+
+            S_ChattingPacket broadcastPacket = new S_ChattingPacket(chattingPacket.chat, clientSession.Player.objectID);
+            room.AddJob(() => room.Broadcast(broadcastPacket));
+        }
     }
 }
