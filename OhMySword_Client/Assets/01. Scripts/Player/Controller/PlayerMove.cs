@@ -60,8 +60,6 @@ public class PlayerMove : MonoBehaviour
         moveDistance = moveDir.magnitude;
         moveDir.Normalize();
 
-        //if (Vector3.Distance(pos, hip.transform.position) < 0.1f)
-        //    return;
         SetVelocity();
     }
 
