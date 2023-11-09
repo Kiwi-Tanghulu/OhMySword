@@ -50,6 +50,11 @@ public class ActiveRagdoll : MonoBehaviour
     [SerializeField] private Foot nextMoveFoot;
 
     [Space]
+    [SerializeField] private Transform handTrm;
+    [SerializeField] private Transform normalHandTrm;
+    [SerializeField] private Transform attackHandTrm;
+
+    [Space]
     public LayerMask groundLayer;
     public float shouldMoveDistance = 0.35f;
     [Tooltip("shouldMoveDistance보다 작아야 함")]
@@ -261,6 +266,44 @@ public class ActiveRagdoll : MonoBehaviour
             percent += Time.deltaTime / footMoveTime;
 
             //hipAnchor.position = Vector3.Lerp(hipStart, hipEnd, percent);
+
+            yield return null;
+        }
+    }
+    #endregion
+
+    #region HAND
+
+    public IEnumerator AttackMotion(float time)
+    {
+        float percent = 0;
+
+        Vector3 startPos = handTrm.position;
+        Quaternion startRot = handTrm.rotation;
+        Debug.Log(423);
+        while (percent <= 1)
+        {
+            percent += Time.deltaTime / time;
+
+            handTrm.position = Vector3.Lerp(startPos, attackHandTrm.position, percent);
+            handTrm.rotation = Quaternion.Lerp(startRot, attackHandTrm.rotation, percent);
+
+            yield return null;
+        }
+    }
+    public IEnumerator AttacRecoverykMotion(float time)
+    {
+        float percent = 0;
+        Debug.Log(123);
+        Vector3 startPos = handTrm.position;
+        Quaternion startRot = handTrm.rotation;
+
+        while (percent <= 1)
+        {
+            percent += Time.deltaTime / time;
+
+            handTrm.position = Vector3.Lerp(startPos, normalHandTrm.position, percent);
+            handTrm.rotation = Quaternion.Lerp(startRot, normalHandTrm.rotation, percent);
 
             yield return null;
         }
