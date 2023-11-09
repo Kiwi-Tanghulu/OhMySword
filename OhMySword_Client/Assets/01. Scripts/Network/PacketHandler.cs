@@ -77,7 +77,7 @@ public class PacketHandler
         PlayerController player = RoomManager.Instance.GetPlayer(diePacket.playerID);
         PlayerController attacker = RoomManager.Instance.GetPlayer(diePacket.attackerID);
 
-        player.Die(attacker);
+        player.Die(attacker, diePacket.destroyCount);
 
         diePacket.score.ForEachDigit((digit, number, index) => {
             ObjectPacket obj = diePacket.objects[index];
