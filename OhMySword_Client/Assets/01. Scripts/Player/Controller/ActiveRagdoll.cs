@@ -47,7 +47,7 @@ public class ActiveRagdoll : MonoBehaviour
     [SerializeField] private Foot leftFoot;
     [SerializeField] private Foot rightFoot;
     [SerializeField] private Foot beforeMoveFoot;
-    [SerializeField] private Foot beforeAlignFoot;
+    [SerializeField] private Foot nextMoveFoot;
 
     [Space]
     public LayerMask groundLayer;
@@ -82,6 +82,9 @@ public class ActiveRagdoll : MonoBehaviour
         leftFoot.offset.y = 0;
         rightFoot.offset.y = 0;
 
+        beforeMoveFoot = leftFoot;
+        nextMoveFoot = rightFoot;
+
         SetFootMiddlePos();
     }
 
@@ -112,8 +115,8 @@ public class ActiveRagdoll : MonoBehaviour
             {
                 hipToGroundPos = hipToGround.point;
                 //SetBodyAncherPos();
-                SetFootTargetPos(leftFoot, Vector3.zero);
-                SetFootTargetPos(rightFoot, Vector3.zero);
+                SetFootTargetPos(leftFoot, Vector3.zero, true);
+                SetFootTargetPos(rightFoot, Vector3.zero, true);
                 leftFoot.ik.weight = 1;
                 rightFoot.ik.weight = 1;
             }
@@ -140,31 +143,24 @@ public class ActiveRagdoll : MonoBehaviour
         {
             Vector3 moveDir = (hipToGroundPos - footMiddlePos).normalized;
 
-            if (Vector3.Distance(hipToGroundPos, leftFoot.targetPos) > Vector3.Distance(hipToGroundPos, rightFoot.targetPos))
-            {
-                SetFootTargetPos(leftFoot, moveDir * moveDistance);
-                beforeMoveFoot = leftFoot;
-            }
-            else
-            {
-                SetFootTargetPos(rightFoot, moveDir * moveDistance);
-                beforeMoveFoot = rightFoot;
-            }
+            SetFootTargetPos(nextMoveFoot, moveDir * moveDistance, true);
         }
     }
-    private void SetFootTargetPos(Foot foot, Vector3 offset)
+    private void SetFootTargetPos(Foot foot, Vector3 offset, bool align)
     {
         RaycastHit hit = default;
         Physics.Raycast(new Vector3(beforeMoveFoot.targetPos.x, hips.position.y, beforeMoveFoot.targetPos.z) 
             + offset + hips.rotation * foot.offset, Vector3.down, out hit, 10, groundLayer);
 
         foot.SetTargetPos(hit.point + Vector3.up * footToeOffset);
-        beforeMoveFoot = foot;
+
+        beforeMoveFoot = nextMoveFoot;
+        nextMoveFoot = nextMoveFoot == rightFoot ? leftFoot : rightFoot;
 
         SetFootMiddlePos();
-        StartCoroutine(FootMoveAnimation(foot, footMoveTime));
+        StartCoroutine(FootMoveAnimation(foot, footMoveTime, align));
     }
-    private IEnumerator FootMoveAnimation(Foot foot, float time)
+    private IEnumerator FootMoveAnimation(Foot foot, float time, bool align)
     {
         float percent = 0;
         Vector3 start = foot.prevTargetPos;
@@ -189,7 +185,8 @@ public class ActiveRagdoll : MonoBehaviour
 
         footRotate = true;
         SetFootMiddlePos();
-        AlignFoot();
+        if(align)
+            AlignBody();
     }
     private void SetFootMiddlePos()
     {
@@ -231,12 +228,9 @@ public class ActiveRagdoll : MonoBehaviour
     #endregion
 
     #region
-    private void AlignFoot()
+    private void AlignBody()
     {
-        if (beforeAlignFoot == beforeMoveFoot)
-            return;
-
-        if (hip.velocity == Vector3.zero && beforeMoveFoot != null)
+        if (hip.velocity == Vector3.zero)
         {
             StopCoroutine(Align());
             StartCoroutine(Align());
@@ -247,24 +241,13 @@ public class ActiveRagdoll : MonoBehaviour
     {
         float percent = 0;
         Vector3 hipStart = hipAnchor.position;
-        Vector3 hipEnd = new Vector3(beforeMoveFoot.targetPos.x, hipAnchor.position.y, beforeMoveFoot.targetPos.z);
+        Vector3 hipEnd = new Vector3(beforeMoveFoot.targetPos.x, hipAnchor.position.y, beforeMoveFoot.targetPos.z)
+            - hips.rotation * beforeMoveFoot.offset;
 
-        hipEnd -= beforeMoveFoot == rightFoot ? rightFoot.offset : leftFoot.offset;
+        //foot align
+        SetFootTargetPos(nextMoveFoot, hips.rotation * nextMoveFoot.offset, false);
 
-        if(beforeMoveFoot == rightFoot)
-        {
-            SetFootTargetPos(leftFoot, hips.rotation * leftFoot.offset);
-            //beforeAlignFoot = leftFoot;
-            //beforeMoveFoot = leftFoot;
-        }
-        else
-        {
-            SetFootTargetPos(rightFoot, hips.rotation * rightFoot.offset);
-            //beforeAlignFoot = rightFoot;
-            //beforeMoveFoot = rightFoot;
-        }
-
-        //body dlign
+        //body align
         while (percent <= 1)
         {
             percent += Time.deltaTime / footMoveTime;
