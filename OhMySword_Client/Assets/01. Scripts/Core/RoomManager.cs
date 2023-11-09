@@ -3,6 +3,7 @@ using Packets;
 using UnityEngine;
 using OhMySword.Player;
 using Base.Network;
+using System;
 
 public class RoomManager : MonoBehaviour
 {
@@ -93,5 +94,16 @@ public class RoomManager : MonoBehaviour
     {
         playerList.ForEach(p => AddPlayer(p.objectID, p.position.Vector3(), p.rotation.Vector3(), p.nickname));
         objectList.ForEach(o => AddObject(o.objectID, (ObjectType)o.objectType, o.position.Vector3(), o.rotation.Vector3()));
+    }
+
+    public void Chatting(string chat, ushort id)
+    {
+        if(players.ContainsKey(id) == false)
+            return;
+
+        PlayerController sender = players[id];
+        sender.DoChat(chat);
+
+        // sender.nickname 으로 채팅 띄우기
     }
 }

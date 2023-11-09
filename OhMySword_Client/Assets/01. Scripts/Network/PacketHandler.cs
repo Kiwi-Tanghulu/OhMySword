@@ -118,4 +118,10 @@ public class PacketHandler
         box?.CreateXP(scoreBoxPacket.ids);
         box?.SetPosition(scoreBoxPacket.posTableIndex);
     }
+
+    public static void S_ChattingPacket(Session session, Packet packet)
+    {
+        S_ChattingPacket chattingPacket = packet as S_ChattingPacket;
+        RoomManager.Instance.Chatting(chattingPacket.chat, chattingPacket.playerID);
+    }
 }

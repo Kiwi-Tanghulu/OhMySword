@@ -13,6 +13,8 @@ namespace OhMySword.Player
         public UnityEvent<SyncableObject> OnHitEvent;
         public UnityEvent<SyncableObject> OnDieEvent;
 
+        public string nickname;
+
         public override void OnCreated()
         {
             movement = GetComponent<PlayerMove>();
@@ -24,7 +26,7 @@ namespace OhMySword.Player
 
         public void SetNickname(string nickname)
         {
-            
+            this.nickname = nickname;   
         }
 
         public void OnDamage(int damage, GameObject performer, Vector3 point)
@@ -50,6 +52,11 @@ namespace OhMySword.Player
         public void Die(SyncableObject attacker)
         {
             
+        }
+
+        public void DoChat(string chat)
+        {
+
         }
 
         public override void SetPosition(Vector3 position, bool immediately = false)
