@@ -4,7 +4,7 @@ namespace Server
 {
     public class DEFINE
     {
-        public static readonly Vector3[] PlayerSpawnTable = { new Vector3(-4, -10, -47) };
+        public static readonly Vector3[] PlayerSpawnTable = { new Vector3(-6, -15, -50) };
         public static readonly Vector3[] ScoreBoxSpawnTable = { new Vector3(0, 0, 0) };
 
         public static readonly Dictionary<ushort, ScoreBoxDropTable> XPSpawnTable = new Dictionary<ushort, ScoreBoxDropTable>() {
