@@ -104,6 +104,6 @@ public class RoomManager : MonoBehaviour
         PlayerController sender = players[id];
         sender.DoChat(chat);
 
-        // sender.nickname 으로 채팅 띄우기
+        // $"{sender.nickname} : {chat}"으로 채팅 띄우기
     }
 }
