@@ -12,15 +12,17 @@ namespace Packets
         public ushort attackerID;
         public ushort playerID;
         public ushort score;
+        public ushort destroyCount;
         public List<ObjectPacket> objects;
 
         public S_PlayerDiePacket() { }
 
-        public S_PlayerDiePacket(ushort attackerID, ushort playerID, ushort score, List<ObjectPacket> objects)
+        public S_PlayerDiePacket(ushort attackerID, ushort playerID, ushort score, ushort destroyCount, List<ObjectPacket> objects)
         {
             this.attackerID = attackerID;
             this.playerID = playerID;
             this.score = score;
+            this.destroyCount = destroyCount;
             this.objects = objects;
         }
 
@@ -34,6 +36,7 @@ namespace Packets
             process += PacketUtility.ReadUShortData(buffer, process, out attackerID);
             process += PacketUtility.ReadUShortData(buffer, process, out playerID);
             process += PacketUtility.ReadUShortData(buffer, process, out score);
+            process += PacketUtility.ReadUShortData(buffer, process, out destroyCount);
             process += PacketUtility.ReadListData<ObjectPacket>(buffer, process, out objects);
         }
 
@@ -47,6 +50,7 @@ namespace Packets
             process += PacketUtility.AppendUShortData(this.attackerID, buffer, process);
             process += PacketUtility.AppendUShortData(this.playerID, buffer, process);
             process += PacketUtility.AppendUShortData(this.score, buffer, process);
+            process += PacketUtility.AppendUShortData(this.destroyCount, buffer, process);
             process += PacketUtility.AppendListData<ObjectPacket>(this.objects, buffer, process);
             PacketUtility.AppendUShortData(process, buffer, 0);
 
