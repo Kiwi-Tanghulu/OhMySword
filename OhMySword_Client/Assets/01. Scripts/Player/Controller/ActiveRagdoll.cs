@@ -149,17 +149,18 @@ public class ActiveRagdoll : MonoBehaviour
     private void SetFootTargetPos(Foot foot, Vector3 offset, bool align)
     {
         RaycastHit hit = default;
-        Physics.Raycast(new Vector3(beforeMoveFoot.targetPos.x, hips.position.y, beforeMoveFoot.targetPos.z) 
-            + offset + hips.rotation * foot.offset, Vector3.down, out hit, 10, groundLayer);
+        if(Physics.Raycast(new Vector3(beforeMoveFoot.targetPos.x, hips.position.y, beforeMoveFoot.targetPos.z) 
+            + offset + hips.rotation * foot.offset, Vector3.down, out hit, 10, groundLayer))
+        {
+            foot.SetTargetPos(hit.point + Vector3.up * footToeOffset);
 
-        foot.SetTargetPos(hit.point + Vector3.up * footToeOffset);
+            beforeMoveFoot = nextMoveFoot;
+            nextMoveFoot = nextMoveFoot == rightFoot ? leftFoot : rightFoot;
 
-        beforeMoveFoot = nextMoveFoot;
-        nextMoveFoot = nextMoveFoot == rightFoot ? leftFoot : rightFoot;
-
-        SetFootMiddlePos();
-        SetBodyAncherPos();
-        StartCoroutine(FootMoveAnimation(foot, footMoveTime, align));
+            SetFootMiddlePos();
+            SetBodyAncherPos();
+            StartCoroutine(FootMoveAnimation(foot, footMoveTime, align));
+        }
     }
     private IEnumerator FootMoveAnimation(Foot foot, float time, bool align)
     {
@@ -274,8 +275,8 @@ public class ActiveRagdoll : MonoBehaviour
 
         Gizmos.DrawWireSphere(footMiddlePos, shouldMoveDistance);
         Gizmos.DrawCube(footMiddlePos, new Vector3(0.05f, 0.05f, 0.05f));
-        Gizmos.DrawSphere(leftHitPos, 0.1f);
-        Gizmos.DrawSphere(rightHitPos, 0.1f);
+        Gizmos.DrawSphere(leftFoot.targetPos, 0.1f);
+        Gizmos.DrawSphere(rightFoot.targetPos, 0.1f);
 
     }
 #endif
