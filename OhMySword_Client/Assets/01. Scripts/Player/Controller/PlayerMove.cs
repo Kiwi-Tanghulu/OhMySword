@@ -1,3 +1,4 @@
+using System.IO.Compression;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,11 +52,14 @@ public class PlayerMove : MonoBehaviour
     public void SetTargetPosition(Vector3 pos)
     {
         if (Vector3.Distance(pos, hip.transform.position) < 0.1f)
-            return;
+            moveDir = Vector3.zero;
+        else
+        {
+            prevTargetPos = targetPos;
+            targetPos = pos;
+            moveDir = targetPos - hip.transform.position;
+        }
 
-        prevTargetPos = targetPos;
-        targetPos = pos;
-        moveDir = targetPos - hip.transform.position;
         moveDistance = moveDir.magnitude;
         moveDir.Normalize();
 
