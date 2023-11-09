@@ -354,13 +354,12 @@ GameObject:
   - component: {fileID: 5217929324103290745}
   - component: {fileID: 8703390968917144095}
   - component: {fileID: 4985902808029453687}
-  - component: {fileID: 4646969652348038813}
   - component: {fileID: 8982285357403392631}
   - component: {fileID: 1530380227552680393}
   - component: {fileID: 6493606423071451718}
   - component: {fileID: 7749337318288344508}
   m_Layer: 0
-  m_Name: RagdollPlayer
+  m_Name: OtherRagdollPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -425,63 +424,6 @@ MonoBehaviour:
   OnDieEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4646969652348038813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526258451423715232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0bc83ccf1f18d648b7e7a3c2fc73ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Movement:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8982285357403392631}
-        m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
-        m_MethodName: SetMoveDirection
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  MouseMove:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6493606423071451718}
-        m_TargetAssemblyTypeName: PlayerCamera, Assembly-CSharp
-        m_MethodName: RotateCamera
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  LeftClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7749337318288344508}
-        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
-        m_MethodName: Attack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8982285357403392631
 MonoBehaviour:
   m_ObjectHideFlags: 0
