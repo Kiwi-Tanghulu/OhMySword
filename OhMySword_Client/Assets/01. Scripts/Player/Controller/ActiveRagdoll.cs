@@ -92,7 +92,6 @@ public class ActiveRagdoll : MonoBehaviour
     {
         CheckGround();
 
-        SetBodyAncherPos();
         HipElasticity();
         FootMove();
     }
@@ -113,10 +112,9 @@ public class ActiveRagdoll : MonoBehaviour
         {
             if (isGround)
             {
-                hipToGroundPos = hipToGround.point;
-                //SetBodyAncherPos();
                 SetFootTargetPos(leftFoot, Vector3.zero, true);
                 SetFootTargetPos(rightFoot, Vector3.zero, true);
+                SetBodyAncherPos();
                 leftFoot.ik.weight = 1;
                 rightFoot.ik.weight = 1;
             }
@@ -158,6 +156,7 @@ public class ActiveRagdoll : MonoBehaviour
         nextMoveFoot = nextMoveFoot == rightFoot ? leftFoot : rightFoot;
 
         SetFootMiddlePos();
+        SetBodyAncherPos();
         StartCoroutine(FootMoveAnimation(foot, footMoveTime, align));
     }
     private IEnumerator FootMoveAnimation(Foot foot, float time, bool align)
@@ -197,18 +196,24 @@ public class ActiveRagdoll : MonoBehaviour
     #region HIP
     private void SetBodyAncherPos()
     {
-        hipAnchor.position = hipToGroundPos + Vector3.up * hipHeight;
+        hipAnchor.position = new Vector3(footMiddlePos.x, (hipToGroundPos + Vector3.up * hipHeight).y, footMiddlePos.z);
     }
     private void HipElasticity()
     {
-        if (!bodyLerping || hip.velocity != Vector3.zero)
+        if (!isGround || !bodyLerping)
             return;
 
-        if (!isGround)
-            return;
-
-        hips.transform.position = Vector3.Lerp(hips.transform.position,
-            new Vector3(footMiddlePos.x, hipAnchor.position.y, footMiddlePos.z), hipElasticitySpeed * Time.deltaTime);
+        if (hip.velocity == Vector3.zero)
+        {
+            hips.transform.position = Vector3.Lerp(hips.transform.position,
+            hipAnchor.position, hipElasticitySpeed * Time.deltaTime);
+        }
+        else
+        {
+            hips.transform.position = Vector3.Lerp(hips.transform.position,
+            new Vector3(hips.transform.position.x, hipAnchor.position.y, hips.transform.position.z), 
+            hipElasticitySpeed * Time.deltaTime);
+        }
     } // body lerping
     private void SetHipConstraint(Vector3 velocity)
     {
@@ -227,7 +232,7 @@ public class ActiveRagdoll : MonoBehaviour
     }
     #endregion
 
-    #region
+    #region ALIGN
     private void AlignBody()
     {
         if (hip.velocity == Vector3.zero)
@@ -252,7 +257,7 @@ public class ActiveRagdoll : MonoBehaviour
         {
             percent += Time.deltaTime / footMoveTime;
 
-            hipAnchor.position = Vector3.Lerp(hipStart, hipEnd, percent);
+            //hipAnchor.position = Vector3.Lerp(hipStart, hipEnd, percent);
 
             yield return null;
         }
