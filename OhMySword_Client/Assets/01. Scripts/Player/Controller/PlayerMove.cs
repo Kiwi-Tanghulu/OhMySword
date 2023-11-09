@@ -18,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 moveDir;
     private Vector3 prevMoveDir;
     private Vector3 velocity;
+    private float moveDistance;
 
     private PlayerView cam;
 
@@ -29,12 +30,14 @@ public class PlayerMove : MonoBehaviour
         prevTargetPos = targetPos;
     }
 
-    private void Update()
+    #region MYMOVE
+    public void SetMoveDirection(Vector3 input)
     {
-        Move();
+        prevMoveDir = moveDir;
+        moveDir = cam.forward * input.z + cam.right * input.x;
     }
 
-    private void Move()
+    public void Move()
     {
         if((targetPos - hip.transform.position).magnitude > 0.5f)
             ragdoll.SetVelocity(moveDir * moveSpeed);
@@ -42,23 +45,35 @@ public class PlayerMove : MonoBehaviour
             ragdoll.SetVelocity(Vector3.zero);
         onMovedEvent?.Invoke(hip.transform.position);
     }
+    #endregion
 
-    //�÷��̾��
-    public void SetMoveDirection(Vector3 input)
-    {
-        prevMoveDir = moveDir;
-        moveDir = cam.forward * input.z + cam.right * input.x;
-    }
-
-    //Ŭ���
+    #region OTHER MOVE
     public void SetTargetPosition(Vector3 pos)
     {
-        hip.transform.position = prevTargetPos;
-
         prevTargetPos = targetPos;
         targetPos = pos;
-        moveDir = (targetPos - hip.transform.position).normalized;
+        moveDir = targetPos - hip.transform.position;
+        moveDistance = moveDir.magnitude;
+        moveDir.Normalize();
+
+        SetVelocity();
     }
+
+    private void SetVelocity()
+    {
+        moveSpeed = moveDistance / 0.09f;
+        ragdoll.SetVelocity(moveDir * moveSpeed);
+
+        StartCoroutine(AdjustPosition());
+    }
+
+    private IEnumerator AdjustPosition()
+    {
+        yield return new WaitForSeconds(0.09f);
+
+        hip.transform.position = targetPos;
+    }
+    #endregion
 
     public void Stun(float time)
     {

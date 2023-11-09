@@ -280,7 +280,7 @@ public class ActiveRagdoll : MonoBehaviour
 
         Vector3 startPos = handTrm.position;
         Quaternion startRot = handTrm.rotation;
-        Debug.Log(423);
+        
         while (percent <= 1)
         {
             percent += Time.deltaTime / time;
@@ -294,7 +294,7 @@ public class ActiveRagdoll : MonoBehaviour
     public IEnumerator AttacRecoverykMotion(float time)
     {
         float percent = 0;
-        Debug.Log(123);
+        
         Vector3 startPos = handTrm.position;
         Quaternion startRot = handTrm.rotation;
 
