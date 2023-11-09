@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.PlayerSettings;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -76,7 +77,9 @@ public class PlayerMove : MonoBehaviour
     {
         yield return new WaitForSeconds(0.09f);
 
-        hip.transform.position = targetPos;
+
+        if (Vector3.Distance(targetPos, hip.transform.position) > 0.5f)
+            hip.transform.position = targetPos;
     }
     #endregion
 
