@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 1530380227552680393}
   - component: {fileID: 6493606423071451718}
   - component: {fileID: 7749337318288344508}
+  - component: {fileID: 5474167933361420587}
   m_Layer: 0
   m_Name: RagdollPlayer
   m_TagString: Untagged
@@ -425,6 +426,7 @@ MonoBehaviour:
   OnDieEvent:
     m_PersistentCalls:
       m_Calls: []
+  nickname: 
 --- !u!114 &4646969652348038813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,6 +496,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf2a74d6b7c46147a686d0f422e2e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onMovedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5474167933361420587}
+        m_TargetAssemblyTypeName: PositionReporter, Assembly-CSharp
+        m_MethodName: OnMoveHandle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hip: {fileID: 6046329549788214544}
   moveSpeed: 2
   canMove: 1
@@ -566,6 +583,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cd617f9f7f61c4faacf564b21aed44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onRotatedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5474167933361420587}
+        m_TargetAssemblyTypeName: PositionReporter, Assembly-CSharp
+        m_MethodName: OnRotateHandle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   rotateSpeed: 2.5
   maxRotate: 80
   minRotate: -40
@@ -585,6 +617,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackTime: 0.3
   isAttack: 0
+--- !u!114 &5474167933361420587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526258451423715232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17244cc87b967394f87cbde90ad050ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceThreshold: 0.1
+  rotateThreshold: 0.1
+  cooldown: 0.1
 --- !u!1 &553607798764738860
 GameObject:
   m_ObjectHideFlags: 0

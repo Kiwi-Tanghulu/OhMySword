@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerView : MonoBehaviour
 {
     public Vector3 forward { get; private set; }
     public Vector3 right { get; private set; }
+
+    [SerializeField] UnityEvent<Vector3> onRotatedEvent;
 
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float maxRotate;
@@ -14,6 +17,8 @@ public class PlayerView : MonoBehaviour
     [SerializeField] private Transform hip;
 
     private Vector2 rotation = Vector2.zero;
+    private Vector3 targetRotation = Vector3.zero;
+    private Vector3 prevRotation = Vector3.zero;
 
     public void RotateCamera(Vector2 vector)
     {
@@ -27,5 +32,30 @@ public class PlayerView : MonoBehaviour
 
         forward = new Vector3(target.forward.x, 0, target.forward.z).normalized;
         right = new Vector3(target.right.x, 0, target.right.z).normalized;
+
+        onRotatedEvent?.Invoke(hip.eulerAngles);
+    }
+
+    public void SetRotation(Vector3 euler)
+    {
+        prevRotation = targetRotation;
+        targetRotation = euler;
+
+        StartCoroutine(RotateCoroutine(target, Quaternion.Euler(prevRotation.x, prevRotation.y, 0), Quaternion.Euler(targetRotation.x, targetRotation.y, 0)));
+        StartCoroutine(RotateCoroutine(hip, Quaternion.Euler(0, prevRotation.y, 0), Quaternion.Euler(0, targetRotation.y, 0)));
+    }
+
+    private IEnumerator RotateCoroutine(Transform trm, Quaternion from, Quaternion target, float duration = 0.09f)
+    {
+        float timer = 0f;
+
+        while(timer < duration)
+        {
+            trm.rotation = Quaternion.Lerp(from, target, timer / duration);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        trm.rotation = target;
     }
 }

@@ -13,7 +13,6 @@ namespace Server
 
             if (room.GetPlayer(playerPacket.objectPacket.objectID, out Player player) == false)
                 return;
-
             player.position = playerPacket.objectPacket.position;
             player.rotation = playerPacket.objectPacket.rotation;
 

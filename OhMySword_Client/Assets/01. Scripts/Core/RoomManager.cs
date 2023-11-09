@@ -11,6 +11,7 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField] SyncableObjectPrefabTableSO prefabTable;
     [SerializeField] PositionTableSO playerSpawnTable;
+    [SerializeField] PlayerController playerPrefab;
 
     public ushort PlayerID { get; private set; }
     
@@ -44,7 +45,11 @@ public class RoomManager : MonoBehaviour
 
     public void CreatePlayer(ushort id, ushort posIndex, string nickname)
     {
-        PlayerController player = AddPlayer(id, posIndex, nickname);
+        PlayerController player = Instantiate(playerPrefab) as PlayerController;
+        player.Init(id, playerSpawnTable[posIndex], Vector3.zero);
+        player.SetNickname(nickname);
+        player.OnCreated();
+
         PlayerID = id;
     }
 

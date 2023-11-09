@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMove : MonoBehaviour
 {
     private ActiveRagdoll ragdoll;
+
+    [SerializeField] UnityEvent<Vector3> onMovedEvent;
 
     [SerializeField] private Rigidbody hip;
 
@@ -33,24 +36,28 @@ public class PlayerMove : MonoBehaviour
 
     private void Move()
     {
-        ragdoll.SetVelocity(moveDir * moveSpeed);
+        if((targetPos - hip.transform.position).magnitude > 0.5f)
+            ragdoll.SetVelocity(moveDir * moveSpeed);
+        else
+            ragdoll.SetVelocity(Vector3.zero);
+        onMovedEvent?.Invoke(hip.transform.position);
     }
 
-    //ÇÃ·¹ÀÌ¾î¿ë
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½
     public void SetMoveDirection(Vector3 input)
     {
         prevMoveDir = moveDir;
         moveDir = cam.forward * input.z + cam.right * input.x;
     }
 
-    //Å¬¶ó¿ë
+    //Å¬ï¿½ï¿½ï¿½
     public void SetTargetPosition(Vector3 pos)
     {
+        hip.transform.position = prevTargetPos;
+
         prevTargetPos = targetPos;
-        transform.position = prevTargetPos;
         targetPos = pos;
-        moveDir = (targetPos - prevTargetPos).normalized;
-        velocity = moveDir * moveSpeed;
+        moveDir = (targetPos - hip.transform.position).normalized;
     }
 
     public void Stun(float time)

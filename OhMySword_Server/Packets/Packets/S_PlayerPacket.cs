@@ -5,7 +5,7 @@ namespace Packets
 {
     public class S_PlayerPacket : Packet
     {
-        public override ushort ID => (ushort)PacketID.C_PlayerPacket;
+        public override ushort ID => (ushort)PacketID.S_PlayerPacket;
 
         public ObjectPacket objectPacket;
 
