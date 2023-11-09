@@ -98,12 +98,13 @@ public class RoomManager : MonoBehaviour
 
     public void Chatting(string chat, ushort id)
     {
+        Debug.Log(chat + " " + id);
         if(players.ContainsKey(id) == false)
             return;
 
         PlayerController sender = players[id];
         sender.DoChat(chat);
 
-        // $"{sender.nickname} : {chat}"으로 채팅 띄우기
+        UIManager.Instance.ChattingPanel?.DoChat(sender.nickname, chat);
     }
 }

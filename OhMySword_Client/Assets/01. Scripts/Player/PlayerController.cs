@@ -62,7 +62,7 @@ namespace OhMySword.Player
         public override void SetPosition(Vector3 position, bool immediately = false)
         {
             base.SetPosition(position, immediately);
-            movement.SetTargetPosition(targetPosition);
+            movement?.SetTargetPosition(targetPosition);
         }
     }
 }

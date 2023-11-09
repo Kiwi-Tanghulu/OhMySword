@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         }
 
         SceneLoader.Instance = gameObject.AddComponent<SceneLoader>();
+        UIManager.Instance = gameObject.AddComponent<UIManager>();
 
         PacketManager.Instance = new PacketManager();
         NetworkManager.Instance = new NetworkManager();
