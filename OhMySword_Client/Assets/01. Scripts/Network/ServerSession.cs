@@ -21,7 +21,6 @@ public class ServerSession : Session
     {
         Debug.Log($"{buffer.Count} : 데이터 받음!");
         Packet packet = PacketManager.Instance.CreatePacket(buffer);
-        Debug.Log(packet.ID);
         NetworkManager.Instance.PushHandlePacket(packet);
     }
 

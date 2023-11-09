@@ -15,8 +15,6 @@ public class ChatFrame : PanelUI
 
     public void SetText(string text)
     {
-        Debug.Log(text);
         textUI.text = text;
-        Debug.Log(textUI.text);
     }
 }

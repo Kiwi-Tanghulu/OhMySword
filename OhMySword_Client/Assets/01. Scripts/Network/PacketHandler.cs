@@ -121,6 +121,7 @@ public class PacketHandler
     public static void S_ChattingPacket(Session session, Packet packet)
     {
         S_ChattingPacket chattingPacket = packet as S_ChattingPacket;
+        Debug.Log(chattingPacket.chat);
         RoomManager.Instance.Chatting(chattingPacket.chat, chattingPacket.playerID);
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections.Generic;
 using Packets;
 using UnityEngine;
@@ -50,6 +51,7 @@ public class RoomManager : MonoBehaviour
         player.SetNickname(nickname);
         player.OnCreated();
 
+        players.Add(id, player);
         PlayerID = id;
     }
 
@@ -103,7 +105,6 @@ public class RoomManager : MonoBehaviour
 
     public void Chatting(string chat, ushort id)
     {
-        Debug.Log(chat + " " + id);
         if(players.ContainsKey(id) == false)
             return;
 
