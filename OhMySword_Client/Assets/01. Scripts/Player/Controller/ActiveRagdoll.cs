@@ -86,6 +86,8 @@ public class ActiveRagdoll : MonoBehaviour
         nextMoveFoot = rightFoot;
 
         SetFootMiddlePos();
+
+        //Time.timeScale = 0.1f;
     }
 
     private void Update()
@@ -245,12 +247,12 @@ public class ActiveRagdoll : MonoBehaviour
     private IEnumerator Align()
     {
         float percent = 0;
-        Vector3 hipStart = hipAnchor.position;
-        Vector3 hipEnd = new Vector3(beforeMoveFoot.targetPos.x, hipAnchor.position.y, beforeMoveFoot.targetPos.z)
-            - hips.rotation * beforeMoveFoot.offset;
+        //Vector3 hipStart = hipAnchor.position;
+        //Vector3 hipEnd = new Vector3(beforeMoveFoot.targetPos.x, hipAnchor.position.y, beforeMoveFoot.targetPos.z)
+        //    - hips.rotation * beforeMoveFoot.offset;
 
         //foot align
-        SetFootTargetPos(nextMoveFoot, hips.rotation * nextMoveFoot.offset, false);
+        //SetFootTargetPos(nextMoveFoot, hips.rotation * nextMoveFoot.offset, false);
 
         //body align
         while (percent <= 1)
