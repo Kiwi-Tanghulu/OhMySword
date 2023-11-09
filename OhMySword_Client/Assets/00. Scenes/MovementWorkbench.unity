@@ -21149,38 +21149,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
-      propertyPath: Movement.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
-        type: 3}
-      propertyPath: Movement.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
-        type: 3}
-      propertyPath: Movement.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1308547263}
-    - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
-        type: 3}
       propertyPath: Movement.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1308547263}
     - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
-      propertyPath: Movement.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
-        type: 3}
       propertyPath: Movement.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
-        type: 3}
-      propertyPath: Movement.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Move
       objectReference: {fileID: 0}
     - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
@@ -21189,18 +21164,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}
-      propertyPath: Movement.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: PlayerMove, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
-        type: 3}
       propertyPath: Movement.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: PlayerMove, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
-        type: 3}
-      propertyPath: Movement.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4646969652348038813, guid: cee7a592542af7b4ea5a7b6c88647476,
         type: 3}

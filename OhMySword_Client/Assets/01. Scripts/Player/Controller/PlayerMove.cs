@@ -61,7 +61,7 @@ public class PlayerMove : MonoBehaviour
 
     private void SetVelocity()
     {
-        moveSpeed = moveDistance / 0.09f;
+        moveSpeed = moveDistance / 0.1f;
         ragdoll.SetVelocity(moveDir * moveSpeed);
 
         StartCoroutine(AdjustPosition());
