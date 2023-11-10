@@ -13,6 +13,7 @@ public class Foot
     [HideInInspector] public Vector3 targetPos;
     [HideInInspector] public Vector3 prevTargetPos;
     [HideInInspector] public Vector3 offset;
+    [HideInInspector] public Vector3 rayHitPos;
     public void SetTargetPos(Vector3 pos)
     {
         prevTargetPos = pos;
@@ -81,6 +82,21 @@ public class ActiveRagdoll : MonoBehaviour
         footMiddlePos = (leftFoot.targetPos - rightFoot.targetPos) / 2f + rightFoot.targetPos;
     }
 
+    private void SetFootTargetPos(Foot foot, Vector3 moveDir)
+    {
+        RaycastHit hit = default;
+        Physics.Raycast(new Vector3(hips.position.x + foot.offset.x + moveDir.x * moveDistance,
+            hips.position.y, hips.position.z + foot.offset.z + moveDir.z * moveDistance), Vector3.down, out hit, 10, groundLayer);
+
+        foot.rayHitPos = hit.point + Vector3.up * footToeOffset;
+        foot.prevTargetPos = foot.targetPos;
+        foot.targetPos = foot.rayHitPos;
+
+        StartCoroutine(FootMoveAnimation(foot.target, foot.prevTargetPos, foot.targetPos));
+
+        SetFootMiddlePos();
+    }
+
 
     private void Update()
     {
@@ -123,31 +139,9 @@ public class ActiveRagdoll : MonoBehaviour
                 Vector3 moveDir = (hipToGroundPos - footMiddlePos).normalized;
                 
                 if(Vector3.Distance(hipToGroundPos, leftFoot.targetPos) > Vector3.Distance(hipToGroundPos, rightFoot.targetPos))
-                {
-                    RaycastHit lefttHit = default;
-                    Physics.Raycast(new Vector3(hips.position.x + leftFoot.offset.x + moveDir.x * moveDistance, 
-                        hips.position.y, hips.position.z + leftFoot.offset.z + moveDir.z * moveDistance), Vector3.down, out lefttHit, 10, groundLayer);
-
-                    leftHitPos = lefttHit.point + Vector3.up * footToeOffset;
-                    leftFoot.prevTargetPos = leftFoot.targetPos;
-                    leftFoot.targetPos = leftHitPos;
-
-                    StartCoroutine(FootMoveAnimation(leftFoot.target, leftFoot.prevTargetPos, leftFoot.targetPos));
-                }
+                    SetFootTargetPos(leftFoot, moveDir);
                 else
-                {
-                    RaycastHit righttHit = default;
-                    Physics.Raycast(new Vector3(hips.position.x + rightFoot.offset.x + moveDir.x * moveDistance, hips.position.y, 
-                        hips.position.z + rightFoot.offset.z + moveDir.z * moveDistance), Vector3.down, out righttHit, 10, groundLayer);
-
-                    rightHitPos = righttHit.point + Vector3.up * footToeOffset;
-                    rightFoot.prevTargetPos = rightFoot.targetPos;
-                    rightFoot.targetPos = rightHitPos;
-
-                    StartCoroutine(FootMoveAnimation(rightFoot.target, rightFoot.prevTargetPos, rightFoot.targetPos));
-                }
-
-                SetFootMiddlePos();
+                    SetFootTargetPos(rightFoot, moveDir);
             }
         }
     }
@@ -193,8 +187,8 @@ public class ActiveRagdoll : MonoBehaviour
 
         Gizmos.DrawWireSphere(footMiddlePos, shouldMoveDistance);
         Gizmos.DrawSphere(footMiddlePos, 0.1f);
-        Gizmos.DrawSphere(leftHitPos, 0.1f);
-        Gizmos.DrawSphere(rightHitPos, 0.1f);
+        Gizmos.DrawSphere(leftFoot.rayHitPos, 0.1f);
+        Gizmos.DrawSphere(rightFoot.rayHitPos, 0.1f);
     }
 #endif
 }
