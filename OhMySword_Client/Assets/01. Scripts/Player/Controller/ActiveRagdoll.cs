@@ -3,6 +3,22 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
+
+[System.Serializable]
+public class Foot
+{
+    public Transform target;
+    public TwoBoneIKConstraint ik;
+    [HideInInspector] public Vector3 targetPos;
+    [HideInInspector] public Vector3 prevTargetPos;
+    [HideInInspector] public Vector3 offset;
+    public void SetTargetPos(Vector3 pos)
+    {
+        prevTargetPos = pos;
+        targetPos = pos;
+    }
+}
 
 public class ActiveRagdoll : MonoBehaviour
 {
@@ -17,8 +33,6 @@ public class ActiveRagdoll : MonoBehaviour
     public Rigidbody hip;
 
     [Space]
-    public Transform leftFootTarget;
-    public Transform rightFootTarget;
     public Transform hips;
     public Transform hipAnchor;
     [Space]
@@ -33,10 +47,6 @@ public class ActiveRagdoll : MonoBehaviour
     public float hipHeight = 0.55f;
 
     //where feet should be
-    private Vector3 leftFootTargetPos;
-    private Vector3 rightFootTargetPos;
-    private Vector3 prevLeftFootTargetPos;
-    private Vector3 prevRightFootTargetPos;
     private Vector3 hipToGroundPos;
 
     //The location where the ray was fired from the body and reached the ground.
@@ -44,22 +54,33 @@ public class ActiveRagdoll : MonoBehaviour
     private Vector3 rightHitPos;
 
     //Distance between body and feet, Only used x and z
-    private Vector3 leftFootOffset;
-    private Vector3 rightFootOffset;
 
     //between pos of foot
     private Vector3 footMiddlePos;
 
+    [SerializeField] private Foot leftFoot;
+    [SerializeField] private Foot rightFoot;
+
     private void Start()
     {
-        leftFootTargetPos = leftFootTarget.position;
-        rightFootTargetPos = rightFootTarget.position;
-        prevLeftFootTargetPos = leftFootTargetPos;
-        prevRightFootTargetPos = rightFootTargetPos;
-        leftFootOffset = leftFootTarget.position - hips.position;
-        rightFootOffset = rightFootTarget.position - hips.position;
-        footMiddlePos = (leftFootTargetPos - rightFootTargetPos) / 2f + rightFootTargetPos;
+        leftFoot.targetPos = leftFoot.target.position;
+        leftFoot.prevTargetPos = leftFoot.targetPos;
+        leftFoot.offset = leftFoot.target.position - hips.position;
+        leftFoot.offset.y = 0;
+
+        rightFoot.targetPos = rightFoot.target.position;
+        rightFoot.prevTargetPos = rightFoot.targetPos;
+        rightFoot.offset = rightFoot.target.position - hips.position;
+        leftFoot.offset.y = 0;
+
+        SetFootMiddlePos();
     }
+
+    private void SetFootMiddlePos()
+    {
+        footMiddlePos = (leftFoot.targetPos - rightFoot.targetPos) / 2f + rightFoot.targetPos;
+    }
+
 
     private void Update()
     {
@@ -90,8 +111,8 @@ public class ActiveRagdoll : MonoBehaviour
         if (!footMove)
             return;
 
-        leftFootTarget.position = leftFootTargetPos;
-        rightFootTarget.position = rightFootTargetPos;
+        leftFoot.target.position = leftFoot.targetPos;
+        rightFoot.target.position = rightFoot.targetPos;
 
         if(Physics.Raycast(hip.position, Vector3.down, out RaycastHit hipToGround, 1, groundLayer))
         {
@@ -101,32 +122,32 @@ public class ActiveRagdoll : MonoBehaviour
             {
                 Vector3 moveDir = (hipToGroundPos - footMiddlePos).normalized;
                 
-                if(Vector3.Distance(hipToGroundPos, leftFootTargetPos) > Vector3.Distance(hipToGroundPos, rightFootTargetPos))
+                if(Vector3.Distance(hipToGroundPos, leftFoot.targetPos) > Vector3.Distance(hipToGroundPos, rightFoot.targetPos))
                 {
                     RaycastHit lefttHit = default;
-                    Physics.Raycast(new Vector3(hips.position.x + leftFootOffset.x + moveDir.x * moveDistance, 
-                        hips.position.y, hips.position.z + leftFootOffset.z + moveDir.z * moveDistance), Vector3.down, out lefttHit, 10, groundLayer);
+                    Physics.Raycast(new Vector3(hips.position.x + leftFoot.offset.x + moveDir.x * moveDistance, 
+                        hips.position.y, hips.position.z + leftFoot.offset.z + moveDir.z * moveDistance), Vector3.down, out lefttHit, 10, groundLayer);
 
                     leftHitPos = lefttHit.point + Vector3.up * footToeOffset;
-                    prevLeftFootTargetPos = leftFootTargetPos;
-                    leftFootTargetPos = leftHitPos;
+                    leftFoot.prevTargetPos = leftFoot.targetPos;
+                    leftFoot.targetPos = leftHitPos;
 
-                    StartCoroutine(FootMoveAnimation(leftFootTarget, prevLeftFootTargetPos, leftFootTargetPos));
+                    StartCoroutine(FootMoveAnimation(leftFoot.target, leftFoot.prevTargetPos, leftFoot.targetPos));
                 }
                 else
                 {
                     RaycastHit righttHit = default;
-                    Physics.Raycast(new Vector3(hips.position.x + rightFootOffset.x + moveDir.x * moveDistance, hips.position.y, 
-                        hips.position.z + rightFootOffset.z + moveDir.z * moveDistance), Vector3.down, out righttHit, 10, groundLayer);
+                    Physics.Raycast(new Vector3(hips.position.x + rightFoot.offset.x + moveDir.x * moveDistance, hips.position.y, 
+                        hips.position.z + rightFoot.offset.z + moveDir.z * moveDistance), Vector3.down, out righttHit, 10, groundLayer);
 
                     rightHitPos = righttHit.point + Vector3.up * footToeOffset;
-                    prevRightFootTargetPos = rightFootTargetPos;
-                    rightFootTargetPos = rightHitPos;
+                    rightFoot.prevTargetPos = rightFoot.targetPos;
+                    rightFoot.targetPos = rightHitPos;
 
-                    StartCoroutine(FootMoveAnimation(rightFootTarget, prevRightFootTargetPos, rightFootTargetPos));
+                    StartCoroutine(FootMoveAnimation(rightFoot.target, rightFoot.prevTargetPos, rightFoot.targetPos));
                 }
 
-                footMiddlePos = (leftFootTargetPos - rightFootTargetPos) / 2f + rightFootTargetPos;
+                SetFootMiddlePos();
             }
         }
     }
