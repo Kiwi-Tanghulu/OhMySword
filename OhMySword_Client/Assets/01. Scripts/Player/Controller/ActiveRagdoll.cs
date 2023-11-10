@@ -12,7 +12,9 @@ public class Foot
     public TwoBoneIKConstraint ik;
     [HideInInspector] public Vector3 targetPos;
     [HideInInspector] public Vector3 prevTargetPos;
+    //Distance between body and feet, Only used x and z
     [HideInInspector] public Vector3 offset;
+    //The location where the ray was fired from the body and reached the ground.
     [HideInInspector] public Vector3 rayHitPos;
     public void SetTargetPos(Vector3 pos)
     {
@@ -32,10 +34,8 @@ public class ActiveRagdoll : MonoBehaviour
 
     [Space]
     public Rigidbody hip;
+    public Transform hipAncher;
 
-    [Space]
-    public Transform hips;
-    public Transform hipAnchor;
     [Space]
     public LayerMask groundLayer;
     public float shouldMoveDistance = 0.35f;
@@ -50,16 +50,8 @@ public class ActiveRagdoll : MonoBehaviour
     //where feet should be
     private Vector3 hipToGroundPos;
 
-    //The location where the ray was fired from the body and reached the ground.
-    private Vector3 leftHitPos;
-    private Vector3 rightHitPos;
-
-    //Distance between body and feet, Only used x and z
-
     //between pos of foot
     private Vector3 footMiddlePos;
-
-
 
     [SerializeField] private Foot leftFoot;
     [SerializeField] private Foot rightFoot;
@@ -70,35 +62,20 @@ public class ActiveRagdoll : MonoBehaviour
     {
         leftFoot.targetPos = leftFoot.target.position;
         leftFoot.prevTargetPos = leftFoot.targetPos;
-        leftFoot.offset = leftFoot.target.position - hips.position;
+        leftFoot.offset = leftFoot.target.position - hip.transform.position;
         leftFoot.offset.y = 0;
 
         rightFoot.targetPos = rightFoot.target.position;
         rightFoot.prevTargetPos = rightFoot.targetPos;
-        rightFoot.offset = rightFoot.target.position - hips.position;
-        leftFoot.offset.y = 0;
+        rightFoot.offset = rightFoot.target.position - hip.transform.position;
+        rightFoot.offset.y = 0;
 
         SetFootMiddlePos();
     }
 
-    private void SetFootMiddlePos()
+    private void Update()
     {
-        footMiddlePos = (leftFoot.targetPos - rightFoot.targetPos) / 2f + rightFoot.targetPos;
-    }
-
-    private void SetFootTargetPos(Foot foot, Vector3 moveDir)
-    {
-        RaycastHit hit = default;
-        Physics.Raycast(new Vector3(hips.position.x + foot.offset.x + moveDir.x * moveDistance,
-            hips.position.y, hips.position.z + foot.offset.z + moveDir.z * moveDistance), Vector3.down, out hit, 10, groundLayer);
-
-        foot.rayHitPos = hit.point + Vector3.up * footToeOffset;
-        foot.prevTargetPos = foot.targetPos;
-        foot.targetPos = foot.rayHitPos;
-
-        StartCoroutine(FootMoveAnimation(foot.target, foot.prevTargetPos, foot.targetPos));
-
-        SetFootMiddlePos();
+        FootMove();
     }
 
     public void SetVelocity(Vector3 velocity)
@@ -108,6 +85,73 @@ public class ActiveRagdoll : MonoBehaviour
 
         SetHipConstraint();
     }
+
+    #region FOOT
+    private void SetFootMiddlePos()
+    {
+        footMiddlePos = (leftFoot.targetPos - rightFoot.targetPos) / 2f + rightFoot.targetPos;
+    }
+
+    private void FootMove()
+    {
+        if (!footMove)
+            return;
+
+        leftFoot.target.position = leftFoot.targetPos;
+        rightFoot.target.position = rightFoot.targetPos;
+
+        if (Physics.Raycast(hip.position, Vector3.down, out RaycastHit hipToGround, 1, groundLayer))
+        {
+            hipToGroundPos = hipToGround.point;
+
+            if (Vector3.Distance(hipToGroundPos, footMiddlePos) >= shouldMoveDistance)
+            {
+                Vector3 moveDir = (hipToGroundPos - footMiddlePos).normalized;
+
+                if (Vector3.Distance(hipToGroundPos, leftFoot.targetPos) > Vector3.Distance(hipToGroundPos, rightFoot.targetPos))
+                    SetFootTargetPos(leftFoot, moveDir * moveDistance);
+                else
+                    SetFootTargetPos(rightFoot, moveDir * moveDistance);
+            }
+        }
+    }
+    private void SetFootTargetPos(Foot foot, Vector3 offset)
+    {
+        RaycastHit hit = default;
+        Physics.Raycast(hip.transform.position + foot.offset + offset,
+            Vector3.down, out hit, 10, groundLayer);
+
+        foot.rayHitPos = hit.point + Vector3.up * footToeOffset;
+        foot.prevTargetPos = foot.targetPos;
+        foot.targetPos = foot.rayHitPos;
+
+        StartCoroutine(FootMoveAnimation(foot));
+
+        SetFootMiddlePos();
+        SetHipAncherPos();
+    }
+    private IEnumerator FootMoveAnimation(Foot foot)
+    {
+        float percent = 0;
+        Vector3 heightPivotVector = new Vector3((foot.targetPos - foot.prevTargetPos).x / 2f + foot.prevTargetPos.x,
+            foot.prevTargetPos.y + movePivotHeight, (foot.targetPos - foot.prevTargetPos).z / 2f + foot.prevTargetPos.z);
+        Vector3 startToPivotLerp;
+        Vector3 pivotToEndLerp;
+
+        while (percent <= 1)
+        {
+            startToPivotLerp = Vector3.Lerp(foot.prevTargetPos, heightPivotVector, percent);
+            pivotToEndLerp = Vector3.Lerp(heightPivotVector, foot.targetPos, percent);
+            foot.target.position = Vector3.Lerp(startToPivotLerp, pivotToEndLerp, percent);
+
+            percent += Time.deltaTime / footMoveTime;
+
+            yield return null;
+        }
+    }
+    #endregion
+
+    #region HIP
     private void SetHipConstraint()
     {
         if (moveDir == Vector3.zero)
@@ -125,72 +169,20 @@ public class ActiveRagdoll : MonoBehaviour
         hip.constraints |= RigidbodyConstraints.FreezePositionY;
     }
 
-
-    private void Update()
+    private void SetHipAncherPos()
     {
-        FootMove();
-        SetBodyAncherPos();
+        hipAncher.position = hipToGroundPos + Vector3.up * hipHeight;
     }
 
-    
-
-    private void FootMove()
-    {
-        if (!footMove)
-            return;
-
-        leftFoot.target.position = leftFoot.targetPos;
-        rightFoot.target.position = rightFoot.targetPos;
-
-        if(Physics.Raycast(hip.position, Vector3.down, out RaycastHit hipToGround, 1, groundLayer))
-        {
-            hipToGroundPos = hipToGround.point;
-
-            if (Vector3.Distance(hipToGroundPos, footMiddlePos) >= shouldMoveDistance)
-            {
-                Vector3 moveDir = (hipToGroundPos - footMiddlePos).normalized;
-                
-                if(Vector3.Distance(hipToGroundPos, leftFoot.targetPos) > Vector3.Distance(hipToGroundPos, rightFoot.targetPos))
-                    SetFootTargetPos(leftFoot, moveDir);
-                else
-                    SetFootTargetPos(rightFoot, moveDir);
-            }
-        }
-    }
-
-    private void SetBodyAncherPos()
-    {
-        hipAnchor.position = hipToGroundPos + Vector3.up * hipHeight;
-    }
-
-    private IEnumerator FootMoveAnimation(Transform foot, Vector3 start, Vector3 end)
-    {
-        float percent = 0;
-        Vector3 heightPivotVector = new Vector3((end - start).x / 2f + start.x, start.y + movePivotHeight, (end - start).z / 2f + start.z);
-        Vector3 startToPivotLerp;
-        Vector3 pivotToEndLerp;
-
-        while (percent <= 1)
-        {
-            startToPivotLerp = Vector3.Lerp(start, heightPivotVector, percent);
-            pivotToEndLerp = Vector3.Lerp(heightPivotVector, end, percent);
-            foot.position = Vector3.Lerp(startToPivotLerp, pivotToEndLerp, percent);
-
-            percent += Time.deltaTime / footMoveTime;
-
-            yield return null;
-        }
-    }
-
-    // body lerping
     private void HipElasticity()
     {
         if (!bodyLerping)
             return;
 
         hip.transform.position = Vector3.Lerp(hip.transform.position,
-            new Vector3(footMiddlePos.x, hipAnchor.position.y, footMiddlePos.z), hipElasticitySpeed * Time.deltaTime);
-    }
+            new Vector3(footMiddlePos.x, hipAncher.position.y, footMiddlePos.z), hipElasticitySpeed * Time.deltaTime);
+    }// body lerping
+    #endregion
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
