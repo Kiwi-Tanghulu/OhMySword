@@ -59,8 +59,12 @@ public class ActiveRagdoll : MonoBehaviour
     //between pos of foot
     private Vector3 footMiddlePos;
 
+
+
     [SerializeField] private Foot leftFoot;
     [SerializeField] private Foot rightFoot;
+
+    private Vector3 moveDir;
 
     private void Start()
     {
@@ -97,6 +101,30 @@ public class ActiveRagdoll : MonoBehaviour
         SetFootMiddlePos();
     }
 
+    public void SetVelocity(Vector3 velocity)
+    {
+        hip.velocity = velocity;
+        moveDir = velocity.normalized;
+
+        SetHipConstraint();
+    }
+    private void SetHipConstraint()
+    {
+        if (moveDir == Vector3.zero)
+        {
+            hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+            HipElasticity();
+        }
+        else if (moveDir.x == 0)
+            hip.constraints = RigidbodyConstraints.FreezePositionX;
+        else if (moveDir.z == 0)
+            hip.constraints = RigidbodyConstraints.FreezePositionZ;
+        else
+            hip.constraints = RigidbodyConstraints.None;
+
+        hip.constraints |= RigidbodyConstraints.FreezePositionY;
+    }
+
 
     private void Update()
     {
@@ -104,23 +132,7 @@ public class ActiveRagdoll : MonoBehaviour
         SetBodyAncherPos();
     }
 
-    public void Move(Vector3 velocity)
-    {
-        if (velocity == Vector3.zero)
-        {
-            hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-            HipElasticity();
-        }
-        else if (velocity.x == 0)
-            hip.constraints = RigidbodyConstraints.FreezePositionX;
-        else if (velocity.z == 0)
-            hip.constraints = RigidbodyConstraints.FreezePositionZ;
-        else
-            hip.constraints = RigidbodyConstraints.None;
-        hip.constraints |= RigidbodyConstraints.FreezePositionY;
-
-        hip.velocity = velocity;
-    }
+    
 
     private void FootMove()
     {

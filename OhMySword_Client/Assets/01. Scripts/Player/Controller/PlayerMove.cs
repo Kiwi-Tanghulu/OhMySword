@@ -24,9 +24,9 @@ public class PlayerMove : MonoBehaviour
     public void Move(Vector3 movedir)
     {
         if(canMove)
-            ragdoll.Move(movedir * moveSpeed);
+            ragdoll.SetVelocity(movedir * moveSpeed);
         else
-            ragdoll.Move(Vector3.zero);
+            ragdoll.SetVelocity(Vector3.zero);
     }
 
     public void SetTargetPosition(Vector3 pos)
