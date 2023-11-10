@@ -4808,10 +4808,7 @@ MonoBehaviour:
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
   hip: {fileID: 322219539}
-  leftFootTarget: {fileID: 2040262913}
-  rightFootTarget: {fileID: 1769790247}
-  hips: {fileID: 322219540}
-  hipAnchor: {fileID: 0}
+  hipAncher: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -4822,6 +4819,21 @@ MonoBehaviour:
   hipElasticitySpeed: 1
   footToeOffset: 1
   hipHeight: 0.55
+  leftFoot:
+    target: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+    rayHitPos: {x: 0, y: 0, z: 0}
+  rightFoot:
+    target: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+    rayHitPos: {x: 0, y: 0, z: 0}
+  isGround: 0
 --- !u!114 &322219535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15363,10 +15375,7 @@ MonoBehaviour:
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
   hip: {fileID: 1227892788}
-  leftFootTarget: {fileID: 443154058}
-  rightFootTarget: {fileID: 895020714}
-  hips: {fileID: 1227892789}
-  hipAnchor: {fileID: 0}
+  hipAncher: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -15377,6 +15386,21 @@ MonoBehaviour:
   hipElasticitySpeed: 1
   footToeOffset: 1
   hipHeight: 0.55
+  leftFoot:
+    target: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+    rayHitPos: {x: 0, y: 0, z: 0}
+  rightFoot:
+    target: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+    rayHitPos: {x: 0, y: 0, z: 0}
+  isGround: 0
 --- !u!114 &1227892784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21787,10 +21811,7 @@ MonoBehaviour:
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
   hip: {fileID: 34498921}
-  leftFootTarget: {fileID: 46187292}
-  rightFootTarget: {fileID: 1676623006}
-  hips: {fileID: 34498922}
-  hipAnchor: {fileID: 1198649355}
+  hipAncher: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -21801,6 +21822,21 @@ MonoBehaviour:
   hipElasticitySpeed: 1
   footToeOffset: 0.2
   hipHeight: 0.55
+  leftFoot:
+    target: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+    rayHitPos: {x: 0, y: 0, z: 0}
+  rightFoot:
+    target: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+    rayHitPos: {x: 0, y: 0, z: 0}
+  isGround: 0
 --- !u!114 &1659643404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36820,10 +36856,7 @@ MonoBehaviour:
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
   hip: {fileID: 5907798254586527134}
-  leftFootTarget: {fileID: 883785646}
-  rightFootTarget: {fileID: 254980412}
-  hips: {fileID: 5907798254586527132}
-  hipAnchor: {fileID: 0}
+  hipAncher: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -36834,6 +36867,21 @@ MonoBehaviour:
   hipElasticitySpeed: 1
   footToeOffset: 1
   hipHeight: 0.55
+  leftFoot:
+    target: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+    rayHitPos: {x: 0, y: 0, z: 0}
+  rightFoot:
+    target: {fileID: 0}
+    ik: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+    rayHitPos: {x: 0, y: 0, z: 0}
+  isGround: 0
 --- !u!1 &6547198000676746227
 GameObject:
   m_ObjectHideFlags: 0
@@ -37291,10 +37339,7 @@ MonoBehaviour:
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
   hip: {fileID: 7423472819105027655}
-  leftFootTarget: {fileID: 670195475}
-  rightFootTarget: {fileID: 1080060741}
-  hips: {fileID: 6299526643070155879}
-  hipAnchor: {fileID: 976997425}
+  hipAncher: {fileID: 976997425}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -37305,6 +37350,21 @@ MonoBehaviour:
   hipElasticitySpeed: 6
   footToeOffset: 0.1
   hipHeight: 0.55
+  leftFoot:
+    target: {fileID: 670195475}
+    ik: {fileID: 1710873602}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+    rayHitPos: {x: 0, y: 0, z: 0}
+  rightFoot:
+    target: {fileID: 1080060741}
+    ik: {fileID: 5041392}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+    rayHitPos: {x: 0, y: 0, z: 0}
+  isGround: 0
 --- !u!114 &6574006546641166259
 MonoBehaviour:
   m_ObjectHideFlags: 0

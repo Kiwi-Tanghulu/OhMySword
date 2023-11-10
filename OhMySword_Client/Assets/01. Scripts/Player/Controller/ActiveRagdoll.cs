@@ -58,6 +58,8 @@ public class ActiveRagdoll : MonoBehaviour
 
     private Vector3 moveDir;
 
+    [SerializeField] private bool isGround;
+
     private void Start()
     {
         leftFoot.targetPos = leftFoot.target.position;
@@ -75,23 +77,33 @@ public class ActiveRagdoll : MonoBehaviour
 
     private void Update()
     {
-        FootMove();
+        if(CheckGround())
+        {
+            SetHipConstraint();
+            HipElasticity();
+            FootMove();
+        }
+        else
+        {
+
+        }
     }
+
+    private bool CheckGround()
+    {
+        isGround = Physics.Raycast(hip.transform.position, Vector3.down, hipHeight + 0.1f, groundLayer);
+
+        return isGround;
+    }
+
 
     public void SetVelocity(Vector3 velocity)
     {
         hip.velocity = velocity;
         moveDir = velocity.normalized;
-
-        SetHipConstraint();
     }
 
     #region FOOT
-    private void SetFootMiddlePos()
-    {
-        footMiddlePos = (leftFoot.targetPos - rightFoot.targetPos) / 2f + rightFoot.targetPos;
-    }
-
     private void FootMove()
     {
         if (!footMove)
@@ -100,7 +112,7 @@ public class ActiveRagdoll : MonoBehaviour
         leftFoot.target.position = leftFoot.targetPos;
         rightFoot.target.position = rightFoot.targetPos;
 
-        if (Physics.Raycast(hip.position, Vector3.down, out RaycastHit hipToGround, 1, groundLayer))
+        if (Physics.Raycast(hip.transform.position, Vector3.down, out RaycastHit hipToGround, 1, groundLayer))
         {
             hipToGroundPos = hipToGround.point;
 
@@ -149,6 +161,11 @@ public class ActiveRagdoll : MonoBehaviour
             yield return null;
         }
     }
+
+    private void SetFootMiddlePos()
+    {
+        footMiddlePos = (leftFoot.targetPos - rightFoot.targetPos) / 2f + rightFoot.targetPos;
+    }
     #endregion
 
     #region HIP
@@ -157,7 +174,6 @@ public class ActiveRagdoll : MonoBehaviour
         if (moveDir == Vector3.zero)
         {
             hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-            HipElasticity();
         }
         else if (moveDir.x == 0)
             hip.constraints = RigidbodyConstraints.FreezePositionX;
@@ -179,8 +195,11 @@ public class ActiveRagdoll : MonoBehaviour
         if (!bodyLerping)
             return;
 
-        hip.transform.position = Vector3.Lerp(hip.transform.position,
+        if(moveDir == Vector3.zero && Vector3.Distance(hip.transform.position, hipAncher.position) > 0.01f)
+        {
+            hip.transform.position = Vector3.Lerp(hip.transform.position,
             new Vector3(footMiddlePos.x, hipAncher.position.y, footMiddlePos.z), hipElasticitySpeed * Time.deltaTime);
+        }
     }// body lerping
     #endregion
 
