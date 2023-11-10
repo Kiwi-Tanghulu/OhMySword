@@ -37,6 +37,9 @@ public class ActiveRagdoll : MonoBehaviour
     public Transform hipAncher;
 
     [Space]
+    public ConfigurableJoint spine;
+
+    [Space]
     public LayerMask groundLayer;
     public float shouldMoveDistance = 0.35f;
     [Tooltip("shouldMoveDistance보다 작아야 함")]
@@ -58,7 +61,11 @@ public class ActiveRagdoll : MonoBehaviour
 
     private Vector3 moveDir;
 
-    [SerializeField] private bool isGround;
+    [SerializeField] private bool isGround = true;
+    private bool beforeIsGround = true;
+
+
+    private Coroutine footControlCo;
 
     private void Start()
     {
@@ -75,22 +82,32 @@ public class ActiveRagdoll : MonoBehaviour
         SetFootMiddlePos();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if(CheckGround())
+        CheckGround();
+
+        if (isGround)
         {
-            SetHipConstraint();
+            SetHipConstraint(true);
             HipElasticity();
             FootMove();
         }
         else
         {
+            
+        }
 
+        //trans frame
+        if (beforeIsGround != isGround)
+        {
+            SetBodyControl(isGround);
+            SetFootControl(isGround);
         }
     }
 
     private bool CheckGround()
     {
+        beforeIsGround = isGround;
         isGround = Physics.Raycast(hip.transform.position, Vector3.down, hipHeight + 0.1f, groundLayer);
 
         return isGround;
@@ -99,7 +116,7 @@ public class ActiveRagdoll : MonoBehaviour
 
     public void SetVelocity(Vector3 velocity)
     {
-        hip.velocity = velocity;
+        hip.velocity = new Vector3(velocity.x, hip.velocity.y, velocity.z);
         moveDir = velocity.normalized;
     }
 
@@ -166,23 +183,58 @@ public class ActiveRagdoll : MonoBehaviour
     {
         footMiddlePos = (leftFoot.targetPos - rightFoot.targetPos) / 2f + rightFoot.targetPos;
     }
+
+    private void SetFootControl(bool value)
+    {
+        footMove = value;
+        SetFootRig(value);
+    }
+    private void SetFootRig(bool value)
+    {
+        if (footControlCo != null)
+            StopCoroutine(footControlCo);
+
+        footControlCo = StartCoroutine(SetFootRigCo(value));
+    }
+    private IEnumerator SetFootRigCo(bool value)
+    {
+        float percent = 0;
+
+        float start = value ? 0 : 1;
+        float end = value ? 1 : 0;
+
+        while (percent <= 1)
+        {
+            leftFoot.ik.weight = Mathf.Lerp(start, end, percent);
+            rightFoot.ik.weight = Mathf.Lerp(start, end, percent);
+
+            percent += Time.deltaTime / 0.3f;
+
+            yield return null;
+        }
+    }
     #endregion
 
     #region HIP
-    private void SetHipConstraint()
+    private void SetHipConstraint(bool turnOn)
     {
-        if (moveDir == Vector3.zero)
+        if (turnOn)
         {
-            hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+            if (moveDir == Vector3.zero)
+            {
+                hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+            }
+            else if (moveDir.x == 0)
+                hip.constraints = RigidbodyConstraints.FreezePositionX;
+            else if (moveDir.z == 0)
+                hip.constraints = RigidbodyConstraints.FreezePositionZ;
+            else
+                hip.constraints = RigidbodyConstraints.None;
+
+            hip.constraints |= RigidbodyConstraints.FreezePositionY;
         }
-        else if (moveDir.x == 0)
-            hip.constraints = RigidbodyConstraints.FreezePositionX;
-        else if (moveDir.z == 0)
-            hip.constraints = RigidbodyConstraints.FreezePositionZ;
         else
             hip.constraints = RigidbodyConstraints.None;
-
-        hip.constraints |= RigidbodyConstraints.FreezePositionY;
     }
 
     private void SetHipAncherPos()
@@ -201,6 +253,29 @@ public class ActiveRagdoll : MonoBehaviour
             new Vector3(footMiddlePos.x, hipAncher.position.y, footMiddlePos.z), hipElasticitySpeed * Time.deltaTime);
         }
     }// body lerping
+
+    private void SetBodyControl(bool value)
+    {
+        JointDrive xDrive = spine.angularXDrive;
+        JointDrive yzDrive = spine.angularYZDrive;
+
+        if(value)
+        {
+            xDrive.positionSpring = 500f;
+            yzDrive.positionSpring = 500f;
+        }
+        else
+        {
+            xDrive.positionSpring = 0f;
+            yzDrive.positionSpring = 0f;
+        }
+
+        spine.angularXDrive = xDrive;
+        spine.angularYZDrive = yzDrive;
+        bodyLerping = value;
+        hip.useGravity = !value;
+        SetHipConstraint(value);
+    }
     #endregion
 
 #if UNITY_EDITOR
