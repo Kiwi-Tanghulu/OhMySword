@@ -82,7 +82,7 @@ public class ActiveRagdoll : MonoBehaviour
         SetFootMiddlePos();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         CheckGround();
 
