@@ -108,7 +108,7 @@ public class ActiveRagdoll : MonoBehaviour
     private bool CheckGround()
     {
         beforeIsGround = isGround;
-        isGround = Physics.Raycast(hip.transform.position, Vector3.down, hipHeight + 0.1f, groundLayer);
+        isGround = Physics.Raycast(hip.transform.position, Vector3.down, hipHeight + 0.5f, groundLayer);
 
         return isGround;
     }
@@ -247,11 +247,21 @@ public class ActiveRagdoll : MonoBehaviour
         if (!bodyLerping)
             return;
 
-        if(moveDir == Vector3.zero && Vector3.Distance(hip.transform.position, hipAncher.position) > 0.01f)
+        Vector3 targetPos = hip.transform.position;
+
+        if(Vector3.Distance(hip.transform.position, hipAncher.position) > 0.01f)
         {
-            hip.transform.position = Vector3.Lerp(hip.transform.position,
-            new Vector3(footMiddlePos.x, hipAncher.position.y, footMiddlePos.z), hipElasticitySpeed * Time.deltaTime);
+            targetPos.y = hipAncher.position.y;
+
+            if(moveDir == Vector3.zero)
+            {
+                targetPos.x = hipAncher.position.x;
+                targetPos.z = hipAncher.position.z;
+            }
         }
+
+        hip.transform.position = Vector3.Lerp(hip.transform.position,
+                targetPos, hipElasticitySpeed * Time.deltaTime);
     }// body lerping
 
     private void SetBodyControl(bool value)
