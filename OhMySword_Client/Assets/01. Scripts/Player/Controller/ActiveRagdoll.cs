@@ -41,11 +41,19 @@ public class ActiveRagdoll : MonoBehaviour
 
     [Space]
     [SerializeField] private ConfigurableJoint spine;
+    [SerializeField] private MultiRotationConstraint spineRig;
+
+    [Space]
+    [SerializeField] private Foot leftFoot;
+    [SerializeField] private Foot rightFoot;
+
+    [Space]
+    [SerializeField] private TwoBoneIKConstraint leftArmRig;
+    [SerializeField] private TwoBoneIKConstraint rightArmRig;
 
     [Space]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float shouldMoveDistance = 0.35f;
-    [Tooltip("shouldMoveDistance보다 작아야 함")]
     [SerializeField] private float moveDistance = 0.3f;
     [SerializeField] private float movePivotHeight = 1f;
     [SerializeField] private float footMoveTime = 0.2f;
@@ -57,10 +65,6 @@ public class ActiveRagdoll : MonoBehaviour
     [SerializeField] private float footAlignTime = 0.5f;
     [SerializeField] private float footAlignDelayTime = 1f;
     [SerializeField] private float footAlignDistance = 0.3f;
-
-    [Space]
-    [SerializeField] private Foot leftFoot;
-    [SerializeField] private Foot rightFoot;
 
     //where feet should be
     private Vector3 hipToGroundPos;
@@ -336,6 +340,18 @@ public class ActiveRagdoll : MonoBehaviour
         hip.useGravity = !value;
         SetHipConstraint(value);
     }
+    #endregion
+
+    #region ARM
+    private void SetLeftArmRig(bool value, bool immediately)
+    {
+        if (immediately)
+            leftArmRig.weight = 1;
+    }
+    #endregion
+
+    #region SPINE
+
     #endregion
 
 #if UNITY_EDITOR
