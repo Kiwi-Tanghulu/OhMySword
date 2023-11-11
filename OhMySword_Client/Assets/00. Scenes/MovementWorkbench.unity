@@ -37712,7 +37712,7 @@ MonoBehaviour:
   hipHeight: 0.55
   footAlignTime: 0.5
   footAlignDelayTime: 1
-  footAlignDistance: 0.3
+  footAlignDistance: 0.25
   leftFoot:
     target: {fileID: 670195475}
     ik: {fileID: 1710873602}

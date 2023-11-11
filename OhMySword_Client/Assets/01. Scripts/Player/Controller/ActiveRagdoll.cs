@@ -8,6 +8,7 @@ using UnityEngine.Animations.Rigging;
 [System.Serializable]
 public class Foot
 {
+    public Transform obj;
     public Transform target;
     public TwoBoneIKConstraint ik;
     [HideInInspector] public Vector3 targetPos;
@@ -231,7 +232,7 @@ public class ActiveRagdoll : MonoBehaviour
 
     private IEnumerator FootAlign()
     {
-        if (Mathf.Abs(leftFoot.targetPos.y - rightFoot.targetPos.y) >= footAlignDistance)
+        if (Mathf.Abs(leftFoot.obj.position.y - rightFoot.obj.position.y) >= footAlignDistance)
         {
             footAlignCo = null;
             yield break;
@@ -241,8 +242,11 @@ public class ActiveRagdoll : MonoBehaviour
 
         Vector3 lStart = leftFoot.targetPos;
         Vector3 rStart = rightFoot.targetPos;
-        Vector3 lEnd = footMiddlePos + hipAncher.rotation * leftFoot.offset;
-        Vector3 rEnd = footMiddlePos + hipAncher.rotation * rightFoot.offset;
+        float y = leftFoot.targetPos.y > rightFoot.targetPos.y ? leftFoot.targetPos.y : rightFoot.targetPos.y;
+        Vector3 lEnd = new Vector3(hipAncher.position.x, y, hipAncher.position.z)
+            + hipAncher.rotation * leftFoot.offset;
+        Vector3 rEnd = new Vector3(hipAncher.position.x, y, hipAncher.position.z)
+            + hipAncher.rotation * rightFoot.offset;
         float percent = 0;
 
         while(percent <= 1)
@@ -251,6 +255,8 @@ public class ActiveRagdoll : MonoBehaviour
             rightFoot.targetPos = Vector3.Lerp(rStart, rEnd, percent);
 
             percent += Time.deltaTime / footAlignTime;
+
+            SetFootMiddlePos();
 
             yield return null;
         }
