@@ -48,8 +48,7 @@ public class ActiveRagdoll : MonoBehaviour
     [SerializeField] private Foot rightFoot;
 
     [Space]
-    [SerializeField] private TwoBoneIKConstraint leftArmRig;
-    [SerializeField] private TwoBoneIKConstraint rightArmRig;
+    [SerializeField] private Transform rightArmRigTarget;
 
     [Space]
     [SerializeField] private LayerMask groundLayer;
@@ -343,18 +342,23 @@ public class ActiveRagdoll : MonoBehaviour
     #endregion
 
     #region ARM
-    private void SetLeftArmRig(bool value, bool immediately)
+    public IEnumerator SetRightArmRigTarget(Transform targetTrm, float time)
     {
-        if (immediately)
-            leftArmRig.weight = 1;
+        float percent = 0f;
+
+        while(percent <= 1f)
+        {
+            rightArmRigTarget.position = Vector3.Lerp(rightArmRigTarget.position, targetTrm.position, percent);
+            rightArmRigTarget.rotation = Quaternion.Lerp(rightArmRigTarget.rotation, targetTrm.rotation, percent);
+
+            percent += Time.deltaTime / time;
+
+            yield return null;
+        }
     }
     #endregion
 
     #region SPINE
-    public void SetSpineRig(float value)
-    {
-
-    }
     #endregion
 
 #if UNITY_EDITOR

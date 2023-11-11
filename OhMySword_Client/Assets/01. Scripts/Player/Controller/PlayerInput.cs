@@ -11,7 +11,8 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        LeftClick?.Invoke();
+        if(Input.GetMouseButtonDown(0))
+            LeftClick?.Invoke();
         Movement?.Invoke(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")));
         MouseMove?.Invoke(new Vector3(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")));
     }

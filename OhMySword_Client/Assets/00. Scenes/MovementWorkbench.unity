@@ -4863,8 +4863,7 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  leftArmRig: {fileID: 0}
-  rightArmRig: {fileID: 0}
+  rightArmRigTarget: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -11378,7 +11377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb90b913935e644baaa86c076d788e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0.1
   m_Data:
     m_ConstrainedObject: {fileID: 2024616339599110175}
     m_SourceObjects:
@@ -15605,6 +15604,8 @@ Transform:
   m_Children:
   - {fileID: 1035018338}
   - {fileID: 688708103}
+  - {fileID: 1644545954}
+  - {fileID: 1940989394}
   m_Father: {fileID: 112658216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1197062412
@@ -16059,8 +16060,7 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  leftArmRig: {fileID: 0}
-  rightArmRig: {fileID: 0}
+  rightArmRigTarget: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -22237,6 +22237,37 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &1644545953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644545954}
+  m_Layer: 0
+  m_Name: NonattackTrm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1644545954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644545953}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.52471024, y: -0.4715215, z: -0.5163066, w: 0.4855659}
+  m_LocalPosition: {x: 0.36399984, y: 0.89600044, z: 0.18700002}
+  m_LocalScale: {x: 0.099999994, y: 0.1, z: 0.10000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1197062411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1645057121
 GameObject:
   m_ObjectHideFlags: 0
@@ -22599,8 +22630,7 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  leftArmRig: {fileID: 0}
-  rightArmRig: {fileID: 0}
+  rightArmRigTarget: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -25133,6 +25163,37 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &1940989393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1940989394}
+  m_Layer: 0
+  m_Name: AttackTrm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1940989394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940989393}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7779271, y: -0.6278794, z: -0.023931544, w: -0.0049349107}
+  m_LocalPosition: {x: -0.19613028, y: 0.7829577, z: 0.2845579}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1197062411}
+  m_LocalEulerAnglesHint: {x: 87.009, y: -299.235, z: -310.065}
 --- !u!1 &1945173140
 GameObject:
   m_ObjectHideFlags: 0
@@ -37680,8 +37741,7 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  leftArmRig: {fileID: 0}
-  rightArmRig: {fileID: 0}
+  rightArmRigTarget: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -38128,6 +38188,7 @@ GameObject:
   - component: {fileID: 6574006546641166260}
   - component: {fileID: 6574006546641166261}
   - component: {fileID: 6574006546641166259}
+  - component: {fileID: 6574006546641166263}
   - component: {fileID: 6574006546641166262}
   - component: {fileID: 6574006546641166258}
   m_Layer: 0
@@ -38173,8 +38234,7 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  leftArmRig: {fileID: 0}
-  rightArmRig: {fileID: 0}
+  rightArmRigTarget: {fileID: 1035018338}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -38264,7 +38324,19 @@ MonoBehaviour:
         m_CallState: 2
   LeftClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6574006546641166263}
+        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6574006546641166262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38285,6 +38357,23 @@ MonoBehaviour:
   minRotate: -40
   target: {fileID: 976997425}
   hip: {fileID: 6299526643070155879}
+--- !u!114 &6574006546641166263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6574006546641166257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6bc54b83cb59f4bb4c4905f886fdc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTime: 0.2
+  recoveryTime: 0.5
+  nonattackTrm: {fileID: 1644545954}
+  attackTrm: {fileID: 1940989394}
+  isAttack: 0
 --- !u!1 &6613704774870317950
 GameObject:
   m_ObjectHideFlags: 0
