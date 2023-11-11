@@ -261,8 +261,8 @@ public class ActiveRagdoll : MonoBehaviour
 
         if(value)
         {
-            xDrive.positionSpring = 500f;
-            yzDrive.positionSpring = 500f;
+            xDrive.positionSpring = 1000f;
+            yzDrive.positionSpring = 1000f;
         }
         else
         {
