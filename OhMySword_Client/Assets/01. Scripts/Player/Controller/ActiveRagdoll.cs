@@ -351,7 +351,10 @@ public class ActiveRagdoll : MonoBehaviour
     #endregion
 
     #region SPINE
+    public void SetSpineRig(float value)
+    {
 
+    }
     #endregion
 
 #if UNITY_EDITOR
