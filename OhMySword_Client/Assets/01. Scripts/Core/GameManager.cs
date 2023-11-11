@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
 
+    [SerializeField] AudioClipsSO audioAssets;
     public ushort UserID = 0;
 
     private void Awake()
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
 
         PacketManager.Instance = new PacketManager();
         NetworkManager.Instance = new NetworkManager();
+        AudioManager.Instance = new AudioManager(audioAssets);
     }
 
     private void Start()
