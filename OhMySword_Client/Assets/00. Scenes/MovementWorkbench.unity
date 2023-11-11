@@ -4834,7 +4834,7 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  isGround: 0
+  isGround: 1
 --- !u!114 &322219535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8787,13 +8787,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 664523932}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22321634, y: 0.0000000019373325, z: -4.436377e-10, w: 0.97476894}
-  m_LocalPosition: {x: 0, y: 3.4500003, z: -3.990616}
+  m_LocalRotation: {x: 0.22321633, y: 0.0000000019373325, z: -4.4363777e-10, w: 0.97476894}
+  m_LocalPosition: {x: 0, y: 2.9, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 662935008}
-  m_Father: {fileID: 6179721458158608602}
+  m_Father: {fileID: 976997425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &664523934
 MonoBehaviour:
@@ -11742,7 +11742,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.55, z: 0.009383917}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 664523933}
   m_Father: {fileID: 6179721458158608602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &979980874
@@ -15602,7 +15603,7 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  isGround: 0
+  isGround: 1
 --- !u!114 &1227892784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22074,7 +22075,7 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  isGround: 0
+  isGround: 1
 --- !u!114 &1659643404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22087,8 +22088,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf2a74d6b7c46147a686d0f422e2e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 1
+  onMovedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  hip: {fileID: 0}
   moveSpeed: 5
+  canMove: 1
 --- !u!114 &1659643405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36676,7 +36681,6 @@ Transform:
   - {fileID: 976997425}
   - {fileID: 6410330077769977392}
   - {fileID: 713422346}
-  - {fileID: 664523933}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &6190828929828498077
@@ -37121,7 +37125,7 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  isGround: 0
+  isGround: 1
 --- !u!1 &6547198000676746227
 GameObject:
   m_ObjectHideFlags: 0
@@ -37619,8 +37623,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf2a74d6b7c46147a686d0f422e2e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 1
+  onMovedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  hip: {fileID: 7423472819105027655}
   moveSpeed: 3
+  canMove: 1
 --- !u!114 &6574006546641166260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37656,7 +37664,34 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6574006546641166259}
         m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
+        m_MethodName: SetMoveDirection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6574006546641166259}
+        m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
         m_MethodName: Move
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Mouse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6574006546641166262}
+        m_TargetAssemblyTypeName: PlayerView, Assembly-CSharp
+        m_MethodName: RotateCamera
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -37684,8 +37719,8 @@ MonoBehaviour:
   onRotatedEvent:
     m_PersistentCalls:
       m_Calls: []
-  rotateSpeed: 10
-  maxRotate: 80
+  rotateSpeed: 2
+  maxRotate: 40
   minRotate: -40
   target: {fileID: 976997425}
   hip: {fileID: 6299526643070155879}
