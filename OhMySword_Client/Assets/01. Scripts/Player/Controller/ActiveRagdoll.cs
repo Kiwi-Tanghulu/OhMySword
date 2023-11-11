@@ -31,24 +31,35 @@ public class ActiveRagdoll : MonoBehaviour
     public bool armLerping { get; set; } = true;
     [field: SerializeField]
     public bool footMove { get; set; } = true;
+    [SerializeField] private bool isGround = true;
+    private bool beforeIsGround = true;
 
     [Space]
-    public Rigidbody hip;
-    public Transform hipAncher;
+    [SerializeField] private Rigidbody hip;
+    [SerializeField] private Transform hipAncher;
 
     [Space]
-    public ConfigurableJoint spine;
+    [SerializeField] private ConfigurableJoint spine;
 
     [Space]
-    public LayerMask groundLayer;
-    public float shouldMoveDistance = 0.35f;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float shouldMoveDistance = 0.35f;
     [Tooltip("shouldMoveDistance보다 작아야 함")]
-    public float moveDistance = 0.3f;
-    public float movePivotHeight = 1f;
-    public float footMoveTime = 0.2f;
-    public float hipElasticitySpeed = 6f;
-    public float footToeOffset = 0.1f;
-    public float hipHeight = 0.55f;
+    [SerializeField] private float moveDistance = 0.3f;
+    [SerializeField] private float movePivotHeight = 1f;
+    [SerializeField] private float footMoveTime = 0.2f;
+    [SerializeField] private float hipElasticitySpeed = 6f;
+    [SerializeField] private float footToeOffset = 0.1f;
+    [SerializeField] private float hipHeight = 0.55f;
+
+    [Space]
+    [SerializeField] private float footAlignTime = 0.5f;
+    [SerializeField] private float footAlignDelayTime = 1f;
+    [SerializeField] private float footAlignDistance = 0.3f;
+
+    [Space]
+    [SerializeField] private Foot leftFoot;
+    [SerializeField] private Foot rightFoot;
 
     //where feet should be
     private Vector3 hipToGroundPos;
@@ -56,16 +67,10 @@ public class ActiveRagdoll : MonoBehaviour
     //between pos of foot
     private Vector3 footMiddlePos;
 
-    [SerializeField] private Foot leftFoot;
-    [SerializeField] private Foot rightFoot;
-
     private Vector3 moveDir;
 
-    [SerializeField] private bool isGround = true;
-    private bool beforeIsGround = true;
-
-
     private Coroutine footControlCo;
+    private Coroutine footAlignCo;
 
     private void Start()
     {
@@ -148,7 +153,7 @@ public class ActiveRagdoll : MonoBehaviour
     private void SetFootTargetPos(Foot foot, Vector3 offset)
     {
         RaycastHit hit = default;
-        Physics.Raycast(hip.transform.position + foot.offset + offset,
+        Physics.Raycast(hip.transform.position +  hipAncher.rotation * foot.offset + offset,
             Vector3.down, out hit, 10, groundLayer);
 
         foot.rayHitPos = hit.point + Vector3.up * footToeOffset;
@@ -168,6 +173,12 @@ public class ActiveRagdoll : MonoBehaviour
         Vector3 startToPivotLerp;
         Vector3 pivotToEndLerp;
 
+        if (footAlignCo != null)
+        {
+            StopCoroutine(footAlignCo);
+            footAlignCo = null;
+        }
+
         while (percent <= 1)
         {
             startToPivotLerp = Vector3.Lerp(foot.prevTargetPos, heightPivotVector, percent);
@@ -178,6 +189,9 @@ public class ActiveRagdoll : MonoBehaviour
 
             yield return null;
         }
+
+        if (moveDir == Vector3.zero && footAlignCo == null)
+            footAlignCo = StartCoroutine(FootAlign());
     }
 
     private void SetFootMiddlePos()
@@ -213,6 +227,35 @@ public class ActiveRagdoll : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    private IEnumerator FootAlign()
+    {
+        if (Mathf.Abs(leftFoot.targetPos.y - rightFoot.targetPos.y) >= footAlignDistance)
+        {
+            footAlignCo = null;
+            yield break;
+        }
+        
+        yield return new WaitForSeconds(footAlignDelayTime);
+
+        Vector3 lStart = leftFoot.targetPos;
+        Vector3 rStart = rightFoot.targetPos;
+        Vector3 lEnd = footMiddlePos + hipAncher.rotation * leftFoot.offset;
+        Vector3 rEnd = footMiddlePos + hipAncher.rotation * rightFoot.offset;
+        float percent = 0;
+
+        while(percent <= 1)
+        {
+            leftFoot.targetPos = Vector3.Lerp(lStart, lEnd, percent);
+            rightFoot.targetPos = Vector3.Lerp(rStart, rEnd, percent);
+
+            percent += Time.deltaTime / footAlignTime;
+
+            yield return null;
+        }
+
+        footAlignCo = null;
     }
     #endregion
 

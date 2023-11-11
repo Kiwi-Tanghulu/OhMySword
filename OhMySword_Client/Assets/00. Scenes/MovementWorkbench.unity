@@ -4807,6 +4807,7 @@ MonoBehaviour:
   <bodyLerping>k__BackingField: 1
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
+  isGround: 0
   hip: {fileID: 322219539}
   hipAncher: {fileID: 0}
   spine: {fileID: 0}
@@ -4820,6 +4821,9 @@ MonoBehaviour:
   hipElasticitySpeed: 1
   footToeOffset: 1
   hipHeight: 0.55
+  footAlignTime: 0.5
+  footAlignDelayTime: 1
+  footAlignDistance: 1
   leftFoot:
     target: {fileID: 0}
     ik: {fileID: 0}
@@ -4834,7 +4838,6 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  isGround: 0
 --- !u!114 &322219535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15681,6 +15684,7 @@ MonoBehaviour:
   <bodyLerping>k__BackingField: 1
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
+  isGround: 0
   hip: {fileID: 1227892788}
   hipAncher: {fileID: 0}
   spine: {fileID: 0}
@@ -15694,6 +15698,9 @@ MonoBehaviour:
   hipElasticitySpeed: 1
   footToeOffset: 1
   hipHeight: 0.55
+  footAlignTime: 0.5
+  footAlignDelayTime: 1
+  footAlignDistance: 1
   leftFoot:
     target: {fileID: 0}
     ik: {fileID: 0}
@@ -15708,7 +15715,6 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  isGround: 0
 --- !u!114 &1227892784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22153,6 +22159,7 @@ MonoBehaviour:
   <bodyLerping>k__BackingField: 1
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
+  isGround: 0
   hip: {fileID: 34498921}
   hipAncher: {fileID: 0}
   spine: {fileID: 0}
@@ -22166,6 +22173,9 @@ MonoBehaviour:
   hipElasticitySpeed: 1
   footToeOffset: 0.2
   hipHeight: 0.55
+  footAlignTime: 0.5
+  footAlignDelayTime: 1
+  footAlignDistance: 1
   leftFoot:
     target: {fileID: 0}
     ik: {fileID: 0}
@@ -22180,7 +22190,6 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  isGround: 0
 --- !u!114 &1659643404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37199,6 +37208,7 @@ MonoBehaviour:
   <bodyLerping>k__BackingField: 1
   <armLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
+  isGround: 0
   hip: {fileID: 5907798254586527134}
   hipAncher: {fileID: 0}
   spine: {fileID: 0}
@@ -37212,6 +37222,9 @@ MonoBehaviour:
   hipElasticitySpeed: 1
   footToeOffset: 1
   hipHeight: 0.55
+  footAlignTime: 0.5
+  footAlignDelayTime: 1
+  footAlignDistance: 1
   leftFoot:
     target: {fileID: 0}
     ik: {fileID: 0}
@@ -37226,7 +37239,6 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  isGround: 0
 --- !u!1 &6547198000676746227
 GameObject:
   m_ObjectHideFlags: 0
@@ -37683,7 +37695,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <bodyLerping>k__BackingField: 1
   <armLerping>k__BackingField: 1
-  <footMove>k__BackingField: 0
+  <footMove>k__BackingField: 1
+  isGround: 1
   hip: {fileID: 7423472819105027655}
   hipAncher: {fileID: 976997425}
   spine: {fileID: 9163680375856860023}
@@ -37697,6 +37710,9 @@ MonoBehaviour:
   hipElasticitySpeed: 6
   footToeOffset: 0.1
   hipHeight: 0.55
+  footAlignTime: 0.5
+  footAlignDelayTime: 1
+  footAlignDistance: 0.3
   leftFoot:
     target: {fileID: 670195475}
     ik: {fileID: 1710873602}
@@ -37711,7 +37727,6 @@ MonoBehaviour:
     prevTargetPos: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     rayHitPos: {x: 0, y: 0, z: 0}
-  isGround: 1
 --- !u!114 &6574006546641166259
 MonoBehaviour:
   m_ObjectHideFlags: 0
