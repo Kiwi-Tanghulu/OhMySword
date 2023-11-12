@@ -1,6 +1,7 @@
 using Base.Network;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class PlayerFeedback : MonoBehaviour
@@ -9,7 +10,9 @@ public class PlayerFeedback : MonoBehaviour
     private PlayerMove move;
 
     public float hitFeedbackPower = 100f;
-
+    [SerializeField] private ParticleSystem hitEffect;
+    [SerializeField] private float hitEffectPlayOffset;
+    [SerializeField] private Transform hitEffectPlayPos;
     private SyncableObject lastAttacker;
 
     private void Start()
@@ -22,6 +25,10 @@ public class PlayerFeedback : MonoBehaviour
     {
         lastAttacker = attacker;
         Vector3 dir = (ragdoll.hip.transform.position - attacker.GetComponent<ActiveRagdoll>().hip.transform.position).normalized;
+        Debug.Log("Hit");
+        hitEffect.transform.position = hitEffectPlayPos.position + -dir * hitEffectPlayOffset;
+        hitEffect.Play();
+
         ragdoll.AddForceToSpine(dir * hitFeedbackPower);
     }
 
