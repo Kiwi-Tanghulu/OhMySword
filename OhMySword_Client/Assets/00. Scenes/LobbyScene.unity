@@ -2690,7 +2690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00987f693a0161741a70ff51316e959a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioAssets: {fileID: 0}
+  audioAssets: {fileID: 11400000, guid: 93a7912e125807649ae5fe834758655c, type: 2}
   masterMixer: {fileID: 24100000, guid: a15b650e67fe52047a6bf273be03218e, type: 2}
   UserID: 0
 --- !u!1 &113931906

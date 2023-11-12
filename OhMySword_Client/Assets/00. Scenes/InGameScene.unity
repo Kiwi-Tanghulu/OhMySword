@@ -44929,7 +44929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabTable: {fileID: 11400000, guid: 8aacd4b404ceeef43b295d32f2a3ad4b, type: 2}
   playerSpawnTable: {fileID: 11400000, guid: 11606822dc8f3a043accaec91316b50e, type: 2}
-  playerPrefab: {fileID: 4985902808029453687, guid: cee7a592542af7b4ea5a7b6c88647476,
+  playerPrefab: {fileID: 5672339649964638521, guid: b70ffd03f72ec934ba2cd5a921277837,
     type: 3}
 --- !u!4 &1939011340
 Transform:
