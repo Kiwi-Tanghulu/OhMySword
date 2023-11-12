@@ -17,7 +17,50 @@ public class PlayerWeapon : MonoBehaviour
     private ushort currentScore = 0;
     private ushort nextScore = 0;
     private bool isGrowing = false;
-    
+
+    private BoxCollider col;
+    [SerializeField] private ParticleSystem trail;
+
+    private List<Collider> attacked = new List<Collider>();
+
+    private void Start()
+    {
+        col = GetComponent<BoxCollider>();
+        SetCollision(false);
+        //SetTrail(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Other_Hitbox"))
+        {
+            if(attacked.Find(x => x == other) == null)
+            {
+                //attack process
+                Debug.Log(other.name);
+                attacked.Add(other);
+            }
+        }
+    }
+
+    public void ResetAttackedList()
+    {
+        attacked.Clear();
+    }
+
+    public void SetCollision(bool value)
+    {
+        col.enabled = value;
+    }
+
+    public void SetTrail(bool value)
+    {
+        if (value)
+            trail.Play();
+        else
+            trail.Stop();
+    }
+
     public void SetSwordSize() //나중에 특정 구간에서 칼이 바뀐다면 채워넣어야함
     {
 

@@ -5,9 +5,6 @@ using UnityEngine.Events;
 
 public class PlayerView : MonoBehaviour
 {
-    public Vector3 forward { get; private set; }
-    public Vector3 right { get; private set; }
-
     [SerializeField] UnityEvent<Vector3> onRotatedEvent;
 
     [SerializeField] private float rotateSpeed;
@@ -30,9 +27,6 @@ public class PlayerView : MonoBehaviour
         target.rotation = Quaternion.Euler(rotation.x, rotation.y, 0);
         hip.rotation = Quaternion.Euler(0, rotation.y, 0);
 
-        forward = new Vector3(target.forward.x, 0, target.forward.z).normalized;
-        right = new Vector3(target.right.x, 0, target.right.z).normalized;
-
         onRotatedEvent?.Invoke(hip.eulerAngles);
     }
 
@@ -49,7 +43,7 @@ public class PlayerView : MonoBehaviour
     {
         float timer = 0f;
 
-        while(timer < duration)
+        while (timer < duration)
         {
             trm.rotation = Quaternion.Lerp(from, target, timer / duration);
             timer += Time.deltaTime;

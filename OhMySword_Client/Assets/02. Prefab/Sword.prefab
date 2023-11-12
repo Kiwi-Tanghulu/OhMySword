@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 275128200254586748}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SwordPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1281386070085174123}
   - component: {fileID: 5874466263381447096}
-  m_Layer: 0
+  - component: {fileID: 3161073084396160682}
+  - component: {fileID: 3860341112173635371}
+  m_Layer: 9
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +61,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 238542864979983224}
@@ -80,6 +82,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreSize: 0.01
   swordPivot: {fileID: 275128200254586748}
+  trail: {fileID: 6051648917759938179}
+--- !u!65 &3161073084396160682
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171452020599859225}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.25998765, y: 2.4189177, z: 0.6023407}
+  m_Center: {x: -0.19562653, y: 0.5524013, z: 0.44157898}
+--- !u!54 &3860341112173635371
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171452020599859225}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5468886954786711331
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +142,7 @@ GameObject:
   - component: {fileID: 6379520375379981218}
   - component: {fileID: 6051648917759938179}
   - component: {fileID: 3188069378896479475}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4920,7 +4971,7 @@ GameObject:
   - component: {fileID: 4072381819092090819}
   - component: {fileID: 646246683268976433}
   - component: {fileID: 2383671050534773750}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5004,7 +5055,7 @@ GameObject:
   - component: {fileID: 238542864979983224}
   - component: {fileID: 8136176924586008392}
   - component: {fileID: 4850911144790644949}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

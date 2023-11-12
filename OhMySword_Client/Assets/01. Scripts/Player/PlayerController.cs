@@ -12,7 +12,7 @@ namespace OhMySword.Player
         private PlayerWeapon playerWeapon;
 
         public UnityEvent<SyncableObject> OnHitEvent;
-        public UnityEvent<SyncableObject> OnDieEvent;
+        public UnityEvent OnDieEvent;
 
         public string nickname;
 
@@ -43,7 +43,7 @@ namespace OhMySword.Player
 
         public void Hit(SyncableObject attacker)
         {
-            
+            OnHitEvent?.Invoke(attacker);
         }
 
         public void GetXP(ushort amount)
@@ -53,7 +53,7 @@ namespace OhMySword.Player
 
         public void Die(SyncableObject attacker, ushort destroyCount)
         {
-            
+            OnDieEvent?.Invoke();
         }
 
         public void DoChat(string chat)
@@ -65,7 +65,7 @@ namespace OhMySword.Player
         {
             base.SetPosition(position, immediately);
             Debug.Log($"SetPosition : {position}");
-            movement?.SetTargetPosition(targetPosition);
+            movement?.SyncMove(targetPosition);
         }
 
         public override void SetRotation(Vector3 rotation)
