@@ -7,41 +7,61 @@ public class PlayerMove : MonoBehaviour
 {
     private ActiveRagdoll ragdoll;
 
-    public bool canMove = true;
+    [SerializeField] UnityEvent<Vector3> onMovedEvent;
 
-    public UnityEvent<Vector3> positionSync;
+    [SerializeField] private Rigidbody hip;
 
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private bool canMove = true;
     private Vector3 prevTargetPos;
     private Vector3 targetPos;
     private Vector3 moveDir;
+    private Vector3 prevMoveDir;
     private Vector3 velocity;
-    [SerializeField] private float moveSpeed;
-    [SerializeField] Rigidbody hip;
-
-    //other client
     private float moveDistance;
+
+    private PlayerView cam;
 
     private void Start()
     {
         ragdoll = GetComponent<ActiveRagdoll>();
+        cam = GetComponent<PlayerView>();
         targetPos = transform.position;
         prevTargetPos = targetPos;
     }
 
-    public void Move(Vector3 input)
+    #region MYMOVE
+    public void SetMoveDirection(Vector3 input)
     {
-        moveDir = input.normalized;
+        prevMoveDir = moveDir;
+        moveDir = hip.transform.rotation * input.normalized;
+    }
 
-        if(canMove)
+    public void Move()
+    {
+        if ((targetPos - hip.transform.position).magnitude > 0.5f)
             ragdoll.SetVelocity(moveDir * moveSpeed);
         else
             ragdoll.SetVelocity(Vector3.zero);
+        onMovedEvent?.Invoke(hip.transform.position);
+    }
+    #endregion
 
-        positionSync.Invoke(hip.transform.position);
+    public void Stun(float time)
+    {
+        StartCoroutine(StunCo(time));
     }
 
-    #region other client
-    public void SyncMove(Vector3 pos)
+    private IEnumerator StunCo(float time)
+    {
+        canMove = false;
+
+        yield return new WaitForSeconds(time);
+
+        canMove = true;
+    }
+    #region OTHER MOVE
+    public void SetTargetPosition(Vector3 pos)
     {
         if (Vector3.Distance(pos, hip.transform.position) < 0.1f)
             return;

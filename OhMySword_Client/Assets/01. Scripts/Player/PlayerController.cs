@@ -65,7 +65,7 @@ namespace OhMySword.Player
         {
             base.SetPosition(position, immediately);
             Debug.Log($"SetPosition : {position}");
-            movement?.SyncMove(targetPosition);
+            movement?.SetTargetPosition(position);
         }
 
         public override void SetRotation(Vector3 rotation)
