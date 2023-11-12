@@ -116,7 +116,7 @@ public class ActiveRagdoll : MonoBehaviour
     private bool CheckGround()
     {
         beforeIsGround = isGround;
-        isGround = Physics.Raycast(hip.transform.position, Vector3.down, hipHeight + 1f, groundLayer);
+        isGround = Physics.Raycast(hip.transform.position, Vector3.down, hipHeight + 0.5f, groundLayer);
 
         return isGround;
     }
@@ -174,7 +174,6 @@ public class ActiveRagdoll : MonoBehaviour
 
         SetFootMiddlePos();
         SetHipAncherPos();
-
     }
     private IEnumerator FootMoveAnimation(Foot foot)
     {
@@ -284,7 +283,7 @@ public class ActiveRagdoll : MonoBehaviour
     #region HIP
     public bool SetHipToGroundPos()
     {
-        if (Physics.Raycast(hip.transform.position, Vector3.down, out RaycastHit hipToGround, 1, groundLayer))
+        if (Physics.Raycast(hip.transform.position, Vector3.down, out RaycastHit hipToGround, hipHeight + 0.6f, groundLayer))
         {
             hipToGroundPos = hipToGround.point;
 
