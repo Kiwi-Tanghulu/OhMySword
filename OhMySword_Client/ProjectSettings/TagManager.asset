@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hitbox
+  - Other_Hitbox
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Ground
   - Sword
   - 
-  - 
+  - Other_Hitbox
   - 
   - 
   - 

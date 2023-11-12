@@ -17,7 +17,28 @@ public class PlayerWeapon : MonoBehaviour
     private ushort currentScore = 0;
     private ushort nextScore = 0;
     private bool isGrowing = false;
-    
+
+    private BoxCollider col;
+
+    private void Start()
+    {
+        col = GetComponent<BoxCollider>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Other_Hitbox"))
+        {
+            //attack process
+            Debug.Log(other.name);
+        }
+    }
+
+    public void SetCollision(bool value)
+    {
+        col.enabled = value;
+    }
+
     public void SetSwordSize() //나중에 특정 구간에서 칼이 바뀐다면 채워넣어야함
     {
 

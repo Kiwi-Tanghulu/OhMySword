@@ -13,6 +13,10 @@ public class PlayerMove : MonoBehaviour
     private Vector3 moveDir;
     private Vector3 velocity;
     [SerializeField] private float moveSpeed;
+    [SerializeField] Transform hip;
+
+    //other client
+    private float moveDistance;
 
     private void Start()
     {
@@ -32,26 +36,39 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    public void SetTargetPosition(Vector3 pos)
+    #region other client
+    public void SyncMove(Vector3 pos)
     {
-        prevTargetPos = targetPos;
-        transform.position = prevTargetPos;
-        targetPos = pos;
-        moveDir = (targetPos - prevTargetPos).normalized;
-        velocity = moveDir * moveSpeed;
+        if (Vector3.Distance(pos, hip.position) < 0.1f)
+            moveDir = Vector3.zero;
+        else
+        {
+            prevTargetPos = targetPos;
+            targetPos = pos;
+            moveDir = targetPos - hip.position;
+        }
+
+        moveDistance = moveDir.magnitude;
+        moveDir.Normalize();
+
+        SetVelocity();
     }
 
-    public void Stun(float time)
+    private void SetVelocity()
     {
-        StartCoroutine(StunCo(time));
+        moveSpeed = moveDistance / 0.1f;
+        ragdoll.SetVelocity(moveDir * moveSpeed);
+
+        StartCoroutine(AdjustPosition());
     }
 
-    private IEnumerator StunCo(float time)
+    private IEnumerator AdjustPosition()
     {
-        canMove = false;
+        yield return new WaitForSeconds(0.09f);
 
-        yield return new WaitForSeconds(time);
 
-        canMove = true;
+        if (Vector3.Distance(targetPos, hip.position) > 0.5f)
+            hip.position = targetPos;
     }
+    #endregion
 }
