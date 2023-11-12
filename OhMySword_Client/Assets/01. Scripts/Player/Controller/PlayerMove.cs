@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMove : MonoBehaviour
 {
     private ActiveRagdoll ragdoll;
 
     public bool canMove = true;
+
+    public UnityEvent<Vector3> positionSync;
 
     private Vector3 prevTargetPos;
     private Vector3 targetPos;
@@ -34,6 +37,7 @@ public class PlayerMove : MonoBehaviour
         else
             ragdoll.SetVelocity(Vector3.zero);
 
+        positionSync.Invoke(hip.position);
     }
 
     #region other client
