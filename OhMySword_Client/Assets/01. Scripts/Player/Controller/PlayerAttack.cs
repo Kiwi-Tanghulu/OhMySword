@@ -6,8 +6,13 @@ public class PlayerAttack : MonoBehaviour
 {
     private ActiveRagdoll ragdoll;
 
-    [SerializeField] private float attackTime = 0.3f;
-    [SerializeField] private bool isAttack = false;
+    [SerializeField] private float attackTime;
+    [SerializeField] private float recoveryTime;
+
+    [SerializeField] private Transform nonattackTrm;
+    [SerializeField] private Transform attackTrm;
+
+    [SerializeField] private bool isAttack;
 
     private void Start()
     {
@@ -16,17 +21,17 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
-        if (isAttack)
+        if (isAttack || !ragdoll.isGround)
             return;
 
-        StartCoroutine(AttackRoutine());
+        StartCoroutine(AttackCo());
     }
 
-    private IEnumerator AttackRoutine()
+    private IEnumerator AttackCo()
     {
         isAttack = true;
-        yield return StartCoroutine(ragdoll.AttackMotion(attackTime));
-        yield return StartCoroutine(ragdoll.AttacRecoverykMotion(attackTime));
+        yield return StartCoroutine(ragdoll.SetRightArmRigTarget(attackTrm, attackTime));
+        yield return StartCoroutine(ragdoll.SetRightArmRigTarget(nonattackTrm, recoveryTime));
         isAttack = false;
     }
 }

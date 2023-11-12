@@ -1,88 +1,45 @@
-using System.IO.Compression;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerMove : MonoBehaviour
 {
     private ActiveRagdoll ragdoll;
 
-    [SerializeField] UnityEvent<Vector3> onMovedEvent;
+    public bool canMove = true;
 
-    [SerializeField] private Rigidbody hip;
-
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private bool canMove = true;
     private Vector3 prevTargetPos;
     private Vector3 targetPos;
     private Vector3 moveDir;
-    private Vector3 prevMoveDir;
     private Vector3 velocity;
-    private float moveDistance;
-
-    private PlayerView cam;
+    [SerializeField] private float moveSpeed;
 
     private void Start()
     {
         ragdoll = GetComponent<ActiveRagdoll>();
-        cam = GetComponent<PlayerView>();
         targetPos = transform.position;
         prevTargetPos = targetPos;
     }
 
-    #region MYMOVE
-    public void SetMoveDirection(Vector3 input)
+    public void Move(Vector3 input)
     {
-        prevMoveDir = moveDir;
-        moveDir = cam.forward * input.z + cam.right * input.x;
-    }
+        moveDir = input.normalized;
 
-    public void Move()
-    {
-        if((targetPos - hip.transform.position).magnitude > 0.5f)
+        if(canMove)
             ragdoll.SetVelocity(moveDir * moveSpeed);
         else
             ragdoll.SetVelocity(Vector3.zero);
-        onMovedEvent?.Invoke(hip.transform.position);
-    }
-    #endregion
 
-    #region OTHER MOVE
+    }
+
     public void SetTargetPosition(Vector3 pos)
     {
-        if (Vector3.Distance(pos, hip.transform.position) < 0.1f)
-            moveDir = Vector3.zero;
-        else
-        {
-            prevTargetPos = targetPos;
-            targetPos = pos;
-            moveDir = targetPos - hip.transform.position;
-        }
-
-        moveDistance = moveDir.magnitude;
-        moveDir.Normalize();
-
-        SetVelocity();
+        prevTargetPos = targetPos;
+        transform.position = prevTargetPos;
+        targetPos = pos;
+        moveDir = (targetPos - prevTargetPos).normalized;
+        velocity = moveDir * moveSpeed;
     }
-
-    private void SetVelocity()
-    {
-        moveSpeed = moveDistance / 0.1f;
-        ragdoll.SetVelocity(moveDir * moveSpeed);
-
-        StartCoroutine(AdjustPosition());
-    }
-
-    private IEnumerator AdjustPosition()
-    {
-        yield return new WaitForSeconds(0.09f);
-
-
-        if (Vector3.Distance(targetPos, hip.transform.position) > 0.5f)
-            hip.transform.position = targetPos;
-    }
-    #endregion
 
     public void Stun(float time)
     {
