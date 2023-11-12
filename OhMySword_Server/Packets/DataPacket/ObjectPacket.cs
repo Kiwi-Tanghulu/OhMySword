@@ -17,7 +17,7 @@ namespace Packets
             this.objectID = objectID;
             this.objectType = objectType;
             this.position = position;
-            this.rotation = rotation;
+            this.rotation = rotation; 
         }
 
         public override ushort Deserialize(ArraySegment<byte> buffer, int offset)
