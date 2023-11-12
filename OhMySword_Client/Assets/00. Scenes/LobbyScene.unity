@@ -2690,6 +2690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00987f693a0161741a70ff51316e959a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioAssets: {fileID: 0}
+  masterMixer: {fileID: 24100000, guid: a15b650e67fe52047a6bf273be03218e, type: 2}
   UserID: 0
 --- !u!1 &113931906
 GameObject:
@@ -9969,7 +9971,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043981695}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08627105, y: -0.84136283, z: 0.14106412, w: 0.51455504}
+  m_LocalRotation: {x: 0.086271055, y: -0.84136283, z: 0.14106414, w: 0.514555}
   m_LocalPosition: {x: -11.926022, y: 1.5525627, z: 11.586483}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

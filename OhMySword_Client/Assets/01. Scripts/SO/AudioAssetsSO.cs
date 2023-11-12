@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SO/AudioClipsSO")]
-public class AudioClipsSO : ScriptableObject
+public class AudioAssetsSO : ScriptableObject
 {
     [SerializeField] AudioClip[] clips;
 

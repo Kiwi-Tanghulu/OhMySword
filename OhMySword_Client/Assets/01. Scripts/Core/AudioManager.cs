@@ -1,14 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager
 {
 	public static AudioManager Instance = null;
+    private const float MAX_VOLUME = 0;
+    private const float MIN_VOLUME = -40;
+    private const float MUTE_VOLUME = -80;
 
     private Dictionary<string, AudioClip> clips = new Dictionary<string, AudioClip>();
+    private AudioMixer audioMixer = null;
 
-    public AudioManager(AudioClipsSO clipList)
+    public AudioManager(AudioAssetsSO clipList, AudioMixer audioMixer)
     {
+        this.audioMixer = audioMixer;
+
         for(int i = 0; i < clipList.Count; i++)
             RegisterAudio(clipList[i]);
     }
@@ -19,12 +26,20 @@ public class AudioManager
             return;
 
         if(oneshot)
-            player.PlayOneShot(player.clip = clips[clipName]);
+            player.PlayOneShot(clips[clipName]);
         else
         {
             player.clip = clips[clipName];
             player.Play();
         }
+    }
+
+    public void SetVolume(AudioType type, float percentage)
+    {
+        if(percentage == 0f)
+            audioMixer.SetFloat(type.ToString(), MUTE_VOLUME);
+        else
+            audioMixer.SetFloat(type.ToString(), Mathf.Lerp(MIN_VOLUME, MAX_VOLUME, percentage));
     }
 
     private void RegisterAudio(AudioClip clip)
