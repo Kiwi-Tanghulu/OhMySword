@@ -43,18 +43,17 @@ public class PlayerMove : MonoBehaviour
     #region other client
     public void SyncMove(Vector3 pos)
     {
-        if (Vector3.Distance(pos, hip.position) < 0.1f)
-            moveDir = Vector3.zero;
-        else
-        {
-            prevTargetPos = targetPos;
-            targetPos = pos;
-            moveDir = targetPos - hip.position;
-        }
+        if (Vector3.Distance(pos, hip.transform.position) < 0.1f)
+            return;
 
+        prevTargetPos = targetPos;
+        targetPos = pos;
+        moveDir = targetPos - hip.transform.position;
         moveDistance = moveDir.magnitude;
         moveDir.Normalize();
 
+        //if (Vector3.Distance(pos, hip.transform.position) < 0.1f)
+        //    return;
         SetVelocity();
     }
 
@@ -71,8 +70,8 @@ public class PlayerMove : MonoBehaviour
         yield return new WaitForSeconds(0.09f);
 
 
-        if (Vector3.Distance(targetPos, hip.position) > 0.5f)
-            hip.position = targetPos;
+        if (Vector3.Distance(targetPos, hip.transform.position) > 0.5f)
+            hip.transform.position = targetPos;
     }
     #endregion
 }
