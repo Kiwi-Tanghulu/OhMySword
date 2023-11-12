@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5973761185915637993}
   - component: {fileID: 9094772944395778354}
   - component: {fileID: 7856379873471996239}
-  - component: {fileID: 8961055724423668900}
-  m_Layer: 0
+  - component: {fileID: 8862173436161102251}
+  m_Layer: 8
   m_Name: StoneScoreBox
-  m_TagString: Untagged
+  m_TagString: Other_Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropTable: {fileID: 11400000, guid: 5a6d94b8b4558f34da155f8d6173cc90, type: 2}
   positionTable: {fileID: 11400000, guid: 541632c94c1f0f645a52e426a45918c9, type: 2}
+  type: 2
   OnMovedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -116,8 +117,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8961055724423668900
-MeshCollider:
+--- !u!65 &8862173436161102251
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -134,10 +135,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 532788c369e551d44a067aa3c8bb182c, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.1521542, y: 0.7191034, z: 1.0869876}
+  m_Center: {x: -0.05797881, y: 0.26065972, z: 0.054930806}
 --- !u!1 &8372155033962270902
 GameObject:
   m_ObjectHideFlags: 0

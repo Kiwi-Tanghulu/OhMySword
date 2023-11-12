@@ -181,9 +181,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7170613386124310020}
   - component: {fileID: 4838707351391630273}
+  - component: {fileID: 1229251025296703861}
   m_Layer: 0
   m_Name: EggScoreBox
-  m_TagString: Untagged
+  m_TagString: Other_Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,6 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropTable: {fileID: 11400000, guid: 323cd0e8be532a842860731098de956a, type: 2}
   positionTable: {fileID: 11400000, guid: 6e2bc0d5e060fcc4ebc346dcc1ad7bb8, type: 2}
+  type: 0
   OnMovedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -235,3 +237,26 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   gizmoColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!136 &1229251025296703861
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5193722753159035717}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.1810141
+  m_Height: 2.899058
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.116959095, z: -0.0932343}

@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     [Range(0.001f,0.05f)]
-    [SerializeField] private float scoreSize; // ½ºÄÚ¾î´ç ±æ¾îÁö´Â ±æÀÌ! ¿¹) 0.01ÀÌ¶ó¸é 1Á¡´ç 0.01ÀÌ Ä¿Áü 100Á¡ÀÌ¶ó¸é 1ÀÌ Ä¿Áö°í
+    [SerializeField] private float scoreSize; // ï¿½ï¿½ï¿½Ú¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½) 0.01ï¿½Ì¶ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ 0.01ï¿½ï¿½ Ä¿ï¿½ï¿½ 100ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ 1ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½
 
     [SerializeField] private Transform swordPivot;
-    private int swordSize; // ³ªÁß¿¡ ÇÊ¿äÇÒ ¼ö ÀÖ¾î¼­...
+    private int swordSize; // ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¾î¼­...
     public int SwordSize => swordSize;
 
     private int currentSwordLevel = 0;
@@ -21,8 +21,6 @@ public class PlayerWeapon : MonoBehaviour
     private BoxCollider col;
     [SerializeField] private ParticleSystem trail;
 
-    private List<Collider> attacked = new List<Collider>();
-
     private void Start()
     {
         col = GetComponent<BoxCollider>();
@@ -32,20 +30,8 @@ public class PlayerWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Other_Hitbox"))
-        {
-            if(attacked.Find(x => x == other) == null)
-            {
-                //attack process
-                Debug.Log(other.name);
-                attacked.Add(other);
-            }
-        }
-    }
-
-    public void ResetAttackedList()
-    {
-        attacked.Clear();
+        if(other.TryGetComponent<IDamageable>(out IDamageable id))
+            id.OnDamage(1, transform.root.gameObject, Vector3.zero);
     }
 
     public void SetCollision(bool value)
@@ -64,7 +50,7 @@ public class PlayerWeapon : MonoBehaviour
         }
     }
 
-    public void SetSwordSize() //³ªÁß¿¡ Æ¯Á¤ ±¸°£¿¡¼­ Ä®ÀÌ ¹Ù²ï´Ù¸é Ã¤¿ö³Ö¾î¾ßÇÔ
+    public void SetSwordSize() //ï¿½ï¿½ï¿½ß¿ï¿½ Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä®ï¿½ï¿½ ï¿½Ù²ï¿½Ù¸ï¿½ Ã¤ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½
     {
 
     }

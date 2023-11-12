@@ -74,7 +74,14 @@ public class XPObject : SyncableObject, IDamageable
     {
         base.SetPosition(position, false);
 
+        if(immediately)
+            return;
+
+        trail.enabled = true;
+
         float factor = 1f + xpAmount.ToString().Length * 0.5f;
-        transform.DOJump(position, jumpPower * factor, 1, jumpDuration).SetEase(easeCurve);
+        transform.DOJump(position, jumpPower * factor, 1, jumpDuration).SetEase(easeCurve).OnComplete(() => {
+            trail.enabled = false;
+        });
     }
 }

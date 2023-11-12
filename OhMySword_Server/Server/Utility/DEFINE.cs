@@ -31,7 +31,7 @@ namespace Server
                 new Vector3(33, -25, -12),
                 new Vector3(-9, -16, -48),
                 new Vector3(-28, -12.5f, -20),
-                new Vector3(17, -24.5f, 9)
+                new Vector3(17, -24.5f, -9)
             },
             [(ushort)ObjectType.WoodenScoreBox] = new Vector3[] {
                 new Vector3(-20.5f, -12.2f, -12),

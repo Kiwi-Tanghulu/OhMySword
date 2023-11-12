@@ -8,6 +8,7 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
 {
     [SerializeField] ScoreBoxDropTableSO dropTable = null;
     [SerializeField] PositionTableSO positionTable = null;
+    [SerializeField] ObjectType type = ObjectType.None;
 
     [Space(10f)]
     [SerializeField] UnityEvent OnMovedEvent;
@@ -31,7 +32,7 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
         if (attacker == null)
             return;
 
-        C_AttackPacket attackPacket = new C_AttackPacket((ushort)ObjectType.WoodenScoreBox, ObjectID, attacker.ObjectID, (ushort)damage);
+        C_AttackPacket attackPacket = new C_AttackPacket((ushort)type, ObjectID, attacker.ObjectID, (ushort)damage);
         NetworkManager.Instance.Send(attackPacket);
     }
 
@@ -51,7 +52,8 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
             ) as XPObject;
 
             xp.SetXP(digit);
-            xp.SetPosition(transform.position + dropTable[index], true);
+            xp.SetPosition(transform.position, true);
+            xp.SetPosition(transform.position + dropTable[index], false);
         });
     }
 

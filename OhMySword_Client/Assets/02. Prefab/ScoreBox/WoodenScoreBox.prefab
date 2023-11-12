@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 854769115582336613}
   - component: {fileID: 8117715276676927907}
   m_Layer: 0
-  m_Name: WoodenScoreBox (1)
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,9 +93,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7730685650939385449}
   - component: {fileID: 7511446996927447807}
+  - component: {fileID: 7815470818728927876}
   m_Layer: 0
   m_Name: WoodenScoreBox
-  m_TagString: Untagged
+  m_TagString: Other_Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropTable: {fileID: 11400000, guid: 43d0a3a77bedbe54c9d6f07a21916ea8, type: 2}
   positionTable: {fileID: 11400000, guid: 2818107045022424cb5ebcacf7e9a432, type: 2}
+  type: 1
   OnMovedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -147,6 +149,27 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!65 &7815470818728927876
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955036469436238867}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9918861, y: 1.4482307, z: 1.71134}
+  m_Center: {x: -0.015028, y: 0.7751646, z: 0}
 --- !u!1 &2662880380328221708
 GameObject:
   m_ObjectHideFlags: 0
