@@ -37,7 +37,7 @@ public class PlayerMove : MonoBehaviour
         else
             ragdoll.SetVelocity(Vector3.zero);
 
-        positionSync.Invoke(hip.position);
+        positionSync.Invoke(hip.transform.position);
     }
 
     #region other client
