@@ -1814,6 +1814,7 @@ GameObject:
   - component: {fileID: 4872750787184433826}
   - component: {fileID: 6826694340876953961}
   - component: {fileID: 5939366540002339203}
+  - component: {fileID: 3464172125119660786}
   m_Layer: 0
   m_Name: NewActiveRagdoll
   m_TagString: Untagged
@@ -2076,6 +2077,21 @@ MonoBehaviour:
   footAlignTime: 0.5
   footAlignDelayTime: 1
   footAlignDistance: 0.15
+--- !u!114 &3464172125119660786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507526370804100189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17244cc87b967394f87cbde90ad050ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceThreshold: 0.1
+  rotateThreshold: 0.1
+  cooldown: 0.1
 --- !u!1 &3529749883266099811
 GameObject:
   m_ObjectHideFlags: 0
