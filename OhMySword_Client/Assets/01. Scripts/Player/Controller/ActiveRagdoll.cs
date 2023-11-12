@@ -109,6 +109,7 @@ public class ActiveRagdoll : MonoBehaviour
         {
             SetBodyControl(isGround);
             SetFootControl(isGround);
+            hip.velocity = Vector3.zero;
         }
     }
 
@@ -137,35 +138,43 @@ public class ActiveRagdoll : MonoBehaviour
         leftFoot.target.position = leftFoot.targetPos;
         rightFoot.target.position = rightFoot.targetPos;
 
-        if (Physics.Raycast(hip.transform.position, Vector3.down, out RaycastHit hipToGround, 1, groundLayer))
+        if (SetHipToGroundPos())
         {
-            hipToGroundPos = hipToGround.point;
-
             if (Vector3.Distance(hipToGroundPos, footMiddlePos) >= shouldMoveDistance)
             {
                 Vector3 moveDir = (hipToGroundPos - footMiddlePos).normalized;
 
                 if (Vector3.Distance(hipToGroundPos, leftFoot.targetPos) > Vector3.Distance(hipToGroundPos, rightFoot.targetPos))
-                    SetFootTargetPos(leftFoot, moveDir * moveDistance);
+                    SetFootTargetPos(leftFoot, moveDir * moveDistance, false);
                 else
-                    SetFootTargetPos(rightFoot, moveDir * moveDistance);
+                    SetFootTargetPos(rightFoot, moveDir * moveDistance, false);
             }
         }
     }
-    private void SetFootTargetPos(Foot foot, Vector3 offset)
+    private void SetFootTargetPos(Foot foot, Vector3 offset, bool fix)
     {
         RaycastHit hit = default;
         Physics.Raycast(hip.transform.position +  hipAncher.rotation * foot.offset + offset,
             Vector3.down, out hit, 10, groundLayer);
 
-        foot.rayHitPos = hit.point + Vector3.up * footToeOffset;
-        foot.prevTargetPos = foot.targetPos;
-        foot.targetPos = foot.rayHitPos;
 
-        StartCoroutine(FootMoveAnimation(foot));
+        foot.rayHitPos = hit.point + Vector3.up * footToeOffset;
+
+        if(fix)
+        {
+            foot.targetPos = foot.rayHitPos;
+            foot.prevTargetPos = foot.targetPos;
+        }
+        else
+        {
+            foot.prevTargetPos = foot.targetPos;
+            foot.targetPos = foot.rayHitPos;
+            StartCoroutine(FootMoveAnimation(foot));
+        }
 
         SetFootMiddlePos();
         SetHipAncherPos();
+
     }
     private IEnumerator FootMoveAnimation(Foot foot)
     {
@@ -205,6 +214,12 @@ public class ActiveRagdoll : MonoBehaviour
     {
         footMove = value;
         SetFootRig(value);
+
+        if(value)
+        {
+            SetFootTargetPos(leftFoot, Vector3.zero, true);
+            SetFootTargetPos(rightFoot, Vector3.zero, true);
+        }
     }
     private void SetFootRig(bool value)
     {
@@ -267,6 +282,18 @@ public class ActiveRagdoll : MonoBehaviour
     #endregion
 
     #region HIP
+    public bool SetHipToGroundPos()
+    {
+        if (Physics.Raycast(hip.transform.position, Vector3.down, out RaycastHit hipToGround, 1, groundLayer))
+        {
+            hipToGroundPos = hipToGround.point;
+
+            return true;
+        }
+
+        return false;
+    }
+
     private void SetHipConstraint(bool turnOn)
     {
         if (turnOn)
@@ -324,12 +351,13 @@ public class ActiveRagdoll : MonoBehaviour
         {
             xDrive.positionSpring = 1000f;
             yzDrive.positionSpring = 1000f;
+            SetHipToGroundPos();
         }
-        else
-        {
-            xDrive.positionSpring = 0f;
-            yzDrive.positionSpring = 0f;
-        }
+        //else
+        //{
+        //    xDrive.positionSpring = 0f;
+        //    yzDrive.positionSpring = 0f;
+        //}
 
         spine.angularXDrive = xDrive;
         spine.angularYZDrive = yzDrive;
