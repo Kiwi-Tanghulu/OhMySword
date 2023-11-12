@@ -68,7 +68,11 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
         try
         {
             Gizmos.color = gizmoColor;
-            Gizmos.DrawWireMesh(GetComponent<MeshFilter>().mesh, 0, transform.position, transform.rotation, transform.localScale);
+            if(TryGetComponent<MeshFilter>(out MeshFilter filter))
+            {
+                if(filter.sharedMesh != null)
+                    Gizmos.DrawWireMesh(filter.sharedMesh, 0, transform.position, transform.rotation, transform.localScale);
+            }
         }catch {}
     }
 

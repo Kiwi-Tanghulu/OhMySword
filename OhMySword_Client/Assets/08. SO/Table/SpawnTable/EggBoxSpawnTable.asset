@@ -10,15 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71d965427ea3ba546943aac321a92243, type: 3}
-  m_Name: StoneBoxSpawnTable
+  m_Name: EggBoxSpawnTable
   m_EditorClassIdentifier: 
   table:
-  - {x: -2, y: -15, z: -41}
-  - {x: -17, y: -12.8, z: -34}
-  - {x: -47, y: -12.6, z: -13}
-  - {x: 5, y: -19.5, z: -17}
-  - {x: 12, y: -24.7, z: 1}
-  - {x: 33, y: -25, z: -12}
-  - {x: -9, y: -16, z: -48}
-  - {x: -28, y: -12.5, z: -20}
-  - {x: 17, y: -24.5, z: -9}
+  - {x: -12, y: -14.5, z: -59}
+  - {x: -35.5, y: -11.5, z: -17}
+  - {x: 0, y: -23.5, z: -2}
+  - {x: -7.5, y: -18, z: -19}

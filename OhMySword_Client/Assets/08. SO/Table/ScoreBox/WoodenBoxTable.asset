@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 894d8dfd6519f59458df1bb94f0b5407, type: 3}
-  m_Name: WoodenTable
+  m_Name: WoodenBoxTable
   m_EditorClassIdentifier: 
   score: 138
   table:
