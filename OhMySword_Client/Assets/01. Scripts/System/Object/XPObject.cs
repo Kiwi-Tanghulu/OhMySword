@@ -32,12 +32,12 @@ public class XPObject : SyncableObject, IDamageable
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            Vector3 err = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
-            err.y = 0;
-            SetPosition(transform.position + err);
-        }
+        // if(Input.GetKeyDown(KeyCode.A))
+        // {
+        //     Vector3 err = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
+        //     err.y = 0;
+        //     SetPosition(transform.position + err);
+        // }
     }
 
     protected override void FixedUpdate()

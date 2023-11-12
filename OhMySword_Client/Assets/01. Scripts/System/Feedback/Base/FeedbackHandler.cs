@@ -15,8 +15,8 @@ namespace Base.Feedback
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space))
-                PlayFeedback();
+            // if(Input.GetKeyDown(KeyCode.Space))
+            //     PlayFeedback();
         }
 
         public void PlayFeedback()
