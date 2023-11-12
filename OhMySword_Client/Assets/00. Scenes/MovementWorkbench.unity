@@ -4668,12 +4668,6 @@ MonoBehaviour:
   hipElasticitySpeed: 1
   footToeOffset: 1
   hipHeight: 0.55
-  footMovement:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   footAlignTime: 0.5
   footAlignDelayTime: 1
   footAlignDistance: 0.3
@@ -15299,12 +15293,6 @@ MonoBehaviour:
   hipElasticitySpeed: 1
   footToeOffset: 1
   hipHeight: 0.55
-  footMovement:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   footAlignTime: 0.5
   footAlignDelayTime: 1
   footAlignDistance: 0.3
@@ -21783,12 +21771,6 @@ MonoBehaviour:
   hipElasticitySpeed: 1
   footToeOffset: 0.2
   hipHeight: 0.55
-  footMovement:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   footAlignTime: 0.5
   footAlignDelayTime: 1
   footAlignDistance: 0.3
@@ -28463,133 +28445,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewActiveRagdoll
       objectReference: {fileID: 0}
-    - target: {fileID: 3927538354332941555, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: positionSync.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3927538354332941555, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: positionSync.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4872750787184433826, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: onRotatedEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4872750787184433826, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: onRotatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: movePivotHeight
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_PostInfinity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[1].time
-      value: 0.8366669
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[2].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[1].value
-      value: 0.5836305
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[2].value
-      value: 0.003829956
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[0].inSlope
-      value: 0.69756615
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[1].inSlope
-      value: -1.4261189
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[2].inSlope
-      value: -3.549804
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[0].outSlope
-      value: 0.69756615
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[1].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[1].outSlope
-      value: -1.4261189
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[2].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[2].outSlope
-      value: -3.549804
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[0].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[1].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[0].tangentMode
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[1].tangentMode
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939366540002339203, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: footMovement.m_Curve.Array.data[2].tangentMode
-      value: 34
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3464172125119660786, guid: b70ffd03f72ec934ba2cd5a921277837, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -34659,12 +34515,6 @@ MonoBehaviour:
   hipElasticitySpeed: 1
   footToeOffset: 1
   hipHeight: 0.55
-  footMovement:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   footAlignTime: 0.5
   footAlignDelayTime: 1
   footAlignDistance: 0.3
