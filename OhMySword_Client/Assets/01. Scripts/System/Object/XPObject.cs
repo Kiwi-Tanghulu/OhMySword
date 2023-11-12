@@ -22,7 +22,7 @@ public class XPObject : SyncableObject, IDamageable
     {
         base.Awake();
         trail = transform.Find("Trail")?.GetComponent<TrailRenderer>();
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = transform.Find("Model").GetComponent<MeshRenderer>();
     }
 
     private void Start()
@@ -75,7 +75,10 @@ public class XPObject : SyncableObject, IDamageable
         base.SetPosition(position, false);
 
         if(immediately)
+        {
+            transform.position = position;
             return;
+        }
 
         trail.enabled = true;
 

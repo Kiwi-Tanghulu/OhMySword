@@ -1,7 +1,4 @@
 using Base.Network;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class PlayerFeedback : MonoBehaviour

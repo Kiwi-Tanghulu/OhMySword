@@ -60,6 +60,7 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
     public void SetPosition(ushort posIndex)
     {
         SetPosition(positionTable[posIndex], true);
+
         OnMovedEvent?.Invoke();
     }
 
