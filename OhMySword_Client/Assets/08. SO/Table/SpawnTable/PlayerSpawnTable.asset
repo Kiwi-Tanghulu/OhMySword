@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: PlayerSpawnTable
   m_EditorClassIdentifier: 
   table:
-  - {x: -6, y: -15, z: -50}
+  - {x: 27, y: -25, z: -16}
+  - {x: 30, y: -25, z: -7}
+  - {x: 17, y: -24.7, z: -5}

@@ -5,10 +5,8 @@ namespace Server
     public class DEFINE
     {
         public static readonly Vector3[] PlayerSpawnTable = { new Vector3(-6, -15, -50) };
-        public static readonly Vector3[] ScoreBoxSpawnTable = { new Vector3(0, 0, 0) };
 
-        public static readonly Dictionary<ushort, Vector3[]> ScoreBoxSpawnTables = new Dictionary<ushort, Vector3[]>()
-        {
+        public static readonly Dictionary<ushort, Vector3[]> ScoreBoxSpawnTables = new Dictionary<ushort, Vector3[]>() {
             [(ushort)ObjectType.StoneScoreBox] = new Vector3[] {
                 new Vector3(-2, -15, -41),
                 new Vector3(-17, -12.8f, -34),
@@ -37,7 +35,7 @@ namespace Server
         };
 
         public static readonly Dictionary<ushort, ScoreBoxDropTable> XPSpawnTable = new Dictionary<ushort, ScoreBoxDropTable>() {
-            [(ushort)ObjectType.WoodenScoreBox] = new ScoreBoxDropTable(138, new Vector3[] {
+            [(ushort)ObjectType.StoneScoreBox] = new ScoreBoxDropTable(138, new Vector3[] {
                 new Vector3(0, 1, 0),
                 new Vector3(-1, 1, 1),
                 new Vector3(1, 1, 1),
@@ -50,6 +48,20 @@ namespace Server
                 new Vector3(0, 1, -2),
                 new Vector3(-2, 1, -2),
                 new Vector3(-2, 1, 0)
+            }),
+            [(ushort)ObjectType.WoodenScoreBox] = new ScoreBoxDropTable(441, new Vector3[] {
+                new Vector3(2, 1, 0),
+                new Vector3(0, 1, 2),
+                new Vector3(- 2, 1, 0),
+                new Vector3(0, 1, -2),
+                new Vector3(1, 1, 1),
+                new Vector3(-1, 1, 1),
+                new Vector3(-1, 1, -1),
+                new Vector3(1, 1, -1),
+                new Vector3(0, 1, 0)
+            }),
+            [(ushort)ObjectType.EggScoreBox] = new ScoreBoxDropTable(1000, new Vector3[] {
+                new Vector3(0, 1, 0)
             }),
         };
 
