@@ -27,6 +27,7 @@ public class PlayerAttack : MonoBehaviour
             return;
 
         weapon.SetCollision(true);
+        weapon.SetTrail(true);
         StartCoroutine(AttackCo());
     }
 
@@ -35,7 +36,9 @@ public class PlayerAttack : MonoBehaviour
         isAttack = true;
         yield return StartCoroutine(ragdoll.SetRightArmRigTarget(attackTrm, attackTime));
         weapon.SetCollision(false);
+        //weapon.SetTrail(false);
         yield return StartCoroutine(ragdoll.SetRightArmRigTarget(nonattackTrm, recoveryTime));
         isAttack = false;
+        weapon.ResetAttackedList();
     }
 }
