@@ -12,6 +12,9 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
     [Space(10f)]
     [SerializeField] UnityEvent OnMovedEvent;
 
+    [Space(10f)]
+    [SerializeField] Color gizmoColor;
+
     public override void OnCreated()
     {
         
@@ -57,4 +60,17 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
         SetPosition(positionTable[posIndex], true);
         OnMovedEvent?.Invoke();
     }
+
+    #if UNITY_EDITOR
+
+    private void OnDrawGizmos()
+    {
+        try
+        {
+            Gizmos.color = gizmoColor;
+            Gizmos.DrawWireMesh(GetComponent<MeshFilter>().mesh, 0, transform.position, transform.rotation, transform.localScale);
+        }catch {}
+    }
+
+    #endif
 }
