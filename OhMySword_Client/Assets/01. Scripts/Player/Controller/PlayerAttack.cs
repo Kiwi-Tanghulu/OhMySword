@@ -39,6 +39,5 @@ public class PlayerAttack : MonoBehaviour
         weapon.SetTrail(false);
         yield return StartCoroutine(ragdoll.SetRightArmRigTarget(nonattackTrm, recoveryTime));
         isAttack = false;
-        weapon.ResetAttackedList();
     }
 }

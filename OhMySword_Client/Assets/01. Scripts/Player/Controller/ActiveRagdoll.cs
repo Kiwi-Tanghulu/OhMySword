@@ -116,7 +116,7 @@ public class ActiveRagdoll : MonoBehaviour
     private bool CheckGround()
     {
         beforeIsGround = isGround;
-        isGround = Physics.Raycast(hip.transform.position, Vector3.down, hipHeight + 0.5f, groundLayer);
+        isGround = Physics.Raycast(hip.transform.position, Vector3.down, hipHeight + 1f, groundLayer);
 
         return isGround;
     }

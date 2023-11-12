@@ -32,12 +32,12 @@ public class XPObject : SyncableObject, IDamageable
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            Vector3 err = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
-            err.y = 0;
-            SetPosition(transform.position + err);
-        }
+        // if(Input.GetKeyDown(KeyCode.A))
+        // {
+        //     Vector3 err = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
+        //     err.y = 0;
+        //     SetPosition(transform.position + err);
+        // }
     }
 
     protected override void FixedUpdate()
@@ -74,7 +74,14 @@ public class XPObject : SyncableObject, IDamageable
     {
         base.SetPosition(position, false);
 
+        if(immediately)
+            return;
+
+        trail.enabled = true;
+
         float factor = 1f + xpAmount.ToString().Length * 0.5f;
-        transform.DOJump(position, jumpPower * factor, 1, jumpDuration).SetEase(easeCurve);
+        transform.DOJump(position, jumpPower * factor, 1, jumpDuration).SetEase(easeCurve).OnComplete(() => {
+            trail.enabled = false;
+        });
     }
 }
