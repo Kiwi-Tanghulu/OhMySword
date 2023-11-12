@@ -10,7 +10,7 @@ namespace OhMySword.Player
         private PlayerMove movement;
 
         public UnityEvent<SyncableObject> OnHitEvent;
-        public UnityEvent<SyncableObject> OnDieEvent;
+        public UnityEvent OnDieEvent;
 
         public override void OnCreated()
         {
@@ -38,7 +38,7 @@ namespace OhMySword.Player
 
         public void Hit(SyncableObject attacker)
         {
-            
+            OnHitEvent?.Invoke(attacker);
         }
 
         public void GetXP()
@@ -48,7 +48,7 @@ namespace OhMySword.Player
 
         public void Die()
         {
-            
+            OnDieEvent?.Invoke();
         }
 
         public override void SetPosition(Vector3 position, bool immediately = false)
