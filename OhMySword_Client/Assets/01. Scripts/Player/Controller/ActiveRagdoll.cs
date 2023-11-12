@@ -29,19 +29,17 @@ public class ActiveRagdoll : MonoBehaviour
     [field: SerializeField]
     public bool bodyLerping { get; set; } = true;
     [field: SerializeField]
-    public bool armLerping { get; set; } = true;
-    [field: SerializeField]
     public bool footMove { get; set; } = true;
-    [SerializeField] private bool isGround = true;
+    public bool isGround = true;
     private bool beforeIsGround = true;
 
     [Space]
-    [SerializeField] private Rigidbody hip;
+    [SerializeField] public Rigidbody hip;
     [SerializeField] private Transform hipAncher;
 
     [Space]
     [SerializeField] private ConfigurableJoint spine;
-    [SerializeField] private MultiRotationConstraint spineRig;
+    [SerializeField] private Rigidbody spineRb;
 
     [Space]
     [SerializeField] private Foot leftFoot;
@@ -359,6 +357,10 @@ public class ActiveRagdoll : MonoBehaviour
     #endregion
 
     #region SPINE
+    public void AddForceToSpine(Vector3 power)
+    {
+        spineRb.AddForce(power, ForceMode.Impulse);
+    }
     #endregion
 
 #if UNITY_EDITOR

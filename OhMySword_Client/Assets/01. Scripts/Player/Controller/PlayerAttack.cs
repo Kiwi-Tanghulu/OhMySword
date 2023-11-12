@@ -21,7 +21,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
-        if (isAttack)
+        if (isAttack || !ragdoll.isGround)
             return;
 
         StartCoroutine(AttackCo());
