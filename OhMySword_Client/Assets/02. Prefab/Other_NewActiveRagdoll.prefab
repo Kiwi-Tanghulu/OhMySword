@@ -2473,7 +2473,7 @@ MonoBehaviour:
   nonattackTrm: {fileID: 850118998164830825}
   attackTrm: {fileID: 937230041968785850}
   isAttack: 0
-  weapon: {fileID: 0}
+  weapon: {fileID: 8771867038952170017}
 --- !u!114 &3065365054333478353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5668,3 +5668,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2899655607641289625}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8771867038952170017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5874466263381447096, guid: 33ad2e8cf2cf9d54b8a8727e6019992b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2899655607641289625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc3fdd9938717247964afab5a01e907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

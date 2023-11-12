@@ -10798,12 +10798,6 @@ Transform:
   - {fileID: 1201598482}
   m_Father: {fileID: 1241337453}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!198 &859386233 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 32477438380838508, guid: b70ffd03f72ec934ba2cd5a921277837,
-    type: 3}
-  m_PrefabInstance: {fileID: 2445964739917192578}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &863711269
 GameObject:
   m_ObjectHideFlags: 0
@@ -28078,11 +28072,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 148319030800601431, guid: b70ffd03f72ec934ba2cd5a921277837,
-        type: 3}
-      propertyPath: trail
-      value: 
-      objectReference: {fileID: 859386233}
     - target: {fileID: 2573380749204417745, guid: b70ffd03f72ec934ba2cd5a921277837,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32388,11 +32377,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Other_NewActiveRagdoll
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162437992098376553, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6377962062224862077, guid: 7303126d934f3d345bd06bc920e270c1,
         type: 3}
