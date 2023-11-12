@@ -4,7 +4,22 @@ namespace Server
 {
     public class DEFINE
     {
-        public static readonly Vector3[] PlayerSpawnTable = { new Vector3(-6, -15, -50) };
+        public static readonly Vector3[] PlayerSpawnTable = {
+            new Vector3(27f, -25f, -16f),
+            new Vector3(30f, -25f, -7f),
+            new Vector3(17f, -24.7f, -5f),
+            new Vector3(4f, -24.5f, -3f),
+            new Vector3(10f, -19.5f, -26f),
+            new Vector3(-1f, -19.5f, -14f),
+            new Vector3(-4f, -15f, -45f),
+            new Vector3(7f, -15.7f, -36f),
+            new Vector3(-20f, -16f, -45f),
+            new Vector3(-17f, -12.9f, -38f),
+            new Vector3(-26f, -12.5f, -24f),
+            new Vector3(-15f, -12.9f, -10f),
+            new Vector3(-40f, -12.9f, -9f),
+            new Vector3(-40f, -12.9f, -33f),
+        };
 
         public static readonly Dictionary<ushort, Vector3[]> ScoreBoxSpawnTables = new Dictionary<ushort, Vector3[]>() {
             [(ushort)ObjectType.StoneScoreBox] = new Vector3[] {
