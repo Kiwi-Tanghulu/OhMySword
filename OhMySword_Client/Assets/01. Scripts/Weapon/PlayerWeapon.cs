@@ -27,7 +27,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         col = GetComponent<BoxCollider>();
         SetCollision(false);
-        //SetTrail(false);
+        SetTrail(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,7 +58,10 @@ public class PlayerWeapon : MonoBehaviour
         if (value)
             trail.Play();
         else
+        {
             trail.Stop();
+            trail.Simulate(0);
+        }
     }
 
     public void SetSwordSize() //나중에 특정 구간에서 칼이 바뀐다면 채워넣어야함
