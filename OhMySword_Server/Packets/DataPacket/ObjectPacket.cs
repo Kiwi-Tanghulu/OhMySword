@@ -24,6 +24,7 @@ namespace Packets
         {
             ushort process = 0;
             process += PacketUtility.ReadUShortData(buffer, offset + process, out this.objectID);
+            process += PacketUtility.ReadUShortData(buffer, offset + process, out this.objectType);
             process += PacketUtility.ReadDataPacket<VectorPacket>(buffer, offset + process, out this.position);
             process += PacketUtility.ReadDataPacket<VectorPacket>(buffer, offset + process, out this.rotation);
 
@@ -34,6 +35,7 @@ namespace Packets
         {
             ushort process = 0;
             process += PacketUtility.AppendUShortData(this.objectID, buffer, offset + process);
+            process += PacketUtility.AppendUShortData(this.objectType, buffer, offset + process);
             process += PacketUtility.AppendDataPacket<VectorPacket>(this.position, buffer, offset + process);
             process += PacketUtility.AppendDataPacket<VectorPacket>(this.rotation, buffer, offset + process);
 

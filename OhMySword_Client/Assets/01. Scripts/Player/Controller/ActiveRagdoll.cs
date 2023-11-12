@@ -115,7 +115,7 @@ public class ActiveRagdoll : MonoBehaviour
     private bool CheckGround()
     {
         beforeIsGround = isGround;
-        isGround = Physics.Raycast(hip.transform.position, Vector3.down, hipHeight + 0.5f, groundLayer);
+        isGround = Physics.Raycast(hip.transform.position, Vector3.down, hipHeight + 1f, groundLayer);
 
         return isGround;
     }
@@ -325,11 +325,11 @@ public class ActiveRagdoll : MonoBehaviour
             xDrive.positionSpring = 1000f;
             yzDrive.positionSpring = 1000f;
         }
-        else
-        {
-            xDrive.positionSpring = 0f;
-            yzDrive.positionSpring = 0f;
-        }
+        // else
+        // {
+        //     xDrive.positionSpring = 0f;
+        //     yzDrive.positionSpring = 0f;
+        // }
 
         spine.angularXDrive = xDrive;
         spine.angularYZDrive = yzDrive;
