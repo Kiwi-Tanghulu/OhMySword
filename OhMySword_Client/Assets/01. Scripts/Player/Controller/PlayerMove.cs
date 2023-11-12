@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 moveDir;
     private Vector3 velocity;
     [SerializeField] private float moveSpeed;
-    [SerializeField] Transform hip;
+    [SerializeField] Rigidbody hip;
 
     //other client
     private float moveDistance;
