@@ -43,7 +43,6 @@ public class PlayerMove : MonoBehaviour
             ragdoll.SetVelocity(moveDir * moveSpeed);
         else
             ragdoll.SetVelocity(Vector3.zero);
-
         onMovedEvent?.Invoke(hip.transform.position);
     }
     #endregion
