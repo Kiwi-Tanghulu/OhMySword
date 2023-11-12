@@ -7,6 +7,7 @@ namespace Server
         None = 0,
         WoodenScoreBox,
         StoneScoreBox,
+        EggScoreBox,
         Player,
         XPObject
     }
