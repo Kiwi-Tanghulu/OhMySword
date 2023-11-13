@@ -35,6 +35,7 @@ namespace Packets
             ushort process = 0;
 
             process += sizeof(ushort);
+            process += PacketUtility.AppendUShortData(this.ID, buffer, process);
             process += PacketUtility.AppendUShortData(this.objectID, buffer, process);
             process += PacketUtility.AppendUShortData(this.animationType, buffer, process);
             PacketUtility.AppendUShortData(process, buffer, 0);
