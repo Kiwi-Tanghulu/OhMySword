@@ -52,7 +52,6 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
             ) as XPObject;
 
             xp.SetXP(digit);
-            xp.SetPosition(transform.position, true);
             xp.SetPosition(transform.position + dropTable[index], false);
         });
     }
@@ -60,7 +59,6 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
     public void SetPosition(ushort posIndex)
     {
         SetPosition(positionTable[posIndex], true);
-
         OnMovedEvent?.Invoke();
     }
 

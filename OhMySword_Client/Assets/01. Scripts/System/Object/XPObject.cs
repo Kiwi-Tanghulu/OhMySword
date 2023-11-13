@@ -1,5 +1,6 @@
 using Base.Network;
 using DG.Tweening;
+using Packets;
 using UnityEngine;
 
 public class XPObject : SyncableObject, IDamageable
@@ -67,7 +68,12 @@ public class XPObject : SyncableObject, IDamageable
 
     public void OnDamage(int damage, GameObject performer, Vector3 point)
     {
-        
+        SyncableObject attacker = performer.GetComponent<SyncableObject>();
+        if (attacker == null)
+            return;
+
+        C_AttackPacket attackPacket = new C_AttackPacket((ushort)ObjectType.XPObject, ObjectID, attacker.ObjectID, (ushort)damage);
+        NetworkManager.Instance.Send(attackPacket);
     }
 
     public override void SetPosition(Vector3 position, bool immediately = false)

@@ -58,7 +58,7 @@ public class PlayerMove : MonoBehaviour
         targetPos = pos;
         moveDir = targetPos - hip.transform.position;
         moveDistance = moveDir.magnitude;
-        moveDir = hipAnchor.rotation * moveDir.normalized;
+        moveDir.Normalize();
 
         //if (Vector3.Distance(pos, hip.transform.position) < 0.1f)
         //    return;

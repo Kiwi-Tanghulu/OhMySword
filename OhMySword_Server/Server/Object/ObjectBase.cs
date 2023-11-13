@@ -20,7 +20,10 @@ namespace Server
         public void BroadcastDestroy()
         {
             S_ObjectDestroyPacket broadcastPacket = new S_ObjectDestroyPacket(objectID);
-            room?.AddJob(() => room?.Broadcast(broadcastPacket));
+            room?.AddJob(() => {
+                room?.ReleaseObject(this);
+                room?.Broadcast(broadcastPacket);
+            });
         }
 
         public static implicit operator ObjectPacket(ObjectBase right)
