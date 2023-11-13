@@ -94,11 +94,11 @@ namespace Server
         public static void C_AnimationPacket(Session session, Packet packet)
         {
             ClientSession clientSession = session as ClientSession;
-            C_AnimationPacket animationPackeet = packet as C_AnimationPacket;
+            C_AnimationPacket animationPacket = packet as C_AnimationPacket;
             GameRoom room = clientSession.Room;
 
-            S_AnimationPacket broadcastPacket = animationPackeet;
-            room.AddJob(() => room.Broadcast(broadcastPacket));
+            S_AnimationPacket broadcastPacket = animationPacket;
+            room.AddJob(() => room.Broadcast(broadcastPacket, animationPacket.objectID));
         }
     }
 }

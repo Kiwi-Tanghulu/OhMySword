@@ -128,13 +128,7 @@ public class PacketHandler
     public static void S_AnimationPacket(Session session, Packet packet)
     {
         S_AnimationPacket animationPacket = packet as S_AnimationPacket;
-        SyncableObject animatingTarget = null;
-
-        if((ObjectType)animationPacket.objectType == ObjectType.Player)
-            animatingTarget = RoomManager.Instance.GetPlayer(animationPacket.objectID);
-        else
-            animatingTarget = RoomManager.Instance.GetObject(animationPacket.objectID);
-
-        animatingTarget?.PlayAnimation(animationPacket.animationHash);
+        SyncableObject animatingTarget = RoomManager.Instance.GetPlayer(animationPacket.objectID);
+        animatingTarget?.PlayAnimation(animationPacket.animationType);
     }
 }
