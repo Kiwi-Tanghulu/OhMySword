@@ -30,6 +30,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //
         if(other.TryGetComponent<IDamageable>(out IDamageable id))
             id.OnDamage(1, transform.root.gameObject, Vector3.zero);
     }
