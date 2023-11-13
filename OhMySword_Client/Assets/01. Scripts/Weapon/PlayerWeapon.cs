@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    [Range(0.001f,0.05f)]
+    [Range(0.001f,0.2f)]
     [SerializeField] private float scoreSize; // ���ھ�� ������� ����! ��) 0.01�̶�� 1���� 0.01�� Ŀ�� 100���̶�� 1�� Ŀ����
 
     [SerializeField] private Transform swordPivot;
