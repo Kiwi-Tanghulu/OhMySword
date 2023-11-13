@@ -40,7 +40,11 @@ namespace OhMySword.Feedback
             seq.Append(target.DOLocalMoveY(origin.y + positionUpOffset, duration * 0.7f).SetEase(positionUpEase));
             seq.Append(target.DOLocalMoveY(origin.y + positionDownOffset, duration * 0.2f).SetEase(positionDownEase));
             seq.Append(target.DOLocalMoveY(origin.y + finalOffset, duration * 0.1f).SetEase(finalEase));
-            seq.AppendCallback(() => target.localPosition = origin);
+            seq.AppendCallback(() => {
+                target.localPosition = origin;
+                seq.Kill();
+                seq = null;
+            });
         }
 
         public override void FinishFeedback()
