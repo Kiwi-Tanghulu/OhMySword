@@ -5,8 +5,6 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance = null;
 
-    
-
 	private Transform mainCanvas = null;
     public Transform MainCanvas {
         get {
@@ -31,6 +29,15 @@ public class UIManager : MonoBehaviour
             if(chattingPanel == null)
                 chattingPanel = MainCanvas?.Find("ChattingPanel")?.GetComponent<ChattingPanel>();
             return chattingPanel;
+        }
+    }
+
+    private AudioSource uiAudioPlayer = null;
+    public AudioSource UIAudioPlayer {
+        get {
+            if(uiAudioPlayer == null)
+                uiAudioPlayer = Camera.main?.transform.Find("UIAudioPlayer")?.GetComponent<AudioSource>();
+            return uiAudioPlayer;
         }
     }
 
