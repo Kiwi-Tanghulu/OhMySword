@@ -5812,7 +5812,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923995169254488851}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6242,7 +6242,7 @@ Transform:
   m_GameObject: {fileID: 1622135107872580969}
   serializedVersion: 2
   m_LocalRotation: {x: 0.06631572, y: 0.029468225, z: -0.02272007, w: 0.99710464}
-  m_LocalPosition: {x: 0.39749134, y: 1.2443243, z: 0.26724795}
+  m_LocalPosition: {x: 0.39749146, y: 1.2443243, z: 0.26724982}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11839,9 +11839,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7482743338307977203}
   - component: {fileID: 5133962722497566431}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Hitbox
-  m_TagString: Hitbox
+  m_TagString: Other_Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
