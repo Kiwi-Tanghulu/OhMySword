@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] UnityEvent<Vector3> onMovedEvent;
 
     [SerializeField] private Rigidbody hip;
+    [SerializeField] private Transform hipAnchor;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private bool canMove = true;
@@ -33,8 +34,7 @@ public class PlayerMove : MonoBehaviour
     #region MYMOVE
     public void SetMoveDirection(Vector3 input)
     {
-        prevMoveDir = moveDir;
-        moveDir = hip.transform.rotation * input.normalized;
+        moveDir = hipAnchor.rotation * input.normalized;
     }
 
     public void Move()
@@ -43,23 +43,11 @@ public class PlayerMove : MonoBehaviour
             ragdoll.SetVelocity(moveDir * moveSpeed);
         else
             ragdoll.SetVelocity(Vector3.zero);
+
         onMovedEvent?.Invoke(hip.transform.position);
     }
     #endregion
 
-    public void Stun(float time)
-    {
-        StartCoroutine(StunCo(time));
-    }
-
-    private IEnumerator StunCo(float time)
-    {
-        canMove = false;
-
-        yield return new WaitForSeconds(time);
-
-        canMove = true;
-    }
     #region OTHER MOVE
     public void SetTargetPosition(Vector3 pos)
     {
@@ -70,7 +58,7 @@ public class PlayerMove : MonoBehaviour
         targetPos = pos;
         moveDir = targetPos - hip.transform.position;
         moveDistance = moveDir.magnitude;
-        moveDir.Normalize();
+        moveDir = hipAnchor.rotation * moveDir.normalized;
 
         //if (Vector3.Distance(pos, hip.transform.position) < 0.1f)
         //    return;

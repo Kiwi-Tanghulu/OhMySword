@@ -124,7 +124,6 @@ public class ActiveRagdoll : MonoBehaviour
 
     public void SetVelocity(Vector3 velocity)
     {
-        velocity = hipAncher.rotation * velocity;
         hip.velocity = new Vector3(velocity.x, hip.velocity.y, velocity.z);
         moveDir = velocity.normalized;
     }
