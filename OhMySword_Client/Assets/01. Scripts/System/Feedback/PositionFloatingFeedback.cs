@@ -33,6 +33,7 @@ namespace OhMySword.Feedback
         public override void CreateFeedback()
         {
             origin = target.localPosition;
+            Debug.Log($"Position Floating View From Origin : {target.localPosition}");
             target.localPosition += Vector3.down * 2f;
 
             seq = DOTween.Sequence();
@@ -46,8 +47,10 @@ namespace OhMySword.Feedback
         public override void FinishFeedback()
         {
             if (seq != null)
+            {
                 seq.Kill();
-            target.localPosition = origin;
+                target.localPosition = origin;
+            }
         }
     }
 }

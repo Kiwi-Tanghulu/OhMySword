@@ -60,7 +60,7 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
     public void SetPosition(ushort posIndex)
     {
         SetPosition(positionTable[posIndex], true);
-        Debug.Log($"Next Position : {positionTable[posIndex]} / Moved Position : {transform.position}");
+        Debug.Log($"Global Position : {transform.position} / Local Position : {transform.localPosition}");
         OnMovedEvent?.Invoke();
     }
 
