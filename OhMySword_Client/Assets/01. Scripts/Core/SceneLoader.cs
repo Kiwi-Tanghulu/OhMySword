@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +28,7 @@ public class SceneLoader : MonoBehaviour
             yield return delay;
         }
 
+        yield return null;
         onCompleted?.Invoke();
     }
 }
