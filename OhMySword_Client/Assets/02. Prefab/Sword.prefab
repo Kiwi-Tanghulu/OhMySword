@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc3fdd9938717247964afab5a01e907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreSize: 0.01
+  scoreSize: 0.08
   swordPivot: {fileID: 275128200254586748}
   trail: {fileID: 6051648917759938179}
 --- !u!65 &3161073084396160682
