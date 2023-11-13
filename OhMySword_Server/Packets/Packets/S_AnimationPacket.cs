@@ -8,16 +8,14 @@ namespace Packets
         public override ushort ID => (ushort)PacketID.S_AnimationPacket;
 
         public ushort objectID;
-        public ushort objectType;
-        public int animationHash;
+        public ushort animationType;
 
         public S_AnimationPacket() { }
 
-        public S_AnimationPacket(ushort objectID, ushort objectType, int animationHash)
+        public S_AnimationPacket(ushort objectID, ushort animationType)
         {
             this.objectID = objectID;
-            this.objectType = objectType;
-            this.animationHash = animationHash;
+            this.animationType = animationType;
         }
 
         public override void Deserialize(ArraySegment<byte> buffer)
@@ -28,8 +26,7 @@ namespace Packets
             process += sizeof(ushort);
 
             process += PacketUtility.ReadUShortData(buffer, process, out objectID);
-            process += PacketUtility.ReadUShortData(buffer, process, out objectType);
-            process += PacketUtility.ReadIntData(buffer, process, out animationHash);
+            process += PacketUtility.ReadUShortData(buffer, process, out animationType);
         }
 
         public override ArraySegment<byte> Serialize()
@@ -39,14 +36,13 @@ namespace Packets
 
             process += sizeof(ushort);
             process += PacketUtility.AppendUShortData(this.objectID, buffer, process);
-            process += PacketUtility.AppendUShortData(this.objectType, buffer, process);
-            process += PacketUtility.AppendIntData(this.animationHash, buffer, process);
+            process += PacketUtility.AppendUShortData(this.animationType, buffer, process);
             PacketUtility.AppendUShortData(process, buffer, 0);
 
             return UniqueBuffer.Close(process);
         }
 
         public static implicit operator C_AnimationPacket(S_AnimationPacket right)
-            => new C_AnimationPacket(right.objectID, right.objectType, right.animationHash);
+            => new C_AnimationPacket(right.objectID, right.animationType);
     }
 }
