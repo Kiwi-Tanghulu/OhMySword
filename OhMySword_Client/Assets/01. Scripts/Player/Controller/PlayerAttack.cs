@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [field: SerializeField]
+    public bool canAttack { get; set; } = true;
+
     private ActiveRagdoll ragdoll;
 
     [SerializeField] private float attackTime;
@@ -23,7 +26,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
-        if (isAttack || !ragdoll.isGround)
+        if (isAttack || !ragdoll.isGround || !canAttack)
             return;
 
         weapon.SetCollision(true);

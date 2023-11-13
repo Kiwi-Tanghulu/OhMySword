@@ -5,6 +5,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance = null;
 
+    
+
 	private Transform mainCanvas = null;
     public Transform MainCanvas {
         get {
@@ -31,4 +33,6 @@ public class UIManager : MonoBehaviour
             return chattingPanel;
         }
     }
+
+    public bool IsChatting = false;
 }

@@ -21,9 +21,13 @@ public class PlayerWeapon : MonoBehaviour
     private BoxCollider col;
     [SerializeField] private ParticleSystem trail;
 
-    private void Start()
+    private void Awake()
     {
         col = GetComponent<BoxCollider>();
+    }
+
+    private void OnEnable()
+    {
         SetCollision(false);
         SetTrail(false);
     }

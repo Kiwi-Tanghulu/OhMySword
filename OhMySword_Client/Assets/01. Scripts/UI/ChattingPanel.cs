@@ -43,5 +43,10 @@ namespace OhMySword.UI
             textField.text = "";
             textField.ActivateInputField();
         }
+
+        public void IsChat(bool value)
+        {
+            UIManager.Instance.IsChatting = value;
+        }
     }
 }

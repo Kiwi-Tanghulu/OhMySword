@@ -14,6 +14,10 @@ namespace OhMySword.Player
         public UnityEvent<SyncableObject> OnHitEvent;
         public UnityEvent OnDieEvent;
 
+        public UnityEvent<int> SetAnimation;
+
+        public TMPro.TextMeshPro nameTag;
+
         public string nickname;
 
         protected override void Awake()
@@ -35,7 +39,8 @@ namespace OhMySword.Player
 
         public void SetNickname(string nickname)
         {
-            this.nickname = nickname;   
+            this.nickname = nickname;  
+            nameTag.text = nickname;
         }
 
         public void OnDamage(int damage, GameObject performer, Vector3 point)
@@ -79,6 +84,12 @@ namespace OhMySword.Player
         {
             // 여기에 로테이션
             view?.SetRotation(rotation);
+        }
+
+        public override void PlayAnimation(ushort animationType)
+        {
+            Debug.Log(2);
+            SetAnimation?.Invoke(animationType);
         }
     }
 }
