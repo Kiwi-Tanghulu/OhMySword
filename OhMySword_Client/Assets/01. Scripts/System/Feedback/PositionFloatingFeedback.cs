@@ -46,8 +46,10 @@ namespace OhMySword.Feedback
         public override void FinishFeedback()
         {
             if (seq != null)
+            {
                 seq.Kill();
-            target.localPosition = origin;
+                target.localPosition = origin;
+            }
         }
     }
 }
