@@ -10,7 +10,7 @@ public class PlayAudioCallback : MonoBehaviour
         if(player == null)
             return;
         
-        AudioManager.Instance.PlayerAudio(clipName, player, true);
+        AudioManager.Instance.PlayAudio(clipName, player, true);
     }
 
     public void PlayOneShot(string clipName)
@@ -19,7 +19,7 @@ public class PlayAudioCallback : MonoBehaviour
         if(player == null)
             return;
 
-        AudioManager.Instance.PlayerAudio(clipName, player, true);
+        AudioManager.Instance.PlayAudio(clipName, player, true);
     }
 
     public void PlayAudio()

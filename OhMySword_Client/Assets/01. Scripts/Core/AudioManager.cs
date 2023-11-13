@@ -20,7 +20,7 @@ public class AudioManager
             RegisterAudio(clipList[i]);
     }
 
-    public void PlayerAudio(string clipName, AudioSource player, bool oneshot = false)
+    public void PlayAudio(string clipName, AudioSource player, bool oneshot = false)
     {
         if(clips.ContainsKey(clipName) == false)
             return;

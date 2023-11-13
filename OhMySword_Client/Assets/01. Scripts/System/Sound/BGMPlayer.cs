@@ -24,7 +24,7 @@ public class BGMPlayer : MonoBehaviour
 
     public void PlayBGM()
     {
-        AudioManager.Instance.PlayerAudio(bgmNames.PickRandom(), player);
+        AudioManager.Instance.PlayAudio(bgmNames.PickRandom(), player);
         StartCoroutine(DelayCoroutine(player.clip.length, PlayBGM));
     }
 

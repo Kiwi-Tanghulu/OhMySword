@@ -38,12 +38,12 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
 
     public void Hit(SyncableObject attacker)
     {
-        AudioManager.Instance.PlayerAudio("Hit", audioPlayer, true);
+        AudioManager.Instance.PlayAudio("Hit", audioPlayer, true);
     }
 
     public void CreateXP(List<UShortPacket> ids)
     {
-        AudioManager.Instance.PlayerAudio("CreateXP", audioPlayer, true);
+        AudioManager.Instance.PlayAudio("CreateXP", audioPlayer, true);
         dropTable.score.ForEachDigit((digit, number, index) => {
             XPObject xp = RoomManager.Instance.AddObject(
                 ids[index], 
@@ -59,9 +59,9 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
 
     public void SetPosition(ushort posIndex)
     {
-        AudioManager.Instance.PlayerAudio("ScoreBoxBreak", audioPlayer, true);
+        AudioManager.Instance.PlayAudio("ScoreBoxBreak", audioPlayer, true);
         SetPosition(positionTable[posIndex], true);
-        AudioManager.Instance.PlayerAudio("ScoreBoxCreated", audioPlayer, true);
+        AudioManager.Instance.PlayAudio("ScoreBoxCreated", audioPlayer, true);
         OnMovedEvent?.Invoke();
     }
 

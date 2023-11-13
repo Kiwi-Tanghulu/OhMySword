@@ -59,19 +59,19 @@ namespace OhMySword.Player
         public void Hit(SyncableObject attacker)
         {
             OnHitEvent?.Invoke(attacker);
-            AudioManager.Instance.PlayerAudio("Hit", audioPlayer, true);
+            AudioManager.Instance.PlayAudio("Hit", audioPlayer, true);
         }
 
         public void GetXP(ushort amount)
         {
             playerWeapon.SetScore(amount);
-            AudioManager.Instance.PlayerAudio("GetXP", audioPlayer, true);
+            AudioManager.Instance.PlayAudio("GetXP", audioPlayer, true);
         }
 
         public void Die(SyncableObject attacker, ushort destroyCount)
         {
             OnDieEvent?.Invoke(attacker);
-            AudioManager.Instance.PlayerAudio("PlayerDie", audioPlayer, true);
+            AudioManager.Instance.PlayAudio("PlayerDie", audioPlayer, true);
         }
 
         public void DoChat(string chat)
