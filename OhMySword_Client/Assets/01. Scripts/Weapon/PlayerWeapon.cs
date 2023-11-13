@@ -19,7 +19,7 @@ public class PlayerWeapon : MonoBehaviour
     private bool isGrowing = false;
 
     private BoxCollider col;
-    [SerializeField] private ParticleSystem trail;
+    [SerializeField] private TrailRenderer trail;
 
     private void Awake()
     {
@@ -51,11 +51,14 @@ public class PlayerWeapon : MonoBehaviour
     public void SetTrail(bool value)
     {
         if (value)
-            trail.Play();
+        {
+            trail.Clear();
+            trail.enabled = true;
+        }
         else
         {
-            trail.Stop();
-            trail.Simulate(0);
+            trail.enabled = false;
+            trail.Clear();
         }
     }
 

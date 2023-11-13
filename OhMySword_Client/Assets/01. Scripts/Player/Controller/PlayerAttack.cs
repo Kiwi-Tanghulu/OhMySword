@@ -38,8 +38,8 @@ public class PlayerAttack : MonoBehaviour
     {
         isAttack = true;
         yield return StartCoroutine(ragdoll.SetRightArmRigTarget(attackTrm, attackTime));
-        weapon.SetCollision(false);
         weapon.SetTrail(false);
+        weapon.SetCollision(false);
         yield return StartCoroutine(ragdoll.SetRightArmRigTarget(nonattackTrm, recoveryTime));
         isAttack = false;
     }
