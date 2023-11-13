@@ -130,5 +130,6 @@ public class PacketHandler
         S_AnimationPacket animationPacket = packet as S_AnimationPacket;
         SyncableObject animatingTarget = RoomManager.Instance.GetPlayer(animationPacket.objectID);
         animatingTarget?.PlayAnimation(animationPacket.animationType);
+        
     }
 }
