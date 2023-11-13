@@ -1,16 +1,30 @@
 using Base.Network;
+using DG.Tweening;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerFeedback : MonoBehaviour
 {
     private ActiveRagdoll ragdoll;
     private PlayerMove move;
 
-    public float hitFeedbackPower = 100f;
+    [Header("hit")]
+    public float hitFeedbackPower = 25f;
     [SerializeField] private ParticleSystem hitEffect;
     [SerializeField] private float hitEffectPlayOffset;
     [SerializeField] private Transform hitEffectPlayPos;
-    private SyncableObject lastAttacker;
+
+    [Space]
+    [Header("die")]
+    [SerializeField] private Transform onDieLeftLegTrm;
+    [SerializeField] private Transform onDieRightLegTrm;
+    [SerializeField] private Transform onDieRightArmTrm;
+    [SerializeField] private Transform RightLegTarget;
+    [SerializeField] private Transform LeftLegTarget;
+    [SerializeField] private Transform RightArmTarget;
+    [SerializeField] private float onDieTransTime = 0.1f;
+    public UnityEvent onDie;
 
     private void Start()
     {
@@ -20,7 +34,6 @@ public class PlayerFeedback : MonoBehaviour
 
     public void HitFeedback(SyncableObject attacker)
     {
-        lastAttacker = attacker;
         Vector3 dir = (ragdoll.hip.transform.position - attacker.GetComponent<ActiveRagdoll>().hip.transform.position).normalized;
         Debug.Log("Hit");
         hitEffect.transform.position = hitEffectPlayPos.position + -dir * hitEffectPlayOffset;
@@ -29,8 +42,36 @@ public class PlayerFeedback : MonoBehaviour
         ragdoll.AddForceToSpine(dir * hitFeedbackPower);
     }
 
-    public void DieFeedback()
+    public void DieFeedback(SyncableObject attacker)
     {
-        Debug.Log("Die");
+        onDie?.Invoke();
+        Debug.Log("die");
+        Transform attackerHip = attacker.GetComponent<ActiveRagdoll>().hip.transform;
+
+        ragdoll.hip.transform.LookAt(attackerHip.position);
+
+        //die event
+        //onDie?.Invoke();    
+        StartCoroutine(OnDieCo());
+    }
+
+    private IEnumerator OnDieCo()
+    {
+        float percent = 0;
+
+        while(percent <= 1)
+        {
+            RightArmTarget.position = Vector3.Lerp(RightArmTarget.position, onDieRightArmTrm.position, percent);
+            LeftLegTarget.position = Vector3.Lerp(LeftLegTarget.position, onDieLeftLegTrm.position, percent);
+            RightLegTarget.position = Vector3.Lerp(RightLegTarget.position, onDieRightArmTrm.position, percent);
+
+            RightArmTarget.rotation = Quaternion.Lerp(RightArmTarget.rotation, onDieRightArmTrm.rotation, percent);
+            LeftLegTarget.rotation = Quaternion.Lerp(LeftLegTarget.rotation, onDieLeftLegTrm.rotation, percent);
+            RightLegTarget.rotation = Quaternion.Lerp(RightLegTarget.rotation, onDieRightArmTrm.rotation, percent);
+
+            percent += Time.deltaTime / onDieTransTime;
+
+            yield return null;
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace OhMySword.Player
         private PlayerWeapon playerWeapon;
 
         public UnityEvent<SyncableObject> OnHitEvent;
-        public UnityEvent OnDieEvent;
+        public UnityEvent<SyncableObject> OnDieEvent;
 
         public UnityEvent<int> SetAnimation;
 
@@ -70,7 +70,7 @@ namespace OhMySword.Player
 
         public void Die(SyncableObject attacker, ushort destroyCount)
         {
-            OnDieEvent?.Invoke();
+            OnDieEvent?.Invoke(attacker);
             AudioManager.Instance.PlayerAudio("PlayerDie", audioPlayer, true);
         }
 
