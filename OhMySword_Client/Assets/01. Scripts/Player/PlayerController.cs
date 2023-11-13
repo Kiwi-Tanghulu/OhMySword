@@ -85,6 +85,7 @@ namespace OhMySword.Player
 
         public override void PlayAnimation(ushort animationType)
         {
+            Debug.Log(2);
             SetAnimation?.Invoke(animationType);
         }
     }

@@ -29,6 +29,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void SetAnimation(int hash)
     {
+        Debug.Log(3);
         if (isEmotionPlay)
             StopEmtion();
         else
