@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class PlayerMove : MonoBehaviour
 {
+    [field: SerializeField]
+    public bool canMove { get; set; } = true;
+
     private ActiveRagdoll ragdoll;
 
     [SerializeField] UnityEvent<Vector3> onMovedEvent;
@@ -13,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private Transform hipAnchor;
 
     [SerializeField] private float moveSpeed;
-    [SerializeField] private bool canMove = true;
+    
     private Vector3 prevTargetPos;
     private Vector3 targetPos;
     private Vector3 moveDir;
@@ -39,6 +42,12 @@ public class PlayerMove : MonoBehaviour
 
     public void Move()
     {
+        if(!canMove)
+        {
+            ragdoll.SetVelocity(Vector3.zero);
+            return;
+        }
+
         if ((targetPos - hip.transform.position).magnitude > 0.5f)
             ragdoll.SetVelocity(moveDir * moveSpeed);
         else
@@ -67,6 +76,12 @@ public class PlayerMove : MonoBehaviour
 
     private void SetVelocity()
     {
+        if (!canMove)
+        {
+            ragdoll.SetVelocity(Vector3.zero);
+            return;
+        }
+
         moveSpeed = moveDistance / 0.1f;
         ragdoll.SetVelocity(moveDir * moveSpeed);
 
@@ -76,7 +91,6 @@ public class PlayerMove : MonoBehaviour
     private IEnumerator AdjustPosition()
     {
         yield return new WaitForSeconds(0.09f);
-
 
         if (Vector3.Distance(targetPos, hip.transform.position) > 0.5f)
             hip.transform.position = targetPos;

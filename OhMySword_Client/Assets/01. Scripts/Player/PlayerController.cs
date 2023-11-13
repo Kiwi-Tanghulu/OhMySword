@@ -14,6 +14,8 @@ namespace OhMySword.Player
         public UnityEvent<SyncableObject> OnHitEvent;
         public UnityEvent OnDieEvent;
 
+        public UnityEvent<int> SetAnimation;
+
         public string nickname;
 
         protected override void Awake()
@@ -79,6 +81,11 @@ namespace OhMySword.Player
         {
             // 여기에 로테이션
             view?.SetRotation(rotation);
+        }
+
+        public override void PlayAnimation(ushort animationType)
+        {
+            SetAnimation?.Invoke(animationType);
         }
     }
 }
