@@ -123,4 +123,17 @@ public class PacketHandler
         S_ChattingPacket chattingPacket = packet as S_ChattingPacket;
         RoomManager.Instance.Chatting(chattingPacket.chat, chattingPacket.playerID);
     }
+
+    public static void S_AnimationPacket(Session session, Packet packet)
+    {
+        S_AnimationPacket animationPacket = packet as S_AnimationPacket;
+        SyncableObject animatingTarget = null;
+
+        if((ObjectType)animationPacket.objectType == ObjectType.Player)
+            animatingTarget = RoomManager.Instance.GetPlayer(animationPacket.objectID);
+        else
+            animatingTarget = RoomManager.Instance.GetObject(animationPacket.objectID);
+
+        animatingTarget?.PlayAnimation(animationPacket.animationHash);
+    }
 }

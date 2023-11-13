@@ -47,6 +47,6 @@ namespace Packets
         }
 
         public static implicit operator S_AnimationPacket(C_AnimationPacket right)
-            => new S_AnimationPacket(right.objectID, right.objectType, right.animationHash
+            => new S_AnimationPacket(right.objectID, right.objectType, right.animationHash);
     }
 }

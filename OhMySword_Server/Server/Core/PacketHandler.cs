@@ -1,5 +1,6 @@
 using H00N.Network;
 using Packets;
+using System.Net.Sockets;
 
 namespace Server
 {
@@ -87,6 +88,16 @@ namespace Server
             GameRoom room = clientSession.Room;
 
             S_ChattingPacket broadcastPacket = new S_ChattingPacket(chattingPacket.chat, clientSession.Player.objectID);
+            room.AddJob(() => room.Broadcast(broadcastPacket));
+        }
+
+        public static void C_AnimationPacket(Session session, Packet packet)
+        {
+            ClientSession clientSession = session as ClientSession;
+            C_AnimationPacket animationPackeet = packet as C_AnimationPacket;
+            GameRoom room = clientSession.Room;
+
+            S_AnimationPacket broadcastPacket = animationPackeet;
             room.AddJob(() => room.Broadcast(broadcastPacket));
         }
     }
