@@ -16,6 +16,8 @@ namespace OhMySword.Player
 
         public UnityEvent<int> SetAnimation;
 
+        public TMPro.TextMeshPro nameTag;
+
         public string nickname;
 
         protected override void Awake()
@@ -37,7 +39,8 @@ namespace OhMySword.Player
 
         public void SetNickname(string nickname)
         {
-            this.nickname = nickname;   
+            this.nickname = nickname;  
+            nameTag.text = nickname;
         }
 
         public void OnDamage(int damage, GameObject performer, Vector3 point)
