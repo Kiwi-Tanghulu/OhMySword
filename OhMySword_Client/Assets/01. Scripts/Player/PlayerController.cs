@@ -7,6 +7,8 @@ namespace OhMySword.Player
 {
     public class PlayerController : SyncableObject, IDamageable, IHitable
     {
+        private AudioSource audioPlayer;
+
         private PlayerMove movement;
         private PlayerView view;
         private PlayerWeapon playerWeapon;
@@ -23,7 +25,6 @@ namespace OhMySword.Player
         protected override void Awake()
         {
             base.Awake();
-            
         }
 
         public override void OnCreated()
@@ -31,6 +32,8 @@ namespace OhMySword.Player
             movement = GetComponent<PlayerMove>();
             view = GetComponent<PlayerView>();
             playerWeapon = transform.Find("Hips/Rig/Sword/Sword").GetComponent<PlayerWeapon>();
+
+            audioPlayer = GetComponent<AudioSource>();
         }
 
         public override void OnDeleted()
@@ -56,16 +59,19 @@ namespace OhMySword.Player
         public void Hit(SyncableObject attacker)
         {
             OnHitEvent?.Invoke(attacker);
+            AudioManager.Instance.PlayerAudio("Hit", audioPlayer, true);
         }
 
         public void GetXP(ushort amount)
         {
             playerWeapon.SetScore(amount);
+            AudioManager.Instance.PlayerAudio("GetXP", audioPlayer, true);
         }
 
         public void Die(SyncableObject attacker, ushort destroyCount)
         {
             OnDieEvent?.Invoke();
+            AudioManager.Instance.PlayerAudio("PlayerDie", audioPlayer, true);
         }
 
         public void DoChat(string chat)
