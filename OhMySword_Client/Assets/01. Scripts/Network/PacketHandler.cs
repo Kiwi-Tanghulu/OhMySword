@@ -115,6 +115,7 @@ public class PacketHandler
         ScoreBox box = RoomManager.Instance.GetObject(scoreBoxPacket.objectID) as ScoreBox;
 
         box?.CreateXP(scoreBoxPacket.ids);
+        Debug.Log($"Pos Table Index From Server : {scoreBoxPacket.posTableIndex}");
         box?.SetPosition(scoreBoxPacket.posTableIndex);
     }
 
