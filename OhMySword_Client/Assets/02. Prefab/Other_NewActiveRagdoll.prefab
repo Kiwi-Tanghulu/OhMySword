@@ -98,6 +98,7 @@ Transform:
   - {fileID: 1777028540650940121}
   - {fileID: 5909574918188646308}
   - {fileID: 153739023964959532}
+  - {fileID: 1238840737515265609}
   m_Father: {fileID: 6835959230991856709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3125417101515576093
@@ -6580,7 +6581,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8765496377378770105}
         m_TargetAssemblyTypeName: PlayerFeedback, Assembly-CSharp
         m_MethodName: DieFeedback
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6680,6 +6681,76 @@ MonoBehaviour:
   hitEffect: {fileID: 2183432609766300451}
   hitEffectPlayOffset: 0.4
   hitEffectPlayPos: {fileID: 3541656994805744203}
+  onDieLeftLegTrm: {fileID: 0}
+  onDieRightLegTrm: {fileID: 0}
+  onDieRightArmTrm: {fileID: 0}
+  RightLegTarget: {fileID: 0}
+  LeftLegTarget: {fileID: 0}
+  RightArmTarget: {fileID: 0}
+  onDieTransTime: 0.1
+  onDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6014290944445573013}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2699833306637257810}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6994145492723223484}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2143734704895974516}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7738541113842106706}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2143734704895974516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6901,6 +6972,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 92867206878675815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1069212389326531302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7839976473408190305}
+  m_Layer: 0
+  m_Name: OnDie_RightFoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7839976473408190305
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069212389326531302}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.015626326, y: -0.8507158, z: -0.5250558, w: 0.01883781}
+  m_LocalPosition: {x: 0.112, y: 0.454, z: 0.557}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 92867206878675815}
+  m_LocalEulerAnglesHint: {x: -63.372, y: -178, z: 0.87}
 --- !u!1 &1210923055825066006
 GameObject:
   m_ObjectHideFlags: 0
@@ -6964,6 +7066,7 @@ Transform:
   m_Children:
   - {fileID: 5149549808878204092}
   - {fileID: 8219125867901784516}
+  - {fileID: 8384502602904355821}
   m_Father: {fileID: 6835959230991856709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5465994898632523681
@@ -12689,6 +12792,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 92867206878675815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2195789249625036076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8384502602904355821}
+  m_Layer: 0
+  m_Name: OnDie_LeftFoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8384502602904355821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2195789249625036076}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.019214768, y: 0.84300077, z: 0.5369706, w: 0.025358053}
+  m_LocalPosition: {x: -0.11, y: 0.5, z: 0.57}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4792182816655512575}
+  m_LocalEulerAnglesHint: {x: -65, y: 177, z: -0.7}
 --- !u!1 &2198300077039500097
 GameObject:
   m_ObjectHideFlags: 0
@@ -19670,6 +19804,37 @@ Transform:
   - {fileID: 5083364032575263659}
   m_Father: {fileID: 1345499299913205242}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5146829038586585718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1238840737515265609}
+  m_Layer: 0
+  m_Name: OnDie_RightArm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1238840737515265609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146829038586585718}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5267197, y: -0.47176942, z: -0.51588094, w: 0.4835979}
+  m_LocalPosition: {x: 0.28, y: 0.915, z: 0.431}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3128421001513774785}
+  m_LocalEulerAnglesHint: {x: 1.3, y: -90, z: -95}
 --- !u!1 &5178781446981580043
 GameObject:
   m_ObjectHideFlags: 0
@@ -20489,6 +20654,7 @@ Transform:
   m_Children:
   - {fileID: 8271722919145158377}
   - {fileID: 2366634545703005849}
+  - {fileID: 7839976473408190305}
   m_Father: {fileID: 6835959230991856709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3112006492978991092
