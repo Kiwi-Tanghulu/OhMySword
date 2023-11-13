@@ -8,14 +8,25 @@ namespace OhMySword.Player
     public class PlayerController : SyncableObject, IDamageable, IHitable
     {
         private PlayerMove movement;
+        private PlayerView view;
         private PlayerWeapon playerWeapon;
 
         public UnityEvent<SyncableObject> OnHitEvent;
-        public UnityEvent<SyncableObject> OnDieEvent;
+        public UnityEvent OnDieEvent;
+
+        public string nickname;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+        }
 
         public override void OnCreated()
         {
             movement = GetComponent<PlayerMove>();
+            view = GetComponent<PlayerView>();
+            playerWeapon = transform.Find("Hips/Rig/Sword/Sword").GetComponent<PlayerWeapon>();
         }
 
         public override void OnDeleted()
@@ -24,7 +35,7 @@ namespace OhMySword.Player
 
         public void SetNickname(string nickname)
         {
-            
+            this.nickname = nickname;   
         }
 
         public void OnDamage(int damage, GameObject performer, Vector3 point)
@@ -39,7 +50,7 @@ namespace OhMySword.Player
 
         public void Hit(SyncableObject attacker)
         {
-            
+            OnHitEvent?.Invoke(attacker);
         }
 
         public void GetXP(ushort amount)
@@ -47,15 +58,27 @@ namespace OhMySword.Player
             playerWeapon.SetScore(amount);
         }
 
-        public void Die(SyncableObject attacker)
+        public void Die(SyncableObject attacker, ushort destroyCount)
         {
-            
+            OnDieEvent?.Invoke();
+        }
+
+        public void DoChat(string chat)
+        {
+
         }
 
         public override void SetPosition(Vector3 position, bool immediately = false)
         {
             base.SetPosition(position, immediately);
-            movement.SetTargetPosition(targetPosition);
+            Debug.Log($"SetPosition : {position}");
+            movement?.SetTargetPosition(position);
+        }
+
+        public override void SetRotation(Vector3 rotation)
+        {
+            // 여기에 로테이션
+            view?.SetRotation(rotation);
         }
     }
 }

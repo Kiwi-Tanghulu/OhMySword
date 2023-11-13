@@ -40,7 +40,7 @@ public class PositionReporter : MonoBehaviour
 			VectorPacket pos = new VectorPacket(recentPosition.x, recentPosition.y, recentPosition.z);
 			VectorPacket euler = new VectorPacket(recentEuler.x, recentEuler.y, recentEuler.z);
 
-			S_PlayerPacket playerPacket = new S_PlayerPacket();
+			C_PlayerPacket playerPacket = new C_PlayerPacket();
 			playerPacket.objectPacket = new ObjectPacket(RoomManager.Instance.PlayerID, (ushort)ObjectType.Player, pos, euler);
 
 			NetworkManager.Instance.Send(playerPacket);

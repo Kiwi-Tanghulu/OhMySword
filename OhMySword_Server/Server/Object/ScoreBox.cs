@@ -6,23 +6,29 @@ namespace Server
     public class ScoreBox : ObjectBase
     {
         public ushort hp;
+        private ushort currnetHP;
 
         public ScoreBox(GameRoom room, ushort hp, ObjectType type)
         {
             this.room = room;
             this.hp = hp;
             this.objectType = (ushort)type;
+
+            currnetHP = hp;
         }
 
         public override void Hit(ushort damage, ushort attacker)
         {
-            hp -= damage;
-            if (hp > 0)
+            currnetHP -= damage;
+            if (currnetHP > 0)
                 return;
+
+            if (room.GetPlayer(attacker, out Player player))
+                player.destroyCount += 1;
 
             // 테이블에서 경험치 테이블 인덱스 뽑아야 함
             // 이놈 아이디 정보, 새로운 포지션 인덱스 정보 전송해야 함
-            hp = 10;
+            currnetHP = hp;
             List<UShortPacket> ids = GenerateXP();
             ushort posTableIndex = ResetPosition();
             
@@ -30,10 +36,10 @@ namespace Server
             room.AddJob(() => room.Broadcast(broadcastPacket));
         }
 
-        private ushort ResetPosition()
+        public ushort ResetPosition()
         {
-            int posTableIndex = Random.Range(0, ScoreBoxSpawnTable.Length);
-            position = ScoreBoxSpawnTable[posTableIndex];
+            int posTableIndex = Random.Range(0, ScoreBoxSpawnTables[objectType].Length);
+            position = ScoreBoxSpawnTables[objectType][posTableIndex];
 
             return (ushort)posTableIndex;
         }

@@ -1,5 +1,6 @@
 using H00N.Network;
 using Packets;
+using System.Net.Sockets;
 
 namespace Server
 {
@@ -13,7 +14,6 @@ namespace Server
 
             if (room.GetPlayer(playerPacket.objectPacket.objectID, out Player player) == false)
                 return;
-
             player.position = playerPacket.objectPacket.position;
             player.rotation = playerPacket.objectPacket.rotation;
 
@@ -79,6 +79,26 @@ namespace Server
                 if (room.GetObject(attackPacket.hitObjectID, out ObjectBase obj))
                     obj.Hit(attackPacket.damage, attackPacket.attackerID);
             }
+        }
+
+        public static void C_ChattingPacket(Session session, Packet packet)
+        {
+            ClientSession clientSession = session as ClientSession;
+            C_ChattingPacket chattingPacket = packet as C_ChattingPacket;
+            GameRoom room = clientSession.Room;
+
+            S_ChattingPacket broadcastPacket = new S_ChattingPacket(chattingPacket.chat, clientSession.Player.objectID);
+            room.AddJob(() => room.Broadcast(broadcastPacket));
+        }
+
+        public static void C_AnimationPacket(Session session, Packet packet)
+        {
+            ClientSession clientSession = session as ClientSession;
+            C_AnimationPacket animationPacket = packet as C_AnimationPacket;
+            GameRoom room = clientSession.Room;
+
+            S_AnimationPacket broadcastPacket = animationPacket;
+            room.AddJob(() => room.Broadcast(broadcastPacket, animationPacket.objectID));
         }
     }
 }

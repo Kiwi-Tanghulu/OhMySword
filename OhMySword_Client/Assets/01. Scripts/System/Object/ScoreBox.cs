@@ -8,9 +8,13 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
 {
     [SerializeField] ScoreBoxDropTableSO dropTable = null;
     [SerializeField] PositionTableSO positionTable = null;
+    [SerializeField] ObjectType type = ObjectType.None;
 
     [Space(10f)]
     [SerializeField] UnityEvent OnMovedEvent;
+
+    [Space(10f)]
+    [SerializeField] Color gizmoColor;
 
     public override void OnCreated()
     {
@@ -28,7 +32,7 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
         if (attacker == null)
             return;
 
-        C_AttackPacket attackPacket = new C_AttackPacket((ushort)ObjectType.WoodenScoreBox, ObjectID, attacker.ObjectID, (ushort)damage);
+        C_AttackPacket attackPacket = new C_AttackPacket((ushort)type, ObjectID, attacker.ObjectID, (ushort)damage);
         NetworkManager.Instance.Send(attackPacket);
     }
 
@@ -48,7 +52,7 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
             ) as XPObject;
 
             xp.SetXP(digit);
-            xp.SetPosition(transform.position + dropTable[index], true);
+            xp.SetPosition(transform.position + dropTable[index], false);
         });
     }
 
@@ -57,4 +61,21 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
         SetPosition(positionTable[posIndex], true);
         OnMovedEvent?.Invoke();
     }
+
+    #if UNITY_EDITOR
+
+    private void OnDrawGizmos()
+    {
+        try
+        {
+            Gizmos.color = gizmoColor;
+            if(TryGetComponent<MeshFilter>(out MeshFilter filter))
+            {
+                if(filter.sharedMesh != null)
+                    Gizmos.DrawWireMesh(filter.sharedMesh, 0, transform.position, transform.rotation, transform.localScale);
+            }
+        }catch {}
+    }
+
+    #endif
 }

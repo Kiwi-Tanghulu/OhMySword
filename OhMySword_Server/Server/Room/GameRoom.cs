@@ -8,15 +8,33 @@ namespace Server
 {
     public class GameRoom : Room
     {
-        public int maxPlayerCount = 5;
+        public int maxPlayerCount = 20;
         public ushort RoomID;
 
         public int Capacity => (maxPlayerCount - players.Count);
 
         public GameRoom()
         {
-            //ScoreBox scoreBox = new ScoreBox(this, 10, ObjectType.WoodenScoreBox);
-            //PublishObject(scoreBox);
+            for(int i = 0; i < 3; i++)
+            {
+                ScoreBox scoreBox = new ScoreBox(this, 3, ObjectType.StoneScoreBox);
+                scoreBox.ResetPosition();
+                PublishObject(scoreBox);
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                ScoreBox scoreBox = new ScoreBox(this, 6, ObjectType.WoodenScoreBox);
+                scoreBox.ResetPosition();
+                PublishObject(scoreBox);
+            }
+
+            for (int i = 0; i < 1; i++)
+            {
+                ScoreBox scoreBox = new ScoreBox(this, 9, ObjectType.EggScoreBox);
+                scoreBox.ResetPosition();
+                PublishObject(scoreBox);
+            }
         }
     }
 }

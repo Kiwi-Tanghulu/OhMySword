@@ -1,14 +1,17 @@
+using MyUI;
 using Packets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RoomPanel : MonoBehaviour
+public class RoomPanel : PanelUI
 {
+    [Space(10f)]
     [SerializeField] int lengthLimit = 5;
 
-	private TMP_InputField nicknameField = null;
-    private Button enterButton = null;
+    [Space(10f)]
+	[SerializeField] TMP_InputField nicknameField = null;
+    [SerializeField] Button enterButton = null;
 
     public string Nickname {
         get => nicknameField.text;
@@ -17,10 +20,9 @@ public class RoomPanel : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
-        nicknameField = transform.Find("NicknameField")?.GetComponent<TMP_InputField>();
-        enterButton = transform.Find("EnterButton")?.GetComponent<Button>();
+        Show();
     }
 
     public void CreateEnterRequest()

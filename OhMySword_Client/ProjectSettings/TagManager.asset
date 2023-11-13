@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Hitbox
+  - Other_Hitbox
+  - Body_Hitable
   layers:
   - Default
   - TransparentFX
@@ -12,11 +15,11 @@ TagManager:
   - Water
   - UI
   - NoSelfCollision
-  - NoSelfCollision_Arm
+  - Hitbox
   - Ground
+  - Sword
   - 
-  - 
-  - 
+  - Other_Hitbox
   - 
   - 
   - 

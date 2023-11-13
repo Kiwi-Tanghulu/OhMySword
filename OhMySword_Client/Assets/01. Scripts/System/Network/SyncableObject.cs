@@ -30,6 +30,12 @@ namespace Base.Network
             SetPosition(position, true);
         }
 
+        public virtual void PlayAnimation(ushort animationType)
+        {
+            // Play Animation by 'hash'
+            AnimationType type = (AnimationType)animationType;
+        }
+
         public virtual void SetPosition(Vector3 position, bool immediately = false)
         {
             if(immediately)

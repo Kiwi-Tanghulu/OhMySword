@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     [Range(0.001f,0.05f)]
-    [SerializeField] private float scoreSize; // ½ºÄÚ¾î´ç ±æ¾îÁö´Â ±æÀÌ! ¿¹) 0.01ÀÌ¶ó¸é 1Á¡´ç 0.01ÀÌ Ä¿Áü 100Á¡ÀÌ¶ó¸é 1ÀÌ Ä¿Áö°í
+    [SerializeField] private float scoreSize; // ï¿½ï¿½ï¿½Ú¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½) 0.01ï¿½Ì¶ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ 0.01ï¿½ï¿½ Ä¿ï¿½ï¿½ 100ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ 1ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½
 
     [SerializeField] private Transform swordPivot;
-    private int swordSize; // ³ªÁß¿¡ ÇÊ¿äÇÒ ¼ö ÀÖ¾î¼­...
+    private int swordSize; // ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¾î¼­...
     public int SwordSize => swordSize;
 
     private int currentSwordLevel = 0;
@@ -17,8 +17,45 @@ public class PlayerWeapon : MonoBehaviour
     private ushort currentScore = 0;
     private ushort nextScore = 0;
     private bool isGrowing = false;
-    
-    public void SetSwordSize() //³ªÁß¿¡ Æ¯Á¤ ±¸°£¿¡¼­ Ä®ÀÌ ¹Ù²ï´Ù¸é Ã¤¿ö³Ö¾î¾ßÇÔ
+
+    private BoxCollider col;
+    [SerializeField] private ParticleSystem trail;
+
+    private void Start()
+    {
+        col = GetComponent<BoxCollider>();
+        SetCollision(false);
+        SetTrail(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.name);
+
+        if(other.CompareTag("Other_Hitbox") && other.transform.root.TryGetComponent<IDamageable>(out IDamageable id))
+        {
+            Debug.Log("Success Attack");
+            id.OnDamage(1, transform.root.gameObject, Vector3.zero);
+        }
+    }
+
+    public void SetCollision(bool value)
+    {
+        col.enabled = value;
+    }
+
+    public void SetTrail(bool value)
+    {
+        if (value)
+            trail.Play();
+        else
+        {
+            trail.Stop();
+            trail.Simulate(0);
+        }
+    }
+
+    public void SetSwordSize() //ï¿½ï¿½ï¿½ß¿ï¿½ Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä®ï¿½ï¿½ ï¿½Ù²ï¿½Ù¸ï¿½ Ã¤ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½
     {
 
     }

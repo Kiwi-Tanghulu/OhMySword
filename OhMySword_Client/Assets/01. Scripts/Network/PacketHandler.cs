@@ -12,14 +12,13 @@ public class PacketHandler
         S_LogInPacket logInPacket = packet as S_LogInPacket;
         
         GameManager.Instance.UserID = logInPacket.userID;
-        GameObject.Find("Canvas/BlockPanel").SetActive(false);
+        GameObject.Find("MainCanvas/BlockPanel").SetActive(false);
     }
 
     public static void S_RoomEnterPacket(Session session, Packet packet)
     {
         S_RoomEnterPacket enterPacket = packet as S_RoomEnterPacket;
-        // string nickname = UIManager.Instnace.RoomPanel.Nickname;
-        string nickname = "This is Nickname";
+        string nickname = UIManager.Instance.RoomPanel.Nickname;
 
         SceneLoader.Instance.LoadSceneAsync("InGameScene", () => {
             RoomManager.Instance.CreatePlayer(enterPacket.playerID, enterPacket.posTableIndex, nickname);
@@ -78,7 +77,7 @@ public class PacketHandler
         PlayerController player = RoomManager.Instance.GetPlayer(diePacket.playerID);
         PlayerController attacker = RoomManager.Instance.GetPlayer(diePacket.attackerID);
 
-        player.Die(attacker);
+        player.Die(attacker, diePacket.destroyCount);
 
         diePacket.score.ForEachDigit((digit, number, index) => {
             ObjectPacket obj = diePacket.objects[index];
@@ -116,6 +115,21 @@ public class PacketHandler
         ScoreBox box = RoomManager.Instance.GetObject(scoreBoxPacket.objectID) as ScoreBox;
 
         box?.CreateXP(scoreBoxPacket.ids);
+        Debug.Log($"Pos Table Index From Server : {scoreBoxPacket.posTableIndex}");
         box?.SetPosition(scoreBoxPacket.posTableIndex);
+    }
+
+    public static void S_ChattingPacket(Session session, Packet packet)
+    {
+        S_ChattingPacket chattingPacket = packet as S_ChattingPacket;
+        RoomManager.Instance.Chatting(chattingPacket.chat, chattingPacket.playerID);
+    }
+
+    public static void S_AnimationPacket(Session session, Packet packet)
+    {
+        S_AnimationPacket animationPacket = packet as S_AnimationPacket;
+        SyncableObject animatingTarget = RoomManager.Instance.GetPlayer(animationPacket.objectID);
+        animatingTarget?.PlayAnimation(animationPacket.animationType);
+        
     }
 }

@@ -49,6 +49,8 @@ public class PacketManager
         RegisterHandler<S_ScorePacket>(PacketID.S_ScorePacket, PacketHandler.S_ScorePacket);
         RegisterHandler<S_ObjectDestroyPacket>(PacketID.S_ObjectDestroyPacket, PacketHandler.S_ObjectDestroyPacket);
         RegisterHandler<S_ScoreBoxPacket>(PacketID.S_ScoreBoxPacket, PacketHandler.S_ScoreBoxPacket);
+        RegisterHandler<S_ChattingPacket>(PacketID.S_ChattingPacket, PacketHandler.S_ChattingPacket);
+        RegisterHandler<S_AnimationPacket>(PacketID.S_AnimationPacket, PacketHandler.S_AnimationPacket);
     }
 
     private void RegisterHandler<T>(PacketID id, Action<Session, Packet> handler) where T : Packet, new()

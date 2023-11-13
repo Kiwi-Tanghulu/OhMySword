@@ -1,8 +1,10 @@
+using System.Linq;
 using System.Collections.Generic;
 using Packets;
 using UnityEngine;
 using OhMySword.Player;
 using Base.Network;
+using System;
 
 public class RoomManager : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField] SyncableObjectPrefabTableSO prefabTable;
     [SerializeField] PositionTableSO playerSpawnTable;
+    [SerializeField] PlayerController playerPrefab;
 
     public ushort PlayerID { get; private set; }
     
@@ -43,7 +46,12 @@ public class RoomManager : MonoBehaviour
 
     public void CreatePlayer(ushort id, ushort posIndex, string nickname)
     {
-        PlayerController player = AddPlayer(id, posIndex, nickname);
+        PlayerController player = Instantiate(playerPrefab) as PlayerController;
+        player.Init(id, playerSpawnTable[posIndex], Vector3.zero);
+        player.SetNickname(nickname);
+        player.OnCreated();
+
+        players.Add(id, player);
         PlayerID = id;
     }
 
@@ -93,5 +101,16 @@ public class RoomManager : MonoBehaviour
     {
         playerList.ForEach(p => AddPlayer(p.objectID, p.position.Vector3(), p.rotation.Vector3(), p.nickname));
         objectList.ForEach(o => AddObject(o.objectID, (ObjectType)o.objectType, o.position.Vector3(), o.rotation.Vector3()));
+    }
+
+    public void Chatting(string chat, ushort id)
+    {
+        if(players.ContainsKey(id) == false)
+            return;
+
+        PlayerController sender = players[id];
+        sender.DoChat(chat);
+
+        UIManager.Instance.ChattingPanel?.DoChat(sender.nickname, chat);
     }
 }

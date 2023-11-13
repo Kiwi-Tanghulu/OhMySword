@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
 
+    [SerializeField] AudioAssetsSO audioAssets;
+    [SerializeField] AudioMixer masterMixer;
     public ushort UserID = 0;
 
     private void Awake()
@@ -20,9 +23,11 @@ public class GameManager : MonoBehaviour
         }
 
         SceneLoader.Instance = gameObject.AddComponent<SceneLoader>();
+        UIManager.Instance = gameObject.AddComponent<UIManager>();
 
         PacketManager.Instance = new PacketManager();
         NetworkManager.Instance = new NetworkManager();
+        AudioManager.Instance = new AudioManager(audioAssets, masterMixer);
     }
 
     private void Start()

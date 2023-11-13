@@ -23,9 +23,9 @@ namespace MyUI
             if (IsOpen)
                 return;
 
-            transform.localScale = Vector3.one;
             if (parent != null)
                 transform.SetParent(parent);
+            transform.localScale = Vector3.one;
 
             IsOpen = true;
         }

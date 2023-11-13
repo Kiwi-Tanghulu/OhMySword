@@ -1,5 +1,6 @@
 using Base.Network;
 using DG.Tweening;
+using Packets;
 using UnityEngine;
 
 public class XPObject : SyncableObject, IDamageable
@@ -22,7 +23,7 @@ public class XPObject : SyncableObject, IDamageable
     {
         base.Awake();
         trail = transform.Find("Trail")?.GetComponent<TrailRenderer>();
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = transform.Find("Model").GetComponent<MeshRenderer>();
     }
 
     private void Start()
@@ -32,12 +33,12 @@ public class XPObject : SyncableObject, IDamageable
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            Vector3 err = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
-            err.y = 0;
-            SetPosition(transform.position + err);
-        }
+        // if(Input.GetKeyDown(KeyCode.A))
+        // {
+        //     Vector3 err = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
+        //     err.y = 0;
+        //     SetPosition(transform.position + err);
+        // }
     }
 
     protected override void FixedUpdate()
@@ -67,14 +68,29 @@ public class XPObject : SyncableObject, IDamageable
 
     public void OnDamage(int damage, GameObject performer, Vector3 point)
     {
-        
+        SyncableObject attacker = performer.GetComponent<SyncableObject>();
+        if (attacker == null)
+            return;
+
+        C_AttackPacket attackPacket = new C_AttackPacket((ushort)ObjectType.XPObject, ObjectID, attacker.ObjectID, (ushort)damage);
+        NetworkManager.Instance.Send(attackPacket);
     }
 
     public override void SetPosition(Vector3 position, bool immediately = false)
     {
         base.SetPosition(position, false);
 
+        if(immediately)
+        {
+            transform.position = position;
+            return;
+        }
+
+        trail.enabled = true;
+
         float factor = 1f + xpAmount.ToString().Length * 0.5f;
-        transform.DOJump(position, jumpPower * factor, 1, jumpDuration).SetEase(easeCurve);
+        transform.DOJump(position, jumpPower * factor, 1, jumpDuration).SetEase(easeCurve).OnComplete(() => {
+            trail.enabled = false;
+        });
     }
 }
