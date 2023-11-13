@@ -30,8 +30,8 @@ public class PlayerWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //
-        if(other.TryGetComponent<IDamageable>(out IDamageable id))
+        
+        if(other.CompareTag("Other_Hitbox") && other.transform.root.TryGetComponent<IDamageable>(out IDamageable id))
             id.OnDamage(1, transform.root.gameObject, Vector3.zero);
     }
 

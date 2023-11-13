@@ -1343,6 +1343,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8642535776830334148}
   - component: {fileID: 1038861778551090546}
+  - component: {fileID: 825466497875744072}
+  - component: {fileID: 7506222796338631179}
   m_Layer: 7
   m_Name: Hitbox
   m_TagString: Hitbox
@@ -1386,6 +1388,45 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7, y: 1.4310496, z: 0.42782044}
   m_Center: {x: 0.006126404, y: 0.21552485, z: 0.039693177}
+--- !u!114 &825466497875744072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2797319920526864941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b251b38eebb8544689a66046c4d9dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &7506222796338631179
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2797319920526864941}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2963391392653927528
 GameObject:
   m_ObjectHideFlags: 0
@@ -4100,7 +4141,7 @@ GameObject:
   - component: {fileID: 2553648808927450918}
   - component: {fileID: 5250454414764603667}
   m_Layer: 6
-  m_Name: mixamorig:Hips
+  m_Name: Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4997,7 +5038,7 @@ GameObject:
   - component: {fileID: 1687994802012140029}
   - component: {fileID: 1400953381567604329}
   m_Layer: 0
-  m_Name: Rig 1
+  m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
