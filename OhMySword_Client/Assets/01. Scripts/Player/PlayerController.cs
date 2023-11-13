@@ -16,10 +16,17 @@ namespace OhMySword.Player
 
         public string nickname;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            
+        }
+
         public override void OnCreated()
         {
             movement = GetComponent<PlayerMove>();
             view = GetComponent<PlayerView>();
+            playerWeapon = transform.Find("Hips/Rig/Sword/Sword").GetComponent<PlayerWeapon>();
         }
 
         public override void OnDeleted()

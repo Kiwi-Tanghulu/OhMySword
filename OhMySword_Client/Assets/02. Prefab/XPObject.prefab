@@ -238,9 +238,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3034701368605762981}
   - component: {fileID: 5583908872650247084}
+  - component: {fileID: 72322172877910804}
   m_Layer: 0
   m_Name: XPObject
-  m_TagString: Untagged
+  m_TagString: Body_Hitable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -307,3 +308,24 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   xpAmount: 0
+--- !u!65 &72322172877910804
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293852975448767225}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.10302054, y: 0.58149564, z: 0.30695015}
+  m_Center: {x: 0, y: 0.0014707446, z: -0.001470767}
