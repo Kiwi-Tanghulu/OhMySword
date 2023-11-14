@@ -7,4 +7,5 @@ public enum ObjectType
     Player,
     XPObject,
     GemScoreBox,
+    DesertTreeScoreBox,
 }

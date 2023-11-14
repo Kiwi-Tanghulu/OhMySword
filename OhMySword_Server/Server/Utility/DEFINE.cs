@@ -58,6 +58,16 @@ namespace Server
                 new Vector3(-75, -16.5f, 88),
                 new Vector3(-6, -16.5f, 84),
             },
+            [(ushort)ObjectType.DesertTreeScoreBox] = new Vector3[] {
+                new Vector3(-7, -16.4f, 30),
+                new Vector3(-44, -16.4f, 30),
+                new Vector3(-60, -16.4f, 79),
+                new Vector3(13, -16.4f, 63),
+                new Vector3(39, -34.5f, 45),
+                new Vector3(58, -34.5f, 28),
+                new Vector3(90, -34.5f, 5),
+                new Vector3(80, -34.5f, 47),
+            },
         };
 
         public static readonly Dictionary<ushort, ScoreBoxDropTable> XPSpawnTable = new Dictionary<ushort, ScoreBoxDropTable>() {
@@ -90,14 +100,25 @@ namespace Server
                 new Vector3(0, 0, 0)
             }),
             [(ushort)ObjectType.GemScoreBox] = new ScoreBoxDropTable(224, new Vector3[] {
-                new Vector3(-1, 0.5f, 0),
-                new Vector3(1, 0.5f, 0),
-                new Vector3(0, 0.5f, 1),
-                new Vector3(0, 0.5f, -1),
-                new Vector3(1, 0.5f, 1),
-                new Vector3(-1, 0.5f, 1),
-                new Vector3(-1, 0.5f, -1),
-                new Vector3(1, 0.5f, -1),
+                new Vector3(-2, 0.5f, 0),
+                new Vector3(2, 0.5f, 0),
+                new Vector3(0, 0.5f, 2),
+                new Vector3(0, 0.5f, -2),
+                new Vector3(2, 0.5f, 2),
+                new Vector3(-2, 0.5f, 2),
+                new Vector3(-2, 0.5f, -2),
+                new Vector3(2, 0.5f, -2),
+            }),
+            [(ushort)ObjectType.DesertTreeScoreBox] = new ScoreBoxDropTable(522, new Vector3[] {
+                new Vector3(2, 0.5f, 2),
+                new Vector3(-2, 0.5f, 2),
+                new Vector3(-2, 0.5f, -2),
+                new Vector3(2, 0.5f, -2),
+                new Vector3(0, 0.5f, 0),
+                new Vector3(0, 0.5f, 2),
+                new Vector3(0, 0.5f, -2),
+                new Vector3(2, 0.5f, 0),
+                new Vector3(-2, 0.5f, 0),
             }),
         };
 
