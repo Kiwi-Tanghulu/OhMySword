@@ -29,6 +29,7 @@ public class SceneLoader : MonoBehaviour
         }
 
         yield return null;
+
         onCompleted?.Invoke();
     }
 }
