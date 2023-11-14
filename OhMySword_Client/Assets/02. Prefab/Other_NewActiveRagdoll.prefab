@@ -6712,7 +6712,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitFeedbackPower: 100
-  hitEffect: {fileID: 2183432609766300451}
   hitEffectPlayOffset: 0.4
   hitEffectPlayPos: {fileID: 3541656994805744203}
   onDieLeftLegTrm: {fileID: 0}
@@ -6899,7 +6898,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1451799457654679987}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -6962,7 +6961,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1451799457654679987}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -23465,6 +23464,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33ad2e8cf2cf9d54b8a8727e6019992b, type: 3}
+--- !u!1 &1451799457654679987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4171452020599859225, guid: 33ad2e8cf2cf9d54b8a8727e6019992b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3298370406547456426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4327483976733393601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1281386070085174123, guid: 33ad2e8cf2cf9d54b8a8727e6019992b,
@@ -23477,7 +23482,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 3298370406547456426}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1451799457654679987}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cc3fdd9938717247964afab5a01e907, type: 3}
