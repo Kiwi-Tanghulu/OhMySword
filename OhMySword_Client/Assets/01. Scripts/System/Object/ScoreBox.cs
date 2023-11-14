@@ -12,6 +12,7 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
 
     [Space(10f)]
     [SerializeField] UnityEvent OnMovedEvent;
+    [SerializeField] UnityEvent OnHitEvent;
     [SerializeField] AudioSource audioPlayer;
 
     [Space(10f)]
@@ -38,6 +39,7 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
 
     public void Hit(SyncableObject attacker)
     {
+        OnHitEvent?.Invoke();
         AudioManager.Instance.PlayAudio("Hit", audioPlayer, true);
     }
 
