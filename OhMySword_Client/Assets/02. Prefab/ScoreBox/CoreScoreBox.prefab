@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8962949869185066011}
   - component: {fileID: 2922909425580639742}
-  - component: {fileID: 879244036176139883}
   - component: {fileID: 8468766753083539141}
+  - component: {fileID: 2050098162283254074}
   m_Layer: 0
   m_Name: CoreScoreBox
   m_TagString: Other_Hitbox
@@ -96,29 +96,6 @@ MonoBehaviour:
         m_CallState: 2
   audioPlayer: {fileID: 8468766753083539141}
   gizmoColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
---- !u!136 &879244036176139883
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3333297955923557538}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.1810141
-  m_Height: 2.899058
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.116959095, z: -0.0932343}
 --- !u!82 &8468766753083539141
 AudioSource:
   m_ObjectHideFlags: 0
@@ -216,6 +193,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &2050098162283254074
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3333297955923557538}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.612015, y: 10.833253, z: 7.4744587}
+  m_Center: {x: 0.19779396, y: 4.9166265, z: -0.40079975}
 --- !u!1 &4478006819970915509
 GameObject:
   m_ObjectHideFlags: 0
