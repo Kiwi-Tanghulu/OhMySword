@@ -52,9 +52,6 @@ namespace OhMySword.UI
             NetworkManager.Instance.Send(packet);
 
             textField.text = "";
-            SetFieldSelect(false);
-            Hide();
-            Debug.Log("send chat");
         }
 
         public void SetFieldSelect(bool value)

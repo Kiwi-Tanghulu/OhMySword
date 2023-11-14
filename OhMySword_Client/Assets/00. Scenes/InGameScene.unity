@@ -35458,7 +35458,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initCreateCount: 5
-  poolingList: []
+  poolingList:
+  - {fileID: 460158115802420355, guid: 2f6cd967b44150e438863bcc05576bd3, type: 3}
 --- !u!4 &1509981232
 Transform:
   m_ObjectHideFlags: 0
@@ -53000,6 +53001,7 @@ SceneRoots:
   - {fileID: 2060873601}
   - {fileID: 905637737}
   - {fileID: 1939011340}
+  - {fileID: 1509981232}
   - {fileID: 1688491710}
   - {fileID: 1531406159}
   - {fileID: 1509283939}
@@ -53009,4 +53011,3 @@ SceneRoots:
   - {fileID: 680279648}
   - {fileID: 988635189}
   - {fileID: 2058021477}
-  - {fileID: 1509981232}

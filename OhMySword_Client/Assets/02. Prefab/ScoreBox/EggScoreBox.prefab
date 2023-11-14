@@ -328,6 +328,7 @@ MonoBehaviour:
         m_CallState: 2
   audioPlayer: {fileID: 7251233684788801599}
   gizmoColor: {r: 1, g: 1, b: 0, a: 1}
+  hitEffectPlayOffset: 1.65
 --- !u!136 &1229251025296703861
 CapsuleCollider:
   m_ObjectHideFlags: 0
