@@ -3167,7 +3167,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitFeedbackPower: 100
-  hitEffect: {fileID: 7059993780113882852}
   hitEffectPlayOffset: 0.4
   hitEffectPlayPos: {fileID: 6072831727228413414}
   onDieLeftLegTrm: {fileID: 2805970231814492750}
@@ -9304,12 +9303,6 @@ PrefabInstance:
 --- !u!4 &1761468797360680241 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4633477881361090682, guid: 2f6cd967b44150e438863bcc05576bd3,
-    type: 3}
-  m_PrefabInstance: {fileID: 6358120724195337547}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &7059993780113882852 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4163217132484680623, guid: 2f6cd967b44150e438863bcc05576bd3,
     type: 3}
   m_PrefabInstance: {fileID: 6358120724195337547}
   m_PrefabAsset: {fileID: 0}

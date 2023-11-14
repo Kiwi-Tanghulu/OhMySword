@@ -52,22 +52,14 @@ namespace OhMySword.UI
             NetworkManager.Instance.Send(packet);
 
             textField.text = "";
-            SetFieldSelect(false);
-            Hide();
-            Debug.Log("send chat");
         }
 
         public void SetFieldSelect(bool value)
         {
             if(value)
-            {
                 textField.ActivateInputField();
-            }
-            else
-            {
-                textField.interactable = false;
-            }
 
+            textField.interactable = value;
             IsChat = value;
         }
 

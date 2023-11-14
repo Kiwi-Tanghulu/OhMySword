@@ -18,8 +18,8 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
     [Space(10f)]
     [SerializeField] Color gizmoColor;
 
-    private Vector3 hitpos;
-
+    [SerializeField] private float hitEffectPlayOffset;
+ 
     public override void OnCreated()
     {
     }
@@ -37,14 +37,14 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
 
         C_AttackPacket attackPacket = new C_AttackPacket((ushort)type, ObjectID, attacker.ObjectID, (ushort)damage);
         NetworkManager.Instance.Send(attackPacket);
-        hitpos = point;
     }
 
     public void Hit(SyncableObject attacker)
     {
         OnHitEvent?.Invoke();
         AudioManager.Instance.PlayAudio("Hit", audioPlayer, true);
-        PoolManager.Instance.Pop("HitEffect", hitpos);
+        Vector3 hitDir = (attacker.transform.position - transform.position).normalized;
+        PoolManager.Instance.Pop("HitEffect", transform.position + hitDir * hitEffectPlayOffset);
     }
 
     public void CreateXP(List<UShortPacket> ids)
