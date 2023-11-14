@@ -48,9 +48,9 @@ namespace Server
                 new Vector3(-7.5f, -18, -19),
             },
             [(ushort)ObjectType.GemScoreBox] = new Vector3[] {
-                new Vector3(80, -33, 0),
-                new Vector3(118, -33, 35),
-                new Vector3(57, -33, 52),
+                new Vector3(80, -34.5f, 0),
+                new Vector3(118, -34.5f, 35),
+                new Vector3(57, -34.5f, 52),
                 new Vector3(9, -16.5f, 33),
                 new Vector3(-12, -16.5f, 51),
                 new Vector3(-43, -16.5f, 45),

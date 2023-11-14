@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GemBoxSpawnTable
   m_EditorClassIdentifier: 
   table:
-  - {x: 80, y: -33, z: 0}
-  - {x: 118, y: -33, z: 35}
-  - {x: 57, y: -33, z: 52}
+  - {x: 80, y: -34.5, z: 0}
+  - {x: 118, y: -34.5, z: 35}
+  - {x: 57, y: -34.5, z: 52}
   - {x: 9, y: -16.5, z: 33}
   - {x: -12, y: -16.5, z: 51}
   - {x: -43, y: -16.5, z: 45}
