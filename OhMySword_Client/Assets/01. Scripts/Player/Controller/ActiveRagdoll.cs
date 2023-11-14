@@ -156,6 +156,7 @@ public class ActiveRagdoll : MonoBehaviour
         Physics.Raycast(hip.transform.position +  hipAncher.rotation * foot.offset + offset,
             Vector3.down, out hit, 10, groundLayer);
 
+        
 
         foot.rayHitPos = hit.point + Vector3.up * footToeOffset;
 
@@ -198,6 +199,9 @@ public class ActiveRagdoll : MonoBehaviour
 
             yield return null;
         }
+
+        Transform effect = PoolManager.Instance.Pop("WalkEffect", foot.target.position + moveDir * 0.2f).transform;
+        effect.LookAt(effect.position - moveDir);
 
         if (moveDir == Vector3.zero && footAlignCo == null)
             footAlignCo = StartCoroutine(FootAlign());

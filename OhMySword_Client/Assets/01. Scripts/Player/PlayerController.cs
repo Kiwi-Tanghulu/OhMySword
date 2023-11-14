@@ -65,7 +65,8 @@ namespace OhMySword.Player
 
         public void DoChat(string chat)
         {
-
+            UIManager.Instance.ChattingPanel.Show();
+            UIManager.Instance.ChattingPanel.Hide();
         }
 
         public override void SetPosition(Vector3 position, bool immediately = false)

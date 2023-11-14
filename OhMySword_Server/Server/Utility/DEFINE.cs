@@ -47,6 +47,34 @@ namespace Server
                 new Vector3(0, -23.5f, -2),
                 new Vector3(-7.5f, -18, -19),
             },
+            [(ushort)ObjectType.GemScoreBox] = new Vector3[] {
+                new Vector3(80, -34.5f, 0),
+                new Vector3(118, -34.5f, 35),
+                new Vector3(57, -34.5f, 52),
+                new Vector3(9, -16.5f, 33),
+                new Vector3(-12, -16.5f, 51),
+                new Vector3(-43, -16.5f, 45),
+                new Vector3(-57, -16.5f, 67),
+                new Vector3(-75, -16.5f, 88),
+                new Vector3(-6, -16.5f, 84),
+            },
+            [(ushort)ObjectType.DesertTreeScoreBox] = new Vector3[] {
+                new Vector3(-7, -16.4f, 30),
+                new Vector3(-44, -16.4f, 30),
+                new Vector3(-60, -16.4f, 79),
+                new Vector3(13, -16.4f, 63),
+                new Vector3(39, -34.5f, 45),
+                new Vector3(58, -34.5f, 28),
+                new Vector3(90, -34.5f, 5),
+                new Vector3(80, -34.5f, 47),
+            },
+            [(ushort)ObjectType.CoreScoreBox] = new Vector3[] {
+                new Vector3(-27, -18, 26),
+                new Vector3(-30, -12, 66),
+                new Vector3(44, -26, 98),
+                new Vector3(59, -36, 14),
+                new Vector3(107, -36, 28),
+            },
         };
 
         public static readonly Dictionary<ushort, ScoreBoxDropTable> XPSpawnTable = new Dictionary<ushort, ScoreBoxDropTable>() {
@@ -77,6 +105,35 @@ namespace Server
             }),
             [(ushort)ObjectType.EggScoreBox] = new ScoreBoxDropTable(1000, new Vector3[] {
                 new Vector3(0, 0, 0)
+            }),
+            [(ushort)ObjectType.GemScoreBox] = new ScoreBoxDropTable(224, new Vector3[] {
+                new Vector3(-2, 0.5f, 0),
+                new Vector3(2, 0.5f, 0),
+                new Vector3(0, 0.5f, 2),
+                new Vector3(0, 0.5f, -2),
+                new Vector3(2, 0.5f, 2),
+                new Vector3(-2, 0.5f, 2),
+                new Vector3(-2, 0.5f, -2),
+                new Vector3(2, 0.5f, -2),
+            }),
+            [(ushort)ObjectType.DesertTreeScoreBox] = new ScoreBoxDropTable(522, new Vector3[] {
+                new Vector3(2, 0.5f, 2),
+                new Vector3(-2, 0.5f, 2),
+                new Vector3(-2, 0.5f, -2),
+                new Vector3(2, 0.5f, -2),
+                new Vector3(0, 0.5f, 0),
+                new Vector3(0, 0.5f, 2),
+                new Vector3(0, 0.5f, -2),
+                new Vector3(2, 0.5f, 0),
+                new Vector3(-2, 0.5f, 0),
+            }),
+            [(ushort)ObjectType.CoreScoreBox] = new ScoreBoxDropTable(1500, new Vector3[] {
+                new Vector3(0, 0, 0),
+                new Vector3(0, 0, 4),
+                new Vector3(-3, 0, 3),
+                new Vector3(3, 0, 3),
+                new Vector3(-2, 0, -2),
+                new Vector3(2, 0, -2),
             }),
         };
 
