@@ -5,5 +5,8 @@ public enum ObjectType
     StoneScoreBox,
     EggScoreBox,
     Player,
-    XPObject
+    XPObject,
+    GemScoreBox,
+    DesertTreeScoreBox,
+    CoreScoreBox
 }
