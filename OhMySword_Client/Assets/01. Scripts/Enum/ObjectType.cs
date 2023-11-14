@@ -8,4 +8,5 @@ public enum ObjectType
     XPObject,
     GemScoreBox,
     DesertTreeScoreBox,
+    CoreScoreBox
 }

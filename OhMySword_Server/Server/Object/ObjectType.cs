@@ -12,5 +12,6 @@ namespace Server
         XPObject,
         GemScoreBox,
         DesertTreeScoreBox,
+        CoreScoreBox
     }
 }

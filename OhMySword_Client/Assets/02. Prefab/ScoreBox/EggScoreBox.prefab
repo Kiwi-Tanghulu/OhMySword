@@ -259,7 +259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5193722753159035717}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.7, y: -14.64, z: -58.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -268,7 +268,7 @@ Transform:
   - {fileID: 7719290084290714520}
   - {fileID: 1459180984627909773}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4838707351391630273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropTable: {fileID: 11400000, guid: 323cd0e8be532a842860731098de956a, type: 2}
   positionTable: {fileID: 11400000, guid: 6e2bc0d5e060fcc4ebc346dcc1ad7bb8, type: 2}
-  type: 0
+  type: 3
   OnMovedEvent:
     m_PersistentCalls:
       m_Calls:

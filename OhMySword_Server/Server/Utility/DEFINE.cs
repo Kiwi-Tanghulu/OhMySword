@@ -68,6 +68,13 @@ namespace Server
                 new Vector3(90, -34.5f, 5),
                 new Vector3(80, -34.5f, 47),
             },
+            [(ushort)ObjectType.CoreScoreBox] = new Vector3[] {
+                new Vector3(-27, -18, 26),
+                new Vector3(-30, -12, 66),
+                new Vector3(44, -26, 98),
+                new Vector3(59, -36, 14),
+                new Vector3(107, -36, 28),
+            },
         };
 
         public static readonly Dictionary<ushort, ScoreBoxDropTable> XPSpawnTable = new Dictionary<ushort, ScoreBoxDropTable>() {
@@ -119,6 +126,14 @@ namespace Server
                 new Vector3(0, 0.5f, -2),
                 new Vector3(2, 0.5f, 0),
                 new Vector3(-2, 0.5f, 0),
+            }),
+            [(ushort)ObjectType.CoreScoreBox] = new ScoreBoxDropTable(1500, new Vector3[] {
+                new Vector3(0, 0, 0),
+                new Vector3(0, 0, 4),
+                new Vector3(-3, 0, 3),
+                new Vector3(3, 0, 3),
+                new Vector3(-2, 0, -2),
+                new Vector3(2, 0, -2),
             }),
         };
 
