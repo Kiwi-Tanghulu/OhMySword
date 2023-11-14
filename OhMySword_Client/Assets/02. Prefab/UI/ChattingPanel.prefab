@@ -292,26 +292,14 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7280345321233061396}
-        m_TargetAssemblyTypeName: OhMySword.UI.ChattingPanel, Assembly-CSharp
-        m_MethodName: set_IsChat
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7280345321233061396}
         m_TargetAssemblyTypeName: OhMySword.UI.ChattingPanel, Assembly-CSharp
-        m_MethodName: set_IsChat
-        m_Mode: 6
+        m_MethodName: debug
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -665,7 +653,8 @@ MonoBehaviour:
   isPooling: 0
   chatPrefab: {fileID: -4744176108502767087, guid: 1e3d6b6fb7b2cdf42aa90641ada1d291,
     type: 3}
-  hideTime: 1
+  fadeTime: 2
+  fadeDelayTime: 1
   <IsChat>k__BackingField: 0
 --- !u!222 &4625468269512127130
 CanvasRenderer:

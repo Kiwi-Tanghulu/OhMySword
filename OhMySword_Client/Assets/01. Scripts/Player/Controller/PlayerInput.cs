@@ -34,8 +34,15 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            //
-            //UIManager.Instance.SetChat();
+            if(UIManager.Instance.ChattingPanel.IsChat)
+            {
+
+            }
+            else
+            {
+                UIManager.Instance.ChattingPanel.Show();
+                UIManager.Instance.ChattingPanel.SetFieldSelect(true);
+            }
         }
     }
 }

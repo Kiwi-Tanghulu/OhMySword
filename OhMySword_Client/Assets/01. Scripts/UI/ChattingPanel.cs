@@ -14,10 +14,12 @@ namespace OhMySword.UI
         private TMP_InputField textField = null;
         private CanvasGroup canvasGroup = null;
 
-        [SerializeField] private float fadeTime = 1f;
+        [SerializeField] private float fadeTime = 2f;
+        [SerializeField] private float fadeDelayTime = 3f;
 
         [field:SerializeField]
         public bool IsChat { get; set; } = false;
+        private Coroutine fadeCo;
 
         protected override void Awake()
         {
@@ -50,28 +52,50 @@ namespace OhMySword.UI
             NetworkManager.Instance.Send(packet);
 
             textField.text = "";
-            textField.ActivateInputField();
+            SetFieldSelect(false);
+            Hide();
+            Debug.Log("send chat");
         }
 
-        public void SetSelect()
+        public void SetFieldSelect(bool value)
         {
-            textField.Select();
-            textField.ActivateInputField();
+            if(value)
+            {
+                textField.ActivateInputField();
+            }
+            else
+            {
+                textField.interactable = false;
+            }
+
+            IsChat = value;
         }
 
         public void Show()
         {
-            StopCoroutine(Fade());
+            if(fadeCo != null)
+            {
+                StopCoroutine(fadeCo);
+                fadeCo = null;
+            }    
+
             canvasGroup.alpha = 1;
         }
 
         public override void Hide()
         {
-            StartCoroutine(Fade());
-        }
+            if (fadeCo != null)
+            {
+                StopCoroutine(fadeCo);
+                fadeCo = null;
+            }
 
+            fadeCo = StartCoroutine(Fade());
+        }
         private IEnumerator Fade()
         {
+            yield return new WaitForSeconds(fadeDelayTime);
+
             float percent = 0;
 
             while(percent <= 1)
@@ -82,6 +106,8 @@ namespace OhMySword.UI
 
                 yield return null;
             }
+
+            fadeCo = null;
         }
     }
 }
