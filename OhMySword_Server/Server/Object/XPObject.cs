@@ -14,6 +14,7 @@ namespace Server
         {
             this.room = room;
             this.xp = xp;
+            this.objectType = (ushort)ObjectType.XPObject;
         }
 
         public override void Hit(ushort damage, ushort attackerID)
