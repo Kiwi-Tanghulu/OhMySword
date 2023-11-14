@@ -57,14 +57,9 @@ namespace OhMySword.UI
         public void SetFieldSelect(bool value)
         {
             if(value)
-            {
                 textField.ActivateInputField();
-            }
-            else
-            {
-                textField.interactable = false;
-            }
 
+            textField.interactable = value;
             IsChat = value;
         }
 

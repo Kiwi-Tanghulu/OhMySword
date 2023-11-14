@@ -35457,9 +35457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5d1eea222286c43af5baaf7d3992e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initCreateCount: 5
+  initCreateCount: 20
   poolingList:
   - {fileID: 460158115802420355, guid: 2f6cd967b44150e438863bcc05576bd3, type: 3}
+  - {fileID: 6526212951700608576, guid: 36eb94454085f4145b99d88f910730df, type: 3}
 --- !u!4 &1509981232
 Transform:
   m_ObjectHideFlags: 0

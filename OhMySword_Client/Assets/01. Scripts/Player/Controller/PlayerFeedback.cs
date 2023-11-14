@@ -10,7 +10,7 @@ public class PlayerFeedback : MonoBehaviour
     private PlayerMove move;
 
     [Header("hit")]
-    public float hitFeedbackPower = 25f;
+    public float hitFeedbackPower = 15f;
     [SerializeField] private float hitEffectPlayOffset;
     [SerializeField] private Transform hitEffectPlayPos;
 
