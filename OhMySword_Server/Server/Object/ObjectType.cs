@@ -9,6 +9,7 @@ namespace Server
         StoneScoreBox,
         EggScoreBox,
         Player,
-        XPObject
+        XPObject,
+        GemScoreBox,
     }
 }

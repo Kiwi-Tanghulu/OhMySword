@@ -47,6 +47,17 @@ namespace Server
                 new Vector3(0, -23.5f, -2),
                 new Vector3(-7.5f, -18, -19),
             },
+            [(ushort)ObjectType.GemScoreBox] = new Vector3[] {
+                new Vector3(80, -33, 0),
+                new Vector3(118, -33, 35),
+                new Vector3(57, -33, 52),
+                new Vector3(9, -16.5f, 33),
+                new Vector3(-12, -16.5f, 51),
+                new Vector3(-43, -16.5f, 45),
+                new Vector3(-57, -16.5f, 67),
+                new Vector3(-75, -16.5f, 88),
+                new Vector3(-6, -16.5f, 84),
+            },
         };
 
         public static readonly Dictionary<ushort, ScoreBoxDropTable> XPSpawnTable = new Dictionary<ushort, ScoreBoxDropTable>() {
@@ -77,6 +88,16 @@ namespace Server
             }),
             [(ushort)ObjectType.EggScoreBox] = new ScoreBoxDropTable(1000, new Vector3[] {
                 new Vector3(0, 0, 0)
+            }),
+            [(ushort)ObjectType.GemScoreBox] = new ScoreBoxDropTable(224, new Vector3[] {
+                new Vector3(-1, 0.5f, 0),
+                new Vector3(1, 0.5f, 0),
+                new Vector3(0, 0.5f, 1),
+                new Vector3(0, 0.5f, -1),
+                new Vector3(1, 0.5f, 1),
+                new Vector3(-1, 0.5f, 1),
+                new Vector3(-1, 0.5f, -1),
+                new Vector3(1, 0.5f, -1),
             }),
         };
 
