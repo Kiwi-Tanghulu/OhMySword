@@ -11,7 +11,6 @@ public class PlayerFeedback : MonoBehaviour
 
     [Header("hit")]
     public float hitFeedbackPower = 25f;
-    [SerializeField] private ParticleSystem hitEffect;
     [SerializeField] private float hitEffectPlayOffset;
     [SerializeField] private Transform hitEffectPlayPos;
 
@@ -35,9 +34,9 @@ public class PlayerFeedback : MonoBehaviour
     public void HitFeedback(SyncableObject attacker)
     {
         Vector3 dir = (ragdoll.hip.transform.position - attacker.GetComponent<ActiveRagdoll>().hip.transform.position).normalized;
-        Debug.Log("Hit");
-        hitEffect.transform.position = hitEffectPlayPos.position + -dir * hitEffectPlayOffset;
-        hitEffect.Play();
+        
+        PoolableMono hitEffect = PoolManager.Instance.Pop("HitEffect", 
+            hitEffectPlayPos.position + -dir * hitEffectPlayOffset);
 
         ragdoll.AddForceToSpine(dir * hitFeedbackPower);
     }

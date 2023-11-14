@@ -41,6 +41,7 @@ public class PoolManager : MonoBehaviour
 
         obj.gameObject.SetActive(true);
         obj.transform.position = popPos;
+        obj.Init();
 
         return obj;
     }
