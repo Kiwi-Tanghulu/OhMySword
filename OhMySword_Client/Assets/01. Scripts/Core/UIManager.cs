@@ -40,6 +40,4 @@ public class UIManager : MonoBehaviour
             return uiAudioPlayer;
         }
     }
-
-    public bool IsChatting = false;
 }
