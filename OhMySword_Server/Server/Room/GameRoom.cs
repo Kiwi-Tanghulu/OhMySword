@@ -17,23 +17,35 @@ namespace Server
         {
             for(int i = 0; i < 3; i++)
             {
-                ScoreBox scoreBox = new ScoreBox(this, 3, ObjectType.StoneScoreBox);
-                scoreBox.ResetPosition();
-                PublishObject(scoreBox);
+                ScoreBox scoreBox1 = new ScoreBox(this, 3, ObjectType.StoneScoreBox);
+                scoreBox1.ResetPosition();
+                PublishObject(scoreBox1);
+
+                ScoreBox scoreBox2 = new ScoreBox(this, 4, ObjectType.GemScoreBox);
+                scoreBox2.ResetPosition();
+                PublishObject(scoreBox2);
             }
 
             for (int i = 0; i < 2; i++)
             {
-                ScoreBox scoreBox = new ScoreBox(this, 6, ObjectType.WoodenScoreBox);
-                scoreBox.ResetPosition();
-                PublishObject(scoreBox);
+                ScoreBox scoreBox1 = new ScoreBox(this, 6, ObjectType.WoodenScoreBox);
+                scoreBox1.ResetPosition();
+                PublishObject(scoreBox1);
+
+                ScoreBox scoreBox2 = new ScoreBox(this, 8, ObjectType.DesertTreeScoreBox);
+                scoreBox2.ResetPosition();
+                PublishObject(scoreBox2);
             }
 
             for (int i = 0; i < 1; i++)
             {
-                ScoreBox scoreBox = new ScoreBox(this, 9, ObjectType.EggScoreBox);
-                scoreBox.ResetPosition();
-                PublishObject(scoreBox);
+                ScoreBox scoreBox1 = new ScoreBox(this, 9, ObjectType.EggScoreBox);
+                scoreBox1.ResetPosition();
+                PublishObject(scoreBox1);
+
+                ScoreBox scoreBox2 = new ScoreBox(this, 11, ObjectType.CoreScoreBox);
+                scoreBox2.ResetPosition();
+                PublishObject(scoreBox2);
             }
         }
     }
