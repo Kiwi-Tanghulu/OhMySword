@@ -2084,7 +2084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4691387822296859544}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: CamAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2099,12 +2099,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2370057509720132483}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.00000011498804, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1352098182078091208}
+  m_Father: {fileID: 2573380749204417745}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2502530147553125426
 GameObject:
@@ -2294,8 +2294,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 1
-  m_VerticalDamping: 1
+  m_HorizontalDamping: 0
+  m_VerticalDamping: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
@@ -2317,7 +2317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 1, y: 1, z: 1}
+  Damping: {x: 0, y: 0, z: 0}
   ShoulderOffset: {x: 0, y: 2.5, z: 1}
   VerticalArmLength: 0.4
   CameraSide: 1
@@ -2855,6 +2855,7 @@ Transform:
   m_Children:
   - {fileID: 1352098182078091208}
   - {fileID: 3526403296780413903}
+  - {fileID: 4691387822296859544}
   - {fileID: 3766338928970186393}
   - {fileID: 7640181596207911100}
   - {fileID: 1761468797360680241}
@@ -5265,8 +5266,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1352098182078091208}
-  m_Follow: {fileID: 1352098182078091208}
+  m_LookAt: {fileID: 4691387822296859544}
+  m_Follow: {fileID: 4691387822296859544}
   m_Lens:
     FieldOfView: 60.000004
     OrthographicSize: 5
@@ -6425,7 +6426,6 @@ Transform:
   - {fileID: 1687994802012140029}
   - {fileID: 8642535776830334148}
   - {fileID: 5806505959528426898}
-  - {fileID: 4691387822296859544}
   m_Father: {fileID: 2573380749204417745}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &9150853402231350212
