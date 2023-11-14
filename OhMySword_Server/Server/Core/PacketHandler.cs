@@ -98,7 +98,7 @@ namespace Server
             GameRoom room = clientSession.Room;
 
             S_AnimationPacket broadcastPacket = animationPacket;
-            room.AddJob(() => room.Broadcast(broadcastPacket, clientSession.UserID));
+            room.AddJob(() => room.Broadcast(broadcastPacket, clientSession.UserID)); 
         }
     }
 }

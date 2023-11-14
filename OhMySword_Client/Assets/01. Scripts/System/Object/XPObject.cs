@@ -63,7 +63,7 @@ public class XPObject : SyncableObject, IDamageable
 
     public override void OnDeleted()
     {
-        
+        transform.DOKill();
     }
 
     public void OnDamage(int damage, GameObject performer, Vector3 point)
