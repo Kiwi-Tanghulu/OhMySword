@@ -101,6 +101,7 @@ public class PacketHandler
             return;
 
         player.GetXP(scorePacket.score);
+        RoomManager.Instance.UpdateRankingBoard(player, scorePacket.score);
     }
 
     public static void S_ObjectDestroyPacket(Session session, Packet packet)

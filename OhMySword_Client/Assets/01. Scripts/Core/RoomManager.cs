@@ -19,6 +19,9 @@ public class RoomManager : MonoBehaviour
     private Dictionary<ushort, PlayerController> players = new Dictionary<ushort, PlayerController>();
     private Dictionary<ushort, SyncableObject> objects = new Dictionary<ushort, SyncableObject>();
 
+    [Space(10f), SerializeField] int boardCount = 5;
+    public event Action<List<PlayerController>> OnRankingChangedEvent = null;
+
 	private void Awake()
     {
         if(Instance != null)
@@ -26,6 +29,11 @@ public class RoomManager : MonoBehaviour
 
         Instance = this;
         prefabTable.Init();
+    }
+
+    public void UpdateRankingBoard(PlayerController updator)
+    {
+        
     }
 
     public PlayerController GetPlayer(ushort id)
