@@ -58,6 +58,7 @@ namespace OhMySword.Player
 
         public void Hit(SyncableObject attacker)
         {
+            Debug.Log($"Hit: {transform.name}");
             OnHitEvent?.Invoke(attacker);
             AudioManager.Instance.PlayAudio("Hit", audioPlayer, true);
         }
@@ -70,6 +71,7 @@ namespace OhMySword.Player
 
         public void Die(SyncableObject attacker, ushort destroyCount)
         {
+            Debug.Log($"die : {transform.name}");
             OnDieEvent?.Invoke(attacker);
             AudioManager.Instance.PlayAudio("PlayerDie", audioPlayer, true);
         }

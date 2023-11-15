@@ -3190,7 +3190,7 @@ MonoBehaviour:
   RightLegTarget: {fileID: 8355484182045137357}
   LeftLegTarget: {fileID: 2565994669587253852}
   RightArmTarget: {fileID: 6020482088138376145}
-  onDieTransTime: 0.1
+  onDieTransTime: 0.2
   onDie:
     m_PersistentCalls:
       m_Calls:
