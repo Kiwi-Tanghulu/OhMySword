@@ -2,26 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using DG.Tweening;
 namespace MyUI
 {
-    public class PauseUI : FullUI
+    public class PauseUI : MonoBehaviour
     {
-        private Button continueBtn;
-        private Button settingBtn;
-        private Button quitBtn;
+        [SerializeField] private Button continueBtn;
+        [SerializeField] private Button settingBtn;
+        [SerializeField] private Button reStartBtn;
 
-        protected override void Awake()
+        [SerializeField] private RectTransform[] buttonsRects;
+        [SerializeField] private Vector2[] btnStrPos;
+        [SerializeField] private Vector2[] btnEndPos;
+        [SerializeField] private float btnMoveTime;
+        [SerializeField] private float btnWaitTime;
+        //protected override void Awake()
+        //{
+        //    base.Awake();
+        //}
+        //public override void Show(Transform parent = null)
+        //{
+        //    base.Show(parent);
+        //    StartCoroutine(BtnMove());
+        //}
+        private void Start()
         {
-            base.Awake();
-
-            Transform btnContainer = transform.Find("Contents/BtnContainer");
-
-            continueBtn = btnContainer.Find("ContinueBtn").GetComponent<Button>();
-            settingBtn = btnContainer.Find("SettingBtn").GetComponent<Button>();
-            quitBtn = btnContainer.Find("QuitBtn").GetComponent<Button>();
-
-            settingBtn.onClick.AddListener(() => UIManager.Instance.GetUI<FullUI>("SettingUI").ShowAndRecord());
+            StartCoroutine(BtnMove());
+        }
+        private IEnumerator BtnMove()
+        {
+            for(int i = 0; i < buttonsRects.Length; i++)
+            {
+                buttonsRects[i].anchoredPosition = btnStrPos[i];
+            }
+            for(int i = 0; i < buttonsRects.Length; i++)
+            {
+                buttonsRects[i].DOAnchorPos(btnEndPos[i], btnMoveTime).SetEase(Ease.InOutQuart);
+                yield return new WaitForSeconds(btnWaitTime);
+            }
         }
     }
 }
