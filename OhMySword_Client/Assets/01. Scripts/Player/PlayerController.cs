@@ -12,6 +12,7 @@ namespace OhMySword.Player
         private PlayerMove movement;
         private PlayerView view;
         private PlayerWeapon playerWeapon;
+        public ActiveRagdoll ragdoll { get; private set; }
 
         public UnityEvent<SyncableObject> OnHitEvent;
         public UnityEvent<SyncableObject> OnDieEvent;
@@ -32,6 +33,7 @@ namespace OhMySword.Player
             movement = GetComponent<PlayerMove>();
             view = GetComponent<PlayerView>();
             playerWeapon = transform.Find("Hips/Rig/Sword/Sword").GetComponent<PlayerWeapon>();
+            ragdoll = GetComponent<ActiveRagdoll>();
 
             audioPlayer = GetComponent<AudioSource>();
         }
