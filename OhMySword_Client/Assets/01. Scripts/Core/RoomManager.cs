@@ -1,10 +1,10 @@
-using System.Linq;
 using System.Collections.Generic;
 using Packets;
 using UnityEngine;
 using OhMySword.Player;
 using Base.Network;
 using System;
+using System.Linq;
 
 public class RoomManager : MonoBehaviour
 {
@@ -21,6 +21,7 @@ public class RoomManager : MonoBehaviour
 
     [Space(10f), SerializeField] int boardCount = 5;
     public event Action<List<PlayerController>> OnRankingChangedEvent = null;
+    [SerializeField] private List<PlayerController> rankBoard = null;
 
 	private void Awake()
     {
@@ -31,9 +32,11 @@ public class RoomManager : MonoBehaviour
         prefabTable.Init();
     }
 
-    public void UpdateRankingBoard(PlayerController updator)
+    public void UpdateRankingBoard()
     {
-        
+        List<PlayerController> rankBoard = players.Values.ToList();
+        rankBoard.Sort();
+        OnRankingChangedEvent?.Invoke(rankBoard.GetRange(0, boardCount));
     }
 
     public PlayerController GetPlayer(ushort id)
