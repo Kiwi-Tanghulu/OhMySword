@@ -34,7 +34,7 @@ public class RoomManager : MonoBehaviour
 
     public void UpdateRankingBoard()
     {
-        List<PlayerController> rankBoard = players.Values.ToList();
+        rankBoard = players.Values.ToList();
         rankBoard.Sort();
         OnRankingChangedEvent?.Invoke(rankBoard.GetRange(0, boardCount));
     }
