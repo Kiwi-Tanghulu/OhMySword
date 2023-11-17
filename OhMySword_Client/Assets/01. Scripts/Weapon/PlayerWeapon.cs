@@ -80,6 +80,8 @@ public class PlayerWeapon : MonoBehaviour
             StartCoroutine(GrowUpSword());
     }
 
+    public ushort GetScore() => nextScore;
+
     private IEnumerator GrowUpSword()
     {
         float checkTime = 0f;
