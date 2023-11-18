@@ -51,15 +51,19 @@ namespace OhMySword.Player
         public void OnDamage(int damage, GameObject performer, Vector3 point)
         {
             SyncableObject attacker = performer.GetComponent<SyncableObject>();
-            if(attacker == null)
-                return;
+            C_AttackPacket attackPacket = null;
 
-            C_AttackPacket attackPacket = new C_AttackPacket((ushort)ObjectType.Player, ObjectID, attacker.ObjectID, (ushort)damage);
+            if(attacker != null)
+                attackPacket = new C_AttackPacket((ushort)ObjectType.Player, ObjectID, attacker.ObjectID, (ushort)damage);
+            else
+                attackPacket = new C_AttackPacket((ushort)ObjectType.Player, ObjectID, ushort.MaxValue, (ushort)damage);
+
             NetworkManager.Instance.Send(attackPacket);
         }
 
         public void Hit(SyncableObject attacker)
         {
+            // 맵 콘파이너에 의해 죽을 경우 attacker가 null로 들어옴
             Debug.Log($"Hit: {transform.name}");
             OnHitEvent?.Invoke(attacker);
             AudioManager.Instance.PlayAudio("Hit", audioPlayer, true);
