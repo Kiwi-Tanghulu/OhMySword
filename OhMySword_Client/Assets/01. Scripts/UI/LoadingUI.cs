@@ -28,15 +28,15 @@ public class LoadingUI : MonoBehaviour
             
             if(curhelpTextTime > helpTextTime)
             {
-                helpText.rectTransform.DOScale(Vector3.zero, 0.3f).OnComplete(() => {
+                helpText.DOFade(0f, 0.5f).OnComplete(() => {
                     helpText.text = helpTexts[Random.Range(0, helpTexts.Length)];
-                    helpText.rectTransform.DOScale(Vector3.one, 0.3f); 
+                    helpText.DOFade(1, 0.5f); 
                 });
                 curhelpTextTime = 0;
             }
             if(curTypeTime > titleTypeTime)
             {
-                if(titleCnt > 3)
+                if(titleCnt > 2)
                 {
                     titleText.text = "맵과 하나가 되는중";
                     titleCnt = 0;

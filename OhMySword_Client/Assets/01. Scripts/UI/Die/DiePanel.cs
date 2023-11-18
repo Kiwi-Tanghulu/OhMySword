@@ -36,7 +36,18 @@ namespace MyUI
             {
                 for(int i = setIndex; i <= index; i++)
                 {
-                    dieInfoTexts[i].text = ((int)Random.Range(1, 100000)).ToString();
+                    if(i == 3)
+                    {
+                        dieInfoTexts[i].text = "";
+                        for(int j = 0; j < 7; j++)
+                        {
+                            dieInfoTexts[i].text += (char)Random.Range(65, 123);
+                        }
+                    }
+                    else
+                    {
+                        dieInfoTexts[i].text = ((int)Random.Range(1, 100000)).ToString();
+                    }
                 }
                 checkNum += 0.05f;
                 if (checkNum > 0.7f)
