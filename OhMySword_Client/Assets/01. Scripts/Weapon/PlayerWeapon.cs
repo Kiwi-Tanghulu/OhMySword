@@ -7,6 +7,8 @@ public class PlayerWeapon : MonoBehaviour
     [Range(0.001f,0.2f)]
     [SerializeField] private float scoreSize; // ���ھ�� ������� ����! ��) 0.01�̶�� 1���� 0.01�� Ŀ�� 100���̶�� 1�� Ŀ����
 
+    [SerializeField] private float sizeUpSpeed = 1f;
+
     [SerializeField] private Transform swordPivot;
     private int swordSize; // ���߿� �ʿ��� �� �־...
     public int SwordSize => swordSize;
@@ -96,8 +98,8 @@ public class PlayerWeapon : MonoBehaviour
             if(currentScore == nextScore)
                 break;
 
-            swordPivot.localScale = new Vector3(1f, swordPivot.localScale.y + (scoreSize * Time.deltaTime), 1f);
-            checkTime += Time.deltaTime;
+            swordPivot.localScale = new Vector3(1f, swordPivot.localScale.y + (scoreSize * Time.deltaTime * sizeUpSpeed), 1f);
+            checkTime += Time.deltaTime * sizeUpSpeed;
             yield return null;
         }
         isGrowing = false;
