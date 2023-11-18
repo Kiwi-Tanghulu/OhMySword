@@ -6672,6 +6672,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <canAttack>k__BackingField: 1
+  OnAttackEvent:
+    m_PersistentCalls:
+      m_Calls: []
   attackTime: 0.2
   recoveryTime: 0.5
   nonattackTrm: {fileID: 5909574918188646308}
@@ -6714,12 +6717,12 @@ MonoBehaviour:
   hitFeedbackPower: 100
   hitEffectPlayOffset: 0.4
   hitEffectPlayPos: {fileID: 3541656994805744203}
-  onDieLeftLegTrm: {fileID: 0}
-  onDieRightLegTrm: {fileID: 0}
-  onDieRightArmTrm: {fileID: 0}
-  RightLegTarget: {fileID: 0}
-  LeftLegTarget: {fileID: 0}
-  RightArmTarget: {fileID: 0}
+  onDieLeftLegTrm: {fileID: 8384502602904355821}
+  onDieRightLegTrm: {fileID: 7839976473408190305}
+  onDieRightArmTrm: {fileID: 1238840737515265609}
+  RightLegTarget: {fileID: 8271722919145158377}
+  LeftLegTarget: {fileID: 5149549808878204092}
+  RightArmTarget: {fileID: 7690463671581604103}
   onDieTransTime: 0.1
   onDie:
     m_PersistentCalls:

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerAttack : MonoBehaviour
 {
     [field: SerializeField]
     public bool canAttack { get; set; } = true;
+
+    public UnityEvent OnAttackEvent;
 
     private ActiveRagdoll ragdoll;
 
@@ -34,6 +37,7 @@ public class PlayerAttack : MonoBehaviour
 
         weapon.SetCollision(true);
         weapon.SetTrail(true);
+        OnAttackEvent?.Invoke();
         StartCoroutine(AttackCo());
     }
 

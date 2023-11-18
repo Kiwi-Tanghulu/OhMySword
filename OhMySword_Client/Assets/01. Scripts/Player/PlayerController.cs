@@ -1,3 +1,4 @@
+using System;
 using Base.Network;
 using Packets;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.Events;
 
 namespace OhMySword.Player
 {
-    public class PlayerController : SyncableObject, IDamageable, IHitable
+    public class PlayerController : SyncableObject, IDamageable, IHitable, IComparable<PlayerController>
     {
         private AudioSource audioPlayer;
 
@@ -21,6 +22,7 @@ namespace OhMySword.Player
         public TMPro.TextMeshPro nameTag;
 
         public string nickname;
+        public ushort Score => playerWeapon.GetScore();
 
         protected override void Awake()
         {
@@ -58,6 +60,7 @@ namespace OhMySword.Player
 
         public void Hit(SyncableObject attacker)
         {
+            Debug.Log($"Hit: {transform.name}");
             OnHitEvent?.Invoke(attacker);
             AudioManager.Instance.PlayAudio("Hit", audioPlayer, true);
         }
@@ -70,6 +73,7 @@ namespace OhMySword.Player
 
         public void Die(SyncableObject attacker, ushort destroyCount)
         {
+            Debug.Log($"die : {transform.name}");
             OnDieEvent?.Invoke(attacker);
             AudioManager.Instance.PlayAudio("PlayerDie", audioPlayer, true);
         }
@@ -97,6 +101,15 @@ namespace OhMySword.Player
         {
             Debug.Log(2);
             SetAnimation?.Invoke(animationType);
+        }
+
+        public int CompareTo(PlayerController other)
+        {
+            if(this.Score > other.Score)
+                return 1;
+            if(this.Score < other.Score)
+                return -1;
+            return 0;
         }
     }
 }

@@ -11,6 +11,7 @@ public class PlayerAnimation : MonoBehaviour
     private Animator anim;
     private Transform animTrm;
     private ActiveRagdoll ragdoll;
+    private PlayerAttack attack;
 
     public UnityEvent<int> PlayEmotionEvent;
     public UnityEvent<int> StopEmotionEvent;
@@ -23,6 +24,7 @@ public class PlayerAnimation : MonoBehaviour
     private void Start()
     {
         ragdoll = GetComponent<ActiveRagdoll>();
+        attack = GetComponent<PlayerAttack>();
         anim = transform.Find("Animation").GetComponent<Animator>();
         animTrm = anim.transform;
     }
@@ -33,7 +35,16 @@ public class PlayerAnimation : MonoBehaviour
         if (isEmotionPlay)
             StopEmtion();
         else
-            PlayEmotion(hash);
+        {
+            if(hash == 0)
+            {
+                attack.Attack();
+            }
+            else
+            {
+                PlayEmotion(hash);
+            }
+        }
     }
 
     private void PlayEmotion(int hash)

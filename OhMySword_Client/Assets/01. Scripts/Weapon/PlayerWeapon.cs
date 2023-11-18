@@ -21,9 +21,13 @@ public class PlayerWeapon : MonoBehaviour
     private BoxCollider col;
     [SerializeField] private TrailRenderer trail;
 
+    private Transform ownerHitbox;
+
     private void Awake()
     {
         col = GetComponent<BoxCollider>();
+
+        ownerHitbox = transform.root.Find("Hips/Hitbox");
     }
 
     private void OnEnable()
@@ -38,6 +42,9 @@ public class PlayerWeapon : MonoBehaviour
 
         if(other.CompareTag("Other_Hitbox") && other.transform.root.TryGetComponent<IDamageable>(out IDamageable id))
         {
+            if (other.transform == ownerHitbox)
+                return;
+
             Debug.Log("Success Attack");
             id.OnDamage(1, transform.root.gameObject, Vector3.zero);
         }
@@ -72,6 +79,8 @@ public class PlayerWeapon : MonoBehaviour
         if(currentScore != nextScore && isGrowing == false)
             StartCoroutine(GrowUpSword());
     }
+
+    public ushort GetScore() => nextScore;
 
     private IEnumerator GrowUpSword()
     {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07051174, g: 0.35371843, b: 0.97079456, a: 1}
+  m_IndirectSpecularColor: {r: 0.07058083, g: 0.35375422, b: 0.9707924, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -43164,6 +43164,7 @@ MonoBehaviour:
   initCreateCount: 5
   poolingList:
   - {fileID: 460158115802420355, guid: 2f6cd967b44150e438863bcc05576bd3, type: 3}
+  - {fileID: 6526212951700608576, guid: 36eb94454085f4145b99d88f910730df, type: 3}
 --- !u!4 &1509981232
 Transform:
   m_ObjectHideFlags: 0
@@ -65342,6 +65343,7 @@ SceneRoots:
   - {fileID: 2060873601}
   - {fileID: 905637737}
   - {fileID: 1939011340}
+  - {fileID: 1509981232}
   - {fileID: 1688491710}
   - {fileID: 1531406159}
   - {fileID: 1509283939}
@@ -65353,4 +65355,3 @@ SceneRoots:
   - {fileID: 680279648}
   - {fileID: 988635189}
   - {fileID: 2058021477}
-  - {fileID: 1509981232}
