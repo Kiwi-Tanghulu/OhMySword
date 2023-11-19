@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    [field : SerializeField] public bool Animationable { get; set; } = true;
+
     [SerializeField] private Transform followTrm;
     [SerializeField] private GameObject visualObj;
     private Animator anim;
@@ -31,6 +33,9 @@ public class PlayerAnimation : MonoBehaviour
 
     public void SetAnimation(int hash)
     {
+        if (!Animationable)
+            return;
+
         Debug.Log(3);
         if (isEmotionPlay)
             StopEmtion();

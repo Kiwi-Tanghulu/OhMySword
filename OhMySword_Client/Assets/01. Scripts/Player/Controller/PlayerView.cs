@@ -18,14 +18,17 @@ public class PlayerView : MonoBehaviour
     private Vector3 targetRotation = Vector3.zero;
     private Vector3 prevRotation = Vector3.zero;
 
+    private void Update()
+    {
+        camAnchor.position = hip.position;
+    }
+
     public void RotateCamera(Vector2 vector)
     {
         rotation.x -= vector.y * rotateSpeed;
         rotation.y += vector.x * rotateSpeed;
 
         rotation.x = Mathf.Clamp(rotation.x, minRotate, maxRotate);
-
-        camAnchor.position = hip.position;
 
         target.rotation = Quaternion.Euler(rotation.x, rotation.y, 0);
         camAnchor.rotation = Quaternion.Euler(rotation.x, rotation.y, 0);

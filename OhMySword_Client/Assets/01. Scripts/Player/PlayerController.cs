@@ -10,6 +10,7 @@ namespace OhMySword.Player
     {
         private AudioSource audioPlayer;
 
+        [field : SerializeField]
         public bool IsDie { get; private set; } = false;
 
         private PlayerMove movement;
@@ -54,6 +55,9 @@ namespace OhMySword.Player
 
         public void OnDamage(int damage, GameObject performer, Vector3 point)
         {
+            if (IsDie)
+                return;
+
             SyncableObject attacker = performer.GetComponent<SyncableObject>();
             C_AttackPacket attackPacket = null;
 
@@ -75,16 +79,22 @@ namespace OhMySword.Player
 
         public void GetXP(ushort amount)
         {
-            IsDie = true;
+            if (IsDie)
+                return;
+
             playerWeapon.SetScore(amount);
             AudioManager.Instance.PlayAudio("GetXP", audioPlayer, true);
         }
 
         public void Die(SyncableObject attacker, ushort destroyCount)
         {
+            if (IsDie)
+                return;
+
             Debug.Log($"die : {transform.name}");
             OnDieEvent?.Invoke(attacker);
             AudioManager.Instance.PlayAudio("PlayerDie", audioPlayer, true);
+            IsDie = true;
 
             // 콜라이더 끄기
 
@@ -100,12 +110,18 @@ namespace OhMySword.Player
 
         public void DoChat(string chat)
         {
+            if (IsDie)
+                return;
+
             UIManager.Instance.ChattingPanel.Show();
             UIManager.Instance.ChattingPanel.Hide();
         }
 
         public override void SetPosition(Vector3 position, bool immediately = false)
         {
+            if (IsDie)
+                return;
+
             base.SetPosition(position, immediately);
             Debug.Log($"SetPosition : {position}");
             movement?.SetTargetPosition(position);
@@ -113,12 +129,18 @@ namespace OhMySword.Player
 
         public override void SetRotation(Vector3 rotation)
         {
+            if (IsDie)
+                return;
+
             // 여기에 로테이션
             view?.SetRotation(rotation);
         }
 
         public override void PlayAnimation(ushort animationType)
         {
+            if (IsDie)
+                return;
+
             Debug.Log(2);
             SetAnimation?.Invoke(animationType);
         }

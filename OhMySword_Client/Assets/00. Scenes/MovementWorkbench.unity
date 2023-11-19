@@ -5605,78 +5605,6 @@ CapsuleCollider:
   m_Height: 0.03
   m_Direction: 1
   m_Center: {x: 0, y: 0.08, z: 0}
---- !u!1001 &225289591
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 923995169254488851, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      propertyPath: m_Name
-      value: Other_NewActiveRagdoll
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501847466787327381, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501847466787327381, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501847466787327381, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501847466787327381, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501847466787327381, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501847466787327381, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501847466787327381, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501847466787327381, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501847466787327381, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501847466787327381, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8084961708984357423, guid: 7303126d934f3d345bd06bc920e270c1,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-  m_SourcePrefab: {fileID: 100100000, guid: 7303126d934f3d345bd06bc920e270c1, type: 3}
 --- !u!4 &226782218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4577049411434810, guid: 704829a8dc306a04494f8d8aaa9fbe30,
@@ -7472,10 +7400,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <bodyLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
+  <Controlable>k__BackingField: 1
   isGround: 1
+  rigAnimator: {fileID: 0}
+  rigBuilder: {fileID: 0}
   hip: {fileID: 322219539}
+  hipJoint: {fileID: 0}
   hipAncher: {fileID: 0}
-  spine: {fileID: 0}
+  neck: {fileID: 0}
   spineRb: {fileID: 0}
   leftFoot:
     obj: {fileID: 0}
@@ -24372,10 +24304,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <bodyLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
+  <Controlable>k__BackingField: 1
   isGround: 1
+  rigAnimator: {fileID: 0}
+  rigBuilder: {fileID: 0}
   hip: {fileID: 1227892788}
+  hipJoint: {fileID: 0}
   hipAncher: {fileID: 0}
-  spine: {fileID: 0}
+  neck: {fileID: 0}
   spineRb: {fileID: 0}
   leftFoot:
     obj: {fileID: 0}
@@ -33914,10 +33850,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <bodyLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
+  <Controlable>k__BackingField: 1
   isGround: 1
+  rigAnimator: {fileID: 0}
+  rigBuilder: {fileID: 0}
   hip: {fileID: 34498921}
+  hipJoint: {fileID: 0}
   hipAncher: {fileID: 0}
-  spine: {fileID: 0}
+  neck: {fileID: 0}
   spineRb: {fileID: 0}
   leftFoot:
     obj: {fileID: 0}
@@ -33961,7 +33901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf2a74d6b7c46147a686d0f422e2e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canMove>k__BackingField: 1
+  <Moveable>k__BackingField: 1
   onMovedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -33980,6 +33920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c504229e665546e408be5ba0884754d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsDie>k__BackingField: 0
   OnHitEvent:
     m_PersistentCalls:
       m_Calls:
@@ -50765,10 +50706,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <bodyLerping>k__BackingField: 1
   <footMove>k__BackingField: 1
+  <Controlable>k__BackingField: 1
   isGround: 1
+  rigAnimator: {fileID: 0}
+  rigBuilder: {fileID: 0}
   hip: {fileID: 5907798254586527134}
+  hipJoint: {fileID: 0}
   hipAncher: {fileID: 0}
-  spine: {fileID: 0}
+  neck: {fileID: 0}
   spineRb: {fileID: 0}
   leftFoot:
     obj: {fileID: 0}
@@ -56979,6 +56924,5 @@ SceneRoots:
   - {fileID: 1793424868}
   - {fileID: 1359631811}
   - {fileID: 354332210}
-  - {fileID: 225289591}
   - {fileID: 1625390964}
   - {fileID: 274504905}
