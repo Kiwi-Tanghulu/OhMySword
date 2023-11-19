@@ -97,6 +97,7 @@ public class RoomManager : MonoBehaviour
 
         players[id].OnDeleted();
         Destroy(players[id].gameObject);
+        objects.Remove(id);
     }
 
     public void DeleteObject(ushort id)
@@ -106,6 +107,7 @@ public class RoomManager : MonoBehaviour
 
         objects[id].OnDeleted();
         Destroy(objects[id].gameObject);
+        objects.Remove(id);
     }
 
     public void InitRoom(List<PlayerPacket> playerList, List<ObjectPacket> objectList)

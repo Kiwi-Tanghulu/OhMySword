@@ -90,7 +90,7 @@ namespace Server
         public void ReleaseObject(ObjectBase obj)
         {
             objects.Remove(obj.objectID);
-            obj.objectID = 0;
+            obj.room = null;
         }
 
         public bool GetPlayer(ushort id, out Player player)
