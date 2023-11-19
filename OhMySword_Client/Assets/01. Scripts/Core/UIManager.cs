@@ -1,11 +1,19 @@
 using OhMySword.UI;
 using UnityEngine;
 
+public enum UIType
+{
+    Chase = 0,
+    Fixed,
+    Panel,
+    PopUp,
+    Full,
+}
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance = null;
 
-	private Transform mainCanvas = null;
+    private Transform mainCanvas = null;
     public Transform MainCanvas {
         get {
             if(mainCanvas == null)

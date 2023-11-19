@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-	public static SceneLoader Instance = null;
-    
+    public static SceneLoader Instance = null;
+
     private float syncDelayTick = 0.5f;
 
     public void LoadSceneAsync(string sceneName, Action onCompleted = null)
@@ -20,15 +20,15 @@ public class SceneLoader : MonoBehaviour
     {
         YieldInstruction delay = new WaitForSeconds(syncDelayTick);
 
-        while(true)
+        while (true)
         {
-            if(asyncOper.isDone)
+            if (asyncOper.isDone)
                 break;
 
             yield return delay;
         }
 
-        yield return null;
+        yield return new WaitForSeconds(3f);
         onCompleted?.Invoke();
     }
 }

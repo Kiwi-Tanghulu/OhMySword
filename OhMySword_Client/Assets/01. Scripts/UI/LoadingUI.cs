@@ -3,52 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
-public class LoadingUI : MonoBehaviour
+
+namespace MyUI
 {
-    [SerializeField] private TMP_Text titleText;
-    [SerializeField] private TMP_Text helpText;
-    [SerializeField] private string[] helpTexts;
+    public class LoadingUI : FullUI
+{
+        [SerializeField] private TMP_Text titleText;
+        [SerializeField] private TMP_Text helpText;
+        [SerializeField] private string[] helpTexts;
 
-    [SerializeField] private float helpTextTime;
-    [SerializeField] private float titleTypeTime;
-    private void Start()
-    {
-        StartCoroutine(HelpText());
-    }
+        [SerializeField] private float helpTextTime;
+        [SerializeField] private float titleTypeTime;
 
-    private IEnumerator HelpText()
-    {
-        float curhelpTextTime = 0;
-        float curTypeTime = 0;
-        int titleCnt = 0;
-        while (true)
+        public override void Show(Transform parent = null)
         {
-            curhelpTextTime += Time.deltaTime;
-            curTypeTime += Time.deltaTime;
-            
-            if(curhelpTextTime > helpTextTime)
+            base.Show(parent);
+            StartCoroutine(HelpText());
+        }
+
+        private IEnumerator HelpText()
+        {
+            float curhelpTextTime = 0;
+            float curTypeTime = 0;
+            int titleCnt = 0;
+            while (true)
             {
-                helpText.DOFade(0f, 0.5f).OnComplete(() => {
-                    helpText.text = helpTexts[Random.Range(0, helpTexts.Length)];
-                    helpText.DOFade(1, 0.5f); 
-                });
-                curhelpTextTime = 0;
-            }
-            if(curTypeTime > titleTypeTime)
-            {
-                if(titleCnt > 2)
+                curhelpTextTime += Time.deltaTime;
+                curTypeTime += Time.deltaTime;
+
+                if (curhelpTextTime > helpTextTime)
                 {
-                    titleText.text = "맵과 하나가 되는중";
-                    titleCnt = 0;
+                    helpText.DOFade(0f, 0.5f).OnComplete(() => {
+                        helpText.text = helpTexts[Random.Range(0, helpTexts.Length)];
+                        helpText.DOFade(1, 0.5f);
+                    });
+                    curhelpTextTime = 0;
                 }
-                else
+                if (curTypeTime > titleTypeTime)
                 {
-                    titleCnt++;
-                    titleText.text += ".";
+                    if (titleCnt > 2)
+                    {
+                        titleText.text = "맵과 하나가 되는중";
+                        titleCnt = 0;
+                    }
+                    else
+                    {
+                        titleCnt++;
+                        titleText.text += ".";
+                    }
+                    curTypeTime = 0;
                 }
-                curTypeTime = 0;
+                yield return null;
             }
-            yield return null;
         }
     }
 }
