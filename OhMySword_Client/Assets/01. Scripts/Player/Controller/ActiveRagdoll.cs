@@ -36,6 +36,7 @@ public class ActiveRagdoll : MonoBehaviour
     [Space]
     [SerializeField] public Rigidbody hip;
     [SerializeField] private Transform hipAncher;
+    public Transform neck;
 
     [Space]
     [SerializeField] private ConfigurableJoint spine;

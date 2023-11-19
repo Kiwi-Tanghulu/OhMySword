@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Base.Network;
+using OhMySword.Player;
 using Packets;
 using UnityEngine;
 using UnityEngine.Events;
@@ -43,8 +44,13 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
     {
         OnHitEvent?.Invoke();
         AudioManager.Instance.PlayAudio("Hit", audioPlayer, true);
-        Vector3 hitDir = (attacker.transform.position - transform.position).normalized;
-        PoolManager.Instance.Pop("HitEffect", transform.position + hitDir * hitEffectPlayOffset);
+        PlayerController player = attacker as PlayerController;
+        if(player != null)
+        {
+            Vector3 hitDir = (player.ragdoll.hip.transform.position - transform.position).normalized;
+            PoolManager.Instance.Pop("HitEffect", new Vector3(transform.position.x, player.ragdoll.neck.position.y, 
+                transform.position.z) + hitDir * hitEffectPlayOffset);
+        }
     }
 
     public void CreateXP(List<UShortPacket> ids)

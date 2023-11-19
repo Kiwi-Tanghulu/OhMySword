@@ -10,9 +10,12 @@ namespace OhMySword.Player
     {
         private AudioSource audioPlayer;
 
+        public bool IsDie { get; private set; } = false;
+
         private PlayerMove movement;
         private PlayerView view;
         private PlayerWeapon playerWeapon;
+        public ActiveRagdoll ragdoll { get; private set; }
 
         public UnityEvent<SyncableObject> OnHitEvent;
         public UnityEvent<SyncableObject> OnDieEvent;
@@ -34,6 +37,7 @@ namespace OhMySword.Player
             movement = GetComponent<PlayerMove>();
             view = GetComponent<PlayerView>();
             playerWeapon = transform.Find("Hips/Rig/Sword/Sword").GetComponent<PlayerWeapon>();
+            ragdoll = GetComponent<ActiveRagdoll>();
 
             audioPlayer = GetComponent<AudioSource>();
         }
@@ -51,15 +55,19 @@ namespace OhMySword.Player
         public void OnDamage(int damage, GameObject performer, Vector3 point)
         {
             SyncableObject attacker = performer.GetComponent<SyncableObject>();
-            if(attacker == null)
-                return;
+            C_AttackPacket attackPacket = null;
 
-            C_AttackPacket attackPacket = new C_AttackPacket((ushort)ObjectType.Player, ObjectID, attacker.ObjectID, (ushort)damage);
+            if(attacker != null)
+                attackPacket = new C_AttackPacket((ushort)ObjectType.Player, ObjectID, attacker.ObjectID, (ushort)damage);
+            else
+                attackPacket = new C_AttackPacket((ushort)ObjectType.Player, ObjectID, ushort.MaxValue, (ushort)damage);
+
             NetworkManager.Instance.Send(attackPacket);
         }
 
         public void Hit(SyncableObject attacker)
         {
+            // 맵 콘파이너에 의해 죽을 경우 attacker가 null로 들어옴
             Debug.Log($"Hit: {transform.name}");
             OnHitEvent?.Invoke(attacker);
             AudioManager.Instance.PlayAudio("Hit", audioPlayer, true);
@@ -67,6 +75,7 @@ namespace OhMySword.Player
 
         public void GetXP(ushort amount)
         {
+            IsDie = true;
             playerWeapon.SetScore(amount);
             AudioManager.Instance.PlayAudio("GetXP", audioPlayer, true);
         }
@@ -76,6 +85,17 @@ namespace OhMySword.Player
             Debug.Log($"die : {transform.name}");
             OnDieEvent?.Invoke(attacker);
             AudioManager.Instance.PlayAudio("PlayerDie", audioPlayer, true);
+
+            // 콜라이더 끄기
+
+            if(ObjectID == RoomManager.Instance.PlayerID) // 나 자신
+            {
+                // 내가 움직이는 걸 서버에 보내지 않아야 함
+            }
+            else // 다른 사람
+            {
+                // 서버에서 오는 데이터로부터 해당 오브젝트에 어떠한 동기화도 해주면 안 됨 
+            }
         }
 
         public void DoChat(string chat)
