@@ -10,6 +10,8 @@ namespace OhMySword.Player
     {
         private AudioSource audioPlayer;
 
+        public bool IsDie { get; private set; } = false;
+
         private PlayerMove movement;
         private PlayerView view;
         private PlayerWeapon playerWeapon;
@@ -73,6 +75,7 @@ namespace OhMySword.Player
 
         public void GetXP(ushort amount)
         {
+            IsDie = true;
             playerWeapon.SetScore(amount);
             AudioManager.Instance.PlayAudio("GetXP", audioPlayer, true);
         }
