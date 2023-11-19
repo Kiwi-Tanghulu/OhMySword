@@ -28,7 +28,7 @@ public class SceneLoader : MonoBehaviour
             yield return delay;
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return null;
         onCompleted?.Invoke();
     }
 }
