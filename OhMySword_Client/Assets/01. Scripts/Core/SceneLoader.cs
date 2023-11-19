@@ -19,16 +19,22 @@ public class SceneLoader : MonoBehaviour
     private IEnumerator AsyncLoadCoroutine(AsyncOperation asyncOper, Action onCompleted)
     {
         YieldInstruction delay = new WaitForSeconds(syncDelayTick);
+        //asyncOper.allowSceneActivation = false;
 
+        Scene loadingScene = SceneManager.LoadScene("LoadingScene", new LoadSceneParameters(LoadSceneMode.Additive));
+        // ·Îµù ¾À ·Îµå
+        yield return new WaitForSeconds(3f);
         while (true)
         {
             if (asyncOper.isDone)
+            {
+                asyncOper.allowSceneActivation = true;
                 break;
-
+            }
             yield return delay;
         }
-
-        yield return null;
+        yield return new WaitForSeconds(3f);
+        SceneManager.UnloadSceneAsync(loadingScene);
         onCompleted?.Invoke();
     }
 }

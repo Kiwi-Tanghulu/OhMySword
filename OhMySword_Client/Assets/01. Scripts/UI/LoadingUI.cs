@@ -13,6 +13,10 @@ public class LoadingUI : UIBase
     [SerializeField] private float helpTextTime;
     [SerializeField] private float titleTypeTime;
 
+    private void Start()
+    {
+        Show();
+    }
     public override void Show()
     {
         base.Show();

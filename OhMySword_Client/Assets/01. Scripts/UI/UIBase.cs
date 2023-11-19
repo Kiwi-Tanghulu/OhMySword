@@ -15,10 +15,10 @@ public class UIBase : MonoBehaviour
     [field: SerializeField]
     public bool IsOpen { get; protected set; } = true;
 
-    private void Start()
-    {
-        Hide();
-    }
+    //private void Start()
+    //{
+    //    Hide();
+    //}
     public virtual void Show()
     {
         if (IsOpen)
