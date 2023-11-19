@@ -96,6 +96,7 @@ MonoBehaviour:
         m_CallState: 2
   audioPlayer: {fileID: 2369773760994542469}
   gizmoColor: {r: 0.509434, g: 0, b: 0.02034309, a: 1}
+  hitEffectPlayOffset: 1.4
 --- !u!65 &8922764251235675445
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -116,7 +117,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.2226229, y: 3.3325567, z: 1.1717844}
-  m_Center: {x: -0.7947149, y: 1.656692, z: 0.15492845}
+  m_Center: {x: 0.03, y: 1.656692, z: 0.15492845}
 --- !u!82 &2369773760994542469
 AudioSource:
   m_ObjectHideFlags: 0
@@ -389,7 +390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4834870206099742, guid: 334d25a30fb7c6d4eacd75690c882a01, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4834870206099742, guid: 334d25a30fb7c6d4eacd75690c882a01, type: 3}
       propertyPath: m_LocalPosition.y

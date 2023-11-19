@@ -3283,6 +3283,7 @@ MonoBehaviour:
   isGround: 1
   hip: {fileID: 9150853402231350212}
   hipAncher: {fileID: 3526403296780413903}
+  neck: {fileID: 6072831727228413414}
   spine: {fileID: 2230489580862082556}
   spineRb: {fileID: 560094255498425115}
   leftFoot:
