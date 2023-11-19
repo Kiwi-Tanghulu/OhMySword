@@ -99,7 +99,11 @@ public class ActiveRagdoll : MonoBehaviour
     private void Update()
     {
         if (!Controlable)
+        {
+            SetHipToGroundPos();
+            SetHipAncherPos();
             return; 
+        }
 
         CheckGround();
 
