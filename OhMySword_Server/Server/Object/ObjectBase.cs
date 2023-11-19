@@ -21,9 +21,9 @@ namespace Server
         {
             S_ObjectDestroyPacket broadcastPacket = new S_ObjectDestroyPacket(objectID);
             room?.AddJob(() => {
-                room?.ReleaseObject(this);
-                room?.Broadcast(broadcastPacket);
-                room = null;
+                Room tempRoom = room;
+                tempRoom.ReleaseObject(this);
+                tempRoom.Broadcast(broadcastPacket);
             });
         }
 
