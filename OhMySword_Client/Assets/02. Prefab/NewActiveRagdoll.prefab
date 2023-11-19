@@ -345,7 +345,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -562,7 +562,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1016,7 +1016,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1571,7 +1571,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -2828,8 +2828,8 @@ GameObject:
   - component: {fileID: 4766823138392103545}
   - component: {fileID: 4872750787184433826}
   - component: {fileID: 6826694340876953961}
-  - component: {fileID: 5939366540002339203}
   - component: {fileID: 7553506049365909550}
+  - component: {fileID: 5939366540002339203}
   - component: {fileID: 3464172125119660786}
   - component: {fileID: 5812453627220802555}
   - component: {fileID: 798575434259882703}
@@ -2895,6 +2895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c504229e665546e408be5ba0884754d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsDie>k__BackingField: 0
   OnHitEvent:
     m_PersistentCalls:
       m_Calls:
@@ -3071,6 +3072,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  <Inputable>k__BackingField: 1
 --- !u!114 &3927538354332941555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3083,7 +3085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf2a74d6b7c46147a686d0f422e2e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <canMove>k__BackingField: 1
+  <Moveable>k__BackingField: 1
   onMovedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -3194,9 +3196,21 @@ MonoBehaviour:
   onDie:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2119935563374049366}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+      - m_Target: {fileID: 1038861778551090546}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
         m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2119935563374049366}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: set_Inputable
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3207,44 +3221,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 3927538354332941555}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4766823138392103545}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4872750787184433826}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5939366540002339203}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
+        m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
+        m_MethodName: set_Moveable
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3255,8 +3233,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 7553506049365909550}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
+        m_TargetAssemblyTypeName: PlayerAnimation, Assembly-CSharp
+        m_MethodName: set_Animationable
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3266,56 +3244,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5939366540002339203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3507526370804100189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <bodyLerping>k__BackingField: 1
-  <footMove>k__BackingField: 1
-  isGround: 1
-  hip: {fileID: 9150853402231350212}
-  hipAncher: {fileID: 3526403296780413903}
-  neck: {fileID: 6072831727228413414}
-  spine: {fileID: 2230489580862082556}
-  spineRb: {fileID: 560094255498425115}
-  leftFoot:
-    obj: {fileID: 8360960860470216608}
-    target: {fileID: 2565994669587253852}
-    ik: {fileID: 4677230654270567485}
-    targetPos: {x: 0, y: 0, z: 0}
-    prevTargetPos: {x: 0, y: 0, z: 0}
-    offset: {x: 0, y: 0, z: 0}
-    rayHitPos: {x: 0, y: 0, z: 0}
-  rightFoot:
-    obj: {fileID: 381332837157885334}
-    target: {fileID: 8355484182045137357}
-    ik: {fileID: 6924520009084203928}
-    targetPos: {x: 0, y: 0, z: 0}
-    prevTargetPos: {x: 0, y: 0, z: 0}
-    offset: {x: 0, y: 0, z: 0}
-    rayHitPos: {x: 0, y: 0, z: 0}
-  rightArmRigTarget: {fileID: 6020482088138376145}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  shouldMoveDistance: 0.35
-  moveDistance: 0.35
-  movePivotHeight: 0.9
-  footMoveTime: 0.2
-  hipElasticitySpeed: 3
-  footToeOffset: 0.1
-  hipHeight: 0.55
-  footAlignTime: 0.5
-  footAlignDelayTime: 1
-  footAlignDistance: 0.15
+      - m_Target: {fileID: 5939366540002339203}
+        m_TargetAssemblyTypeName: ActiveRagdoll, Assembly-CSharp
+        m_MethodName: SetConrol
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4766823138392103545}
+        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
+        m_MethodName: set_canAttack
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7553506049365909550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3328,6 +3280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f8e97cf34e69f418726bfe027eb6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Animationable>k__BackingField: 1
   followTrm: {fileID: 3526403296780413903}
   visualObj: {fileID: 8702347061615916161}
   PlayEmotionEvent:
@@ -3481,6 +3434,59 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   isEmotionPlay: 0
+--- !u!114 &5939366540002339203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507526370804100189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5356809ea9b481941a0b2d9d9dec7f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <bodyLerping>k__BackingField: 1
+  <footMove>k__BackingField: 1
+  <Controlable>k__BackingField: 1
+  isGround: 1
+  rigAnimator: {fileID: 2553648808927450918}
+  rigBuilder: {fileID: 5250454414764603667}
+  hip: {fileID: 9150853402231350212}
+  hipJoint: {fileID: 6637210140217391247}
+  hipAncher: {fileID: 3526403296780413903}
+  neck: {fileID: 6072831727228413414}
+  spineRb: {fileID: 560094255498425115}
+  leftFoot:
+    obj: {fileID: 8360960860470216608}
+    target: {fileID: 2565994669587253852}
+    ik: {fileID: 4677230654270567485}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+    rayHitPos: {x: 0, y: 0, z: 0}
+  rightFoot:
+    obj: {fileID: 381332837157885334}
+    target: {fileID: 8355484182045137357}
+    ik: {fileID: 6924520009084203928}
+    targetPos: {x: 0, y: 0, z: 0}
+    prevTargetPos: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 0, z: 0}
+    rayHitPos: {x: 0, y: 0, z: 0}
+  rightArmRigTarget: {fileID: 6020482088138376145}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  shouldMoveDistance: 0.35
+  moveDistance: 0.35
+  movePivotHeight: 0.9
+  footMoveTime: 0.2
+  hipElasticitySpeed: 3
+  footToeOffset: 0.1
+  hipHeight: 0.55
+  footAlignTime: 0.5
+  footAlignDelayTime: 1
+  footAlignDistance: 0.15
 --- !u!114 &3464172125119660786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3693,7 +3699,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -4943,7 +4949,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -5477,7 +5483,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -6415,6 +6421,7 @@ GameObject:
   - component: {fileID: 1265525364535810152}
   - component: {fileID: 2553648808927450918}
   - component: {fileID: 5250454414764603667}
+  - component: {fileID: 6637210140217391247}
   m_Layer: 6
   m_Name: Hips
   m_TagString: Untagged
@@ -6465,10 +6472,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &1265525364535810152
 BoxCollider:
@@ -6528,6 +6535,108 @@ MonoBehaviour:
   - m_Rig: {fileID: 1400953381567604329}
     m_Active: 1
   m_Effectors: []
+--- !u!153 &6637210140217391247
+ConfigurableJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6013757687461374823}
+  m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_SecondaryAxis: {x: 0, y: 1, z: 0}
+  m_XMotion: 2
+  m_YMotion: 2
+  m_ZMotion: 2
+  m_AngularXMotion: 2
+  m_AngularYMotion: 2
+  m_AngularZMotion: 2
+  m_LinearLimitSpring:
+    spring: 0
+    damper: 0
+  m_LinearLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_AngularXLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowAngularXLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_HighAngularXLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_AngularYZLimitSpring:
+    spring: 0
+    damper: 0
+  m_AngularYLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_AngularZLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_TargetPosition: {x: 0, y: 0, z: 0}
+  m_TargetVelocity: {x: 0, y: 0, z: 0}
+  m_XDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_YDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_ZDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
+  m_RotationDriveMode: 0
+  m_AngularXDrive:
+    serializedVersion: 4
+    positionSpring: 500
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_AngularYZDrive:
+    serializedVersion: 4
+    positionSpring: 500
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_SlerpDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_ProjectionMode: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_ConfiguredInWorldSpace: 0
+  m_SwapBodies: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &6071706996166692765
 GameObject:
   m_ObjectHideFlags: 0
@@ -6963,7 +7072,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -8832,7 +8941,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

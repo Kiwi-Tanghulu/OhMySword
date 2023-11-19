@@ -30,16 +30,22 @@ public class ActiveRagdoll : MonoBehaviour
     public bool bodyLerping { get; set; } = true;
     [field: SerializeField]
     public bool footMove { get; set; } = true;
+    [field: SerializeField]
+    public bool Controlable { get; set; } = true;
     public bool isGround = true;
     private bool beforeIsGround = true;
 
     [Space]
+    [SerializeField] private Animator rigAnimator;
+    [SerializeField] private RigBuilder rigBuilder;
+
+    [Space]
     [SerializeField] public Rigidbody hip;
+    [SerializeField] private ConfigurableJoint hipJoint;
     [SerializeField] private Transform hipAncher;
     public Transform neck;
 
     [Space]
-    [SerializeField] private ConfigurableJoint spine;
     [SerializeField] private Rigidbody spineRb;
 
     [Space]
@@ -92,6 +98,9 @@ public class ActiveRagdoll : MonoBehaviour
 
     private void Update()
     {
+        if (!Controlable)
+            return; 
+
         CheckGround();
 
         if (isGround)
@@ -112,6 +121,16 @@ public class ActiveRagdoll : MonoBehaviour
             SetFootControl(isGround);
             hip.velocity = Vector3.zero;
         }
+    }
+
+    public void SetConrol(bool value)
+    {
+        Controlable = value;
+        SetBodyControl(value);
+        SetFootControl(value);
+        rigAnimator.enabled = value;
+        rigBuilder.enabled = value;
+        spineRb.constraints = RigidbodyConstraints.None;
     }
 
     private bool CheckGround()
@@ -313,6 +332,9 @@ public class ActiveRagdoll : MonoBehaviour
                 hip.constraints = RigidbodyConstraints.None;
 
             hip.constraints |= RigidbodyConstraints.FreezePositionY;
+
+            hip.constraints |= RigidbodyConstraints.FreezeRotationX
+            | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         }
         else
             hip.constraints = RigidbodyConstraints.None;
@@ -347,8 +369,8 @@ public class ActiveRagdoll : MonoBehaviour
 
     private void SetBodyControl(bool value)
     {
-        JointDrive xDrive = spine.angularXDrive;
-        JointDrive yzDrive = spine.angularYZDrive;
+        JointDrive xDrive = hipJoint.angularXDrive;
+        JointDrive yzDrive = hipJoint.angularYZDrive;
 
         if(value)
         {
@@ -356,16 +378,15 @@ public class ActiveRagdoll : MonoBehaviour
             yzDrive.positionSpring = 1000f;
             SetHipToGroundPos();
         }
-        //else
-        //{
-        //    xDrive.positionSpring = 0f;
-        //    yzDrive.positionSpring = 0f;
-        //}
+        else
+        {
+            xDrive.positionSpring = 0f;
+            yzDrive.positionSpring = 0f;
+        }
 
-        spine.angularXDrive = xDrive;
-        spine.angularYZDrive = yzDrive;
+        hipJoint.angularXDrive = xDrive;
+        hipJoint.angularYZDrive = yzDrive;
         bodyLerping = value;
-        hip.useGravity = !value;
         SetHipConstraint(value);
     }
     #endregion
