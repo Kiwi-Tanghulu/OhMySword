@@ -332,12 +332,12 @@ public class ActiveRagdoll : MonoBehaviour
                 hip.constraints = RigidbodyConstraints.None;
 
             hip.constraints |= RigidbodyConstraints.FreezePositionY;
+
+            hip.constraints |= RigidbodyConstraints.FreezeRotationX
+            | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         }
         else
             hip.constraints = RigidbodyConstraints.None;
-
-        hip.constraints |= RigidbodyConstraints.FreezeRotationX 
-            | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
     }
 
     private void SetHipAncherPos()
