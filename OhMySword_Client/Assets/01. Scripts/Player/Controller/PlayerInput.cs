@@ -13,8 +13,13 @@ public class PlayerInput : MonoBehaviour
     public UnityEvent<int> Alpha3;
     public UnityEvent Space;
 
+    [field : SerializeField] public bool Inputable { get; set; } = true;
+
     private void Update()
     {
+        if (!Inputable)
+            return; ;
+
         if (UIManager.Instance.ChattingPanel.IsChat)
         {
             Movement?.Invoke(Vector3.zero);
