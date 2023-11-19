@@ -93,6 +93,7 @@ namespace OhMySword.Player
 
             Debug.Log($"die : {transform.name}");
             OnDieEvent?.Invoke(attacker);
+            //UIManager.Instance.MainCanvas.Find("DiePanel").GetComponent<DiePanel>().Show();
             AudioManager.Instance.PlayAudio("PlayerDie", audioPlayer, true);
             IsDie = true;
 

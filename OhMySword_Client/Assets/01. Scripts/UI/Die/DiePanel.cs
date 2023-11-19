@@ -19,9 +19,10 @@ public class DiePanel : MonoBehaviour
     [SerializeField] private TMP_Text rankText;
     [SerializeField] private RectTransform rankMoveTrm;
 
-    public void Show()
+    public void Show(string[] infoDatas, int currentRank)
     {
-        
+        transform.gameObject.SetActive(true);
+        TypingInfoText(infoDatas, currentRank);
     }
 
     private IEnumerator TypingInfoText(string[] infoDatas, int currentRank) // 0 = killCnt, 1 = pieceCnt, 2 = currentScore, 3 = killer, 4 = structureCnt, 5 = topScroe
