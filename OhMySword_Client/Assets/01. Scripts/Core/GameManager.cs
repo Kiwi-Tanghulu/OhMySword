@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // NetworkManager.Instance.Connect("172.30.1.16", 2651);
-        // NetworkManager.Instance.Connect("172.31.3.230", 2651);
-        NetworkManager.Instance.Connect("192.168.0.16", 2651);
+        NetworkManager.Instance.Connect("172.31.3.230", 2651);
+        // NetworkManager.Instance.Connect("192.168.0.16", 2651);
     }
 
     private void Update()
