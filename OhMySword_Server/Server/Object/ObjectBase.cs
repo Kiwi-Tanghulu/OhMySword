@@ -23,12 +23,19 @@ namespace Server
             room?.AddJob(() => {
                 room?.ReleaseObject(this);
                 room?.Broadcast(broadcastPacket);
+                room = null;
             });
         }
 
         public static implicit operator ObjectPacket(ObjectBase right)
         {
             return new ObjectPacket(right.objectID, right.objectType, right.position, right.rotation);
+        }
+
+        protected virtual async void Delay(float duration, Action callback)
+        {
+            await Task.Delay((int)(duration * 1000));
+            callback?.Invoke();
         }
     }
 }
