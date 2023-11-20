@@ -2830,9 +2830,9 @@ GameObject:
   - component: {fileID: 6826694340876953961}
   - component: {fileID: 7553506049365909550}
   - component: {fileID: 5939366540002339203}
+  - component: {fileID: 6559774523892721207}
   - component: {fileID: 3464172125119660786}
   - component: {fileID: 5812453627220802555}
-  - component: {fileID: 6559774523892721207}
   - component: {fileID: 798575434259882703}
   m_Layer: 0
   m_Name: NewActiveRagdoll
@@ -3313,7 +3313,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3927538354332941555}
         m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
-        m_MethodName: set_canMove
+        m_MethodName: set_Moveable
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3388,7 +3388,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3927538354332941555}
         m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
-        m_MethodName: set_canMove
+        m_MethodName: set_Moveable
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3488,6 +3488,19 @@ MonoBehaviour:
   footAlignTime: 0.5
   footAlignDelayTime: 1
   footAlignDistance: 0.15
+--- !u!114 &6559774523892721207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507526370804100189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99989d06e07bf8a46b0cd68b20a0649e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageSpawnTrm: {fileID: 2774263719992657327}
 --- !u!114 &3464172125119660786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3515,19 +3528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5182dc27e793d243873b166de202901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6559774523892721207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3507526370804100189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99989d06e07bf8a46b0cd68b20a0649e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messageSpawnTrm: {fileID: 2774263719992657327}
 --- !u!82 &798575434259882703
 AudioSource:
   m_ObjectHideFlags: 0
