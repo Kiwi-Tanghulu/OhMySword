@@ -19,6 +19,8 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         Load();
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void Save()
