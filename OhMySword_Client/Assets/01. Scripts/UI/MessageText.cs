@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MessageText : PoolableMono
 {
-    private TextMeshPro text;
+    [SerializeField] private TextMeshPro text;
     [SerializeField] private float showTiem = 10f;
 
     private void Start()
@@ -13,9 +13,15 @@ public class MessageText : PoolableMono
         text = GetComponent<TextMeshPro>();
     }
 
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     public void SetText(string str)
     {
         text.text = str;
+        Debug.Log(GetComponent<RectTransform>().rect.height);
     }
 
     public override void Init()
