@@ -32,6 +32,9 @@ namespace Server
             while(broadcastQueue.Count > 0)
             {
                 BroadcastPacket packet = broadcastQueue.Dequeue();
+                if (packet.packet == null)
+                    continue;
+
                 ArraySegment<byte> buffer = packet.packet.Serialize();
 
                 foreach (KeyValuePair<ushort, Player> p in players)
