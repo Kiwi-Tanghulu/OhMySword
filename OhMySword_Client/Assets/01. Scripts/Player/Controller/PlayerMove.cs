@@ -42,10 +42,15 @@ public class PlayerMove : MonoBehaviour
 
     public void Move()
     {
-        if(!Moveable)
-            return;
+        if (!Moveable)
+        {
+            Stop();
+        }
+        else
+        {
+            ragdoll.SetVelocity(moveDir * moveSpeed);
+        }
 
-        ragdoll.SetVelocity(moveDir * moveSpeed);
 
         onMovedEvent?.Invoke(hip.transform.position);
     }
@@ -56,15 +61,15 @@ public class PlayerMove : MonoBehaviour
     {
         if (!Moveable)
         {
-            ragdoll.SetVelocity(Vector3.zero);
+            Stop();
             return;
         }
 
         prevTargetPos = targetPos;
         targetPos = pos;
 
-        if (Vector3.Distance(targetPos, hip.transform.position) < 0.1f)
-            ragdoll.SetVelocity(Vector3.zero);
+        if (Vector3.Distance(targetPos, hip.transform.position) < 0.2f)
+            Stop();
         else
         {
             if (Vector3.Distance(prevTargetPos, hip.transform.position) > 0.5f)
@@ -94,4 +99,9 @@ public class PlayerMove : MonoBehaviour
             hip.transform.position = targetPos;
     }
     #endregion
+
+    public void Stop()
+    {
+        ragdoll.SetVelocity(Vector3.zero);
+    }
 }
