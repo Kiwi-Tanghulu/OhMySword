@@ -32,9 +32,9 @@ namespace Server
             return new ObjectPacket(right.objectID, right.objectType, right.position, right.rotation);
         }
 
-        protected virtual async void Delay(float duration, Action callback)
+        protected virtual async void Delay(float delay, Action callback)
         {
-            await Task.Delay((int)(duration * 1000));
+            await Task.Delay((int)(delay * 1000));
             callback?.Invoke();
         }
     }
