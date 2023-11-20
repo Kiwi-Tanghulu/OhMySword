@@ -18,6 +18,8 @@ namespace OhMySword.Player
         private PlayerView view;
         private PlayerWeapon playerWeapon;
         private PlayerChat playerChat;
+        private PlayerInfo info;
+
         public ActiveRagdoll ragdoll { get; private set; }
 
         public UnityEvent<SyncableObject> OnHitEvent;
@@ -42,6 +44,7 @@ namespace OhMySword.Player
             playerWeapon = transform.Find("Hips/Rig/Sword/Sword").GetComponent<PlayerWeapon>();
             ragdoll = GetComponent<ActiveRagdoll>();
             playerChat = GetComponent<PlayerChat>();
+            info = GetComponent<PlayerInfo>();
 
             audioPlayer = GetComponent<AudioSource>();
         }
@@ -86,6 +89,7 @@ namespace OhMySword.Player
                 return;
 
             playerWeapon.SetScore(amount);
+            info.GetXpCount++;
             AudioManager.Instance.PlayAudio("GetXP", audioPlayer, true);
         }
 
@@ -98,17 +102,12 @@ namespace OhMySword.Player
             OnDieEvent?.Invoke(attacker);
             AudioManager.Instance.PlayAudio("PlayerDie", audioPlayer, true);
             IsDie = true;
-
-            // 콜라이더 끄기
-
-            if(ObjectID == RoomManager.Instance.PlayerID) // 나 자신
+            if (attacker.TryGetComponent<PlayerController>(out PlayerController p))
             {
-                // 내가 움직이는 걸 서버에 보내지 않아야 함
+                info.KilledPlayerName = p.nickname;
+                p.GetComponent<PlayerInfo>().KillCount++;
             }
-            else // 다른 사람
-            {
-                // 서버에서 오는 데이터로부터 해당 오브젝트에 어떠한 동기화도 해주면 안 됨 
-            }
+
         }
 
         public void DoChat(string chat)
