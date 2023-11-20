@@ -108,6 +108,10 @@ namespace OhMySword.Player
                 p.GetComponent<PlayerInfo>().KillCount++;
             }
 
+            if (SaveManager.Instance.data.BestScore < Score)
+                SaveManager.Instance.data.BestScore = Score;
+
+            SaveManager.Instance.Save();
         }
 
         public void DoChat(string chat)
