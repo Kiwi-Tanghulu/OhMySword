@@ -17,6 +17,7 @@ namespace OhMySword.Player
         private PlayerMove movement;
         private PlayerView view;
         private PlayerWeapon playerWeapon;
+        private PlayerChat playerChat;
         public ActiveRagdoll ragdoll { get; private set; }
 
         public UnityEvent<SyncableObject> OnHitEvent;
@@ -40,6 +41,7 @@ namespace OhMySword.Player
             view = GetComponent<PlayerView>();
             playerWeapon = transform.Find("Hips/Rig/Sword/Sword").GetComponent<PlayerWeapon>();
             ragdoll = GetComponent<ActiveRagdoll>();
+            playerChat = GetComponent<PlayerChat>();
 
             audioPlayer = GetComponent<AudioSource>();
         }
@@ -116,6 +118,7 @@ namespace OhMySword.Player
 
             UIManager.Instance.ChattingPanel.Show();
             UIManager.Instance.ChattingPanel.Hide();
+            playerChat.CreateMessageText(chat);
         }
 
         public override void SetPosition(Vector3 position, bool immediately = false)

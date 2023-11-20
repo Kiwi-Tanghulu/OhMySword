@@ -6,15 +6,11 @@ using UnityEngine;
 public class MessageText : PoolableMono
 {
     private TextMeshPro text;
+    [SerializeField] private float showTiem = 10f;
 
     private void Start()
     {
         text = GetComponent<TextMeshPro>();
-    }
-
-    void Update()
-    {
-        transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
     }
 
     public void SetText(string str)
@@ -24,6 +20,13 @@ public class MessageText : PoolableMono
 
     public override void Init()
     {
+        StartCoroutine(Hide());
+    }
 
+    private IEnumerator Hide()
+    {
+        yield return new WaitForSeconds(showTiem);
+
+        PoolManager.Instance.Push(this);
     }
 }
