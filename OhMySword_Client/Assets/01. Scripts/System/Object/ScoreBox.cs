@@ -55,8 +55,8 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
 
     public void CreateXP(List<UShortPacket> ids)
     {
+        Debug.Log($"Create XP ID Count : {ids.Count}");
         AudioManager.Instance.PlayAudio("CreateXP", audioPlayer, true);
-        Debug.Log($"ID Count : {ids.Count}");
         dropTable.score.ForEachDigit((digit, number, index) => {
             XPObject xp = RoomManager.Instance.AddObject(
                 ids[index], 
@@ -68,6 +68,7 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
             xp.SetXP(digit);
             xp.SetPosition(transform.position + dropTable[index], false);
         });
+        Debug.Log(dropTable.score);
     }
 
     public void SetPosition(ushort posIndex)

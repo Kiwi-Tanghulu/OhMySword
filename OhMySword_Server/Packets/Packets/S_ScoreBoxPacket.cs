@@ -35,7 +35,7 @@ namespace Packets
 
         public override ArraySegment<byte> Serialize()
         {
-            ArraySegment<byte> buffer = UniqueBuffer.Open(1024);
+            ArraySegment<byte> buffer = UniqueBuffer.Open(4096);
             ushort process = 0;
 
             process += sizeof(ushort);
