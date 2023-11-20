@@ -14,6 +14,9 @@ public class PauseUI : UIBase
     [SerializeField] private Vector2[] btnEndPos;
     [SerializeField] private float btnMoveTime;
     [SerializeField] private float btnWaitTime;
+
+    private Tween[] btnTween = new Tween[3];
+
     //protected override void Awake()
     //{
     //    base.Awake();
@@ -28,16 +31,41 @@ public class PauseUI : UIBase
     {
         base.Show();
         StartCoroutine(BtnMove());
+        UIManager.Instance.panels.Push(this);
     }
-    private IEnumerator BtnMove()
+    public override void Hide()
     {
+        base.Hide();
+        StopAllCoroutines();
         for (int i = 0; i < buttonsRects.Length; i++)
         {
+            btnTween[i].Kill();
             buttonsRects[i].anchoredPosition = btnStrPos[i];
         }
+        
+        UIManager.Instance.panels.Pop();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(UIManager.Instance.panels.Count <= 0)
+            {
+                Show();
+            }
+            else
+            {
+                UIManager.Instance.panels.Peek().Hide();
+            }
+        }
+    }
+
+    private IEnumerator BtnMove()
+    {
+
         for (int i = 0; i < buttonsRects.Length; i++)
         {
-            buttonsRects[i].DOAnchorPos(btnEndPos[i], btnMoveTime).SetEase(Ease.InOutQuart);
+            btnTween[i] = buttonsRects[i].DOAnchorPos(btnEndPos[i], btnMoveTime).SetEase(Ease.InOutQuart);
             yield return new WaitForSeconds(btnWaitTime);
         }
     }
