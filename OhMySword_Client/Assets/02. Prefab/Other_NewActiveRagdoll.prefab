@@ -6698,7 +6698,8 @@ MonoBehaviour:
   onRotatedEvent:
     m_PersistentCalls:
       m_Calls: []
-  rotateSpeed: 2
+  RotateSpeedOffset: 1
+  maxRotateSpeed: 10
   maxRotate: 40
   minRotate: -40
   target: {fileID: 6165872747502093979}

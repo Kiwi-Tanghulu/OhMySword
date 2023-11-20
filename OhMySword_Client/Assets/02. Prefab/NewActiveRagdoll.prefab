@@ -3166,7 +3166,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  rotateSpeed: 2
+  RotateSpeedOffset: 1
+  maxRotateSpeed: 10
   maxRotate: 40
   minRotate: -40
   target: {fileID: 3526403296780413903}
