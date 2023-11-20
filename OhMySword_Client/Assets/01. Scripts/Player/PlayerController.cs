@@ -91,6 +91,7 @@ namespace OhMySword.Player
             playerWeapon.SetScore(amount);
             info.GetXpCount++;
             AudioManager.Instance.PlayAudio("GetXP", audioPlayer, true);
+            UIManager.Instance.MainCanvas.Find("InGamePanel/Leaderboard").GetComponent<LeaderBoard>().ChangeScore(playerWeapon.GetScore());
         }
 
         public void Die(SyncableObject attacker, ushort destroyCount)
@@ -113,6 +114,17 @@ namespace OhMySword.Player
                 SaveManager.Instance.data.BestScore = Score;
 
             SaveManager.Instance.Save();
+
+            string[] infos = new string[5];
+            infos[0] = info.KillCount.ToString();
+            infos[1] = info.GetXpCount.ToString();
+            infos[2] = playerWeapon.GetScore().ToString();
+            infos[3] = info.KilledPlayerName;
+            infos[4] = destroyCount.ToString();
+            infos[5] = SaveManager.Instance.data.BestScore.ToString(); 
+            DiePanel diePanel = UIManager.Instance.MainCanvas.Find("DiePanel").GetComponent<DiePanel>();
+            diePanel.gameObject.SetActive(true);
+            diePanel.Show(infos, ObjectID);
         }
 
         public void DoChat(string chat)

@@ -22,7 +22,7 @@ public class RoomPanel : PanelUI
 
     private void Start()
     {
-        Show();
+        //Show();
     }
 
     public void CreateEnterRequest()

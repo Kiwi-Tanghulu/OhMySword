@@ -23,7 +23,15 @@ public class GameSettingUI : UIBase
             _value = value;
             mouseSpeedInputField.text = _value.ToString();
             mouseSpeedSlider.value = _value / 100f;
+            if (playerView == null)
+                playerView = FindObjectOfType<PlayerView>();
+            playerView.RotateSpeedOffset = _value / 100f;
         }
+    }
+
+    public void Init()
+    {
+        Value = 50;
     }
     private PlayerView playerView;
 
@@ -68,9 +76,6 @@ public class GameSettingUI : UIBase
         if (int.TryParse(_value, out int v))
         {
             Value = v;
-            if (playerView == null)
-                playerView = FindObjectOfType<PlayerView>();
-            playerView.RotateSpeedOffset = v / 100f;
         }
     }
 }

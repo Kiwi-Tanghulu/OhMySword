@@ -21,8 +21,9 @@ public class DiePanel : MonoBehaviour
 
     public void Show(string[] infoDatas, int currentRank)
     {
-        transform.gameObject.SetActive(true);
         TypingInfoText(infoDatas, currentRank);
+        UIManager.Instance.MainCanvas.Find("PauseUI").gameObject.SetActive(false);
+        UIManager.Instance.MainCanvas.Find("InGamePanel").gameObject.SetActive(false);
     }
 
     private IEnumerator TypingInfoText(string[] infoDatas, int currentRank) // 0 = killCnt, 1 = pieceCnt, 2 = currentScore, 3 = killer, 4 = structureCnt, 5 = topScroe
