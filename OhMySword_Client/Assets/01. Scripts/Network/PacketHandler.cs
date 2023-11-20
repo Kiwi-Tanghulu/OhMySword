@@ -62,7 +62,7 @@ public class PacketHandler
     public static void S_PlayerPacket(Session session, Packet packet)
     {
         S_PlayerPacket playerPacket = packet as S_PlayerPacket;
-        PlayerController player = RoomManager.Instance.GetPlayer(playerPacket.objectPacket.objectID);
+        PlayerController player = RoomManager.Instance?.GetPlayer(playerPacket.objectPacket.objectID);
         
         if(player == null)
             return;
