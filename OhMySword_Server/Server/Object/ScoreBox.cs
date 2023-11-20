@@ -48,24 +48,14 @@ namespace Server
         {
             List<UShortPacket> ids = new List<UShortPacket>();
 
-            int i = 0;
-            int score = XPSpawnTable[objectType].score;
-            int cursor = (int)MathF.Pow(10, score.ToString().Length - 1);
-            while (cursor > 0)
-            {
-                int number = score / cursor;
-                for (int j = 0; j < number; j++, i++)
-                {
-                    XPObject xp = new XPObject(room, (ushort)cursor);
-                    xp.position = XPSpawnTable[objectType].positions[i];
-                    room.PublishObject(xp);
+            XPSpawnTable[objectType].score.ForEachDigit((digit, number, index) => {
+                XPObject xp = new XPObject(room, digit);
+                room.PublishObject(xp);
 
-                    ids.Add(xp.objectID);
-                }
-
-                score %= cursor;
-                cursor /= 10;
-            }
+                xp.position = XPSpawnTable[objectType].positions[index];
+                xp.ReleaseSelf(5f);
+                ids.Add(xp.objectID);
+            });
 
             return ids;
         }
