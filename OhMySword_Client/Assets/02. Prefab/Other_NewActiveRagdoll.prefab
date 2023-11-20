@@ -6797,7 +6797,7 @@ MonoBehaviour:
   hip: {fileID: 5380227179565411524}
   hipJoint: {fileID: 3771854147524836728}
   hipAncher: {fileID: 6165872747502093979}
-  neck: {fileID: 0}
+  neck: {fileID: 3541656994805744203}
   spineRb: {fileID: 3238912028970868140}
   leftFoot:
     obj: {fileID: 699504036463355709}
