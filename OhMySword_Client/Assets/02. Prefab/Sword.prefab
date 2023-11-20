@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreSize: 0.02
+  sizeUpSpeed: 5
   swordPivot: {fileID: 275128200254586748}
   trail: {fileID: 7845366110990057829}
 --- !u!65 &3161073084396160682
