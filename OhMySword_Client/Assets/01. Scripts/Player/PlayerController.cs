@@ -167,9 +167,9 @@ namespace OhMySword.Player
 
         public int CompareTo(PlayerController other)
         {
-            if(this.Score > other.Score)
-                return 1;
             if(this.Score < other.Score)
+                return 1;
+            if(this.Score > other.Score)
                 return -1;
             return 0;
         }
