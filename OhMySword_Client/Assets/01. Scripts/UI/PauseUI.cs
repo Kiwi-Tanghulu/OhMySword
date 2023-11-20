@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
+
 public class PauseUI : UIBase
 {
     [SerializeField] private Button continueBtn;
@@ -68,6 +70,11 @@ public class PauseUI : UIBase
             btnTween[i] = buttonsRects[i].DOAnchorPos(btnEndPos[i], btnMoveTime).SetEase(Ease.InOutQuart);
             yield return new WaitForSeconds(btnWaitTime);
         }
+    }
+
+    public void GotoLobby()
+    {
+        SceneManager.LoadScene("LobbyScene");
     }
 }
 
