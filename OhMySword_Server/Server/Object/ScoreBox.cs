@@ -52,7 +52,7 @@ namespace Server
                 XPObject xp = new XPObject(room, digit);
                 room.PublishObject(xp);
 
-                xp.position = XPSpawnTable[objectType].positions[index];
+                xp.position = position + XPSpawnTable[objectType].positions[index];
                 ids.Add(xp.objectID);
             });
 
