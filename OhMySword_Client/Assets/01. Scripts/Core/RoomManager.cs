@@ -133,4 +133,10 @@ public class RoomManager : MonoBehaviour
         list.Sort();
         return list.FindIndex(i => i.ObjectID == id);
     }
+
+    public void ExitRoom()
+    {
+        C_RoomExitPacket exitPacket = new C_RoomExitPacket();
+        NetworkManager.Instance.Send(exitPacket);
+    }
 }
