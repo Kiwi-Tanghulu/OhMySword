@@ -45,8 +45,8 @@ namespace Server
             {
                 room.AddJob(() => {
                     int packetCount = room.FlushBroadcastQueue();
-                    if(packetCount > 0)
-                        Console.WriteLine($"[Room] {packetCount} Packets Flushed");
+                    //if(packetCount > 0)
+                        //Console.WriteLine($"[Room] {packetCount} Packets Flushed");
                 });
             }
         }

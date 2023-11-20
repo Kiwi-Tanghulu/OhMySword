@@ -25,13 +25,5 @@ namespace Server
             player.AddXP(xp);
             BroadcastDestroy();
         }
-
-        public void ReleaseSelf(float delay)
-        {
-            Delay(delay, () => {
-                if (this.room != null)
-                    BroadcastDestroy();
-            });
-        }
     }
 }

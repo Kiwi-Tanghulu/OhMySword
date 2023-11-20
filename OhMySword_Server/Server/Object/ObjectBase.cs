@@ -19,23 +19,20 @@ namespace Server
 
         public void BroadcastDestroy()
         {
-            S_ObjectDestroyPacket broadcastPacket = new S_ObjectDestroyPacket(objectID);
-            Room tempRoom = room;
-            tempRoom?.AddJob(() => {
-                tempRoom.ReleaseObject(this);
-                tempRoom.Broadcast(broadcastPacket);
+            room?.AddJob(() => {
+                Room tempRoom = room;
+                if(tempRoom != null)
+                {
+                    S_ObjectDestroyPacket broadcastPacket = new S_ObjectDestroyPacket(objectID);
+                    tempRoom.ReleaseObject(this);
+                    tempRoom.Broadcast(broadcastPacket);
+                }
             });
         }
 
         public static implicit operator ObjectPacket(ObjectBase right)
         {
             return new ObjectPacket(right.objectID, right.objectType, right.position, right.rotation);
-        }
-
-        protected virtual async void Delay(float delay, Action callback)
-        {
-            await Task.Delay((int)(delay * 1000));
-            callback?.Invoke();
         }
     }
 }

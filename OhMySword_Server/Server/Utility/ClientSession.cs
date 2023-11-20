@@ -28,14 +28,14 @@ namespace Server
 
         public override void OnPacketReceived(ArraySegment<byte> buffer)
         {
-            Console.WriteLine($"[Session] Packet Received : {buffer.Count}");
+            //Console.WriteLine($"[Session] Packet Received : {buffer.Count}");
             Packet packet = PacketManager.Instance.CreatePacket(buffer);
             PacketManager.Instance.HandlePacket(this, packet);
         }
 
         public override void OnSent(int length)
         {
-            Console.WriteLine($"[Session] Data Sent : {length}");
+            //Console.WriteLine($"[Session] Data Sent : {length}");
         }
     }
 }

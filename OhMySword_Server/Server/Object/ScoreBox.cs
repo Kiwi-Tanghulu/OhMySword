@@ -53,10 +53,10 @@ namespace Server
                 room.PublishObject(xp);
 
                 xp.position = XPSpawnTable[objectType].positions[index];
-                xp.ReleaseSelf(5f);
                 ids.Add(xp.objectID);
             });
 
+            Console.WriteLine($"IDS Count : {ids.Count}");
             return ids;
         }
     }
