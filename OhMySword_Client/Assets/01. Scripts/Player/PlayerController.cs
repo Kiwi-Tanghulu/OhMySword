@@ -99,32 +99,42 @@ namespace OhMySword.Player
             if (IsDie)
                 return;
 
-            Debug.Log($"die : {transform.name}");
+            //둘 다
             OnDieEvent?.Invoke(attacker);
             //UIManager.Instance.MainCanvas.Find("DiePanel").GetComponent<DiePanel>().Show();
+            
+            //둘 다
             AudioManager.Instance.PlayAudio("PlayerDie", audioPlayer, true);
-            IsDie = true;
-            if (attacker.TryGetComponent<PlayerController>(out PlayerController p))
+
+            if(this.ObjectID == RoomManager.Instance.PlayerID)
             {
-                info.KilledPlayerName = p.nickname;
-                p.GetComponent<PlayerInfo>().KillCount++;
+                //자기
+                IsDie = true;
+                if (attacker.TryGetComponent<PlayerController>(out PlayerController p))
+                {
+                    info.KilledPlayerName = p.nickname;
+                    p.GetComponent<PlayerInfo>().KillCount++;
+                }
+
+
+                //자기
+                if (SaveManager.Instance.data.BestScore < Score)
+                    SaveManager.Instance.data.BestScore = Score;
+
+                SaveManager.Instance.Save();
+
+                string[] infos = new string[6];
+                infos[0] = info.KillCount.ToString();
+                infos[1] = info.GetXpCount.ToString();
+                infos[2] = playerWeapon.GetScore().ToString();
+                infos[3] = info.KilledPlayerName;
+                infos[4] = destroyCount.ToString();
+                infos[5] = SaveManager.Instance.data.BestScore.ToString();
+                DiePanel diePanel = UIManager.Instance.MainCanvas.Find("DiePanel").GetComponent<DiePanel>();
+                diePanel.gameObject.SetActive(true);
+                diePanel.Show(infos, ObjectID);
             }
-
-            if (SaveManager.Instance.data.BestScore < Score)
-                SaveManager.Instance.data.BestScore = Score;
-
-            SaveManager.Instance.Save();
-
-            string[] infos = new string[6];
-            infos[0] = info.KillCount.ToString();
-            infos[1] = info.GetXpCount.ToString();
-            infos[2] = playerWeapon.GetScore().ToString();
-            infos[3] = info.KilledPlayerName;
-            infos[4] = destroyCount.ToString();
-            infos[5] = SaveManager.Instance.data.BestScore.ToString(); 
-            DiePanel diePanel = UIManager.Instance.MainCanvas.Find("DiePanel").GetComponent<DiePanel>();
-            diePanel.gameObject.SetActive(true);
-            diePanel.Show(infos, ObjectID);
+            
         }
 
         public void DoChat(string chat)
