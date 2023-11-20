@@ -50,9 +50,10 @@ namespace Server
 
             XPSpawnTable[objectType].score.ForEachDigit((digit, number, index) => {
                 XPObject xp = new XPObject(room, digit);
-                xp.position = XPSpawnTable[objectType].positions[index];
                 room.PublishObject(xp);
 
+                xp.position = XPSpawnTable[objectType].positions[index];
+                xp.ReleaseSelf(5f);
                 ids.Add(xp.objectID);
             });
 
