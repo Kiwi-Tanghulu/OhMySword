@@ -6533,6 +6533,7 @@ GameObject:
   - component: {fileID: 7738541113842106706}
   - component: {fileID: 8555039210013587968}
   - component: {fileID: 8463743666299816162}
+  - component: {fileID: 3067344056990780792}
   m_Layer: 0
   m_Name: Other_NewActiveRagdoll
   m_TagString: Untagged
@@ -6698,7 +6699,8 @@ MonoBehaviour:
   onRotatedEvent:
     m_PersistentCalls:
       m_Calls: []
-  rotateSpeed: 2
+  RotateSpeedOffset: 1
+  maxRotateSpeed: 10
   maxRotate: 40
   minRotate: -40
   target: {fileID: 6165872747502093979}
@@ -7082,6 +7084,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageSpawnTrm: {fileID: 4092068243318497532}
+--- !u!114 &3067344056990780792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923995169254488851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da96a3e335acfea438f0422221204e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &928726887700101793
 GameObject:
   m_ObjectHideFlags: 0
