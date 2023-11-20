@@ -7,7 +7,9 @@ public class PlayerView : MonoBehaviour
 {
     [SerializeField] UnityEvent<Vector3> onRotatedEvent;
 
-    [SerializeField] private float rotateSpeed;
+    public float RotateSpeedOffset = 1;
+
+    [SerializeField] private float maxRotateSpeed;
     [SerializeField] private float maxRotate;
     [SerializeField] private float minRotate;
     [SerializeField] private Transform target;
@@ -25,8 +27,8 @@ public class PlayerView : MonoBehaviour
 
     public void RotateCamera(Vector2 vector)
     {
-        rotation.x -= vector.y * rotateSpeed;
-        rotation.y += vector.x * rotateSpeed;
+        rotation.x -= vector.y * maxRotateSpeed * RotateSpeedOffset;
+        rotation.y += vector.x * maxRotateSpeed * RotateSpeedOffset;
 
         rotation.x = Mathf.Clamp(rotation.x, minRotate, maxRotate);
 
