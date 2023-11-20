@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-	public static SceneLoader Instance = null;
-    
+    public static SceneLoader Instance = null;
+
     private float syncDelayTick = 0.5f;
 
     public void LoadSceneAsync(string sceneName, Action onCompleted = null)
@@ -19,16 +19,22 @@ public class SceneLoader : MonoBehaviour
     private IEnumerator AsyncLoadCoroutine(AsyncOperation asyncOper, Action onCompleted)
     {
         YieldInstruction delay = new WaitForSeconds(syncDelayTick);
+        //asyncOper.allowSceneActivation = false;
 
-        while(true)
+        Scene loadingScene = SceneManager.LoadScene("LoadingScene", new LoadSceneParameters(LoadSceneMode.Additive));
+        // ·Îµù ¾À ·Îµå
+        yield return new WaitForSeconds(3f);
+        while (true)
         {
-            if(asyncOper.isDone)
+            if (asyncOper.isDone)
+            {
+                asyncOper.allowSceneActivation = true;
                 break;
-
+            }
             yield return delay;
         }
-
-        yield return null;
+        yield return new WaitForSeconds(3f);
+        SceneManager.UnloadSceneAsync(loadingScene);
         onCompleted?.Invoke();
     }
 }

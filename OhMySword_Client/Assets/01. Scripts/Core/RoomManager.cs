@@ -36,7 +36,7 @@ public class RoomManager : MonoBehaviour
     {
         rankBoard = players.Values.ToList();
         rankBoard.Sort();
-        OnRankingChangedEvent?.Invoke(rankBoard.GetRange(0, boardCount));
+        OnRankingChangedEvent?.Invoke(rankBoard.GetRange(0, Mathf.Min(rankBoard.Count, boardCount)));
     }
 
     public PlayerController GetPlayer(ushort id)
@@ -125,5 +125,12 @@ public class RoomManager : MonoBehaviour
         sender.DoChat(chat);
 
         UIManager.Instance.ChattingPanel?.DoChat(sender.nickname, chat);
+    }
+
+    public int GetCurrentRanking(ushort id)
+    {
+        List<PlayerController> list = players.Values.ToList();
+        list.Sort();
+        return list.FindIndex(i => i.ObjectID == id);
     }
 }

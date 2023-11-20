@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:OhMySword_Client/Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.mat.meta
 guid: fe90a03507926544a8123dcd7db875aa
 NativeFormatImporter:
+========
+guid: a02fde51e9206c040812522220026835
+DefaultImporter:
+>>>>>>>> jiseong2:OhMySword_Client/Assets/00. Scenes/LoadingScene.unity.meta
   externalObjects: {}
   mainObjectFileID: 2100000
   userData: 

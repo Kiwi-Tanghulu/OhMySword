@@ -52,7 +52,6 @@ namespace MyUI
         {
             if (Input.GetKeyDown(KeyCode.N))
                 GetUI<NoticeUI>("NoticeUI").Show(2f, "Test Notice Test Notice Test Notice Test Notice");
-
             //if (fullUIHistory.Count <= 0)
             //{
             //    if (Input.GetKeyDown(KeyCode.B))

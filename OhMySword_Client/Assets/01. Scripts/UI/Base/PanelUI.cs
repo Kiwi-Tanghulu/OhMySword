@@ -16,7 +16,7 @@ namespace MyUI
         public void Show(Vector2 pos, Transform parent = null)
         {
             Show(parent);
-            UIManager.Instance.RecordHistory(this);
+            //UIManager.Instance.RecordHistory(this);
             transform.position = pos;
         }
     }

@@ -25,6 +25,11 @@ public class PlayerView : MonoBehaviour
         camAnchor.position = hip.position;
     }
 
+    private void Start()
+    {
+        UIManager.Instance.MainCanvas.Find("PauseUI/Settings").GetComponent<GameSettingUI>().Init();
+    }
+
     public void RotateCamera(Vector2 vector)
     {
         rotation.x -= vector.y * maxRotateSpeed * RotateSpeedOffset;

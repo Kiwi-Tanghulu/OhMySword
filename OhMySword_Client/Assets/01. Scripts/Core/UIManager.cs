@@ -1,11 +1,22 @@
 using OhMySword.UI;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance = null;
 
-	private Transform mainCanvas = null;
+    public Stack<UIBase> panels = new Stack<UIBase>();
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
+    private Transform mainCanvas = null;
     public Transform MainCanvas {
         get {
             if(mainCanvas == null)
