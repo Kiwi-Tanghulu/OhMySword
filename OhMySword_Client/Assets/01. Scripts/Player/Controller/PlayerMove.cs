@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class PlayerMove : MonoBehaviour
 {
     [field: SerializeField]
-    public bool canMove { get; set; } = true;
+    public bool Moveable { get; set; } = true;
 
     private ActiveRagdoll ragdoll;
 
@@ -42,16 +42,10 @@ public class PlayerMove : MonoBehaviour
 
     public void Move()
     {
-        if(!canMove)
-        {
-            ragdoll.SetVelocity(Vector3.zero);
+        if(!Moveable)
             return;
-        }
 
-        if ((targetPos - hip.transform.position).magnitude > 0.5f)
-            ragdoll.SetVelocity(moveDir * moveSpeed);
-        else
-            ragdoll.SetVelocity(Vector3.zero);
+        ragdoll.SetVelocity(moveDir * moveSpeed);
 
         onMovedEvent?.Invoke(hip.transform.position);
     }
@@ -60,32 +54,36 @@ public class PlayerMove : MonoBehaviour
     #region OTHER MOVE
     public void SetTargetPosition(Vector3 pos)
     {
-        if (Vector3.Distance(pos, hip.transform.position) < 0.1f)
-            return;
-
-        prevTargetPos = targetPos;
-        targetPos = pos;
-        moveDir = targetPos - hip.transform.position;
-        moveDistance = moveDir.magnitude;
-        moveDir.Normalize();
-
-        //if (Vector3.Distance(pos, hip.transform.position) < 0.1f)
-        //    return;
-        SetVelocity();
-    }
-
-    private void SetVelocity()
-    {
-        if (!canMove)
+        if (!Moveable)
         {
             ragdoll.SetVelocity(Vector3.zero);
             return;
         }
 
+        prevTargetPos = targetPos;
+        targetPos = pos;
+
+        if (Vector3.Distance(targetPos, hip.transform.position) < 0.1f)
+            ragdoll.SetVelocity(Vector3.zero);
+        else
+        {
+            if (Vector3.Distance(prevTargetPos, hip.transform.position) > 0.5f)
+                hip.transform.position = prevTargetPos;
+
+            moveDir = targetPos - prevTargetPos;
+            moveDistance = moveDir.magnitude;
+            moveDir.Normalize();
+
+            SetVelocity();
+        }
+    }
+
+    private void SetVelocity()
+    {
         moveSpeed = moveDistance / 0.1f;
         ragdoll.SetVelocity(moveDir * moveSpeed);
 
-        StartCoroutine(AdjustPosition());
+        //StartCoroutine(AdjustPosition());
     }
 
     private IEnumerator AdjustPosition()
