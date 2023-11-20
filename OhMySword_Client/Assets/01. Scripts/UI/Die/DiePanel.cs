@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
+
 public class DiePanel : MonoBehaviour
 {
 
@@ -21,13 +23,21 @@ public class DiePanel : MonoBehaviour
 
     public void Show(string[] infoDatas, int currentRank)
     {
-        TypingInfoText(infoDatas, currentRank);
+        transform.localScale = Vector3.zero;
+        StartCoroutine(TypingInfoText(infoDatas, currentRank));
         UIManager.Instance.MainCanvas.Find("PauseUI").gameObject.SetActive(false);
         UIManager.Instance.MainCanvas.Find("InGamePanel").gameObject.SetActive(false);
     }
 
+    public void GoToLobby()
+    {
+        SceneManager.LoadScene("LobbyScene");
+    }
+
     private IEnumerator TypingInfoText(string[] infoDatas, int currentRank) // 0 = killCnt, 1 = pieceCnt, 2 = currentScore, 3 = killer, 4 = structureCnt, 5 = topScroe
     {
+        yield return new WaitForSeconds(2f);
+        transform.localScale = Vector3.one;
         rankText.text = currentRank.ToString() + "µî";
         rank.DOAnchorPos(rankMoveTrm.anchoredPosition, 2.6f).SetEase(Ease.OutBounce);
         yield return new WaitForSeconds(2.2f);

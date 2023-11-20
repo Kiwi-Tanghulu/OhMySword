@@ -115,7 +115,7 @@ namespace OhMySword.Player
 
             SaveManager.Instance.Save();
 
-            string[] infos = new string[5];
+            string[] infos = new string[6];
             infos[0] = info.KillCount.ToString();
             infos[1] = info.GetXpCount.ToString();
             infos[2] = playerWeapon.GetScore().ToString();
