@@ -144,7 +144,9 @@ namespace OhMySword.Player
             if (IsDie)
                 return;
 
-            UIManager.Instance.ChattingPanel.Show();
+            if(RoomManager.Instance.PlayerID != this.ObjectID)
+                UIManager.Instance.ChattingPanel.Show();
+
             UIManager.Instance.ChattingPanel.Hide();
             playerChat.CreateMessageText(chat);
         }

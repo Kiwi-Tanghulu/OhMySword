@@ -65,6 +65,7 @@ namespace OhMySword.UI
 
         public void Show()
         {
+            
             if(fadeCo != null)
             {
                 StopCoroutine(fadeCo);
@@ -76,6 +77,7 @@ namespace OhMySword.UI
 
         public override void Hide()
         {
+            SetFieldSelect(false);
             if (fadeCo != null)
             {
                 StopCoroutine(fadeCo);
@@ -84,8 +86,23 @@ namespace OhMySword.UI
 
             fadeCo = StartCoroutine(Fade());
         }
+
+        public void HideImmediediatly()
+        {
+            SetFieldSelect(false);
+            canvasGroup.alpha = 0;
+            StopAllCoroutines();
+            fadeCo = null;
+        }
+
         private IEnumerator Fade()
         {
+            if(canvasGroup.alpha < 1)
+            {
+                HideImmediediatly();
+                yield break;
+            }
+
             yield return new WaitForSeconds(fadeDelayTime);
 
             float percent = 0;
