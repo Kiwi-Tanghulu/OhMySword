@@ -15,6 +15,13 @@ namespace Server
             this.room = room;
             this.xp = xp;
             this.objectType = (ushort)ObjectType.XPObject;
+
+            NetworkManager.Instance.Delay(3f, () => {
+                if (this.room == null)
+                    return;
+
+                BroadcastDestroy();
+            });
         }
 
         public override void Hit(ushort damage, ushort attackerID)
