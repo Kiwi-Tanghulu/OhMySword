@@ -33,6 +33,7 @@ public class LoadingUI : UIBase
         float curhelpTextTime = 0;
         float curTypeTime = 0;
         int titleCnt = 0;
+        helpText.text = helpTexts[Random.Range(0, helpTexts.Length)];
         while (true)
         {
             curhelpTextTime += Time.deltaTime;
