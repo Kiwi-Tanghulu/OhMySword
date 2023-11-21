@@ -54,9 +54,12 @@ namespace Server
 
             ushort playerID = clientSession.Player.objectID;
 
-            room.AddJob(() => room.ReleasePlayer(clientSession.Player));
-            clientSession.Player = null;
-            clientSession.Room = null;
+            room.AddJob(() =>
+            {
+                room.ReleasePlayer(clientSession.Player);
+                clientSession.Player = null;
+                clientSession.Room = null;
+            });
         }
 
         public static void C_AttackPacket(Session session, Packet packet)

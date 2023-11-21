@@ -23,6 +23,7 @@ public class RoomPanel : PanelUI
     private void Start()
     {
         //Show();
+        enterButton.onClick.AddListener(() => UIManager.Instance.ClaerStack());
     }
 
     public void CreateEnterRequest()

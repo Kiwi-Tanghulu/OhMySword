@@ -35,7 +35,6 @@ public class PauseUI : UIBase
         reStartBtn.onClick.AddListener(() => Cursor.lockState = CursorLockMode.Locked);
         reStartBtn.onClick.AddListener(() => UIManager.Instance.panels.Peek().Hide());
         reStartBtn.onClick.AddListener(() => UIManager.Instance.PopUI());
-        continueBtn.onClick.AddListener(() => UIManager.Instance.ClaerStack());
     }
 
     public override void Show()

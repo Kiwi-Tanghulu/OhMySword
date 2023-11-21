@@ -32,7 +32,6 @@ public class DiePanel : MonoBehaviour
 
     public void GoToLobby()
     {
-        UIManager.Instance.ClaerStack();
         RoomManager.Instance.ExitRoom();
         SceneManager.LoadScene("LobbyScene");
     }
