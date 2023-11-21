@@ -99,6 +99,8 @@ public class PlayerWeapon : MonoBehaviour
                 break;
 
             swordPivot.localScale = new Vector3(1f, swordPivot.localScale.y + (scoreSize * Time.deltaTime * sizeUpSpeed), 1f);
+            col.center = new Vector3(-0.2f, 0.5f + swordPivot.localScale.y, 0.45f);
+            col.size = new Vector3(0.3f, 2.4f + swordPivot.localScale.y * 2, 0.6f);
             checkTime += Time.deltaTime * sizeUpSpeed;
             yield return null;
         }
