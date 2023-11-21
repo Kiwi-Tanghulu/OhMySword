@@ -54,19 +54,19 @@ public class GameSettingUI : UIBase
         UIManager.Instance.panels.Pop();
     }
 
-    private void ChangeBgmSoundSlider()
+    public void ChangeBgmSoundSlider()
     {
         AudioManager.Instance.SetVolume(AudioType.BGM, bgmSlider.value * 100f);
     }
-    private void ChangeSfxSoundSlider()
+    public void ChangeSfxSoundSlider()
     {
         AudioManager.Instance.SetVolume(AudioType.SFX, sfxSlider.value * 100f);
     }
-    private void ChangeMasterSoundSlider()
+    public void ChangeMasterSoundSlider()
     {
         AudioManager.Instance.SetVolume(AudioType.Master, masterSoundSlider.value * 100f);
     }
-    private void ChangeSystemSoundSlider()
+    public void ChangeSystemSoundSlider()
     {
         AudioManager.Instance.SetVolume(AudioType.System, SystemSoundSlider.value * 100f);
     }

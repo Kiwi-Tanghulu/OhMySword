@@ -24,7 +24,7 @@ public class DiePanel : MonoBehaviour
     public void Show(string[] infoDatas, int currentRank)
     {
         transform.localScale = Vector3.zero;
-        StartCoroutine(TypingInfoText(infoDatas, currentRank));
+        StartCoroutine(TypingInfoText(infoDatas, currentRank+1));
         UIManager.Instance.MainCanvas.Find("PauseUI").gameObject.SetActive(false);
         UIManager.Instance.MainCanvas.Find("InGamePanel").gameObject.SetActive(false);
     }
@@ -39,9 +39,9 @@ public class DiePanel : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         transform.localScale = Vector3.one;
-        rankText.text = currentRank.ToString() + "��";
-        rank.DOAnchorPos(rankMoveTrm.anchoredPosition, 2.6f).SetEase(Ease.OutBounce);
-        yield return new WaitForSeconds(2.2f);
+        rankText.text = currentRank.ToString() + "등";
+        rank.DOAnchorPos(rankMoveTrm.anchoredPosition, 2.4f).SetEase(Ease.OutBounce);
+        yield return new WaitForSeconds(1.8f);
         int index = 0;
         int setIndex = 0;
         float checkNum = 0;
@@ -63,7 +63,7 @@ public class DiePanel : MonoBehaviour
                 }
             }
             checkNum += 0.05f;
-            if (checkNum > 0.7f)
+            if (checkNum > 0.5f)
             {
                 checkNum = 0;
                 if (index < dieInfoTexts.Length - 1)
