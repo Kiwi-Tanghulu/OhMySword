@@ -27,6 +27,7 @@ public class DiePanel : MonoBehaviour
         StartCoroutine(TypingInfoText(infoDatas, currentRank+1));
         UIManager.Instance.MainCanvas.Find("PauseUI").gameObject.SetActive(false);
         UIManager.Instance.MainCanvas.Find("InGamePanel").gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void GoToLobby()
