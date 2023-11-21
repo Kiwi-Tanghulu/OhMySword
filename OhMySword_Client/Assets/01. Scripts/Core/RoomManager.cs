@@ -95,12 +95,13 @@ public class RoomManager : MonoBehaviour
     {
         if(players.ContainsKey(id) == false)
             return;
-
-        players[id].OnDeleted();
-        Destroy(players[id].gameObject);
-        objects.Remove(id);
-
+        
+        PlayerController player = players[id];
+        player.OnDeleted();
+        players.Remove(id);
         UpdateRankingBoard();
+
+        Destroy(player.gameObject);
     }
 
     public void DeleteObject(ushort id)
@@ -108,9 +109,12 @@ public class RoomManager : MonoBehaviour
         if(objects.ContainsKey(id) == false)
             return;
 
-        objects[id].OnDeleted();
-        Destroy(objects[id].gameObject);
+        SyncableObject obj = objects[id];
+
+        obj.OnDeleted();
         objects.Remove(id);
+
+        Destroy(obj.gameObject);
     }
 
     public void InitRoom(List<PlayerPacket> playerList, List<ObjectPacket> objectList)

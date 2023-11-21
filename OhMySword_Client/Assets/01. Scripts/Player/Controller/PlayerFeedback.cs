@@ -33,6 +33,9 @@ public class PlayerFeedback : MonoBehaviour
 
     public void HitFeedback(SyncableObject attacker)
     {
+        if(attacker == null)
+            return;
+
         Vector3 dir = (ragdoll.hip.transform.position - attacker.GetComponent<ActiveRagdoll>().hip.transform.position).normalized;
         
         PoolableMono hitEffect = PoolManager.Instance.Pop("HitEffect", 

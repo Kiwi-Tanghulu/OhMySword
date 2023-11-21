@@ -57,7 +57,7 @@ namespace Server
                     Vector3 randInCircle = Random.InCircle(10f);
 
                     XPObject xp = new XPObject(room, (ushort)cursor);
-                    xp.position = new Vector3(randInCircle.x, 2f, randInCircle.z);
+                    xp.position = new Vector3(randInCircle.x, 0.5f, randInCircle.z);
                     room.PublishObject(xp);
                     container.Add(xp);
                 }
