@@ -81,7 +81,7 @@ public class ActiveRagdoll : MonoBehaviour
     private Coroutine footControlCo;
     private Coroutine footAlignCo;
 
-    private AudioSource aud;
+    public AudioSource aud;
 
     private void Start()
     {

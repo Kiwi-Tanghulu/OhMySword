@@ -3146,7 +3146,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   attackTime: 0.2
-  attackReadyTime: 0.2
+  attackReadyTime: 0.05
   recoveryTime: 0.5
   nonattackTrm: {fileID: 6000084995301620475}
   attackReadyTrm: {fileID: 6882978934128480691}
@@ -3527,6 +3527,7 @@ MonoBehaviour:
   footAlignTime: 0.5
   footAlignDelayTime: 1
   footAlignDistance: 0.15
+  aud: {fileID: 0}
 --- !u!114 &6559774523892721207
 MonoBehaviour:
   m_ObjectHideFlags: 0

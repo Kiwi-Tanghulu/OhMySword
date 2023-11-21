@@ -24,12 +24,9 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private PlayerWeapon weapon;
 
-    private AudioSource audioPlayer;
-
     private void Start()
     {
         ragdoll = GetComponent<ActiveRagdoll>();
-        audioPlayer = GetComponent<AudioSource>();
     }
 
     public void Attack()
@@ -47,7 +44,7 @@ public class PlayerAttack : MonoBehaviour
         yield return StartCoroutine(ragdoll.SetRightArmRigTarget(attackReadyTrm, attackReadyTime));
         weapon.SetCollision(true);
         weapon.SetTrail(true);
-        AudioManager.Instance.PlayAudio("SwordSwing", audioPlayer, true);
+        AudioManager.Instance.PlayAudio("SwordSwing", ragdoll.aud, true);
         yield return StartCoroutine(ragdoll.SetRightArmRigTarget(attackTrm, attackTime));
         weapon.SetTrail(false);
         weapon.SetCollision(false);
