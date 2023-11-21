@@ -85,6 +85,7 @@ public class PauseUI : UIBase
 
     public void GotoLobby()
     {
+        RoomManager.Instance.ExitRoom();
         SceneManager.LoadScene("LobbyScene");
     }
 }
