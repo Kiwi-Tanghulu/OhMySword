@@ -31,6 +31,7 @@ public class DiePanel : MonoBehaviour
 
     public void GoToLobby()
     {
+        RoomManager.Instance.ExitRoom();
         SceneManager.LoadScene("LobbyScene");
     }
 
@@ -38,7 +39,7 @@ public class DiePanel : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         transform.localScale = Vector3.one;
-        rankText.text = currentRank.ToString() + "µî";
+        rankText.text = currentRank.ToString() + "ï¿½ï¿½";
         rank.DOAnchorPos(rankMoveTrm.anchoredPosition, 2.6f).SetEase(Ease.OutBounce);
         yield return new WaitForSeconds(2.2f);
         int index = 0;
