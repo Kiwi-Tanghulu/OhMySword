@@ -10,7 +10,8 @@ public class MapConfiner : MonoBehaviour
         if(other.transform.root.TryGetComponent<IDamageable>(out IDamageable id) == false)
             return;
 
-        id?.OnDamage(1000, gameObject, other.transform.position);
+        Debug.Log("fall");
+        id?.OnDamage(1, gameObject, other.transform.position);
     }
 
 #if UNITY_EDITOR

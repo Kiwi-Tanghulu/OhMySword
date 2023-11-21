@@ -29,6 +29,14 @@ public class PauseUI : UIBase
     //    StartCoroutine(BtnMove());
     //}
 
+    private void Start()
+    {
+        reStartBtn.onClick.AddListener(() => UIManager.Instance.ChattingPanel.HideImmediediatly());
+        reStartBtn.onClick.AddListener(() => Cursor.lockState = CursorLockMode.Locked);
+        reStartBtn.onClick.AddListener(() => UIManager.Instance.panels.Peek().Hide());
+        reStartBtn.onClick.AddListener(() => UIManager.Instance.PopUI());
+    }
+
     public override void Show()
     {
         base.Show();
@@ -54,6 +62,7 @@ public class PauseUI : UIBase
             if(UIManager.Instance.panels.Count <= 0)
             {
                 Show();
+                UIManager.Instance.ChattingPanel.HideImmediediatly();
                 Cursor.lockState = CursorLockMode.None;
             }
             else

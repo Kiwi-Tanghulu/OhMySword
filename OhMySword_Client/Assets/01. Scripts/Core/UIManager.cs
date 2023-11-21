@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
 
     public Stack<UIBase> panels = new Stack<UIBase>();
 
+    public bool ActiveUI => panels.Count > 0;
+
     private void Awake()
     {
         if(Instance == null)
