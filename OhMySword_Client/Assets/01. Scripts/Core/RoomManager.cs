@@ -72,7 +72,7 @@ public class RoomManager : MonoBehaviour
         player.Init(objectID, position, rotation);
         player.SetNickname(nickname);
         player.OnCreated();
-        player.GetXP(score);
+        player.GetXP(score, true);
 
         players.Add(objectID, player);
         return player;

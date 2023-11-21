@@ -83,14 +83,14 @@ namespace OhMySword.Player
             AudioManager.Instance.PlayAudio("Hit", audioPlayer, true);
         }
 
-        public void GetXP(ushort amount)
+        public void GetXP(ushort amount, bool immediately)
         {
             if (IsDie)
                 return;
 
             if(this.ObjectID == RoomManager.Instance.PlayerID)
             {
-                playerWeapon.SetScore(amount, false);
+                playerWeapon.SetScore(amount, immediately);
                 info.GetXpCount++;
                 AudioManager.Instance.PlayAudio("GetXP", audioPlayer, true);
                 UIManager.Instance.MainCanvas.Find("InGamePanel/Leaderboard").GetComponent<LeaderBoard>().ChangeScore(playerWeapon.GetScore());

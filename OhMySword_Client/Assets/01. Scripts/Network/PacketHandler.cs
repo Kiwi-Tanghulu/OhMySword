@@ -101,7 +101,7 @@ public class PacketHandler
         if(player == null)
             return;
 
-        player.GetXP(scorePacket.score);
+        player.GetXP(scorePacket.score, false);
         RoomManager.Instance.UpdateRankingBoard();
     }
 
