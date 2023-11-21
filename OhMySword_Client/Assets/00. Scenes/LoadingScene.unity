@@ -416,6 +416,35 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3949416750050139596, guid: a80100f7856401c448c53f538e7e3836,
+        type: 3}
+      propertyPath: m_text
+      value: "\uC810\uC218\uB97C \uD68D\uB4DD\uD558\uBA74 \uCE7C\uC774 \uC810\uC810\uC810\uC810\uC810\uC810\uC810\uC810
+        \uAE38\uC5B4\uC9D1\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976674947535678291, guid: a80100f7856401c448c53f538e7e3836,
+        type: 3}
+      propertyPath: helpTexts.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976674947535678291, guid: a80100f7856401c448c53f538e7e3836,
+        type: 3}
+      propertyPath: helpTexts.Array.data[3]
+      value: "\uC810\uC218\uB97C \uD68D\uB4DD\uD558\uBA74 \uCE7C\uC774 \uC810\uC810\uC810\uC810\uC810\uC810\uC810\uC810
+        \uAE38\uC5B4\uC9D1\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976674947535678291, guid: a80100f7856401c448c53f538e7e3836,
+        type: 3}
+      propertyPath: helpTexts.Array.data[4]
+      value: "\uB2E4\uB978 \uC0AC\uB78C\uC5D0\uAC8C \uCE7C\uC744 \uB9DE\uB294\uB2E4\uBA74
+        \uC544\uD515\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976674947535678291, guid: a80100f7856401c448c53f538e7e3836,
+        type: 3}
+      propertyPath: helpTexts.Array.data[5]
+      value: "\uCE7C\uB85C \uBCA0\uB294 \uAC74 \uC544\uB2C8\uACE0 \uB584\uB9AC\uB294
+        \uAC70\uC640 \uAC70\uC758 \uC720\uC0AC\uD569\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
     - target: {fileID: 5012205073983764257, guid: a80100f7856401c448c53f538e7e3836,
         type: 3}
       propertyPath: m_Pivot.x
