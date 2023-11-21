@@ -13,9 +13,11 @@ public class PlayerAttack : MonoBehaviour
     private ActiveRagdoll ragdoll;
 
     [SerializeField] private float attackTime;
+    [SerializeField] private float attackReadyTime;
     [SerializeField] private float recoveryTime;
 
     [SerializeField] private Transform nonattackTrm;
+    [SerializeField] private Transform attackReadyTrm;
     [SerializeField] private Transform attackTrm;
 
     [SerializeField] private bool isAttack;
@@ -35,8 +37,6 @@ public class PlayerAttack : MonoBehaviour
         if (isAttack || !ragdoll.isGround || !canAttack)
             return;
 
-        weapon.SetCollision(true);
-        weapon.SetTrail(true);
         OnAttackEvent?.Invoke();
         StartCoroutine(AttackCo());
     }
@@ -44,6 +44,9 @@ public class PlayerAttack : MonoBehaviour
     private IEnumerator AttackCo()
     {
         isAttack = true;
+        yield return StartCoroutine(ragdoll.SetRightArmRigTarget(attackReadyTrm, attackReadyTime));
+        weapon.SetCollision(true);
+        weapon.SetTrail(true);
         AudioManager.Instance.PlayAudio("SwordSwing", audioPlayer, true);
         yield return StartCoroutine(ragdoll.SetRightArmRigTarget(attackTrm, attackTime));
         weapon.SetTrail(false);

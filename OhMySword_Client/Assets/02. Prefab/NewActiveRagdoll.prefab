@@ -3147,8 +3147,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   attackTime: 0.2
+  attackReadyTime: 0.2
   recoveryTime: 0.5
   nonattackTrm: {fileID: 6000084995301620475}
+  attackReadyTrm: {fileID: 6882978934128480691}
   attackTrm: {fileID: 615289817315298396}
   isAttack: 0
   weapon: {fileID: 4992093577158043803}
@@ -5319,6 +5321,7 @@ Transform:
   - {fileID: 6020482088138376145}
   - {fileID: 8329798382836580183}
   - {fileID: 6000084995301620475}
+  - {fileID: 6882978934128480691}
   - {fileID: 615289817315298396}
   - {fileID: 8983953628923734364}
   m_Father: {fileID: 1687994802012140029}
@@ -6750,6 +6753,37 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &6065226505181912810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6882978934128480691}
+  m_Layer: 0
+  m_Name: AttackReadyTrm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6882978934128480691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6065226505181912810}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.289884, y: -0.6663172, z: -0.61024016, w: -0.31558764}
+  m_LocalPosition: {x: 0.25, y: 0.705, z: 0.17}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.10000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8046930814878638050}
+  m_LocalEulerAnglesHint: {x: -85, y: -230, z: -0.75}
 --- !u!1 &6071706996166692765
 GameObject:
   m_ObjectHideFlags: 0
