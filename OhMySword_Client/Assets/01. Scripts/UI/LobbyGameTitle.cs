@@ -19,11 +19,11 @@ public class LobbyGameTitle : MonoBehaviour
         DoJump();
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-            DoJump();
-    }
+    // private void Update()
+    // {
+    //     if(Input.GetKeyDown(KeyCode.Space))
+    //         DoJump();
+    // }
 
     private void DoJump()
     {
