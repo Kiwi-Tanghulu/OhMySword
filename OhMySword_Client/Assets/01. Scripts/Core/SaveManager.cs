@@ -3,7 +3,7 @@ using UnityEngine;
 public class SaveData
 {
     public int BestScore;
-    public float mouseSpeed;
+    public int mouseSpeed;
     public float bgmSound;
     public float sfxSound;
     public float masterSound;

@@ -26,12 +26,13 @@ public class GameSettingUI : UIBase
             if (playerView == null)
                 playerView = FindObjectOfType<PlayerView>();
             playerView.RotateSpeedOffset = _value / 100f;
+            SaveManager.Instance.data.mouseSpeed = _value;
         }
     }
 
     public void Init()
     {
-        Value = 50;
+        Value = SaveManager.Instance.data.mouseSpeed;
     }
     private PlayerView playerView;
 
@@ -39,8 +40,20 @@ public class GameSettingUI : UIBase
     {
         mouseSpeedInputField.onEndEdit.AddListener(ChangeMouseSpeedSlider);
         mouseSpeedSlider.onValueChanged.AddListener((v) => Value = (int)(v * 100));
-    }
 
+    }
+    private void Start()
+    {
+        AudioManager.Instance.SetVolume(AudioType.BGM, SaveManager.Instance.data.bgmSound);
+        AudioManager.Instance.SetVolume(AudioType.Master, SaveManager.Instance.data.masterSound);
+        AudioManager.Instance.SetVolume(AudioType.SFX, SaveManager.Instance.data.sfxSound);
+        AudioManager.Instance.SetVolume(AudioType.System, SaveManager.Instance.data.systemSound);
+
+        bgmSlider.value = SaveManager.Instance.data.bgmSound;
+        SystemSoundSlider.value = SaveManager.Instance.data.systemSound;
+        sfxSlider.value = SaveManager.Instance.data.sfxSound;
+        masterSoundSlider.value = SaveManager.Instance.data.masterSound;
+    }
     public override void Show()
     {
         base.Show();
@@ -56,19 +69,23 @@ public class GameSettingUI : UIBase
 
     public void ChangeBgmSoundSlider()
     {
-        AudioManager.Instance.SetVolume(AudioType.BGM, bgmSlider.value * 100f);
+        AudioManager.Instance.SetVolume(AudioType.BGM, bgmSlider.value);
+        SaveManager.Instance.data.bgmSound = bgmSlider.value;
     }
     public void ChangeSfxSoundSlider()
     {
-        AudioManager.Instance.SetVolume(AudioType.SFX, sfxSlider.value * 100f);
+        AudioManager.Instance.SetVolume(AudioType.SFX, sfxSlider.value);
+        SaveManager.Instance.data.sfxSound = sfxSlider.value;
     }
     public void ChangeMasterSoundSlider()
     {
-        AudioManager.Instance.SetVolume(AudioType.Master, masterSoundSlider.value * 100f);
+        AudioManager.Instance.SetVolume(AudioType.Master, masterSoundSlider.value);
+        SaveManager.Instance.data.masterSound = masterSoundSlider.value;
     }
     public void ChangeSystemSoundSlider()
     {
-        AudioManager.Instance.SetVolume(AudioType.System, SystemSoundSlider.value * 100f);
+        AudioManager.Instance.SetVolume(AudioType.System, SystemSoundSlider.value);
+        SaveManager.Instance.data.systemSound = SystemSoundSlider.value;
     }
 
     private void ChangeMouseSpeedSlider(string _value)
