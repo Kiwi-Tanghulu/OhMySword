@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
 
     private ActiveRagdoll ragdoll;
 
+    [SerializeField] private float defaultAttackDelay = 1f;
     [SerializeField] private float attackDelay = 0f;
     [SerializeField] private float attackTime;
     [SerializeField] private float attackReadyTime;
@@ -28,6 +29,7 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         ragdoll = GetComponent<ActiveRagdoll>();
+        attackDelay = defaultAttackDelay;
     }
 
     public void Attack()
@@ -56,6 +58,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void SetAttackDelay(float value)
     {
-        attackDelay = value;
+        attackDelay = value + defaultAttackDelay;
     }
 }
