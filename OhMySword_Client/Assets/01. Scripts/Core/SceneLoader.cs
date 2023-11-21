@@ -36,5 +36,6 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSeconds(3f);
         SceneManager.UnloadSceneAsync(loadingScene);
         onCompleted?.Invoke();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
