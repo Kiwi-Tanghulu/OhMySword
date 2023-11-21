@@ -33,28 +33,29 @@ public class PlayerFeedback : MonoBehaviour
 
     public void HitFeedback(SyncableObject attacker)
     {
-        if(attacker == null)
-            return;
+        if(attacker != null)
+        {
+            Debug.Log("hit");
+            Vector3 dir = (ragdoll.hip.transform.position - attacker.GetComponent<ActiveRagdoll>().hip.transform.position).normalized;
 
-        Vector3 dir = (ragdoll.hip.transform.position - attacker.GetComponent<ActiveRagdoll>().hip.transform.position).normalized;
-        
-        PoolableMono hitEffect = PoolManager.Instance.Pop("HitEffect", 
-            hitEffectPlayPos.position + -dir * hitEffectPlayOffset);
+            PoolableMono hitEffect = PoolManager.Instance.Pop("HitEffect",
+                hitEffectPlayPos.position + -dir * hitEffectPlayOffset);
 
-        ragdoll.AddForceToSpine(dir * hitFeedbackPower);
+            ragdoll.AddForceToSpine(dir * hitFeedbackPower);
+        }
     }
 
     public void DieFeedback(SyncableObject attacker)
     {
         onDie?.Invoke();
         Debug.Log("die");
-        Transform attackerHip = attacker.GetComponent<ActiveRagdoll>().hip.transform;
 
-        ragdoll.hip.transform.LookAt(attackerHip.position);
+        if(attacker != null)
+        {
+            Transform attackerHip = attacker.GetComponent<ActiveRagdoll>().hip.transform;
 
-        //die event
-        //onDie?.Invoke();    
-        StartCoroutine(OnDieCo());
+            ragdoll.hip.transform.LookAt(attackerHip.position);
+        }
     }
 
     private IEnumerator OnDieCo()
