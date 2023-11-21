@@ -27,8 +27,6 @@ public class AudioManager
 
         if(oneshot)
         {
-            Debug.Log(clipName);
-            Debug.Log(clips[clipName]);
             player.PlayOneShot(clips[clipName]);
         }
         else

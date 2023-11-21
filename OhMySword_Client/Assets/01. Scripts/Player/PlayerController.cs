@@ -73,6 +73,7 @@ namespace OhMySword.Player
                 attackPacket = new C_AttackPacket((ushort)ObjectType.Player, ObjectID, ushort.MaxValue, (ushort)damage);
 
             NetworkManager.Instance.Send(attackPacket);
+            Debug.Log("OnDamage");
         }
 
         public void Hit(SyncableObject attacker)
@@ -101,6 +102,8 @@ namespace OhMySword.Player
             if (IsDie)
                 return;
 
+            Debug.Log("die");
+
             //둘 다
             OnDieEvent?.Invoke(attacker);
             //UIManager.Instance.MainCanvas.Find("DiePanel").GetComponent<DiePanel>().Show();
@@ -112,12 +115,14 @@ namespace OhMySword.Player
             {
                 //자기
                 IsDie = true;
-                if (attacker.TryGetComponent<PlayerController>(out PlayerController p))
+                if(attacker != null)
                 {
-                    info.KilledPlayerName = p.nickname;
-                    p.GetComponent<PlayerInfo>().KillCount++;
+                    if (attacker.TryGetComponent<PlayerController>(out PlayerController p))
+                    {
+                        info.KilledPlayerName = p.nickname;
+                        p.GetComponent<PlayerInfo>().KillCount++;
+                    }
                 }
-
 
                 //자기
                 if (SaveManager.Instance.data.BestScore < Score)
