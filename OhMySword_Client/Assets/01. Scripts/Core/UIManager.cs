@@ -61,4 +61,9 @@ public class UIManager : MonoBehaviour
         if(panels.Count <= 0)
             Cursor.lockState = CursorLockMode.Locked;
     }
+
+    public void ClaerStack()
+    {
+        panels.Clear();
+    }
 }

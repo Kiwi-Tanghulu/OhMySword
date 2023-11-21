@@ -17,8 +17,12 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(1);
+
         if (!Inputable)
             return; ;
+
+        Debug.Log(2);
 
         if (UIManager.Instance.ActiveUI)
         {
