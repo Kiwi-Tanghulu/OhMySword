@@ -88,13 +88,12 @@ namespace OhMySword.Player
             if (IsDie)
                 return;
 
+            info.GetXpCount++;
+            playerWeapon.SetScore(amount, immediately);
+            AudioManager.Instance.PlayAudio("GetXP", audioPlayer, true);
+
             if(this.ObjectID == RoomManager.Instance.PlayerID)
-            {
-                playerWeapon.SetScore(amount, immediately);
-                info.GetXpCount++;
-                AudioManager.Instance.PlayAudio("GetXP", audioPlayer, true);
                 UIManager.Instance.MainCanvas.Find("InGamePanel/Leaderboard").GetComponent<LeaderBoard>().ChangeScore(playerWeapon.GetScore());
-            }
         }
 
         public void Die(SyncableObject attacker, ushort destroyCount)

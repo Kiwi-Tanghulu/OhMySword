@@ -30,12 +30,14 @@ public class PacketHandler
     {
         S_OtherJoinPacket joinPacket = packet as S_OtherJoinPacket;
         RoomManager.Instance.AddPlayer(joinPacket.playerID, joinPacket.posTableIndex, joinPacket.nickname);
+        RoomManager.Instance.UpdateRankingBoard();
     }
 
     public static void S_OtherExitPacket(Session session, Packet packet)
     {
         S_OtherExitPacket exitPacket = packet as S_OtherExitPacket;
         RoomManager.Instance.DeletePlayer(exitPacket.playerID);
+        RoomManager.Instance.UpdateRankingBoard();
     }
 
     public static void S_AttackPacket(Session session, Packet packet)

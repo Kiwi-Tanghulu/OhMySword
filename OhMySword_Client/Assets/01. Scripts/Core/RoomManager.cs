@@ -99,7 +99,6 @@ public class RoomManager : MonoBehaviour
         PlayerController player = players[id];
         player.OnDeleted();
         players.Remove(id);
-        UpdateRankingBoard();
 
         Destroy(player.gameObject);
     }

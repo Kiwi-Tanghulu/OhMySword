@@ -16,7 +16,7 @@ namespace Server
             this.xp = xp;
             this.objectType = (ushort)ObjectType.XPObject;
 
-            NetworkManager.Instance.Delay(3f, () => {
+            NetworkManager.Instance.Delay(60f, () => {
                 if (this.room == null)
                     return;
 

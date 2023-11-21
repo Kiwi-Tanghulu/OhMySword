@@ -82,6 +82,7 @@ public class PlayerWeapon : MonoBehaviour
         nextScore = value;
         if (isStart)
         {
+            currentScore = value;
             SetSwordSize();
         }
         else

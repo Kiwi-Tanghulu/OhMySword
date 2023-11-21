@@ -30,8 +30,6 @@ public class SceneLoader : MonoBehaviour
             yield return delay;
         }
         onCompleted?.Invoke();
-
-        yield return new WaitForSeconds(6f);
         SceneManager.UnloadSceneAsync(loadingScene);
     }
 }

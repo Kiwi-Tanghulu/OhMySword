@@ -47,7 +47,7 @@ namespace Server
 
         private void CreateXP(List<ObjectPacket> container)
         {
-            score.ForEachDigit((digit, number, index) => {
+            ((ushort)(score / 2)).ForEachDigit((digit, number, index) => {
                 Vector3 randInCircle = Random.InCircle(3f);
                 Console.WriteLine($"x : {randInCircle.x}, y : {randInCircle.y}");
                 XPObject xp = new XPObject(room, digit);
