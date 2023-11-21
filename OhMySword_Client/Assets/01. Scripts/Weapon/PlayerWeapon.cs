@@ -23,6 +23,8 @@ public class PlayerWeapon : MonoBehaviour
     private BoxCollider col;
     [SerializeField] private TrailRenderer trail;
 
+    private List<Collider> attacked = new();
+
     private Transform ownerHitbox;
 
     private void Awake()
@@ -46,10 +48,15 @@ public class PlayerWeapon : MonoBehaviour
         {
             if (other.transform == ownerHitbox)
                 return;
+            if (attacked.Contains(other))
+                return;
 
             Debug.Log("Success Attack");
             id.OnDamage(1, transform.root.gameObject, Vector3.zero);
+            attacked.Add(other);
         }
+
+        attacked.Clear();
     }
 
     public void SetCollision(bool value)
