@@ -26,12 +26,14 @@ public class PlayerWeapon : MonoBehaviour
     private List<Collider> attacked = new();
 
     private Transform ownerHitbox;
+    private PlayerAttack playerAttack;
 
     private void Awake()
     {
         col = GetComponent<BoxCollider>();
 
         ownerHitbox = transform.root.Find("Hips/Hitbox");
+        playerAttack = transform.root.GetComponent<PlayerAttack>();
     }
 
     private void OnEnable()
@@ -84,6 +86,8 @@ public class PlayerWeapon : MonoBehaviour
         col.center = new Vector3(-0.2f, 0.5f + swordPivot.localScale.y, 0.45f);
         col.size = new Vector3(0.3f, 2.4f + swordPivot.localScale.y * 2, 0.6f);
         trail.widthMultiplier = (currentScore / 100f) + 1;
+        
+        
     }
     public void SetScore(ushort value, bool isStart)
     {
@@ -92,6 +96,7 @@ public class PlayerWeapon : MonoBehaviour
         {
             currentScore = value;
             SetSwordSize();
+            playerAttack.SetAttackDelay(currentScore / 500f);
         }
         else
         {
@@ -121,6 +126,8 @@ public class PlayerWeapon : MonoBehaviour
             col.size = new Vector3(0.3f, 2.4f + swordPivot.localScale.y * 2, 0.6f);
             checkTime += Time.deltaTime * sizeUpSpeed;
             trail.widthMultiplier = (currentScore / 100f) + 1;
+            playerAttack.SetAttackDelay(currentScore / 400f);
+
             yield return null;
         }
         isGrowing = false;
