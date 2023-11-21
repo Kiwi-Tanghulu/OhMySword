@@ -47,24 +47,15 @@ namespace Server
 
         private void CreateXP(List<ObjectPacket> container)
         {
-            int score = this.score;
-            int cursor = (int)MathF.Pow(10, score.ToString().Length - 1);
-            while (cursor > 0)
-            {
-                int number = score / cursor;
-                for(int i = 0; i < number; i++)
-                {
-                    Vector3 randInCircle = Random.InCircle(10f);
+            score.ForEachDigit((digit, number, index) => {
+                Vector3 randInCircle = Random.InCircle(3f);
+                Console.WriteLine($"x : {randInCircle.x}, y : {randInCircle.y}");
+                XPObject xp = new XPObject(room, digit);
+                xp.position = new Vector3(randInCircle.x, 0f, randInCircle.y);
 
-                    XPObject xp = new XPObject(room, (ushort)cursor);
-                    xp.position = new Vector3(randInCircle.x, 2f, randInCircle.z);
-                    room.PublishObject(xp);
-                    container.Add(xp);
-                }
-
-                score %= cursor;
-                cursor /= 10;
-            }
+                room.PublishObject(xp);
+                container.Add(xp);
+            });
         }
 
         public static implicit operator PlayerPacket(Player right)
