@@ -36,10 +36,13 @@ namespace Server
                 room.PublishPlayer(player);
                 clientSession.Player = player;
                 clientSession.Room = room;
+                
+                NetworkManager.Instance.Delay(6f, () => {
+                    S_OtherJoinPacket broadcastPacket = new S_OtherJoinPacket(player.nickname, player.objectID, (ushort)posIndex);
+                    room.AddJob(() => room.Broadcast(broadcastPacket, clientSession.UserID));
+                });
             });
 
-            S_OtherJoinPacket broadcastPacket = new S_OtherJoinPacket(player.nickname, player.objectID, (ushort)posIndex);
-            room.AddJob(() => room.Broadcast(broadcastPacket, clientSession.UserID));
 
             List<PlayerPacket> playerList = room.GetPlayerList(player.objectID);
             List<ObjectPacket> objectList = room.GetObjectList();

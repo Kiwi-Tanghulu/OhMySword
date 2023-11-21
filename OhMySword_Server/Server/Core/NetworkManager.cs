@@ -74,5 +74,11 @@ namespace Server
             session.Open(socket);
             session.OnConnected(socket.RemoteEndPoint);
         }
+
+        public async void Delay(float delay, Action callback)
+        {
+            await Task.Delay((int)(delay * 1000));
+            callback?.Invoke();
+        }
     }
 }
