@@ -3133,6 +3133,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  defaultAttackDelay: 0.5
+  attackDelay: 0
   attackTime: 0.2
   attackReadyTime: 0.05
   recoveryTime: 0.5
