@@ -83,6 +83,7 @@ public class PlayerWeapon : MonoBehaviour
         swordPivot.localScale = new Vector3(1f, swordPivot.localScale.y + (scoreSize * currentScore), 1f);
         col.center = new Vector3(-0.2f, 0.5f + swordPivot.localScale.y, 0.45f);
         col.size = new Vector3(0.3f, 2.4f + swordPivot.localScale.y * 2, 0.6f);
+        trail.widthMultiplier = (currentScore / 100f) + 1;
     }
     public void SetScore(ushort value, bool isStart)
     {
@@ -119,6 +120,7 @@ public class PlayerWeapon : MonoBehaviour
             col.center = new Vector3(-0.2f, 0.5f + swordPivot.localScale.y, 0.45f);
             col.size = new Vector3(0.3f, 2.4f + swordPivot.localScale.y * 2, 0.6f);
             checkTime += Time.deltaTime * sizeUpSpeed;
+            trail.widthMultiplier = (currentScore / 100f) + 1;
             yield return null;
         }
         isGrowing = false;
