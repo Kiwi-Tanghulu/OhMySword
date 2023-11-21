@@ -51,4 +51,12 @@ public class UIManager : MonoBehaviour
             return uiAudioPlayer;
         }
     }
+
+    public void PopUI()
+    {
+        panels.Pop();
+
+        if(panels.Count <= 0)
+            Cursor.lockState = CursorLockMode.Locked;
+    }
 }

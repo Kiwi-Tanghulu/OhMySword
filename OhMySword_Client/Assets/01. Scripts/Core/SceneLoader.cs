@@ -31,5 +31,6 @@ public class SceneLoader : MonoBehaviour
         }
         onCompleted?.Invoke();
         SceneManager.UnloadSceneAsync(loadingScene);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

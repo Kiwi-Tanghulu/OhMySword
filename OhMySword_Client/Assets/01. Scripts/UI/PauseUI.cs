@@ -45,7 +45,7 @@ public class PauseUI : UIBase
             buttonsRects[i].anchoredPosition = btnStrPos[i];
         }
         
-        UIManager.Instance.panels.Pop();
+        //UIManager.Instance.panels.Pop();
     }
     private void Update()
     {
@@ -54,10 +54,12 @@ public class PauseUI : UIBase
             if(UIManager.Instance.panels.Count <= 0)
             {
                 Show();
+                Cursor.lockState = CursorLockMode.None;
             }
             else
             {
                 UIManager.Instance.panels.Peek().Hide();
+                UIManager.Instance.PopUI();
             }
         }
     }
