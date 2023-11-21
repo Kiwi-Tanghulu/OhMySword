@@ -11,6 +11,12 @@ public class LobbyBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private float maxBtnSize;
     [SerializeField] private float normalBtnSize;
     [SerializeField] private float btnChangeDuration;
+
+    private LobbySetting lobbySetting;
+    private void Awake()
+    {
+        lobbySetting = FindObjectOfType<LobbySetting>();
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         transform.DOScale(maxBtnSize, btnChangeDuration).SetEase(Ease.OutCubic);
@@ -23,6 +29,7 @@ public class LobbyBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         panel.DOScale(1f, panelChangeDuration).SetEase(Ease.InOutCubic);
+        lobbySetting.lobbyStack.Push(panel);
     }
 
     public void OnExitBtnClick()
