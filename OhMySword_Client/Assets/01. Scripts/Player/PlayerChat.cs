@@ -24,7 +24,6 @@ public class PlayerChat : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
 
         float height = beforeMsg.GetComponent<RectTransform>().rect.height;
-        Debug.Log(height);
 
         for (int i = 0; i < messageSpawnTrm.childCount - 1; i++)
         {

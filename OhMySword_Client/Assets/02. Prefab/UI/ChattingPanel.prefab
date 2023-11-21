@@ -654,7 +654,7 @@ MonoBehaviour:
   chatPrefab: {fileID: -4744176108502767087, guid: 1e3d6b6fb7b2cdf42aa90641ada1d291,
     type: 3}
   fadeTime: 2
-  fadeDelayTime: 1
+  fadeDelayTime: 3
   <IsChat>k__BackingField: 0
 --- !u!222 &4625468269512127130
 CanvasRenderer:

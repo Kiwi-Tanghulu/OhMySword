@@ -498,6 +498,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314aa765a7a94be4690ed38a21f8bb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiType: 0
+  <IsOpen>k__BackingField: 1
   continueBtn: {fileID: 3762919334336742714}
   settingBtn: {fileID: 858887764484091544}
   reStartBtn: {fileID: 4542014288239850727}

@@ -21,7 +21,6 @@ public class MessageText : PoolableMono
     public void SetText(string str)
     {
         text.text = str;
-        Debug.Log(GetComponent<RectTransform>().rect.height);
     }
 
     public override void Init()

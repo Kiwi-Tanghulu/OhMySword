@@ -21,12 +21,16 @@ public class PlayerInput : MonoBehaviour
             return; ;
 
         if (UIManager.Instance.ActiveUI)
+        {
+            Debug.Log("active ui");
             return;
+        }
 
         if (UIManager.Instance.ChattingPanel.IsChat)
         {
             Movement?.Invoke(Vector3.zero);
             MouseMove?.Invoke(Vector3.zero);
+            Debug.Log("Is Chat");
         }
         else
         {
@@ -49,8 +53,8 @@ public class PlayerInput : MonoBehaviour
         {
             if (UIManager.Instance.ChattingPanel.IsChat)
             {
-                UIManager.Instance.ChattingPanel.SetFieldSelect(false);
-                UIManager.Instance.ChattingPanel.Hide();
+                //UIManager.Instance.ChattingPanel.SetFieldSelect(false);
+                //IManager.Instance.ChattingPanel.HideImmediediatly();
             }
             else
             {
