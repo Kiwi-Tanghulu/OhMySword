@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
 
     private ActiveRagdoll ragdoll;
 
+    [SerializeField] private float attackDelay = 0f;
     [SerializeField] private float attackTime;
     [SerializeField] private float attackReadyTime;
     [SerializeField] private float recoveryTime;
@@ -49,6 +50,12 @@ public class PlayerAttack : MonoBehaviour
         weapon.SetTrail(false);
         weapon.SetCollision(false);
         yield return StartCoroutine(ragdoll.SetRightArmRigTarget(nonattackTrm, recoveryTime));
+        yield return new WaitForSeconds(attackDelay);
         isAttack = false;
+    }
+
+    public void SetAttackDelay(float value)
+    {
+        attackDelay = value;
     }
 }
