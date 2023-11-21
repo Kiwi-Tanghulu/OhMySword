@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4579992670018696273}
   m_Layer: 0
   m_Name: GemScoreBox
-  m_TagString: Untagged
+  m_TagString: Other_Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
