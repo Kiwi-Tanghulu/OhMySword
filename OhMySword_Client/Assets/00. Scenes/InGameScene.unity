@@ -47746,7 +47746,7 @@ PrefabInstance:
     - target: {fileID: 3977533445638091108, guid: c77416db35b63224c87272b92be1c112,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4321602042439989598, guid: c77416db35b63224c87272b92be1c112,
         type: 3}
@@ -64055,8 +64055,8 @@ MonoBehaviour:
   - {x: -306, y: -137}
   - {x: -6, y: -137}
   - {x: 306, y: -137}
-  btnMoveTime: 0.5
-  btnWaitTime: 0.2
+  btnMoveTime: 0.4
+  btnWaitTime: 0.15
 --- !u!224 &341458268367256886
 RectTransform:
   m_ObjectHideFlags: 0

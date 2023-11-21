@@ -71,15 +71,24 @@ public class PlayerWeapon : MonoBehaviour
         }
     }
 
-    public void SetSwordSize() //���߿� Ư�� �������� Į�� �ٲ�ٸ� ä���־����
+    public void SetSwordSize()
     {
-
+        swordPivot.localScale = new Vector3(1f, swordPivot.localScale.y + (scoreSize * currentScore), 1f);
+        col.center = new Vector3(-0.2f, 0.5f + swordPivot.localScale.y, 0.45f);
+        col.size = new Vector3(0.3f, 2.4f + swordPivot.localScale.y * 2, 0.6f);
     }
-    public void SetScore(ushort value)
+    public void SetScore(ushort value, bool isStart)
     {
         nextScore = value;
-        if(currentScore != nextScore && isGrowing == false)
-            StartCoroutine(GrowUpSword());
+        if (isStart)
+        {
+            SetSwordSize();
+        }
+        else
+        {
+            if (currentScore != nextScore && isGrowing == false)
+                StartCoroutine(GrowUpSword());
+        }
     }
 
     public ushort GetScore() => nextScore;
