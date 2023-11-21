@@ -90,7 +90,7 @@ namespace OhMySword.Player
 
             if(this.ObjectID == RoomManager.Instance.PlayerID)
             {
-                playerWeapon.SetScore(amount);
+                playerWeapon.SetScore(amount, false);
                 info.GetXpCount++;
                 AudioManager.Instance.PlayAudio("GetXP", audioPlayer, true);
                 UIManager.Instance.MainCanvas.Find("InGamePanel/Leaderboard").GetComponent<LeaderBoard>().ChangeScore(playerWeapon.GetScore());
