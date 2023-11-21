@@ -26,7 +26,11 @@ public class AudioManager
             return;
 
         if(oneshot)
+        {
+            Debug.Log(clipName);
+            Debug.Log(clips[clipName]);
             player.PlayOneShot(clips[clipName]);
+        }
         else
         {
             player.clip = clips[clipName];
@@ -48,5 +52,6 @@ public class AudioManager
             return;
 
         clips.Add(clip.name, clip);
+        Debug.Log(clip.name);
     }
 }

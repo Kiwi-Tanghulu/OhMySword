@@ -81,6 +81,8 @@ public class ActiveRagdoll : MonoBehaviour
     private Coroutine footControlCo;
     private Coroutine footAlignCo;
 
+    private AudioSource aud;
+
     private void Start()
     {
         leftFoot.targetPos = leftFoot.target.position;
@@ -94,6 +96,9 @@ public class ActiveRagdoll : MonoBehaviour
         rightFoot.offset.y = 0;
 
         SetFootMiddlePos();
+
+        aud = hip.GetComponent<AudioSource>();
+        Debug.Log(aud);
     }
 
     private void Update()
@@ -225,6 +230,7 @@ public class ActiveRagdoll : MonoBehaviour
         }
 
         Transform effect = PoolManager.Instance.Pop("WalkEffect", foot.target.position + moveDir * 0.2f).transform;
+        AudioManager.Instance.PlayAudio("GrassFootstep", aud, true);
         effect.LookAt(effect.position - moveDir);
 
         if (moveDir == Vector3.zero && footAlignCo == null)

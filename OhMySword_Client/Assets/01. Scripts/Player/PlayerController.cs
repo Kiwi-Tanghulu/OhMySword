@@ -46,7 +46,7 @@ namespace OhMySword.Player
             playerChat = GetComponent<PlayerChat>();
             info = GetComponent<PlayerInfo>();
 
-            audioPlayer = GetComponent<AudioSource>();
+            audioPlayer = ragdoll.hip.GetComponent<AudioSource>();
         }
 
         public override void OnDeleted()
