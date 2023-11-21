@@ -20,6 +20,9 @@ public class PlayerInput : MonoBehaviour
         if (!Inputable)
             return; ;
 
+        if (UIManager.Instance.ActiveUI)
+            return;
+
         if (UIManager.Instance.ChattingPanel.IsChat)
         {
             Movement?.Invoke(Vector3.zero);
