@@ -81,7 +81,7 @@ public class PacketHandler
 
         player.Die(attacker, diePacket.destroyCount);
 
-        diePacket.score.ForEachDigit((digit, number, index) => {
+        ((ushort)(diePacket.score / 2)).ForEachDigit((digit, number, index) => {
             ObjectPacket obj = diePacket.objects[index];
             XPObject xp = RoomManager.Instance.AddObject(
                 obj.objectID, 

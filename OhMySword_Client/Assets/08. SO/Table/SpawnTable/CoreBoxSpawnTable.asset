@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CoreBoxSpawnTable
   m_EditorClassIdentifier: 
   table:
-  - {x: -27, y: -18, z: 26}
-  - {x: -30, y: -12, z: 66}
-  - {x: 44, y: -26, z: 98}
-  - {x: 59, y: -36, z: 14}
-  - {x: 107, y: -36, z: 28}
+  - {x: -27, y: -16, z: 26}
+  - {x: -30, y: -10, z: 66}
+  - {x: 44, y: -26.5, z: 98}
+  - {x: 59, y: -34.5, z: 14}
+  - {x: 107, y: -34.5, z: 28}

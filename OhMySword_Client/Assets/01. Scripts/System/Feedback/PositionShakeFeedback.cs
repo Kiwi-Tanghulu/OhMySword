@@ -11,11 +11,11 @@ namespace OhMySword.Feedback
         [SerializeField] float power = 3f;
         [SerializeField] int frequency = 5;
 
-        private void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.Space))
-                CreateFeedback();
-        }
+        // private void Update()
+        // {
+        //     if(Input.GetKeyDown(KeyCode.Space))
+        //         CreateFeedback();
+        // }
 
         public override void CreateFeedback()
         {

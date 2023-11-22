@@ -23,7 +23,7 @@ public class PlayerWeapon : MonoBehaviour
     private BoxCollider col;
     [SerializeField] private TrailRenderer trail;
 
-    private List<Collider> attacked = new();
+    public List<Collider> attacked = new();
 
     private Transform ownerHitbox;
     private PlayerAttack playerAttack;
@@ -57,8 +57,6 @@ public class PlayerWeapon : MonoBehaviour
             id.OnDamage(1, transform.root.gameObject, Vector3.zero);
             attacked.Add(other);
         }
-
-        attacked.Clear();
     }
 
     public void SetCollision(bool value)

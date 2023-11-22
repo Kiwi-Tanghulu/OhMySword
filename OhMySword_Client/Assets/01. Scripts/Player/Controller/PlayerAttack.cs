@@ -54,6 +54,7 @@ public class PlayerAttack : MonoBehaviour
         yield return StartCoroutine(ragdoll.SetRightArmRigTarget(nonattackTrm, recoveryTime));
         yield return new WaitForSeconds(attackDelay);
         isAttack = false;
+        weapon.attacked.Clear();
     }
 
     public void SetAttackDelay(float value)
