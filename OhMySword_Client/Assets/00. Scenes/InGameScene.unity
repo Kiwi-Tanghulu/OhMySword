@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07058083, g: 0.35375422, b: 0.9707924, a: 1}
+  m_IndirectSpecularColor: {r: 0.07051174, g: 0.35371843, b: 0.97079456, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29684,7 +29684,7 @@ PrefabInstance:
     - target: {fileID: 8962949869185066011, guid: 67f136e405d6ede4e91e595cab0a49e7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -36
+      value: -34.5
       objectReference: {fileID: 0}
     - target: {fileID: 8962949869185066011, guid: 67f136e405d6ede4e91e595cab0a49e7,
         type: 3}
@@ -47693,7 +47693,7 @@ PrefabInstance:
     - target: {fileID: 8962949869185066011, guid: 67f136e405d6ede4e91e595cab0a49e7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8962949869185066011, guid: 67f136e405d6ede4e91e595cab0a49e7,
         type: 3}
@@ -53386,7 +53386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1216016877
 Transform:
   m_ObjectHideFlags: 0
@@ -76243,7 +76243,7 @@ PrefabInstance:
     - target: {fileID: 8962949869185066011, guid: 67f136e405d6ede4e91e595cab0a49e7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -36
+      value: -34.5
       objectReference: {fileID: 0}
     - target: {fileID: 8962949869185066011, guid: 67f136e405d6ede4e91e595cab0a49e7,
         type: 3}
@@ -91922,7 +91922,7 @@ PrefabInstance:
     - target: {fileID: 8962949869185066011, guid: 67f136e405d6ede4e91e595cab0a49e7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26
+      value: -26.5
       objectReference: {fileID: 0}
     - target: {fileID: 8962949869185066011, guid: 67f136e405d6ede4e91e595cab0a49e7,
         type: 3}
@@ -95228,7 +95228,7 @@ PrefabInstance:
     - target: {fileID: 8962949869185066011, guid: 67f136e405d6ede4e91e595cab0a49e7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 8962949869185066011, guid: 67f136e405d6ede4e91e595cab0a49e7,
         type: 3}
