@@ -42,6 +42,11 @@ public class SaveManager : MonoBehaviour
             data = JsonUtility.FromJson<SaveData>(json);
         else
             data = new();
+
+        if(data.mouseSpeed <= 0)
+        {
+            data.mouseSpeed = 50;
+        }
     }
 
     private void OnApplicationQuit()
