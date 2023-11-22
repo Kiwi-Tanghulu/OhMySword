@@ -64,7 +64,7 @@ public class DiePanel : MonoBehaviour
                 }
             }
             checkNum += 0.05f;
-            if (checkNum > 0.5f)
+            if (checkNum > 0.15f)
             {
                 checkNum = 0;
                 if (index < dieInfoTexts.Length - 1)
