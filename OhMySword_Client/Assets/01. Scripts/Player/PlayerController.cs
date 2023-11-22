@@ -102,14 +102,18 @@ namespace OhMySword.Player
             if (IsDie)
                 return;
 
-            Debug.Log("die");
-
             //둘 다
             OnDieEvent?.Invoke(attacker);
             //UIManager.Instance.MainCanvas.Find("DiePanel").GetComponent<DiePanel>().Show();
             
             //둘 다
             AudioManager.Instance.PlayAudio("PlayerDie", audioPlayer, true);
+            
+            if(attacker != null && attacker.ObjectID == RoomManager.Instance.PlayerID)
+            {
+                Debug.Log($"{transform.name} : 킬 증가");
+                attacker.GetComponent<PlayerInfo>().KillCount++;
+            }
 
             if(this.ObjectID == RoomManager.Instance.PlayerID)
             {
@@ -120,8 +124,11 @@ namespace OhMySword.Player
                     if (attacker.TryGetComponent<PlayerController>(out PlayerController p))
                     {
                         info.KilledPlayerName = p.nickname;
-                        p.GetComponent<PlayerInfo>().KillCount++;
                     }
+                }
+                else
+                {
+                    info.KilledPlayerName = "자연사";
                 }
 
                 //자기
