@@ -23,6 +23,8 @@ public class RoomManager : MonoBehaviour
     public event Action<List<PlayerController>> OnRankingChangedEvent = null;
     [SerializeField] private List<PlayerController> rankBoard = null;
 
+    public PlayerController Player => players[PlayerID];
+
 	private void Awake()
     {
         if(Instance != null)
