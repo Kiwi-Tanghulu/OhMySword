@@ -24,7 +24,7 @@ public class GameSettingUI : UIBase
             mouseSpeedInputField.text = _value.ToString();
             mouseSpeedSlider.value = _value / 100f;
             if (playerView == null)
-                playerView = FindObjectOfType<PlayerView>();
+                playerView = RoomManager.Instance.Player.GetComponent<PlayerView>();
             playerView.RotateSpeedOffset = _value / 100f;
             SaveManager.Instance.data.mouseSpeed = _value;
         }
