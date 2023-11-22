@@ -124,7 +124,7 @@ public class PlayerWeapon : MonoBehaviour
             col.size = new Vector3(0.3f, 2.4f + swordPivot.localScale.y * 2, 0.6f);
             checkTime += Time.deltaTime * sizeUpSpeed;
             trail.widthMultiplier = ((currentScore * scoreSize) / 2) + 1;
-            playerAttack.SetAttackDelay(currentScore / 500f);
+            playerAttack.SetAttackDelay(currentScore / 250f);
 
             yield return null;
         }
