@@ -1,8 +1,10 @@
 using Base.Network;
 using DG.Tweening;
+using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class PlayerFeedback : MonoBehaviour
 {
@@ -15,15 +17,7 @@ public class PlayerFeedback : MonoBehaviour
     [SerializeField] private Transform hitEffectPlayPos;
 
     [Space]
-    [Header("die")]
-    [SerializeField] private Transform onDieLeftLegTrm;
-    [SerializeField] private Transform onDieRightLegTrm;
-    [SerializeField] private Transform onDieRightArmTrm;
-    [SerializeField] private Transform RightLegTarget;
-    [SerializeField] private Transform LeftLegTarget;
-    [SerializeField] private Transform RightArmTarget;
-    [SerializeField] private float onDieTransTime = 0.1f;
-    public UnityEvent onDie;
+    public UnityEvent<bool> SetActiveRagdollEvent;
 
     private void Start()
     {
@@ -47,7 +41,7 @@ public class PlayerFeedback : MonoBehaviour
 
     public void DieFeedback(SyncableObject attacker)
     {
-        onDie?.Invoke();
+        SetActiveRagdoll(false);
         Debug.Log("die");
 
         if(attacker != null)
@@ -58,23 +52,20 @@ public class PlayerFeedback : MonoBehaviour
         }
     }
 
-    private IEnumerator OnDieCo()
+    public void SetActiveRagdoll(bool value, float time = -1)
     {
-        float percent = 0;
+        SetActiveRagdollEvent?.Invoke(value);
 
-        while(percent <= 1)
+        if(time > 0)
         {
-            RightArmTarget.position = Vector3.Lerp(RightArmTarget.position, onDieRightArmTrm.position, percent);
-            LeftLegTarget.position = Vector3.Lerp(LeftLegTarget.position, onDieLeftLegTrm.position, percent);
-            RightLegTarget.position = Vector3.Lerp(RightLegTarget.position, onDieRightArmTrm.position, percent);
-
-            RightArmTarget.rotation = Quaternion.Lerp(RightArmTarget.rotation, onDieRightArmTrm.rotation, percent);
-            LeftLegTarget.rotation = Quaternion.Lerp(LeftLegTarget.rotation, onDieLeftLegTrm.rotation, percent);
-            RightLegTarget.rotation = Quaternion.Lerp(RightLegTarget.rotation, onDieRightArmTrm.rotation, percent);
-
-            percent += Time.deltaTime / onDieTransTime;
-
-            yield return null;
+            StartCoroutine(SetActiveRagdollCo(value, time));
         }
+    }
+
+    private IEnumerator SetActiveRagdollCo(bool value, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        SetActiveRagdoll(value);
     }
 }

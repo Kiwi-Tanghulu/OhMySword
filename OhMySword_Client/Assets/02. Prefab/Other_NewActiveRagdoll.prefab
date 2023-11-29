@@ -233,7 +233,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.11230189, z: 0.000000022864711}
+  m_ConnectedAnchor: {x: 0, y: 0.11230189, z: 0.0000000061009016}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1441,7 +1441,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000078231025, y: 0.232676, z: -0.00000013410923}
+  m_ConnectedAnchor: {x: 0.00000001629813, y: 0.23267531, z: -0.000000013969712}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -6725,20 +6725,13 @@ MonoBehaviour:
   hitFeedbackPower: 100
   hitEffectPlayOffset: 0.4
   hitEffectPlayPos: {fileID: 3541656994805744203}
-  onDieLeftLegTrm: {fileID: 8384502602904355821}
-  onDieRightLegTrm: {fileID: 7839976473408190305}
-  onDieRightArmTrm: {fileID: 1238840737515265609}
-  RightLegTarget: {fileID: 8271722919145158377}
-  LeftLegTarget: {fileID: 5149549808878204092}
-  RightArmTarget: {fileID: 7690463671581604103}
-  onDieTransTime: 0.1
-  onDie:
+  SetActiveRagdollEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5133962722497566431}
         m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
         m_MethodName: set_enabled
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6750,7 +6743,7 @@ MonoBehaviour:
       - m_Target: {fileID: 6014290944445573013}
         m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
         m_MethodName: set_Moveable
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6762,7 +6755,7 @@ MonoBehaviour:
       - m_Target: {fileID: 7738541113842106706}
         m_TargetAssemblyTypeName: PlayerAnimation, Assembly-CSharp
         m_MethodName: set_Animationable
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6774,7 +6767,19 @@ MonoBehaviour:
       - m_Target: {fileID: 2143734704895974516}
         m_TargetAssemblyTypeName: ActiveRagdoll, Assembly-CSharp
         m_MethodName: SetConrol
-        m_Mode: 6
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2699833306637257810}
+        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
+        m_MethodName: set_canAttack
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7407,7 +7412,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000040978197, y: 0.14914562, z: -0.00000010058284}
+  m_ConnectedAnchor: {x: 0.00000001769513, y: 0.14914536, z: -0.00000006519258}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -7626,7 +7631,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.08413124, z: 0.0040113637}
+  m_ConnectedAnchor: {x: 0, y: 0.08413124, z: 0.0040114005}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -8592,7 +8597,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0627017, y: 0.10873616, z: 0.00018214522}
+  m_ConnectedAnchor: {x: 0.06270182, y: 0.10873616, z: 0.0001821359}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -8899,7 +8904,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.098073006, y: -0.046758648, z: 0.013031604}
+  m_ConnectedAnchor: {x: -0.09807312, y: -0.046758648, z: 0.013031652}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -14357,7 +14362,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000045169145, y: 0.13314372, z: 0.000000108033404}
+  m_ConnectedAnchor: {x: 0.000000017229468, y: 0.13314383, z: 0.00000008195638}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -14937,7 +14942,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000015832484, y: 0.1718293, z: 0.00000010430814}
+  m_ConnectedAnchor: {x: 0.000000031664968, y: 0.17182918, z: 0.00000011548401}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -15188,7 +15193,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.12633793, z: -0.00073771295}
+  m_ConnectedAnchor: {x: 0, y: 0.12633793, z: -0.0007376869}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -15996,7 +16001,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.0982648, z: -0.0000000088475645}
+  m_ConnectedAnchor: {x: 0, y: 0.0982648, z: -0.000000016298145}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -16319,7 +16324,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0627017, y: 0.108756125, z: 0.0005555707}
+  m_ConnectedAnchor: {x: -0.06270182, y: 0.108756125, z: 0.0005555372}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -16738,7 +16743,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000009918582, y: 0.23224081, z: 0.00000022351713}
+  m_ConnectedAnchor: {x: -0.000000027474005, y: 0.2322407, z: -0.000000011641518}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -17103,7 +17108,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.098073006, y: -0.04675865, z: 0.0063927188}
+  m_ConnectedAnchor: {x: 0.09807312, y: -0.04675865, z: 0.006392758}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -18158,7 +18163,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 10, z: 0}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2

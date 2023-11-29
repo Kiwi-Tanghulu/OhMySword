@@ -3192,20 +3192,13 @@ MonoBehaviour:
   hitFeedbackPower: 100
   hitEffectPlayOffset: 0.4
   hitEffectPlayPos: {fileID: 6072831727228413414}
-  onDieLeftLegTrm: {fileID: 2805970231814492750}
-  onDieRightLegTrm: {fileID: 1594774388067164967}
-  onDieRightArmTrm: {fileID: 8983953628923734364}
-  RightLegTarget: {fileID: 8355484182045137357}
-  LeftLegTarget: {fileID: 2565994669587253852}
-  RightArmTarget: {fileID: 6020482088138376145}
-  onDieTransTime: 0.2
-  onDie:
+  SetActiveRagdollEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1038861778551090546}
         m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
         m_MethodName: set_enabled
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3217,7 +3210,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2119935563374049366}
         m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
         m_MethodName: set_Inputable
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3229,7 +3222,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3927538354332941555}
         m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
         m_MethodName: set_Moveable
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3241,7 +3234,7 @@ MonoBehaviour:
       - m_Target: {fileID: 7553506049365909550}
         m_TargetAssemblyTypeName: PlayerAnimation, Assembly-CSharp
         m_MethodName: set_Animationable
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3253,7 +3246,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5939366540002339203}
         m_TargetAssemblyTypeName: ActiveRagdoll, Assembly-CSharp
         m_MethodName: SetConrol
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3265,7 +3258,7 @@ MonoBehaviour:
       - m_Target: {fileID: 4766823138392103545}
         m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
         m_MethodName: set_canAttack
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

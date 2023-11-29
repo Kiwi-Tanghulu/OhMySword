@@ -96,9 +96,8 @@ public class ActiveRagdoll : MonoBehaviour
         rightFoot.offset.y = 0;
 
         SetFootMiddlePos();
-
+        
         aud = hip.GetComponent<AudioSource>();
-        Debug.Log(aud);
     }
 
     private void Update()
