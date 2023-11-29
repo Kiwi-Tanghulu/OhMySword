@@ -2,6 +2,7 @@ using H00N.Network;
 using Packets;
 using System;
 using System.Net;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Server
 {
@@ -35,12 +36,23 @@ namespace Server
                 PacketManager.Instance.HandlePacket(this, packet);
             } catch (Exception err) {
                 Console.WriteLine(err.Message);
+                RelayError();
             }
         }
 
         public override void OnSent(int length)
         {
             //Console.WriteLine($"[Session] Data Sent : {length}");
+        }
+
+        public void RelayError()
+        {
+            Room?.ReleasePlayer(Player);
+
+            S_ErrorPacket errorPacket = new S_ErrorPacket();
+            Send(errorPacket.Serialize());
+            
+            NetworkManager.Instance.ReleaseUser(this);
         }
     }
 }

@@ -45,11 +45,7 @@ namespace Server
             foreach (GameRoom room in gameRooms.Values)
             {
                 room.AddJob(() => {
-                    try {
-                        int packetCount = room.FlushBroadcastQueue();
-                    } catch(Exception err) {
-                        Console.WriteLine(err.Message);
-                    }
+                    int packetCount = room.FlushBroadcastQueue();
                     //if(packetCount > 0)
                         //Console.WriteLine($"[Room] {packetCount} Packets Flushed");
                 });

@@ -29,22 +29,29 @@ namespace Server
         public int FlushBroadcastQueue()
         {
             int packetCount = broadcastQueue.Count;
-            while(broadcastQueue.Count > 0)
-            {
-                BroadcastPacket packet = broadcastQueue.Dequeue();
-                if (packet.packet == null)
-                    continue;
+            Player player = null;
 
-                ArraySegment<byte> buffer = packet.packet.Serialize();
-
-                foreach (KeyValuePair<ushort, Player> p in players)
+            try {
+                while(broadcastQueue.Count > 0)
                 {
-                    Player player = p.Value;
-                    if (player.session.UserID == packet.except)
+                    BroadcastPacket packet = broadcastQueue.Dequeue();
+                    if (packet.packet == null)
                         continue;
 
-                    player.session.Send(buffer);
+                    ArraySegment<byte> buffer = packet.packet.Serialize();
+
+                    foreach (KeyValuePair<ushort, Player> p in players)
+                    {
+                        player = p.Value;
+                        if (player.session.UserID == packet.except)
+                            continue;
+
+                        player.session.Send(buffer);
+                    }
                 }
+            } catch(Exception err) {
+                Console.WriteLine(err.Message);
+                player?.session?.RelayError();
             }
 
             return packetCount;
