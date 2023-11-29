@@ -48,5 +48,13 @@ namespace Server
                 PublishObject(scoreBox2);
             }
         }
+
+        public override void ReleasePlayer(Player player)
+        {
+            base.ReleasePlayer(player);
+
+            if(Capacity >= maxPlayerCount)
+                RoomManager.Instance.ReleaseRoom(this);
+        }
     }
 }

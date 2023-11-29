@@ -87,13 +87,13 @@ namespace Server
             return (obj != null);
         }
 
-        public void PublishObject(ObjectBase obj)
+        public virtual void PublishObject(ObjectBase obj)
         {
             obj.objectID = objectIDPublisher++;
             objects.Add(obj.objectID, obj);
         }
 
-        public void ReleaseObject(ObjectBase obj)
+        public virtual void ReleaseObject(ObjectBase obj)
         {
             objects.Remove(obj.objectID);
             obj.room = null;
@@ -112,13 +112,13 @@ namespace Server
                 return false;
         }
 
-        public void PublishPlayer(Player player)
+        public virtual void PublishPlayer(Player player)
         {
             player.objectID = playerIDPublisher++;
             players.Add(player.objectID, player);
         }
 
-        public void ReleasePlayer(Player player)
+        public virtual void ReleasePlayer(Player player)
         {
             S_OtherExitPacket broadcastPackt = new S_OtherExitPacket(player.objectID);
             Broadcast(broadcastPackt, player.session.UserID);

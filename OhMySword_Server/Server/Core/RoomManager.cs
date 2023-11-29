@@ -84,5 +84,16 @@ namespace Server
 
             return room;
         }
+
+        public void ReleaseRoom(GameRoom room)
+        {
+            if (gameRooms.ContainsKey(room.RoomID) == false)
+                return;
+
+            room.AddJob(() => {
+                room.Clear();
+                gameRooms.Remove(room.RoomID);
+            });
+        }
     }
 }
