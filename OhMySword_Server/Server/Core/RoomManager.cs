@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,7 +45,11 @@ namespace Server
             foreach (GameRoom room in gameRooms.Values)
             {
                 room.AddJob(() => {
-                    int packetCount = room.FlushBroadcastQueue();
+                    try {
+                        int packetCount = room.FlushBroadcastQueue();
+                    } catch(Exception err) {
+                        Console.WriteLine(err.Message);
+                    }
                     //if(packetCount > 0)
                         //Console.WriteLine($"[Room] {packetCount} Packets Flushed");
                 });

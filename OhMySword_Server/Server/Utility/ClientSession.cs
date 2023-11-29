@@ -29,8 +29,13 @@ namespace Server
         public override void OnPacketReceived(ArraySegment<byte> buffer)
         {
             //Console.WriteLine($"[Session] Packet Received : {buffer.Count}");
-            Packet packet = PacketManager.Instance.CreatePacket(buffer);
-            PacketManager.Instance.HandlePacket(this, packet);
+
+            try {
+                Packet packet = PacketManager.Instance.CreatePacket(buffer);
+                PacketManager.Instance.HandlePacket(this, packet);
+            } catch (Exception err) {
+                Console.WriteLine(err.Message);
+            }
         }
 
         public override void OnSent(int length)
