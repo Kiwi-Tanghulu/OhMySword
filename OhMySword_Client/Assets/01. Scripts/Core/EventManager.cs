@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,26 @@ public class EventManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
+        foreach(GameEventType eventType in Enum.GetValues(typeof(GameEventType)))
+        {
+            if (eventType == GameEventType.None)
+                continue;
+
+            string typeName = eventType.ToString();
+
+            try
+            {
+                Type type = Type.GetType($"{typeName}Event");
+                gameEventDictionary.Add(eventType, Activator.CreateInstance(type) as GameEvent);
+                gameEventDictionary[eventType].InitEvent();
+            }
+            catch
+            {
+                Debug.LogError($"{eventType}Event is none");
+            }
+        }
+            
     }
 
     private void Update()
@@ -44,7 +65,6 @@ public class EventManager : MonoBehaviour
 
     public void FinishEvent()
     {
-        currentGameEvent?.FinishEvent();
         CurrentEventType = GameEventType.None;
         currentGameEvent = null;
     }
