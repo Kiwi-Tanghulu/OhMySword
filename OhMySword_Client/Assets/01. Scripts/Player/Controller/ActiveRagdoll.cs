@@ -31,7 +31,7 @@ public class ActiveRagdoll : MonoBehaviour
     [field: SerializeField]
     public bool footMove { get; set; } = true;
     [field: SerializeField]
-    public bool Controlable { get; set; } = true;
+    public bool Controlable { get; private set; } = true;
     public bool isGround = true;
     private bool beforeIsGround = true;
 
@@ -83,6 +83,16 @@ public class ActiveRagdoll : MonoBehaviour
 
     public AudioSource aud;
 
+    private PlayerAnimation playerAnimation;
+    private PlayerAttack playerAttack;
+
+    private void Awake()
+    {
+        playerAnimation = GetComponent<PlayerAnimation>();
+        playerAttack = GetComponent<PlayerAttack>();
+        aud = hip.GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
         leftFoot.targetPos = leftFoot.target.position;
@@ -96,8 +106,6 @@ public class ActiveRagdoll : MonoBehaviour
         rightFoot.offset.y = 0;
 
         SetFootMiddlePos();
-        
-        aud = hip.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -106,18 +114,17 @@ public class ActiveRagdoll : MonoBehaviour
         {
             SetHipToGroundPos();
             SetHipAncherPos();
-            return; 
         }
 
         CheckGround();
 
-        if (isGround)
+        if (isGround && Controlable)
         {
             SetHipConstraint(true);
             HipElasticity();
             FootMove();
         }
-        else
+        else if(!isGround)
         {
             
         }
@@ -125,8 +132,7 @@ public class ActiveRagdoll : MonoBehaviour
         //trans frame
         if (beforeIsGround != isGround)
         {
-            SetBodyControl(isGround);
-            SetFootControl(isGround);
+            SetConrol(isGround);
             hip.velocity = Vector3.zero;
         }
     }
@@ -138,7 +144,8 @@ public class ActiveRagdoll : MonoBehaviour
         SetFootControl(value);
         rigAnimator.enabled = value;
         rigBuilder.enabled = value;
-        spineRb.constraints = RigidbodyConstraints.None;
+        playerAnimation.Animationable = value;
+        playerAttack.canAttack = value;
     }
 
     private bool CheckGround()
@@ -325,7 +332,7 @@ public class ActiveRagdoll : MonoBehaviour
         return false;
     }
 
-    private void SetHipConstraint(bool turnOn)
+    public void SetHipConstraint(bool turnOn)
     {
         if (turnOn)
         {
@@ -344,9 +351,13 @@ public class ActiveRagdoll : MonoBehaviour
 
             hip.constraints |= RigidbodyConstraints.FreezeRotationX
             | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
+            //hip.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         else
+        {
             hip.constraints = RigidbodyConstraints.None;
+        }
     }
 
     private void SetHipAncherPos()
@@ -397,6 +408,7 @@ public class ActiveRagdoll : MonoBehaviour
         hipJoint.angularYZDrive = yzDrive;
         bodyLerping = value;
         SetHipConstraint(value);
+        SetSpineConstraint(value);
     }
     #endregion
 
@@ -421,6 +433,18 @@ public class ActiveRagdoll : MonoBehaviour
     public void AddForceToSpine(Vector3 power)
     {
         spineRb.AddForce(power, ForceMode.Impulse);
+    }
+
+    private void SetSpineConstraint(bool value)
+    {
+        if(value)
+        {
+            //spineRb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+        else
+        {
+            spineRb.constraints = RigidbodyConstraints.None;
+        }
     }
     #endregion
 
