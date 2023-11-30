@@ -53,6 +53,11 @@ namespace OhMySword.Player
         {
         }
 
+        public void SetSkin(ushort skinID)
+        {
+            
+        }
+
         public void SetNickname(string nickname)
         {
             this.nickname = nickname;  

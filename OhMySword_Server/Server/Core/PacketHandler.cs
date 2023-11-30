@@ -1,8 +1,5 @@
 using H00N.Network;
 using Packets;
-using System.ComponentModel;
-using System.Net.Sockets;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace Server
 {
@@ -29,7 +26,7 @@ namespace Server
             C_RoomEnterPacket enterPacket = packet as C_RoomEnterPacket;
 
             GameRoom room = RoomManager.Instance.GetRoom();
-            Player player = new Player(session as ClientSession, room, enterPacket.nickname);
+            Player player = new Player(session as ClientSession, room, enterPacket.nickname, enterPacket.skinID);
             
             int posIndex = Random.Range(0, DEFINE.PlayerSpawnTable.Length);
             player.position = DEFINE.PlayerSpawnTable[posIndex];
@@ -40,7 +37,7 @@ namespace Server
                 clientSession.Room = room;
             });
 
-            S_OtherJoinPacket broadcastPacket = new S_OtherJoinPacket(player.nickname, player.objectID, (ushort)posIndex);
+            S_OtherJoinPacket broadcastPacket = new S_OtherJoinPacket(player.nickname, player.objectID, enterPacket.skinID, (ushort)posIndex);
             room.AddJob(() => room.Broadcast(broadcastPacket, clientSession.UserID));
 
             List<PlayerPacket> playerList = room.GetPlayerList(player.objectID);
