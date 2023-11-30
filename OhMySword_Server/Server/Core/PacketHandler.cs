@@ -42,7 +42,7 @@ namespace Server
 
             List<PlayerPacket> playerList = room.GetPlayerList(player.objectID);
             List<ObjectPacket> objectList = room.GetObjectList();
-            S_RoomEnterPacket replyPacket = new S_RoomEnterPacket(player.objectID, (ushort)posIndex, playerList, objectList);
+            S_RoomEnterPacket replyPacket = new S_RoomEnterPacket(player.objectID, enterPacket.skinID, (ushort)posIndex, playerList, objectList);
             clientSession.Send(replyPacket.Serialize());
         }
 
