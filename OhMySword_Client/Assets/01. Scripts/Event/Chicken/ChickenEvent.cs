@@ -11,7 +11,7 @@ public class ChickenEvent : GameEvent
     public override void InitEvent()
     {
         base.InitEvent();
-        //chickenResource = Resources.Load<GameObject>("Chicken");
+        chickenResource = Resources.Load<GameObject>("Prefabs/Chicken");
     }
 
     public override void StartEvent()
