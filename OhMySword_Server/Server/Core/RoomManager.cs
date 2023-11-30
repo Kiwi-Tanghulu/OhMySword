@@ -71,7 +71,7 @@ namespace Server
         {
             foreach (KeyValuePair<ushort, GameRoom> p in gameRooms)
             {
-                if (p.Value.Capacity > 0)
+                if (p.Value.Capacity > 0 && p.Value.OnEvent == false)
                     return p.Value;
             }
 

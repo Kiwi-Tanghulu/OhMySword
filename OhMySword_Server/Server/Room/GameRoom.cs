@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Packets;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Server
     {
         public int maxPlayerCount = 20;
         public ushort RoomID;
+        public bool OnEvent;
 
         public int Capacity => (maxPlayerCount - players.Count);
 
@@ -55,6 +57,22 @@ namespace Server
 
             if(Capacity >= maxPlayerCount)
                 RoomManager.Instance.ReleaseRoom(this);
+        }
+
+        public void StartEvent(ushort eventType)
+        {
+            OnEvent = true;
+
+            S_EventStartPacket packet = new S_EventStartPacket(eventType);
+            Broadcast(packet);
+        }
+
+        public void CloseEvent()
+        {
+            OnEvent = false;
+
+            S_EventEndPacket packet = new S_EventEndPacket();
+            Broadcast(packet);
         }
     }
 }

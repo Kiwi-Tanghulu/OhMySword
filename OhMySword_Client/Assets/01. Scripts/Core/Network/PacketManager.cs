@@ -52,6 +52,8 @@ public class PacketManager
         RegisterHandler<S_ChattingPacket>(PacketID.S_ChattingPacket, PacketHandler.S_ChattingPacket);
         RegisterHandler<S_AnimationPacket>(PacketID.S_AnimationPacket, PacketHandler.S_AnimationPacket);
         RegisterHandler<S_ErrorPacket>(PacketID.S_ErrorPacket, PacketHandler.S_ErrorPacket);
+        RegisterHandler<S_EventStartPacket>(PacketID.S_EventStartPacket, PacketHandler.S_EventStartPacket);
+        RegisterHandler<S_EventEndPacket>(PacketID.S_EventEndPacket, PacketHandler.S_EventEndPacket);
     }
 
     private void RegisterHandler<T>(PacketID id, Action<Session, Packet> handler) where T : Packet, new()
