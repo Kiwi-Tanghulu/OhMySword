@@ -21,11 +21,11 @@ public class ChickenEvent : GameEvent
 
     public override void UpdateEvent()
     {
-        Debug.Log("Start Chicken Event");
+        
     }
 
     public override void FinishEvent()
     {
-        base.FinishEvent();
+        Debug.Log("Finish Chicken Event");
     }
 }

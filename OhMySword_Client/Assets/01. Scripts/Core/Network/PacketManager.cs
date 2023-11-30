@@ -30,7 +30,9 @@ public class PacketManager
 
     public void HandlePacket(Session session, Packet packet)
     {
-        if(packet == null)
+        UnityEngine.Debug.Log((PacketID)packet.ID);
+
+        if (packet == null)
             return;
 
         if(packetHandlers.ContainsKey(packet.ID))

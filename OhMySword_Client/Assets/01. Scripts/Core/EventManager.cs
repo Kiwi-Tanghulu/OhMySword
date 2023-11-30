@@ -25,6 +25,7 @@ public class EventManager : MonoBehaviour
         else
             Destroy(gameObject);
 
+        gameEventDictionary = new();
         foreach(GameEventType eventType in Enum.GetValues(typeof(GameEventType)))
         {
             if (eventType == GameEventType.None)
@@ -35,12 +36,14 @@ public class EventManager : MonoBehaviour
             try
             {
                 Type type = Type.GetType($"{typeName}Event");
+                Debug.Log(type);
                 gameEventDictionary.Add(eventType, Activator.CreateInstance(type) as GameEvent);
                 gameEventDictionary[eventType].InitEvent();
             }
-            catch
+            catch (Exception e)
             {
-                Debug.LogError($"{eventType}Event is none");
+
+                Debug.LogError($"{eventType}Event is none : {e.ToString()}");
             }
         }
 
@@ -55,6 +58,8 @@ public class EventManager : MonoBehaviour
 
     public void StartEvent(int eventType)
     {
+        Debug.Log("2");
+
         if ((GameEventType)eventType == GameEventType.None)
             return;
         if (currentGameEvent != null)

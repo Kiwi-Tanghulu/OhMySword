@@ -11,7 +11,7 @@ namespace Server
     {
         public int maxPlayerCount = 20;
         public ushort RoomID;
-        public bool OnEvent;
+        public bool OnEvent = false;
 
         public int Capacity => (maxPlayerCount - players.Count);
 
@@ -50,13 +50,13 @@ namespace Server
                 PublishObject(scoreBox2);
             }
 
-            DelayCallback(60f * 5, () => {
+            DelayCallback(60f * 0.1f, () => {
                 AddJob(() => {
                     if (OnEvent)
                         return;
 
                     StartEvent(0);
-                    DelayCallback(60f * 2, () => {
+                    DelayCallback(60f * 0.1f, () => {
                         AddJob(() => {
                             CloseEvent();
                         });
@@ -79,6 +79,7 @@ namespace Server
 
             S_EventStartPacket packet = new S_EventStartPacket(eventType);
             Broadcast(packet);
+            Console.WriteLine(packet.eventType);
         }
 
         public void CloseEvent()

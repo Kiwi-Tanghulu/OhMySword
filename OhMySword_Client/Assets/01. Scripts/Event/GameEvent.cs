@@ -7,8 +7,5 @@ public abstract class GameEvent
     public virtual void InitEvent() { }
     public abstract void StartEvent();
     public abstract void UpdateEvent();
-    public virtual void FinishEvent() 
-    {
-        EventManager.Instance.FinishEvent();
-    }
+    public abstract void FinishEvent();
 }
