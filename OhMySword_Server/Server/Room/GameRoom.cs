@@ -49,6 +49,20 @@ namespace Server
                 scoreBox2.ResetPosition();
                 PublishObject(scoreBox2);
             }
+
+            DelayCallback(60f * 5, () => {
+                AddJob(() => {
+                    if (OnEvent)
+                        return;
+
+                    StartEvent(0);
+                    DelayCallback(60f * 2, () => {
+                        AddJob(() => {
+                            CloseEvent();
+                        });
+                    });
+                });
+            });
         }
 
         public override void ReleasePlayer(Player player)
@@ -73,6 +87,12 @@ namespace Server
 
             S_EventEndPacket packet = new S_EventEndPacket();
             Broadcast(packet);
+        }
+
+        public async void DelayCallback(float delay, Action callback)
+        {
+            await Task.Delay((int)(delay * 1000));
+            callback?.Invoke();
         }
     }
 }
