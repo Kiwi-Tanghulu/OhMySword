@@ -26,6 +26,8 @@ public class RoomManager : MonoBehaviour
 
     public PlayerController Player => players[PlayerID];
 
+    public Transform ObjectParent;
+
 	private void Awake()
     {
         if(Instance != null)
@@ -33,6 +35,8 @@ public class RoomManager : MonoBehaviour
 
         Instance = this;
         prefabTable.Init();
+
+        ObjectParent = transform.Find("ObjectParent");
     }
 
     public void UpdateRankingBoard()

@@ -23,6 +23,7 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
  
     public override void OnCreated()
     {
+        transform.SetParent(RoomManager.Instance.ObjectParent);
     }
 
     public override void OnDeleted()

@@ -18,6 +18,7 @@ public class ChickenEvent : GameEvent
     {
         Debug.Log("Start Chicken Event");
         chickenObject = GameObject.Instantiate(chickenResource);
+        RoomManager.Instance.ObjectParent.gameObject.SetActive(false);
     }
 
     public override void UpdateEvent()
@@ -30,5 +31,6 @@ public class ChickenEvent : GameEvent
         Debug.Log("Finish Chicken Event");
         GameObject.Destroy(chickenObject);
         chickenObject = null;
+        RoomManager.Instance.ObjectParent.gameObject.SetActive(true);
     }
 }
