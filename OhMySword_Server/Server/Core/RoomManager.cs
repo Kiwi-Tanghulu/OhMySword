@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -70,7 +71,7 @@ namespace Server
         {
             foreach (KeyValuePair<ushort, GameRoom> p in gameRooms)
             {
-                if (p.Value.Capacity > 0)
+                if (p.Value.Capacity > 0 && p.Value.OnEvent == false)
                     return p.Value;
             }
 
@@ -78,6 +79,17 @@ namespace Server
             PublishRoomID(room);
 
             return room;
+        }
+
+        public void ReleaseRoom(GameRoom room)
+        {
+            if (gameRooms.ContainsKey(room.RoomID) == false)
+                return;
+
+            room.AddJob(() => {
+                room.Clear();
+                gameRooms.Remove(room.RoomID);
+            });
         }
     }
 }

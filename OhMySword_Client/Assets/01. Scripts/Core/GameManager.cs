@@ -50,4 +50,12 @@ public class GameManager : MonoBehaviour
 
         NetworkManager.Instance.Disconnect();
     }
+
+    public void ResetClient()
+    {
+        // 클라이언트 초기화
+        // 클라이언트 경고 UI
+        // 게임 매니저도 새로 생겨야 하고 네트워크 매니저도 새로 생겨야 함
+        // 정말 게임을 껏다 키는 거 처럼 되어야 함
+    }
 }

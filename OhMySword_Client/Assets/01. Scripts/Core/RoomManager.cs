@@ -149,4 +149,14 @@ public class RoomManager : MonoBehaviour
         C_RoomExitPacket exitPacket = new C_RoomExitPacket();
         NetworkManager.Instance.Send(exitPacket);
     }
+
+    public void StartEvent(ushort eventType)
+    {
+
+    }
+
+    public void CloseEvent()
+    {
+
+    }
 }

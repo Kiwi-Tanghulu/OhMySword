@@ -49,12 +49,13 @@ namespace Server
         {
             ((ushort)(score / 2)).ForEachDigit((digit, number, index) => {
                 Vector3 randInCircle = Random.InCircle(3f);
-                Console.WriteLine($"x : {randInCircle.x}, y : {randInCircle.y}");
+                //Console.WriteLine($"x : {randInCircle.x}, y : {randInCircle.y}");
                 XPObject xp = new XPObject(room, digit);
                 xp.position = new Vector3(randInCircle.x, 0f, randInCircle.y);
-
                 room.PublishObject(xp);
                 container.Add(xp);
+
+                xp.position += position;
             });
         }
 

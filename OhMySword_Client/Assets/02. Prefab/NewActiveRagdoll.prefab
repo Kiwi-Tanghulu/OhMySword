@@ -9368,9 +9368,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5874466263381447096, guid: 33ad2e8cf2cf9d54b8a8727e6019992b,
         type: 3}
+      propertyPath: scoreSize
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874466263381447096, guid: 33ad2e8cf2cf9d54b8a8727e6019992b,
+        type: 3}
       propertyPath: ownerHitbox
       value: 
       objectReference: {fileID: 8642535776830334148}
+    - target: {fileID: 5874466263381447096, guid: 33ad2e8cf2cf9d54b8a8727e6019992b,
+        type: 3}
+      propertyPath: sizeUpSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

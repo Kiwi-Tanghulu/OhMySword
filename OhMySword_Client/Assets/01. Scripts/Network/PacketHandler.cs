@@ -137,4 +137,20 @@ public class PacketHandler
         animatingTarget?.PlayAnimation(animationPacket.animationType);
         
     }
+
+    public static void S_ErrorPacket(Session session, Packet packet)
+    {
+        GameManager.Instance.ResetClient();
+    }
+
+    public static void S_EventEndPacket(Session session, Packet packet)
+    {
+        S_EventStartPacket eventPacket = packet as S_EventStartPacket;
+        RoomManager.Instance.StartEvent(eventPacket.eventType);
+    }
+
+    public static void S_EventStartPacket(Session session, Packet packet)
+    {
+        RoomManager.Instance.CloseEvent();
+    }
 }
