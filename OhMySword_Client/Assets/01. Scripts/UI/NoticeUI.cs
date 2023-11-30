@@ -41,10 +41,10 @@ namespace MyUI
             seq.Play();
         }
 
-        public override void Hide()
+        public override void Hide(bool isAnimation = false)
         {
             base.Hide();
-            transform.SetParent(UIManager.Instance.ScreenCanvas);
+            transform.SetParent(MyUIManager.Instance.ScreenCanvas);
         }
     }
 }

@@ -24,7 +24,7 @@ public class PlayerInput : MonoBehaviour
 
         Debug.Log(2);
 
-        if (UIManager.Instance.ActiveUI)
+        if (UIManager.Instance.IsActivePanelUI)
         {
             Debug.Log("active ui");
             return;

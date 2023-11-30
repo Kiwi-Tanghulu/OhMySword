@@ -17,7 +17,7 @@ namespace MyUI
         {
             base.Show(parent);
 
-            UIManager.Instance.RecordHistory(this);
+            MyUIManager.Instance.RecordHistory(this);
         }
     }
 

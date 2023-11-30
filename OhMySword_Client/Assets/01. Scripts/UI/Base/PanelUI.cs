@@ -10,14 +10,14 @@ namespace MyUI
         {
             base.Awake();
 
-            Hide();
+            Hide(true);
         }
 
-        public void Show(Vector2 pos, Transform parent = null)
+        public override void Show(Transform parent = null, bool isAnimation = false)
         {
-            Show(parent);
-            //UIManager.Instance.RecordHistory(this);
-            transform.position = pos;
+            base.Show(parent);
+            UIManager.Instance.RecordHistory(this);
         }
+
     }
 }

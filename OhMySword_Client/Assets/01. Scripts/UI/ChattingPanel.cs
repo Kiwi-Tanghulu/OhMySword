@@ -75,7 +75,7 @@ namespace OhMySword.UI
             canvasGroup.alpha = 1;
         }
 
-        public override void Hide()
+        public override void Hide(bool isAnimation = false)
         {
             SetFieldSelect(false);
             if (fadeCo != null)

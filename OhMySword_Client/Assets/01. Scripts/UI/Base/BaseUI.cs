@@ -18,24 +18,28 @@ namespace MyUI
             IsOpen = true;
         }
 
-        public virtual void Show(Transform parent = null)
+        public virtual void Show(Transform parent = null, bool isAnimation = false)
         {
             if (IsOpen)
                 return;
 
             if (parent != null)
                 transform.SetParent(parent);
-            transform.localScale = Vector3.one;
+
+            if(!isAnimation)
+                transform.localScale = Vector3.one;
 
             IsOpen = true;
         }
 
-        public virtual void Hide()
+        public virtual void Hide(bool isAnimation = false)
         {
             if (!IsOpen)
                 return;
 
-            transform.localScale = Vector3.zero;
+            if(isAnimation)
+                transform.localScale = Vector3.zero;
+
             IsOpen = false;
         }
     }

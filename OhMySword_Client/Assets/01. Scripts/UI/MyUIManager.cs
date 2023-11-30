@@ -16,9 +16,9 @@ namespace MyUI
         
     }
 
-    public class UIManager : MonoBehaviour
+    public class MyUIManager : MonoBehaviour
     {
-        public static UIManager Instance;
+        public static MyUIManager Instance;
 
         public Transform ScreenCanvas { get; private set; }
         public Transform WorldCanvas { get; private set; }

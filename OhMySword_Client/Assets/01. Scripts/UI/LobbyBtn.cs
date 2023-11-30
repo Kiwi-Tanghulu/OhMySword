@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using UnityEngine.UI;
-public class LobbyBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+using MyUI;
+public class LobbyBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private Transform panel;
-
-    [SerializeField] private float panelChangeDuration;
+    private PanelUI panel;
+    private Button button;
 
     [SerializeField] private float maxBtnSize;
     [SerializeField] private float normalBtnSize;
@@ -16,6 +16,9 @@ public class LobbyBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void Awake()
     {
         lobbySetting = FindObjectOfType<LobbySetting>();
+        panel = transform.Find("PanelPivot/Panel")?.GetComponent<PanelUI>();
+        button = GetComponent<Button>();
+        button.onClick.AddListener(() => panel.Show());
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -25,15 +28,5 @@ public class LobbyBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         transform.DOScale(normalBtnSize, btnChangeDuration).SetEase(Ease.OutCubic);
-    }
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        panel.DOScale(1f, panelChangeDuration).SetEase(Ease.InOutCubic);
-        lobbySetting.lobbyStack.Push(panel);
-    }
-
-    public void OnExitBtnClick()
-    {
-        panel.DOScale(0f, panelChangeDuration).SetEase(Ease.InOutCubic);
     }
 }
