@@ -5,6 +5,7 @@ using OhMySword.Player;
 using Base.Network;
 using System;
 using System.Linq;
+using static UnityEditor.Searcher.Searcher.AnalyticsEvent;
 
 public class RoomManager : MonoBehaviour
 {
@@ -152,11 +153,11 @@ public class RoomManager : MonoBehaviour
 
     public void StartEvent(ushort eventType)
     {
-
+        EventManager.Instance.StartEvent(eventType);
     }
 
     public void CloseEvent()
     {
-
+        EventManager.Instance.FinishEvent();
     }
 }

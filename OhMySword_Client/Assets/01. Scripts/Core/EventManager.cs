@@ -43,7 +43,9 @@ public class EventManager : MonoBehaviour
                 Debug.LogError($"{eventType}Event is none");
             }
         }
-            
+
+        CurrentEventType = GameEventType.None;
+        currentGameEvent = null;
     }
 
     private void Update()
@@ -65,6 +67,7 @@ public class EventManager : MonoBehaviour
 
     public void FinishEvent()
     {
+        currentGameEvent?.FinishEvent();
         CurrentEventType = GameEventType.None;
         currentGameEvent = null;
     }

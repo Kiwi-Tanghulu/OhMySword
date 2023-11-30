@@ -27,6 +27,5 @@ public class ChickenEvent : GameEvent
     public override void FinishEvent()
     {
         base.FinishEvent();
-        
     }
 }
