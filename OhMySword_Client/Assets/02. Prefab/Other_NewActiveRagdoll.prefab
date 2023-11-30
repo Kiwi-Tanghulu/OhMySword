@@ -6661,7 +6661,8 @@ MonoBehaviour:
       m_Calls: []
   hip: {fileID: 5380227179565411524}
   hipAnchor: {fileID: 6165872747502093979}
-  moveSpeed: 3
+  moveSpeed: 4
+  jumpPower: 10
 --- !u!114 &2699833306637257810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6725,69 +6726,9 @@ MonoBehaviour:
   hitFeedbackPower: 100
   hitEffectPlayOffset: 0.4
   hitEffectPlayPos: {fileID: 3541656994805744203}
-  SetActiveRagdollEvent:
+  OnDieEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5133962722497566431}
-        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6014290944445573013}
-        m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
-        m_MethodName: set_Moveable
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7738541113842106706}
-        m_TargetAssemblyTypeName: PlayerAnimation, Assembly-CSharp
-        m_MethodName: set_Animationable
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2143734704895974516}
-        m_TargetAssemblyTypeName: ActiveRagdoll, Assembly-CSharp
-        m_MethodName: SetConrol
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2699833306637257810}
-        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
-        m_MethodName: set_canAttack
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2143734704895974516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6834,7 +6775,7 @@ MonoBehaviour:
   shouldMoveDistance: 0.35
   moveDistance: 0.35
   movePivotHeight: 0.9
-  footMoveTime: 0.2
+  footMoveTime: 0.13
   hipElasticitySpeed: 3
   footToeOffset: 0.1
   hipHeight: 0.55

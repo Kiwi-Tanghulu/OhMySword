@@ -3104,7 +3104,7 @@ MonoBehaviour:
         m_CallState: 2
   hip: {fileID: 9150853402231350212}
   hipAnchor: {fileID: 3526403296780413903}
-  moveSpeed: 3
+  moveSpeed: 4
   jumpPower: 10
 --- !u!114 &4766823138392103545
 MonoBehaviour:
@@ -3420,7 +3420,7 @@ MonoBehaviour:
   shouldMoveDistance: 0.35
   moveDistance: 0.35
   movePivotHeight: 0.9
-  footMoveTime: 0.2
+  footMoveTime: 0.13
   hipElasticitySpeed: 3
   footToeOffset: 0.1
   hipHeight: 0.55
