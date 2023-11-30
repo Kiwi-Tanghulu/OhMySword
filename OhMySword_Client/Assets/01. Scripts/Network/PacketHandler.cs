@@ -137,4 +137,9 @@ public class PacketHandler
         animatingTarget?.PlayAnimation(animationPacket.animationType);
         
     }
+
+    public static void S_ErrorPacket(Session session, Packet packet)
+    {
+        GameManager.Instance.ResetClient();
+    }
 }
