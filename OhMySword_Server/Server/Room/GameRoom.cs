@@ -50,19 +50,7 @@ namespace Server
                 PublishObject(scoreBox2);
             }
 
-            DelayCallback(60f * 0.1f, () => {
-                AddJob(() => {
-                    if (OnEvent)
-                        return;
-
-                    StartEvent(0);
-                    DelayCallback(60f * 0.1f, () => {
-                        AddJob(() => {
-                            CloseEvent();
-                        });
-                    });
-                });
-            });
+            CreateEvent();
         }
 
         public override void ReleasePlayer(Player player)
@@ -88,6 +76,24 @@ namespace Server
 
             S_EventEndPacket packet = new S_EventEndPacket();
             Broadcast(packet);
+        }
+
+        private void CreateEvent()
+        {
+            DelayCallback(60f * 0.1f, () => {
+                AddJob(() => {
+                    if (OnEvent)
+                        return;
+
+                    StartEvent(0);
+                    DelayCallback(60f * 0.5f, () => {
+                        AddJob(() => {
+                            CloseEvent();
+                            CreateEvent();
+                        });
+                    });
+                });
+            });
         }
 
         public async void DelayCallback(float delay, Action callback)

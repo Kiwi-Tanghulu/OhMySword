@@ -17,6 +17,7 @@ public class ChickenEvent : GameEvent
     public override void StartEvent()
     {
         Debug.Log("Start Chicken Event");
+        chickenObject = GameObject.Instantiate(chickenResource);
     }
 
     public override void UpdateEvent()
@@ -27,5 +28,7 @@ public class ChickenEvent : GameEvent
     public override void FinishEvent()
     {
         Debug.Log("Finish Chicken Event");
+        GameObject.Destroy(chickenObject);
+        chickenObject = null;
     }
 }

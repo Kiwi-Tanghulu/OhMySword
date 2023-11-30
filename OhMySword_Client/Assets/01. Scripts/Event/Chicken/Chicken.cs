@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class Chicken : MonoBehaviour
 {
-    [SerializeField] private Transform[] destinations;
-    private int currentDestinationIndex;
+    [SerializeField] private Vector3[] destinations;
+    private static int currentDestinationIndex = 0;
 
     private NavMeshAgent nav;
     private Animator anim;
@@ -19,8 +19,9 @@ public class Chicken : MonoBehaviour
 
     private void Start()
     {
-        currentDestinationIndex = UnityEngine.Random.Range(0, destinations.Length);
-        transform.position = destinations[currentDestinationIndex].position;
+        nav.enabled = false;
+        transform.position = destinations[currentDestinationIndex];
+        nav.enabled = true;
     }
 
     private void Update()
@@ -39,6 +40,6 @@ public class Chicken : MonoBehaviour
     {
         currentDestinationIndex = (currentDestinationIndex + 1) % destinations.Length;
 
-        nav.SetDestination(destinations[currentDestinationIndex].position);
+        nav.SetDestination(destinations[currentDestinationIndex]);
     }
 }

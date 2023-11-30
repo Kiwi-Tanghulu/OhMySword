@@ -525,7 +525,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f6600be2bd5cd489913d416ec575b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinations: []
+  destinations:
+  - {x: -26.79, y: -12.488, z: -24.42}
+  - {x: -25.77, y: -16.293, z: 32.78}
+  - {x: -4.1, y: -16.293, z: 67.2}
+  - {x: 44.64, y: -26.21, z: 99.83}
+  - {x: 64.81, y: -34.42, z: 56.59}
+  - {x: 63.6, y: -34.42, z: 16.7}
+  - {x: 26.223, y: -24.67, z: -11.125}
+  - {x: 16.35, y: -24.41, z: -7.03}
+  - {x: 4.369, y: -19.325, z: -20.16}
 --- !u!195 &922657627013928403
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -544,7 +553,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2.02
+  m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
