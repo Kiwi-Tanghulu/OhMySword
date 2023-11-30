@@ -1,6 +1,5 @@
 using H00N.Network;
 using Packets;
-using System.Net.Sockets;
 
 namespace Server
 {
@@ -27,7 +26,7 @@ namespace Server
             C_RoomEnterPacket enterPacket = packet as C_RoomEnterPacket;
 
             GameRoom room = RoomManager.Instance.GetRoom();
-            Player player = new Player(session as ClientSession, room, enterPacket.nickname);
+            Player player = new Player(session as ClientSession, room, enterPacket.nickname, enterPacket.skinID);
             
             int posIndex = Random.Range(0, DEFINE.PlayerSpawnTable.Length);
             player.position = DEFINE.PlayerSpawnTable[posIndex];
@@ -38,7 +37,7 @@ namespace Server
                 clientSession.Room = room;
             });
 
-            S_OtherJoinPacket broadcastPacket = new S_OtherJoinPacket(player.nickname, player.objectID, (ushort)posIndex);
+            S_OtherJoinPacket broadcastPacket = new S_OtherJoinPacket(player.nickname, player.objectID, enterPacket.skinID, (ushort)posIndex);
             room.AddJob(() => room.Broadcast(broadcastPacket, clientSession.UserID));
 
             List<PlayerPacket> playerList = room.GetPlayerList(player.objectID);
@@ -102,6 +101,28 @@ namespace Server
 
             S_AnimationPacket broadcastPacket = animationPacket;
             room.AddJob(() => room.Broadcast(broadcastPacket, clientSession.UserID)); 
+        }
+
+        public static void C_ChickenHitPacket(Session session, Packet packet)
+        {
+            ClientSession clientSession = session as ClientSession;
+            C_ChickenHitPacket chickenPacket = packet as C_ChickenHitPacket;
+            GameRoom room = clientSession.Room;
+
+            List<ObjectPacket> objects = new List<ObjectPacket>();
+            S_ChickenHitPacket broadcastPacket = new S_ChickenHitPacket(clientSession.Player.objectID, 333, chickenPacket.position, objects);
+
+            broadcastPacket.score.ForEachDigit((digit, number, index) => {
+                Vector3 randInCircle = Random.InCircle(3f);
+                XPObject xp = new XPObject(room, digit);
+                xp.position = new Vector3(randInCircle.x, 0f, randInCircle.y);
+                room.PublishObject(xp);
+                objects.Add(xp);
+
+                xp.position += broadcastPacket.position;
+            });
+
+            room.AddJob(() => room.Broadcast(broadcastPacket));
         }
     }
 }

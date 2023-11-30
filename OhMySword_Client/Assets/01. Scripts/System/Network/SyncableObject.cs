@@ -23,7 +23,7 @@ namespace Base.Network
             // 포지션 러핑
         }
 
-        public void Init(ushort id, Vector3 position, Vector3 rotation)
+        public virtual void Init(ushort id, Vector3 position, Vector3 rotation)
         {
             SetID(id);
             SetRotation(rotation);

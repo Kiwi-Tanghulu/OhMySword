@@ -8,15 +8,17 @@ namespace Server
         public string nickname;
         public ushort score;
         public ushort hp;
+        public ushort skinID;
 
         public ushort destroyCount;
 
-        public Player(ClientSession session, GameRoom room, string name)
+        public Player(ClientSession session, GameRoom room, string name, ushort skinID)
         {
             objectType = (ushort)ObjectType.Player;
             this.room = room;
 
             this.session = session;
+            this.skinID = skinID;
             nickname = name;
             destroyCount = 0;
             hp = 1;
@@ -61,7 +63,7 @@ namespace Server
 
         public static implicit operator PlayerPacket(Player right)
         {
-            return new PlayerPacket(right.objectID, right.score, right.nickname, right.position, right.rotation);
+            return new PlayerPacket(right.objectID, right.score, right.skinID, right.nickname, right.position, right.rotation);
         }
     }
 }

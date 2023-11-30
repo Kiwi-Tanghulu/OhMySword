@@ -62,22 +62,24 @@ public class RoomManager : MonoBehaviour
         return objects[id];
     }
 
-    public void CreatePlayer(ushort id, ushort posIndex, string nickname)
+    public void CreatePlayer(ushort id, ushort posIndex, ushort skinID, string nickname)
     {
         PlayerController player = Instantiate(playerPrefab) as PlayerController;
         player.Init(id, playerSpawnTable[posIndex], Vector3.zero);
         player.SetNickname(nickname);
+        player.SetSkin(skinID);
         player.OnCreated();
 
         players.Add(id, player);
         PlayerID = id;
     }
 
-    public PlayerController AddPlayer(ushort objectID, Vector3 position, Vector3 rotation, string nickname, ushort score)
+    public PlayerController AddPlayer(ushort objectID, ushort skinID, Vector3 position, Vector3 rotation, string nickname, ushort score)
     {
         PlayerController player = Instantiate(prefabTable[ObjectType.Player]) as PlayerController;
         player.Init(objectID, position, rotation);
         player.SetNickname(nickname);
+        player.SetSkin(skinID);
         player.OnCreated();
         player.GetXP(score, true);
 
@@ -85,8 +87,8 @@ public class RoomManager : MonoBehaviour
         return player;
     }
 
-    public PlayerController AddPlayer(ushort objectID, ushort posIndex, string nickname) 
-        => AddPlayer(objectID, playerSpawnTable[posIndex], Vector3.zero, nickname, 0);
+    public PlayerController AddPlayer(ushort objectID, ushort posIndex, ushort skinID, string nickname) 
+        => AddPlayer(objectID, skinID, playerSpawnTable[posIndex], Vector3.zero, nickname, 0);
 
     public SyncableObject AddObject(ushort objectID, ObjectType objectType, Vector3 position, Vector3 rotation)
     {
@@ -125,7 +127,7 @@ public class RoomManager : MonoBehaviour
 
     public void InitRoom(List<PlayerPacket> playerList, List<ObjectPacket> objectList)
     {
-        playerList.ForEach(p => AddPlayer(p.objectID, p.position.Vector3(), p.rotation.Vector3(), p.nickname, p.score));
+        playerList.ForEach(p => AddPlayer(p.objectID, p.skinID, p.position.Vector3(), p.rotation.Vector3(), p.nickname, p.score));
         objectList.ForEach(o => AddObject(o.objectID, (ObjectType)o.objectType, o.position.Vector3(), o.rotation.Vector3()));
 
         UpdateRankingBoard();

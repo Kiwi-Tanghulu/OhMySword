@@ -135,7 +135,6 @@ public class PacketHandler
         S_AnimationPacket animationPacket = packet as S_AnimationPacket;
         SyncableObject animatingTarget = RoomManager.Instance.GetPlayer(animationPacket.objectID);
         animatingTarget?.PlayAnimation(animationPacket.animationType);
-        
     }
 
     public static void S_ErrorPacket(Session session, Packet packet)
@@ -152,5 +151,24 @@ public class PacketHandler
     public static void S_EventEndPacket(Session session, Packet packet)
     {
         RoomManager.Instance.CloseEvent();
+    }
+
+    public static void S_ChickenHitPacket(Session session, Packet packet)
+    {
+        S_ChickenHitPacket chickenPacket = packet as S_ChickenHitPacket;
+        
+        Vector3 originPos = chickenPacket.position.Vector3();
+        chickenPacket.score.ForEachDigit((digit, number, index) => {
+            ObjectPacket obj = chickenPacket.objects[index];
+            XPObject xp = RoomManager.Instance.AddObject(
+                obj.objectID, 
+                ObjectType.XPObject, 
+                originPos,
+                obj.rotation.Vector3()
+            ) as XPObject;
+
+            xp.SetXP(digit);
+            xp.SetPosition(originPos + obj.position.Vector3(), false);
+        });
     }
 }

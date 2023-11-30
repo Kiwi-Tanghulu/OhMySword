@@ -39,6 +39,9 @@ namespace Server
 
             packetFactories.Add((ushort)PacketID.C_AnimationPacket, PacketUtility.CreatePacket<C_AnimationPacket>);
             packetHandlers.Add((ushort)PacketID.C_AnimationPacket, PacketHandler.C_AnimationPacket);
+
+            packetFactories.Add((ushort)PacketID.C_ChickenHitPacket, PacketUtility.CreatePacket<C_ChickenHitPacket>);
+            packetHandlers.Add((ushort)PacketID.C_ChickenHitPacket, PacketHandler.C_ChickenHitPacket);
         }
 
         public Packet CreatePacket(ArraySegment<byte> buffer)
