@@ -3178,6 +3178,7 @@ MonoBehaviour:
   target: {fileID: 3526403296780413903}
   hip: {fileID: 1352098182078091208}
   camAnchor: {fileID: 4691387822296859544}
+  cam: {fileID: 6442104023047435178}
 --- !u!114 &6826694340876953961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5165,7 +5166,7 @@ GameObject:
   - component: {fileID: 6442104023047435178}
   - component: {fileID: 7034575452123275531}
   m_Layer: 0
-  m_Name: Virtual Camera
+  m_Name: PlayerCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

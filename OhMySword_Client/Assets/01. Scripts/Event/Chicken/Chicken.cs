@@ -9,10 +9,10 @@ public class Chicken : MonoBehaviour, IDamageable
     [SerializeField] private Vector3[] destinations;
     private static int currentDestinationIndex = 0;
 
-    [SerializeField] private CinemachineVirtualCamera cam;
+    public CinemachineVirtualCamera cam;
+    public float takeCameraTime = 2f;
 
     private NavMeshAgent nav;
-    private Animator anim;
     private bool isMove = false;
     public bool IsMove
     {
@@ -31,13 +31,13 @@ public class Chicken : MonoBehaviour, IDamageable
     private void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
     }
 
     private void Start()
     {
         IsMove = false;
         transform.position = destinations[currentDestinationIndex];
+        CameraManager.Instance.SetActiveCamTemporarily(cam, takeCameraTime);
     }
 
     private void Update()

@@ -6,7 +6,6 @@ public class ChickenEvent : GameEvent
 {
     private GameObject chickenResource;
     private Chicken chicken;
-    private Vector3 chickenSpawnPoint = Vector3.zero;
 
     public override void InitEvent()
     {
