@@ -98,13 +98,13 @@ namespace Server
             if (IsClosed)
                 return;
 
-            DelayCallback(60f * 0.1f, () => {
+            DelayCallback(60f * 1f, () => {
                 AddJob(() => {
                     if (OnEvent)
                         return;
 
                     StartEvent(0);
-                    DelayCallback(60f * 0.5f, () => {
+                    DelayCallback(60f * 2f, () => {
                         AddJob(() => {
                             CloseEvent();
                             CreateEvent();
