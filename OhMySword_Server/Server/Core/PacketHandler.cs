@@ -115,7 +115,7 @@ namespace Server
             broadcastPacket.score.ForEachDigit((digit, number, index) => {
                 Vector3 randInCircle = Random.InCircle(3f);
                 XPObject xp = new XPObject(room, digit);
-                xp.position = new Vector3(randInCircle.x, 0f, randInCircle.y);
+                xp.position = new Vector3(randInCircle.x, 0.5f, randInCircle.y);
                 room.PublishObject(xp);
                 objects.Add(xp);
 

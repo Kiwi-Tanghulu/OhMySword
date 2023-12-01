@@ -11,6 +11,7 @@ namespace Server
     {
         public int maxPlayerCount = 20;
         public ushort RoomID;
+        public bool IsClosed = false;
         public bool OnEvent = false;
 
         public int Capacity => (maxPlayerCount - players.Count);
@@ -53,6 +54,12 @@ namespace Server
             CreateEvent();
         }
 
+        public override void Clear()
+        {
+            base.Clear();
+            IsClosed = true;
+        }
+
         public override void ReleasePlayer(Player player)
         {
             base.ReleasePlayer(player);
@@ -63,23 +70,34 @@ namespace Server
 
         public void StartEvent(ushort eventType)
         {
+            if (IsClosed)
+                return;
+
             OnEvent = true;
 
             S_EventStartPacket packet = new S_EventStartPacket(eventType);
             Broadcast(packet);
-            Console.WriteLine(packet.eventType);
+            Console.WriteLine($"[Room] Event Started {{ Room ID : {RoomID}, Event ID : {eventType} }}");
         }
 
         public void CloseEvent()
         {
+            if (IsClosed)
+                return;
+
             OnEvent = false;
 
             S_EventEndPacket packet = new S_EventEndPacket();
             Broadcast(packet);
+
+            Console.WriteLine($"[Room] Event Closed {{ Room ID : {RoomID} }}");
         }
 
         private void CreateEvent()
         {
+            if (IsClosed)
+                return;
+
             DelayCallback(60f * 0.1f, () => {
                 AddJob(() => {
                     if (OnEvent)

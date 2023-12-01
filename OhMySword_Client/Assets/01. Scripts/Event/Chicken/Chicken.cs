@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Cinemachine;
+using Base.Network;
+using Packets;
 
 public class Chicken : MonoBehaviour, IDamageable
 {
@@ -70,6 +72,10 @@ public class Chicken : MonoBehaviour, IDamageable
 
     public void OnDamage(int damage, GameObject performer, Vector3 point)
     {
-        
+        SyncableObject attacker = performer.GetComponent<SyncableObject>();
+        VectorPacket position = new VectorPacket(transform.position.x, transform.position.y, transform.position.z);
+        C_ChickenHitPacket attackPacket = new C_ChickenHitPacket(attacker.ObjectID, position);
+
+        NetworkManager.Instance.Send(attackPacket);
     }
 }

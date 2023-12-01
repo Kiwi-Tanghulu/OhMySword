@@ -156,6 +156,8 @@ public class PacketHandler
     public static void S_ChickenHitPacket(Session session, Packet packet)
     {
         S_ChickenHitPacket chickenPacket = packet as S_ChickenHitPacket;
+        Debug.Log(chickenPacket.objects.Count);
+        Debug.Log(chickenPacket.playerID);
         
         Vector3 originPos = chickenPacket.position.Vector3();
         chickenPacket.score.ForEachDigit((digit, number, index) => {

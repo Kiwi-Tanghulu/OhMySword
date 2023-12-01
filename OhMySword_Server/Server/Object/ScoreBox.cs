@@ -56,7 +56,6 @@ namespace Server
                 ids.Add(xp.objectID);
             });
 
-            Console.WriteLine($"IDS Count : {ids.Count}");
             return ids;
         }
     }
