@@ -14,7 +14,9 @@ public class Chicken : MonoBehaviour, IDamageable
     public CinemachineVirtualCamera cam;
     public float takeCameraTime = 2f;
 
+    private AudioSource audio;
     private NavMeshAgent nav;
+
     private bool isMove = false;
     public bool IsMove
     {
@@ -33,6 +35,7 @@ public class Chicken : MonoBehaviour, IDamageable
     private void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
+        audio = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -40,6 +43,7 @@ public class Chicken : MonoBehaviour, IDamageable
         IsMove = false;
         transform.position = destinations[currentDestinationIndex];
         CameraManager.Instance.SetActiveCamTemporarily(cam, takeCameraTime);
+        AudioManager.Instance.PlayAudio("Chicken", audio, true);
     }
 
     private void Update()

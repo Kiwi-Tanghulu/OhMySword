@@ -61,7 +61,8 @@ public class ActiveRagdoll : MonoBehaviour
     [SerializeField] private float moveDistance = 0.3f;
     [SerializeField] private float movePivotHeight = 1f;
     [SerializeField] private float footMoveTime = 0.2f;
-    [SerializeField] private float hipElasticitySpeed = 6f;
+    [SerializeField] private float horizontalHipElasticitySpeed = 6f;
+    [SerializeField] private float verticalHipElasticitySpeed = 6f;
     [SerializeField] private float footToeOffset = 0.1f;
     [SerializeField] private float hipHeight = 0.55f;
 
@@ -374,17 +375,19 @@ public class ActiveRagdoll : MonoBehaviour
 
         if(Vector3.Distance(hip.transform.position, hipAncher.position) > 0.01f)
         {
-            targetPos.y = hipAncher.position.y;
+            targetPos.y = Mathf.Lerp(targetPos.y, hipAncher.position.y, verticalHipElasticitySpeed * Time.deltaTime);
 
             if(moveDir == Vector3.zero)
             {
-                targetPos.x = hipAncher.position.x;
-                targetPos.z = hipAncher.position.z;
+                targetPos.x = Mathf.Lerp(targetPos.x, hipAncher.position.x, horizontalHipElasticitySpeed * Time.deltaTime);
+                targetPos.z = Mathf.Lerp(targetPos.z, hipAncher.position.z, horizontalHipElasticitySpeed * Time.deltaTime);
+
+                //targetPos.x = hipAncher.position.x;
+                //targetPos.z = hipAncher.position.z;
             }
         }
 
-        hip.transform.position = Vector3.Lerp(hip.transform.position,
-                targetPos, hipElasticitySpeed * Time.deltaTime);
+        hip.transform.position = targetPos;
     }// body lerping
 
     private void SetBodyControl(bool value)
