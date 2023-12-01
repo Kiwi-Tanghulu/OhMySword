@@ -70,6 +70,6 @@ public class Chicken : MonoBehaviour, IDamageable
 
     public void OnDamage(int damage, GameObject performer, Vector3 point)
     {
-        Debug.Log(123);
+        
     }
 }

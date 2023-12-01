@@ -465,9 +465,9 @@ GameObject:
   - component: {fileID: 1048060254213885330}
   - component: {fileID: 922657627013928403}
   - component: {fileID: 9119788208510553616}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Chicken
-  m_TagString: Untagged
+  m_TagString: Other_Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

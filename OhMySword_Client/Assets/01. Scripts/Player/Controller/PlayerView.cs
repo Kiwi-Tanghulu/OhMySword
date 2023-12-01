@@ -33,6 +33,7 @@ public class PlayerView : MonoBehaviour
 
         if (cam != null)
             CameraManager.Instance.SetActiveCam(cam);
+        Debug.Log(transform.root);
     }
 
     public void RotateCamera(Vector2 vector)
