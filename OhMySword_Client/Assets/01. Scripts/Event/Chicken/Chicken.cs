@@ -2,37 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Cinemachine;
 
-public class Chicken : MonoBehaviour
+public class Chicken : MonoBehaviour, IDamageable
 {
     [SerializeField] private Vector3[] destinations;
     private static int currentDestinationIndex = 0;
 
+    public CinemachineVirtualCamera cam;
+    public float takeCameraTime = 2f;
+
     private NavMeshAgent nav;
-    private Animator anim;
+    private bool isMove = false;
+    public bool IsMove
+    {
+        get
+        {
+            return isMove;
+        }
+        set
+        {
+            isMove = value;
+            if (nav != null)
+                nav.enabled = isMove;
+        }
+    }
 
     private void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
     }
 
     private void Start()
     {
-        nav.enabled = false;
+        IsMove = false;
         transform.position = destinations[currentDestinationIndex];
-        nav.enabled = true;
+        CameraManager.Instance.SetActiveCamTemporarily(cam, takeCameraTime);
     }
 
     private void Update()
     {
-        Debug.Log(transform.position);
-        Debug.Log(nav.destination);
-        Debug.Log(Vector3.Distance(transform.position, nav.destination));
-
-        if(Vector3.Distance(transform.position, nav.destination) <= nav.stoppingDistance)
+        if(IsMove)
         {
-            SetDestination();
+            if (Vector3.Distance(transform.position, nav.destination) <= nav.stoppingDistance)
+            {
+                SetDestination();
+            }
         }
     }
 
@@ -41,5 +56,20 @@ public class Chicken : MonoBehaviour
         currentDestinationIndex = (currentDestinationIndex + 1) % destinations.Length;
 
         nav.SetDestination(destinations[currentDestinationIndex]);
+    }
+
+    public void StartMove()
+    {
+        IsMove = true;
+    }
+
+    public void StopMove()
+    {
+        IsMove = false;
+    }
+
+    public void OnDamage(int damage, GameObject performer, Vector3 point)
+    {
+        
     }
 }

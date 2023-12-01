@@ -5,8 +5,7 @@ using UnityEngine;
 public class ChickenEvent : GameEvent
 {
     private GameObject chickenResource;
-    private GameObject chickenObject;
-    private Vector3 chickenSpawnPoint = Vector3.zero;
+    private Chicken chicken;
 
     public override void InitEvent()
     {
@@ -17,7 +16,7 @@ public class ChickenEvent : GameEvent
     public override void StartEvent()
     {
         Debug.Log("Start Chicken Event");
-        chickenObject = GameObject.Instantiate(chickenResource);
+        chicken = GameObject.Instantiate(chickenResource).GetComponent<Chicken>();
         RoomManager.Instance.ObjectParent.gameObject.SetActive(false);
     }
 
@@ -29,8 +28,8 @@ public class ChickenEvent : GameEvent
     public override void FinishEvent()
     {
         Debug.Log("Finish Chicken Event");
-        GameObject.Destroy(chickenObject);
-        chickenObject = null;
+        GameObject.Destroy(chicken.gameObject);
+        chicken = null;
         RoomManager.Instance.ObjectParent.gameObject.SetActive(true);
     }
 }
