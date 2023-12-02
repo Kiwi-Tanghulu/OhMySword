@@ -63,7 +63,7 @@ public class PauseUI : UIBase
             {
                 Show();
                 UIManager.Instance.ChattingPanel.HideImmediediatly();
-                Cursor.lockState = CursorLockMode.None;
+                UIManager.Instance.SetCursorActive(true);
             }
             else
             {
