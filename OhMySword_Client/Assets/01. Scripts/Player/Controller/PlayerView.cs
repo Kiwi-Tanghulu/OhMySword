@@ -27,7 +27,7 @@ public class PlayerView : MonoBehaviour
 
     private void Start()
     {
-        UIManager.Instance.MainCanvas.Find("PauseUI/Settings").GetComponent<GameSettingUI>().Init();
+        UIManager.Instance.MainCanvas.Find("Setting/Settings").GetComponent<GameSettingUI>().Init();
     }
 
     public void RotateCamera(Vector2 vector)

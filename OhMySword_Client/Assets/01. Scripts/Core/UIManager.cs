@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
     public RoomPanel RoomPanel {
         get {
             if(roomPanel == null)
-                roomPanel = MainCanvas?.Find("Panels/GameStartPanelPivot/RoomPanel")?.GetComponent<RoomPanel>();
+                roomPanel = MainCanvas?.Find("Panels/GameStartPanelPivot/Panel")?.GetComponent<RoomPanel>();
             return roomPanel;
         }
     }
@@ -57,22 +57,6 @@ public class UIManager : MonoBehaviour
             return uiAudioPlayer;
         }
     }
-    public T GetUI<T>(string name) where T : BaseUI
-    {
-        T ui = null;
-
-        if (uiContainer.ContainsKey(name))
-        {
-            ui = uiContainer[name] as T;
-        }
-        else
-        {
-            ui = mainCanvas.Find(name).GetComponent<T>();
-        }
-
-        return ui;
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -85,18 +69,42 @@ public class UIManager : MonoBehaviour
         if (IsActivePanelUI)
         {
             panelUIs.Peek().Hide();
-            panelUIs.Pop();
         }
         else
         {
             BaseUI escapeUI = GetUI<BaseUI>("Setting");
             escapeUI.Show();
-            panelUIs.Push(escapeUI);
         }
+    }
+    public void ClearUIContainer()
+    {
+        uiContainer.Clear();
+        panels.Clear();
+    }
+    public T GetUI<T>(string name) where T : BaseUI
+    {
+        T ui = null;
+
+        if (uiContainer.ContainsKey(name))
+        {
+            ui = uiContainer[name] as T;
+        }
+        else
+        {
+            ui = MainCanvas.Find(name).GetComponent<T>();
+            uiContainer.Add(name, ui);
+        }
+
+        return ui;
     }
     public void RecordHistory(BaseUI ui)
     {
         panelUIs.Push(ui);
+    }
+    public void EraseHistory()
+    {
+        if(IsActivePanelUI)
+            panelUIs.Pop();
     }
     public void PopUI()
     {

@@ -5,18 +5,15 @@ using UnityEngine.UI;
 using MyUI;
 public class LobbyBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private PanelUI panel;
+    [SerializeField] private PanelUI panel;
     private Button button;
 
     [SerializeField] private float maxBtnSize;
     [SerializeField] private float normalBtnSize;
     [SerializeField] private float btnChangeDuration;
-
-    private LobbySetting lobbySetting;
     private void Awake()
     {
-        lobbySetting = FindObjectOfType<LobbySetting>();
-        panel = transform.Find("PanelPivot/Panel")?.GetComponent<PanelUI>();
+        //panel = transform.Find("PanelPivot/Panel")?.GetComponent<PanelUI>();
         button = GetComponent<Button>();
         button.onClick.AddListener(() => panel.Show());
     }

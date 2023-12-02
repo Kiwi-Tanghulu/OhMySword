@@ -37,7 +37,7 @@ namespace MyUI
             if (!IsOpen)
                 return;
 
-            if(isAnimation)
+            if(!isAnimation)
                 transform.localScale = Vector3.zero;
 
             IsOpen = false;

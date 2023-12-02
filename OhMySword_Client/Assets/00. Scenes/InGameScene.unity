@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07051174, g: 0.35371843, b: 0.97079456, a: 1}
+  m_IndirectSpecularColor: {r: 0.07068218, g: 0.35383984, b: 0.97076714, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -47507,6 +47507,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca642e2720a95545a6a281133db7eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiType: 1
+  <IsOpen>k__BackingField: 1
+  isWorld: 0
+  isPooling: 0
   leaderBoardScoreTexts:
   - {fileID: 1058104310}
   - {fileID: 1058104308}
@@ -95030,8 +95034,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314aa765a7a94be4690ed38a21f8bb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiType: 0
+  uiType: 2
   <IsOpen>k__BackingField: 0
+  isWorld: 0
+  isPooling: 0
   continueBtn: {fileID: 3762919334514510111}
   settingBtn: {fileID: 858887764445782717}
   reStartBtn: {fileID: 4542014288301160642}
@@ -95473,8 +95479,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2073556075}
-        m_TargetAssemblyTypeName: UIBase, Assembly-CSharp
-        m_MethodName: Show
+        m_TargetAssemblyTypeName: GameSettingUI, Assembly-CSharp
+        m_MethodName: Show2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -96623,9 +96629,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1884352870466130766, guid: 00cb57a2bf4bc1d47b4c4d9e2cf51b68,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884352870466130766, guid: 00cb57a2bf4bc1d47b4c4d9e2cf51b68,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1884352870466130766, guid: 00cb57a2bf4bc1d47b4c4d9e2cf51b68,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2073556075}
     - target: {fileID: 1884352870466130766, guid: 00cb57a2bf4bc1d47b4c4d9e2cf51b68,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -96635,6 +96651,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884352870466130766, guid: 00cb57a2bf4bc1d47b4c4d9e2cf51b68,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Hide
       objectReference: {fileID: 0}
     - target: {fileID: 1884352870466130766, guid: 00cb57a2bf4bc1d47b4c4d9e2cf51b68,
         type: 3}
@@ -96815,6 +96836,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584320749089561736, guid: 00cb57a2bf4bc1d47b4c4d9e2cf51b68,
+        type: 3}
+      propertyPath: <IsOpen>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3850724884482283085, guid: 00cb57a2bf4bc1d47b4c4d9e2cf51b68,
         type: 3}
@@ -97524,7 +97550,7 @@ GameObject:
   - component: {fileID: 8302158941764058305}
   - component: {fileID: 341266182825340241}
   m_Layer: 0
-  m_Name: PauseUI
+  m_Name: Setting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

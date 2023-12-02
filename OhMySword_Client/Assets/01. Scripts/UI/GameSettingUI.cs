@@ -4,8 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
-
-public class GameSettingUI : UIBase
+using MyUI;
+public class GameSettingUI : PanelUI
 {
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
@@ -29,14 +29,28 @@ public class GameSettingUI : UIBase
             SaveManager.Instance.data.mouseSpeed = _value;
         }
     }
+    public void Show2()
+    {
+        Show(null, false);
+        Debug.Log("111");
+    }
+    public override void Show(Transform parent = null, bool isAnimation = false)
+    {
+        base.Show(parent, true);
+        transform.localScale = new Vector3(0.8f, 0.8f, 1);
+    }
 
+    public override void Hide(bool isAnimation = false)
+    {
+        base.Hide(false);
+    }
     public void Init()
     {
         Value = SaveManager.Instance.data.mouseSpeed;
     }
     private PlayerView playerView;
 
-    private void Awake()
+    protected override void Awake()
     {
         mouseSpeedInputField.onEndEdit.AddListener(ChangeMouseSpeedSlider);
         mouseSpeedSlider.onValueChanged.AddListener((v) => Value = (int)(v * 100));
@@ -54,18 +68,7 @@ public class GameSettingUI : UIBase
         sfxSlider.value = SaveManager.Instance.data.sfxSound;
         masterSoundSlider.value = SaveManager.Instance.data.masterSound;
     }
-    public override void Show()
-    {
-        base.Show();
-        transform.localScale = new Vector3(0.8f, 0.8f, 1);
-        UIManager.Instance.panels.Push(this);
-    }
-
-    public override void Hide()
-    {
-        base.Hide();
-        UIManager.Instance.panels.Pop();
-    }
+    
 
     public void ChangeBgmSoundSlider()
     {

@@ -4,8 +4,8 @@ using UnityEngine;
 using TMPro;
 using OhMySword.Player;
 using System;
-
-public class LeaderBoard : MonoBehaviour
+using MyUI;
+public class LeaderBoard : FixedUI
 {
     [SerializeField] private List<TextMeshProUGUI> leaderBoardScoreTexts;
     [SerializeField] private List<TextMeshProUGUI> leaderBoardNameTexts;

@@ -15,8 +15,14 @@ namespace MyUI
 
         public override void Show(Transform parent = null, bool isAnimation = false)
         {
-            base.Show(parent);
+            base.Show(parent, isAnimation);
             UIManager.Instance.RecordHistory(this);
+        }
+
+        public override void Hide(bool isAnimation = false)
+        {
+            base.Hide(isAnimation);
+            UIManager.Instance.EraseHistory();
         }
 
     }

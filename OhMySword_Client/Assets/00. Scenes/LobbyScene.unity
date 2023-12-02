@@ -2962,6 +2962,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199808645}
   m_CullTransparentMesh: 1
+--- !u!1 &209537035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 209537036}
+  m_Layer: 5
+  m_Name: Panels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &209537036
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209537035}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1580081177}
+  - {fileID: 366785463}
+  m_Father: {fileID: 1978653356}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &234958305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5257,11 +5294,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8810368209936880834, guid: 9eda4773a5dca4b15ab873570b452d8c, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8810368210824087327, guid: 9eda4773a5dca4b15ab873570b452d8c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 366785463}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8810368210824087324, guid: 9eda4773a5dca4b15ab873570b452d8c,
         type: 3}
@@ -5292,6 +5325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0afc3a68efc19f409e271183fc60429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel: {fileID: 931209219}
   maxBtnSize: 1.15
   normalBtnSize: 1
   btnChangeDuration: 0.25
@@ -5305,7 +5339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 366785463}
   m_Layer: 5
-  m_Name: PanelPivot
+  m_Name: GameInfoPanelPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5324,12 +5358,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 931209215}
-  m_Father: {fileID: 334726469}
+  m_Father: {fileID: 209537036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 250}
-  m_SizeDelta: {x: 1570, y: 980}
+  m_AnchoredPosition: {x: 0, y: -252}
+  m_SizeDelta: {x: 1820, y: 980}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &395626241
 GameObject:
@@ -9524,11 +9558,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7321821475472467787, guid: a16346a96b8f44d2cb5be23eb9de1548, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7321821474376686687, guid: a16346a96b8f44d2cb5be23eb9de1548,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1580081177}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7321821474376686686, guid: a16346a96b8f44d2cb5be23eb9de1548,
         type: 3}
@@ -9559,6 +9589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0afc3a68efc19f409e271183fc60429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel: {fileID: 1310991763227224008}
   maxBtnSize: 1.15
   normalBtnSize: 1
   btnChangeDuration: 0.25
@@ -9736,7 +9767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 252}
   m_SizeDelta: {x: 1536, y: 864}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &931209216
@@ -9808,7 +9839,7 @@ MonoBehaviour:
   <IsOpen>k__BackingField: 0
   isWorld: 0
   isPooling: 0
-  panelChangeDuration: 0
+  panelChangeDuration: 0.5
 --- !u!1 &933660740
 GameObject:
   m_ObjectHideFlags: 0
@@ -9978,19 +10009,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2032940554}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &985275109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7877302215835932393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7edc9fe18efb1a94dbcecf33f44a5a92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settingUI: {fileID: 3584320749452756585}
 --- !u!1 &990352847
 GameObject:
   m_ObjectHideFlags: 0
@@ -13045,10 +13063,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 334726471}
-        m_TargetAssemblyTypeName: LobbyBtn, Assembly-CSharp
-        m_MethodName: OnExitBtnClick
-        m_Mode: 1
+      - m_Target: {fileID: 931209219}
+        m_TargetAssemblyTypeName: GameInfoPanel, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13533,6 +13551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0afc3a68efc19f409e271183fc60429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel: {fileID: 0}
   maxBtnSize: 1.15
   normalBtnSize: 1
   btnChangeDuration: 0.25
@@ -16131,7 +16150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1580081177}
   m_Layer: 5
-  m_Name: PanelPivot
+  m_Name: GameStartPanelPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16146,16 +16165,16 @@ RectTransform:
   m_GameObject: {fileID: 1580081176}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1310991763227224000}
-  m_Father: {fileID: 908607639}
+  m_Father: {fileID: 209537036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 95}
-  m_SizeDelta: {x: 1570, y: 980}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1820, y: 980}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1617025355
 GameObject:
@@ -19517,6 +19536,7 @@ RectTransform:
   - {fileID: 73917498}
   - {fileID: 868427813}
   - {fileID: 2558498843026255986}
+  - {fileID: 209537036}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -20631,10 +20651,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 908607641}
-        m_TargetAssemblyTypeName: LobbyBtn, Assembly-CSharp
-        m_MethodName: OnExitBtnClick
-        m_Mode: 1
+      - m_Target: {fileID: 1310991763227224008}
+        m_TargetAssemblyTypeName: RoomPanel, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -20768,7 +20788,7 @@ MonoBehaviour:
   lengthLimit: 5
   nicknameField: {fileID: 585190803}
   enterButton: {fileID: 1916040761}
-  panelChangeDuration: 0
+  panelChangeDuration: 0.5
 --- !u!114 &1310991763432548840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21393,7 +21413,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 985275109}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbySetting, Assembly-CSharp
         m_MethodName: Hide
         m_Mode: 1
@@ -22166,6 +22186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiType: 0
   <IsOpen>k__BackingField: 0
+  isWorld: 0
+  isPooling: 0
   bgmSlider: {fileID: 3223588949503206809}
   sfxSlider: {fileID: 8822552447728671698}
   masterSoundSlider: {fileID: 1298013641778745553}
@@ -25222,7 +25244,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2558498843026255986}
   - component: {fileID: 3584320749452756585}
-  - component: {fileID: 985275109}
   m_Layer: 0
   m_Name: Setting
   m_TagString: Untagged

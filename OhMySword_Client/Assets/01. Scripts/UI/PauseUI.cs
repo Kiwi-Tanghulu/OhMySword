@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
-
-public class PauseUI : UIBase
+using MyUI;
+public class PauseUI : PanelUI
 {
     [SerializeField] private Button continueBtn;
     [SerializeField] private Button settingBtn;
@@ -37,39 +37,19 @@ public class PauseUI : UIBase
         reStartBtn.onClick.AddListener(() => UIManager.Instance.PopUI());
     }
 
-    public override void Show()
+    public override void Show(Transform parent = null,bool isAnimation = false)
     {
-        base.Show();
+        base.Show(parent,false);
         StartCoroutine(BtnMove());
-        UIManager.Instance.panels.Push(this);
     }
-    public override void Hide()
+    public override void Hide(bool isAnimation = false)
     {
-        base.Hide();
+        base.Hide(false);
         StopAllCoroutines();
         for (int i = 0; i < buttonsRects.Length; i++)
         {
             btnTween[i].Kill();
             buttonsRects[i].anchoredPosition = btnStrPos[i];
-        }
-        
-        //UIManager.Instance.panels.Pop();
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if(UIManager.Instance.panels.Count <= 0)
-            {
-                Show();
-                UIManager.Instance.ChattingPanel.HideImmediediatly();
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                UIManager.Instance.panels.Peek().Hide();
-                UIManager.Instance.PopUI();
-            }
         }
     }
 
