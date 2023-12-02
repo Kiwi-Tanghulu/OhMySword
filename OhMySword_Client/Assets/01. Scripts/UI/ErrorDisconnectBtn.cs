@@ -8,6 +8,7 @@ public class ErrorDisconnectBtn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        UIManager.Instance.SetCursorActive(true);
         GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.ResetClient());
     }
 

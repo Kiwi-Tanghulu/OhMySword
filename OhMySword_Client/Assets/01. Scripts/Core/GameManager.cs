@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     {
         NetworkManager.Instance.FlushPacketQueue();
 
-        if (!NetworkManager.Instance.IsConnected)
+        if (!NetworkManager.Instance.IsConnected && SceneManager.GetActiveScene().name != "ErrorScene")
             SceneManager.LoadScene("ErrorScene");
     }
 
