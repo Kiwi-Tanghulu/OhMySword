@@ -8,11 +8,13 @@ namespace Packets
         public override ushort ID => (ushort)PacketID.S_EventStartPacket;
 
         public ushort eventType;
+        public ushort param;
 
         public S_EventStartPacket() { }
-        public S_EventStartPacket(ushort eventType) 
+        public S_EventStartPacket(ushort eventType, ushort param) 
         {
             this.eventType = eventType;
+            this.param = param;
         }
 
         public override void Deserialize(ArraySegment<byte> buffer)
@@ -23,6 +25,7 @@ namespace Packets
             process += sizeof(ushort);
 
             process += PacketUtility.ReadUShortData(buffer, process, out eventType);
+            process += PacketUtility.ReadUShortData(buffer, process, out param);
         }
 
         public override ArraySegment<byte> Serialize()
@@ -33,6 +36,7 @@ namespace Packets
             process += sizeof(ushort);
             process += PacketUtility.AppendUShortData(this.ID, buffer, process);
             process += PacketUtility.AppendUShortData(this.eventType, buffer, process);
+            process += PacketUtility.AppendUShortData(this.param, buffer, process);
             PacketUtility.AppendUShortData(process, buffer, 0);
 
             return UniqueBuffer.Close(process);

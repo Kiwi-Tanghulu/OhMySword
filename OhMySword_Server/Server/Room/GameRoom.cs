@@ -75,7 +75,7 @@ namespace Server
 
             OnEvent = true;
 
-            S_EventStartPacket packet = new S_EventStartPacket(eventType);
+            S_EventStartPacket packet = new S_EventStartPacket(eventType, (ushort)Random.Range(0, 9));
             Broadcast(packet);
             Console.WriteLine($"[Room] Event Started {{ Room ID : {RoomID}, Event ID : {eventType} }}");
         }
