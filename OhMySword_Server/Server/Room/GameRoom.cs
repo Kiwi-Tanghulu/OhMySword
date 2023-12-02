@@ -60,11 +60,18 @@ namespace Server
             IsClosed = true;
         }
 
+        public override void PublishPlayer(Player player)
+        {
+            base.PublishPlayer(player);
+            Console.WriteLine($"[Room] Player Joined {{ Room ID : {RoomID}, Player Count : {players.Count} }}");
+        }
+
         public override void ReleasePlayer(Player player)
         {
             base.ReleasePlayer(player);
+            Console.WriteLine($"[Room] Player Left {{ Room ID : {RoomID}, Player Count : {players.Count} }}");
 
-            if(Capacity >= maxPlayerCount)
+            if (Capacity >= maxPlayerCount)
                 RoomManager.Instance.ReleaseRoom(this);
         }
 
@@ -98,7 +105,7 @@ namespace Server
             if (IsClosed)
                 return;
 
-            DelayCallback(60f * 1f, () => {
+            DelayCallback(60f * 5f, () => {
                 AddJob(() => {
                     if (OnEvent)
                         return;
