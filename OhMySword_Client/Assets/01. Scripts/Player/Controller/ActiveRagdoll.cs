@@ -143,8 +143,8 @@ public class ActiveRagdoll : MonoBehaviour
         Controlable = value;
         SetBodyControl(value);
         SetFootControl(value);
-        rigAnimator.enabled = value;
-        rigBuilder.enabled = value;
+        //rigAnimator.enabled = value;
+        //rigBuilder.enabled = value;
         playerAnimation.Animationable = value;
         playerAttack.canAttack = value;
     }
