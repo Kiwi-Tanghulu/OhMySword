@@ -6711,6 +6711,7 @@ MonoBehaviour:
   target: {fileID: 6165872747502093979}
   hip: {fileID: 971602945373162908}
   camAnchor: {fileID: 4358546348715242988}
+  cam: {fileID: 0}
 --- !u!114 &8765496377378770105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6776,7 +6777,8 @@ MonoBehaviour:
   moveDistance: 0.35
   movePivotHeight: 0.9
   footMoveTime: 0.13
-  hipElasticitySpeed: 3
+  horizontalHipElasticitySpeed: 3
+  verticalHipElasticitySpeed: 12
   footToeOffset: 0.1
   hipHeight: 0.55
   footAlignTime: 0.5

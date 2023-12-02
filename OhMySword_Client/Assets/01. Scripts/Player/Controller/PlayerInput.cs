@@ -17,16 +17,16 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (!Inputable)
-            return; ;
+        //if (!Inputable)
+        //    return;
 
-        if (UIManager.Instance.ActiveUI)
-        {
-            Debug.Log("active ui");
-            return;
-        }
+        //if (UIManager.Instance.ActiveUI)
+        //{
+        //    Debug.Log("active ui");
+        //    return;
+        //}
 
-        if (UIManager.Instance.ChattingPanel.IsChat)
+        if (UIManager.Instance.ChattingPanel.IsChat || UIManager.Instance.ActiveUI || !Inputable)
         {
             Movement?.Invoke(Vector3.zero);
             MouseMove?.Invoke(Vector3.zero);
@@ -56,13 +56,16 @@ public class PlayerInput : MonoBehaviour
         {
             if (UIManager.Instance.ChattingPanel.IsChat)
             {
-                //UIManager.Instance.ChattingPanel.SetFieldSelect(false);
-                //IManager.Instance.ChattingPanel.HideImmediediatly();
+                UIManager.Instance.ChattingPanel.SetFieldSelect(false);
+                UIManager.Instance.ChattingPanel.HideImmediediatly();
             }
             else
             {
-                UIManager.Instance.ChattingPanel.SetFieldSelect(true);
-                UIManager.Instance.ChattingPanel.Show();
+                if(!UIManager.Instance.ActiveUI)
+                {
+                    UIManager.Instance.ChattingPanel.SetFieldSelect(true);
+                    UIManager.Instance.ChattingPanel.Show();
+                }
             }
         }
     }

@@ -9,12 +9,16 @@ using Packets;
 public class Chicken : MonoBehaviour, IDamageable
 {
     [SerializeField] private Vector3[] destinations;
-    private static int currentDestinationIndex = 0;
+    private int currentDestinationIndex = 0;
 
     public CinemachineVirtualCamera cam;
     public float takeCameraTime = 2f;
 
+    private AudioSource aud;
     private NavMeshAgent nav;
+
+    private bool isInit = false;
+
     private bool isMove = false;
     public bool IsMove
     {
@@ -30,20 +34,24 @@ public class Chicken : MonoBehaviour, IDamageable
         }
     }
 
-    private void Awake()
+    public void Init(int param)
     {
         nav = GetComponent<NavMeshAgent>();
-    }
+        aud = GetComponent<AudioSource>();
 
-    private void Start()
-    {
         IsMove = false;
+        currentDestinationIndex = param;
         transform.position = destinations[currentDestinationIndex];
         CameraManager.Instance.SetActiveCamTemporarily(cam, takeCameraTime);
+        AudioManager.Instance.PlayAudio("Chicken", aud, true);
+        isInit = true;
     }
 
     private void Update()
     {
+        if (!isInit)
+            return;
+
         if(IsMove)
         {
             if (Vector3.Distance(transform.position, nav.destination) <= nav.stoppingDistance)

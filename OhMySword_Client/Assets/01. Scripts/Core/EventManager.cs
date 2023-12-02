@@ -56,7 +56,7 @@ public class EventManager : MonoBehaviour
         currentGameEvent?.UpdateEvent();
     }
 
-    public void StartEvent(int eventType)
+    public void StartEvent(int eventType, int param)
     {
         Debug.Log("2");
 
@@ -67,7 +67,7 @@ public class EventManager : MonoBehaviour
 
         CurrentEventType = (GameEventType)eventType;
         currentGameEvent = gameEventDictionary[CurrentEventType];
-        currentGameEvent.StartEvent();
+        currentGameEvent.StartEvent(param);
     }
 
     public void FinishEvent()

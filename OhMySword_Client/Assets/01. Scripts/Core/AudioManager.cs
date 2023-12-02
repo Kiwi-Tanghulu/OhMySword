@@ -50,6 +50,7 @@ public class AudioManager
             return;
 
         clips.Add(clip.name, clip);
-        Debug.Log(clip.name);
+        //Debug.Log(clip.name);
+        Debug.Log(clips[clip.name]);
     }
 }

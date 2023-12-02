@@ -58,12 +58,18 @@ public class UIManager : MonoBehaviour
     {
         panels.Pop();
 
-        if(panels.Count <= 0)
-            Cursor.lockState = CursorLockMode.Locked;
+        if (panels.Count <= 0)
+            SetCursorActive(false);
     }
 
     public void ClaerStack()
     {
         panels.Clear();
+    }
+
+    public void SetCursorActive(bool value)
+    {
+        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
+        Debug.Log("set cursor");
     }
 }
