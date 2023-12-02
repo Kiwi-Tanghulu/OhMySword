@@ -17,10 +17,11 @@ public class ChickenEvent : GameEvent
         chickenText = GameObject.Find("MainCanvas/ChickenText").GetComponent<TextMeshProUGUI>();
     }
 
-    public override void StartEvent()
+    public override void StartEvent(int param)
     {
         Debug.Log("Start Chicken Event");
         chicken = GameObject.Instantiate(chickenResource).GetComponent<Chicken>();
+        chicken.Init(param);
         RoomManager.Instance.ObjectParent.gameObject.SetActive(false);
         chickenText.transform.DOScale(0.75f, 1.2f).SetEase(Ease.InOutBack);
     }

@@ -159,7 +159,7 @@ public class RoomManager : MonoBehaviour
     public void StartEvent(ushort eventType, ushort param)
     {
         Debug.Log("1");
-        EventManager.Instance.StartEvent(eventType);
+        EventManager.Instance.StartEvent(eventType, param);
     }
 
     public void CloseEvent()

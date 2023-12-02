@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class GameEvent
 {
     public virtual void InitEvent() { }
-    public abstract void StartEvent();
+    public abstract void StartEvent(int param);
     public abstract void UpdateEvent();
     public abstract void FinishEvent();
 }

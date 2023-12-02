@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetClient()
     {
+        NetworkManager.Instance.Disconnect();
         Process.Start(Application.dataPath + "/../OhMySword_Client.exe");
         Application.Quit();
     }
