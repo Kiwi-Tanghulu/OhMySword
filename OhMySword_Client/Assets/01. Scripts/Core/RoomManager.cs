@@ -5,7 +5,6 @@ using OhMySword.Player;
 using Base.Network;
 using System;
 using System.Linq;
-using static UnityEditor.Searcher.Searcher.AnalyticsEvent;
 
 public class RoomManager : MonoBehaviour
 {

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -43,6 +44,9 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         NetworkManager.Instance.FlushPacketQueue();
+
+        if (Input.GetKeyDown(KeyCode.M))
+            ResetClient();
     }
 
     private void OnDestroy()
@@ -55,11 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetClient()
     {
-        // 클라이언트 초기화
-        // 클라이언트 경고 UI
-        // 게임 매니저도 새로 생겨야 하고 네트워크 매니저도 새로 생겨야 함
-        // 정말 게임을 껏다 키는 거 처럼 되어야 함
-
-        // 게임 매니저만 부시고 다시 만들면 될 듯 
+        Process.Start(Application.dataPath + "/../OhMySword_Client.exe");
+        Application.Quit();
     }
 }
