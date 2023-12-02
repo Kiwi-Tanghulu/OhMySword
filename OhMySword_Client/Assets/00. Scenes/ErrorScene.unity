@@ -419,6 +419,11 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2571452286245313794, guid: 041035cd81b2c417784b7412eea7b7c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2571452286245313795, guid: 041035cd81b2c417784b7412eea7b7c4,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -517,7 +522,11 @@ PrefabInstance:
     - {fileID: 2571452284865853931, guid: 041035cd81b2c417784b7412eea7b7c4, type: 3}
     - {fileID: 2571452285989548445, guid: 041035cd81b2c417784b7412eea7b7c4, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2571452286245313792, guid: 041035cd81b2c417784b7412eea7b7c4,
+        type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 334230574}
   m_SourcePrefab: {fileID: 100100000, guid: 041035cd81b2c417784b7412eea7b7c4, type: 3}
 --- !u!224 &334230572 stripped
 RectTransform:
@@ -525,6 +534,24 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 334230571}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &334230573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2571452286245313792, guid: 041035cd81b2c417784b7412eea7b7c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 334230571}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &334230574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334230573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95dede93fcb001a41935d688fa2cc7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &886649843
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,6 +750,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LoadingPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496458800915854728, guid: a80100f7856401c448c53f538e7e3836,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3399809818505157821, guid: a80100f7856401c448c53f538e7e3836,
         type: 3}
