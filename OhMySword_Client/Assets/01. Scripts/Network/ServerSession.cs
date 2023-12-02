@@ -8,13 +8,11 @@ public class ServerSession : Session
     public override void OnConnected(EndPoint endPoint)
     {
         // Debug.Log($"{endPoint} : 서버 접속!");
-        NetworkManager.Instance.IsConnected = true;
     }
 
     public override void OnDisconnected(EndPoint endPoint)
     {
         // Debug.Log($"{endPoint} : 접속 해제!");
-        NetworkManager.Instance.IsConnected = false;
     }
 
     public override void OnPacketReceived(ArraySegment<byte> buffer)

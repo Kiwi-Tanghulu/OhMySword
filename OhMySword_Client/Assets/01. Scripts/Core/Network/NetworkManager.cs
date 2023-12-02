@@ -13,7 +13,7 @@ public class NetworkManager
     private Queue<Packet> packetQueue = new Queue<Packet>();
     private object locker = new object();
 
-    public bool IsConnected = false;
+    public bool IsConnected => (session.Active == 1);
 
     ~NetworkManager()
     {
