@@ -954,7 +954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &895506669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6366,6 +6366,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 4171452020599859225, guid: 33ad2e8cf2cf9d54b8a8727e6019992b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7387,6 +7392,7 @@ MonoBehaviour:
   sizeUpSpeed: 1
   swordPivot: {fileID: 275128198984028412}
   trail: {fileID: 0}
+  attacked: []
 --- !u!1 &7456117689996484592
 GameObject:
   m_ObjectHideFlags: 0
