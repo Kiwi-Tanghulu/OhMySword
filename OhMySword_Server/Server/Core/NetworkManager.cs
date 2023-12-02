@@ -35,6 +35,7 @@ namespace Server
             {
                 ushort id = userIDPublisher++;
                 users.Add(id, session);
+                Console.WriteLine($"[Core] User Published {{ User Count : {users.Count} }}");
 
                 return id;
             }
@@ -48,6 +49,7 @@ namespace Server
                     return;
 
                 users.Remove(session.UserID);
+                Console.WriteLine($"[Core] User Released {{ User Count : {users.Count} }}");
 
                 session.Room?.AddJob(() => session.Room?.ReleasePlayer(session.Player));
                 session.Close();
