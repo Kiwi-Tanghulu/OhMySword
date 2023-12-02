@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 4838707351391630273}
   - component: {fileID: 1229251025296703861}
   - component: {fileID: 7251233684788801599}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EggScoreBox
   m_TagString: Other_Hitbox
   m_Icon: {fileID: 0}

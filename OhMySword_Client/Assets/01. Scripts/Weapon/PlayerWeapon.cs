@@ -44,8 +44,16 @@ public class PlayerWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Other_Hitbox") && other.transform.root.TryGetComponent<IDamageable>(out IDamageable id))
+        Debug.Log(other.name);
+        Debug.Log(other.tag);
+
+        if (other.CompareTag("Other_Hitbox"))
         {
+            IDamageable id = other.gameObject.layer == 10 ? other.transform.GetComponent<IDamageable>()
+                : other.transform.root.GetComponent<IDamageable>();
+            
+            if (id == null)
+                return;
             if (other.transform == ownerHitbox)
                 return;
             if (attacked.Contains(other))

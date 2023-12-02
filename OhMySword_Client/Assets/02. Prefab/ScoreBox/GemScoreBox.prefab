@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4472815162470536452}
   - component: {fileID: 3167033329492640526}
   - component: {fileID: 4579992670018696273}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GemScoreBox
   m_TagString: Other_Hitbox
   m_Icon: {fileID: 0}
