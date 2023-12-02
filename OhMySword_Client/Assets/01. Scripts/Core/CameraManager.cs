@@ -11,8 +11,10 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private int activeCamPriority;
     [SerializeField] private int deactiveCamPriority;
 
-    [SerializeField] private CinemachineVirtualCamera activeCam;
-    [SerializeField] private CinemachineVirtualCamera beforeCam;
+    private CinemachineVirtualCamera activeCam;
+    private CinemachineVirtualCamera beforeCam;
+
+    private CinemachineImpulseSource impulseSource;
 
     private void Awake()
     {
@@ -20,7 +22,14 @@ public class CameraManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
+
+    public void ShakeCam()
+    {
+        impulseSource.GenerateImpulse();
+    }    
 
     public void SetActiveCam(CinemachineVirtualCamera cam)
     {

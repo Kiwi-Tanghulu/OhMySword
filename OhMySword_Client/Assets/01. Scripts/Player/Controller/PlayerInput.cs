@@ -15,6 +15,11 @@ public class PlayerInput : MonoBehaviour
 
     [field : SerializeField] public bool Inputable { get; set; } = true;
 
+    private void Start()
+    {
+        //LeftClick.AddListener(() => CameraManager.Instance.ShakeCam());
+    }
+
     private void Update()
     {
         //if (!Inputable)
@@ -68,5 +73,10 @@ public class PlayerInput : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        LeftClick = default;
     }
 }
