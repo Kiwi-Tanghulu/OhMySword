@@ -21,7 +21,7 @@ public class PacketHandler
         string nickname = UIManager.Instance.RoomPanel.Nickname;
 
         SceneLoader.Instance.LoadSceneAsync("InGameScene", () => {
-            RoomManager.Instance.CreatePlayer(enterPacket.playerID, enterPacket.skinID, enterPacket.posTableIndex, nickname);
+            RoomManager.Instance.CreatePlayer(enterPacket.playerID, enterPacket.posTableIndex, enterPacket.skinID, nickname);
             RoomManager.Instance.InitRoom(enterPacket.players, enterPacket.objects);
         });
     }
@@ -29,7 +29,7 @@ public class PacketHandler
     public static void S_OtherJoinPacket(Session session, Packet packet)
     {
         S_OtherJoinPacket joinPacket = packet as S_OtherJoinPacket;
-        RoomManager.Instance.AddPlayer(joinPacket.playerID, joinPacket.skinID, joinPacket.posTableIndex, joinPacket.nickname);
+        RoomManager.Instance.AddPlayer(joinPacket.playerID, joinPacket.posTableIndex, joinPacket.skinID, joinPacket.nickname);
         RoomManager.Instance.UpdateRankingBoard();
     }
 
@@ -145,7 +145,7 @@ public class PacketHandler
     public static void S_EventStartPacket(Session session, Packet packet)
     {
         S_EventStartPacket eventPacket = packet as S_EventStartPacket;
-        RoomManager.Instance.StartEvent(eventPacket.eventType);
+        RoomManager.Instance.StartEvent(eventPacket.eventType, eventPacket.param);
     }
 
     public static void S_EventEndPacket(Session session, Packet packet)

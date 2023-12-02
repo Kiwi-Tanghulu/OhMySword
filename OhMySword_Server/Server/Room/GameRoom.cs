@@ -75,7 +75,7 @@ namespace Server
 
             OnEvent = true;
 
-            S_EventStartPacket packet = new S_EventStartPacket(eventType);
+            S_EventStartPacket packet = new S_EventStartPacket(eventType, (ushort)Random.Range(0, 9));
             Broadcast(packet);
             Console.WriteLine($"[Room] Event Started {{ Room ID : {RoomID}, Event ID : {eventType} }}");
         }
@@ -98,13 +98,13 @@ namespace Server
             if (IsClosed)
                 return;
 
-            DelayCallback(60f * 0.1f, () => {
+            DelayCallback(60f * 1f, () => {
                 AddJob(() => {
                     if (OnEvent)
                         return;
 
                     StartEvent(0);
-                    DelayCallback(60f * 0.5f, () => {
+                    DelayCallback(60f * 2f, () => {
                         AddJob(() => {
                             CloseEvent();
                             CreateEvent();

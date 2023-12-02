@@ -156,7 +156,7 @@ public class RoomManager : MonoBehaviour
         NetworkManager.Instance.Send(exitPacket);
     }
 
-    public void StartEvent(ushort eventType)
+    public void StartEvent(ushort eventType, ushort param)
     {
         Debug.Log("1");
         EventManager.Instance.StartEvent(eventType);
