@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,8 +41,8 @@ public class GameManager : MonoBehaviour
     {
         NetworkManager.Instance.FlushPacketQueue();
 
-        if (Input.GetKeyDown(KeyCode.M))
-            ResetClient();
+        if (!NetworkManager.Instance.IsConnected)
+            SceneManager.LoadScene("ErrorScene");
     }
 
     private void OnDestroy()
