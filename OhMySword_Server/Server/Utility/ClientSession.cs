@@ -14,7 +14,7 @@ namespace Server
 
         public override void OnConnected(EndPoint endPoint)
         {
-            Console.WriteLine($"[Session] Client Connected : {endPoint}.");
+            Console.WriteLine($"[Session] Client Connected : {endPoint}");
 
             UserID = NetworkManager.Instance.PublishUserID(this);
             S_LogInPacket logInPacket = new S_LogInPacket() { userID = UserID };
@@ -23,7 +23,7 @@ namespace Server
 
         public override void OnDisconnected(EndPoint endPoint)
         {
-            Console.WriteLine($"[Session] Client Disconnected : {endPoint}.");
+            Console.WriteLine($"[Session] Client Disconnected : {endPoint}");
             NetworkManager.Instance.ReleaseUser(this);
         }
 

@@ -16,20 +16,19 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private Transform hipAnchor;
 
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpPower = 10f;
     
     private Vector3 prevTargetPos;
     private Vector3 targetPos;
     private Vector3 moveDir;
+    private Vector3 verticalVelocity;
     private Vector3 prevMoveDir;
     private Vector3 velocity;
     private float moveDistance;
 
-    private PlayerView cam;
-
     private void Start()
     {
         ragdoll = GetComponent<ActiveRagdoll>();
-        cam = GetComponent<PlayerView>();
         targetPos = transform.position;
         prevTargetPos = targetPos;
     }
@@ -53,6 +52,12 @@ public class PlayerMove : MonoBehaviour
 
 
         onMovedEvent?.Invoke(hip.transform.position);
+    }
+
+    public void Jump()
+    {
+        ragdoll.SetConrol(false);
+        ragdoll.hip.AddForce(Vector3.up *  jumpPower, ForceMode.Impulse);
     }
     #endregion
 
@@ -102,6 +107,8 @@ public class PlayerMove : MonoBehaviour
 
     public void Stop()
     {
+        Debug.Log("sd");
+        ragdoll.SetHipConstraint(true);
         ragdoll.SetVelocity(Vector3.zero);
     }
 }

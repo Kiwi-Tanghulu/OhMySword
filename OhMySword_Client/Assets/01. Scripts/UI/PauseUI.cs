@@ -51,6 +51,28 @@ public class PauseUI : PanelUI
             btnTween[i].Kill();
             buttonsRects[i].anchoredPosition = btnStrPos[i];
         }
+<<<<<<< HEAD
+=======
+        
+        //UIManager.Instance.panels.Pop();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(UIManager.Instance.panels.Count <= 0)
+            {
+                Show();
+                UIManager.Instance.ChattingPanel.HideImmediediatly();
+                UIManager.Instance.SetCursorActive(true);
+            }
+            else
+            {
+                UIManager.Instance.panels.Peek().Hide();
+                UIManager.Instance.PopUI();
+            }
+        }
+>>>>>>> main
     }
 
     private IEnumerator BtnMove()

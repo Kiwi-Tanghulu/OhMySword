@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -32,15 +33,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+<<<<<<< HEAD
         // NetworkManager.Instance.Connect("172.30.1.16", 2651);
         //NetworkManager.Instance.Connect("172.31.3.230", 2651);
         NetworkManager.Instance.Connect("172.31.3.95", 2651);
         // NetworkManager.Instance.Connect("192.168.0.16", 2651);
+=======
+        NetworkManager.Instance.Connect("222.99.93.62", 2651); // SEH00N Desktop
+>>>>>>> main
     }
 
     private void Update()
     {
         NetworkManager.Instance.FlushPacketQueue();
+
+        if (Input.GetKeyDown(KeyCode.M))
+            ResetClient();
     }
 
     private void OnDestroy()
@@ -53,9 +61,8 @@ public class GameManager : MonoBehaviour
 
     public void ResetClient()
     {
-        // 클라이언트 초기화
-        // 클라이언트 경고 UI
-        // 게임 매니저도 새로 생겨야 하고 네트워크 매니저도 새로 생겨야 함
-        // 정말 게임을 껏다 키는 거 처럼 되어야 함
+        NetworkManager.Instance.Disconnect();
+        Process.Start(Application.dataPath + "/../OhMySword_Client.exe");
+        Application.Quit();
     }
 }

@@ -21,5 +21,9 @@
         C_AnimationPacket,      // 클라에게 서버에게 애니메이션을 요청하는 패킷
         S_AnimationPacket,      // 서버가 클라에게 특정 오브젝트의 애니메이션을 알리는 패킷
         S_ErrorPacket,          // 서버가 클라에게 에러가 발생했음을 알리는 패킷
+        S_EventStartPacket,     // 서버가 클라에게 이벤트가 시작되었음을 알리는 패킷
+        S_EventEndPacket,       // 서버가 클라에게 이벤트가 끝났음을 알리는 패킷
+        C_ChickenHitPacket,     // 클라가 서버에게 치킨을 때렸다는 것을 알리는 패킷
+        S_ChickenHitPacket,     // 서버가 클라에게 치킨을 때렸다는 것을 알리는 패킷
     }
 }

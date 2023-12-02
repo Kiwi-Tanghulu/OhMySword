@@ -1,13 +1,17 @@
 using Base.Network;
 using DG.Tweening;
+using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class PlayerFeedback : MonoBehaviour
 {
     private ActiveRagdoll ragdoll;
-    private PlayerMove move;
+    private PlayerMove playerMove;
+    private PlayerInput playerInput;
+    private BoxCollider hitboxCollider;
 
     [Header("hit")]
     public float hitFeedbackPower = 15f;
@@ -15,20 +19,14 @@ public class PlayerFeedback : MonoBehaviour
     [SerializeField] private Transform hitEffectPlayPos;
 
     [Space]
-    [Header("die")]
-    [SerializeField] private Transform onDieLeftLegTrm;
-    [SerializeField] private Transform onDieRightLegTrm;
-    [SerializeField] private Transform onDieRightArmTrm;
-    [SerializeField] private Transform RightLegTarget;
-    [SerializeField] private Transform LeftLegTarget;
-    [SerializeField] private Transform RightArmTarget;
-    [SerializeField] private float onDieTransTime = 0.1f;
-    public UnityEvent onDie;
+    public UnityEvent<SyncableObject> OnDieEvent;
 
     private void Start()
     {
         ragdoll = GetComponent<ActiveRagdoll>();    
-        move = GetComponent<PlayerMove>();
+        playerMove = GetComponent<PlayerMove>();
+        TryGetComponent<PlayerInput>(out playerInput);
+        hitboxCollider = transform.Find("Hips/Hitbox").GetComponent<BoxCollider>();
     }
 
     public void HitFeedback(SyncableObject attacker)
@@ -47,34 +45,33 @@ public class PlayerFeedback : MonoBehaviour
 
     public void DieFeedback(SyncableObject attacker)
     {
-        onDie?.Invoke();
+        OnDie();
+        OnDieEvent?.Invoke(attacker);
         Debug.Log("die");
-
-        if(attacker != null)
-        {
-            Transform attackerHip = attacker.GetComponent<ActiveRagdoll>().hip.transform;
-
-            ragdoll.hip.transform.LookAt(attackerHip.position);
-        }
     }
 
-    private IEnumerator OnDieCo()
+    //public void SetActiveRagdoll(bool value, float time = -1)
+    //{
+    //    OnDieEvent?.Invoke(value);
+
+    //    if(time > 0)
+    //    {
+    //        StartCoroutine(SetActiveRagdollCo(value, time));
+    //    }
+    //}
+
+    //private IEnumerator SetActiveRagdollCo(bool value, float time)
+    //{
+    //    yield return new WaitForSeconds(time);
+
+    //    SetActiveRagdoll(value);
+    //}
+
+    private void OnDie()
     {
-        float percent = 0;
-
-        while(percent <= 1)
-        {
-            RightArmTarget.position = Vector3.Lerp(RightArmTarget.position, onDieRightArmTrm.position, percent);
-            LeftLegTarget.position = Vector3.Lerp(LeftLegTarget.position, onDieLeftLegTrm.position, percent);
-            RightLegTarget.position = Vector3.Lerp(RightLegTarget.position, onDieRightArmTrm.position, percent);
-
-            RightArmTarget.rotation = Quaternion.Lerp(RightArmTarget.rotation, onDieRightArmTrm.rotation, percent);
-            LeftLegTarget.rotation = Quaternion.Lerp(LeftLegTarget.rotation, onDieLeftLegTrm.rotation, percent);
-            RightLegTarget.rotation = Quaternion.Lerp(RightLegTarget.rotation, onDieRightArmTrm.rotation, percent);
-
-            percent += Time.deltaTime / onDieTransTime;
-
-            yield return null;
-        }
+        ragdoll.SetConrol(false);
+        playerMove.enabled = false;
+        if (playerInput != null) playerInput.enabled = false;
+        hitboxCollider.enabled = false;
     }
 }

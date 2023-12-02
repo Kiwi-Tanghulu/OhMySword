@@ -17,11 +17,16 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(1);
+        //if (!Inputable)
+        //    return;
 
-        if (!Inputable)
-            return; ;
+        //if (UIManager.Instance.ActiveUI)
+        //{
+        //    Debug.Log("active ui");
+        //    return;
+        //}
 
+<<<<<<< HEAD
         Debug.Log(2);
 
         if (UIManager.Instance.IsActivePanelUI)
@@ -31,6 +36,9 @@ public class PlayerInput : MonoBehaviour
         }
 
         if (UIManager.Instance.ChattingPanel.IsChat)
+=======
+        if (UIManager.Instance.ChattingPanel.IsChat || UIManager.Instance.ActiveUI || !Inputable)
+>>>>>>> main
         {
             Movement?.Invoke(Vector3.zero);
             MouseMove?.Invoke(Vector3.zero);
@@ -40,6 +48,9 @@ public class PlayerInput : MonoBehaviour
         {
             Movement?.Invoke(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")));
             MouseMove?.Invoke(new Vector3(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")));
+
+            if (Input.GetKeyDown(KeyCode.Space))
+                Space?.Invoke();
 
             if (Input.GetMouseButtonDown(0))
                 LeftClick?.Invoke();
@@ -57,13 +68,16 @@ public class PlayerInput : MonoBehaviour
         {
             if (UIManager.Instance.ChattingPanel.IsChat)
             {
-                //UIManager.Instance.ChattingPanel.SetFieldSelect(false);
-                //IManager.Instance.ChattingPanel.HideImmediediatly();
+                UIManager.Instance.ChattingPanel.SetFieldSelect(false);
+                UIManager.Instance.ChattingPanel.HideImmediediatly();
             }
             else
             {
-                UIManager.Instance.ChattingPanel.SetFieldSelect(true);
-                UIManager.Instance.ChattingPanel.Show();
+                if(!UIManager.Instance.ActiveUI)
+                {
+                    UIManager.Instance.ChattingPanel.SetFieldSelect(true);
+                    UIManager.Instance.ChattingPanel.Show();
+                }
             }
         }
     }

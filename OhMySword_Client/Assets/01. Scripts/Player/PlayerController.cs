@@ -53,6 +53,11 @@ namespace OhMySword.Player
         {
         }
 
+        public void SetSkin(ushort skinID)
+        {
+            
+        }
+
         public void SetNickname(string nickname)
         {
             this.nickname = nickname;  
@@ -148,7 +153,6 @@ namespace OhMySword.Player
                 diePanel.gameObject.SetActive(true);
                 diePanel.Show(infos, RoomManager.Instance.GetCurrentRanking(ObjectID));
             }
-            
         }
 
         public void DoChat(string chat)

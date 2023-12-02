@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class PlayerView : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private Transform hip;
     [SerializeField] private Transform camAnchor;
+    [SerializeField] private CinemachineVirtualCamera cam;
 
     private Vector2 rotation = Vector2.zero;
     private Vector3 targetRotation = Vector3.zero;
@@ -27,7 +29,15 @@ public class PlayerView : MonoBehaviour
 
     private void Start()
     {
+<<<<<<< HEAD
         UIManager.Instance.MainCanvas.Find("Setting/Settings").GetComponent<GameSettingUI>().Init();
+=======
+        UIManager.Instance.MainCanvas.Find("PauseUI/Settings").GetComponent<GameSettingUI>().Init();
+
+        if (cam != null)
+            CameraManager.Instance.SetActiveCam(cam);
+        Debug.Log(transform.root);
+>>>>>>> main
     }
 
     public void RotateCamera(Vector2 vector)
