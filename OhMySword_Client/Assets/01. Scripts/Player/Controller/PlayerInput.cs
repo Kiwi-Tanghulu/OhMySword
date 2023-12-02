@@ -56,8 +56,8 @@ public class PlayerInput : MonoBehaviour
         {
             if (UIManager.Instance.ChattingPanel.IsChat)
             {
-                UIManager.Instance.ChattingPanel.SetFieldSelect(false);
-                UIManager.Instance.ChattingPanel.HideImmediediatly();
+                //UIManager.Instance.ChattingPanel.SetFieldSelect(false);
+                //UIManager.Instance.ChattingPanel.HideImmediediatly();
             }
             else
             {
