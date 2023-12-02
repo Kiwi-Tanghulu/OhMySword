@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7511446996927447807}
   - component: {fileID: 7815470818728927876}
   - component: {fileID: 93447386452555518}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WoodenScoreBox
   m_TagString: Other_Hitbox
   m_Icon: {fileID: 0}

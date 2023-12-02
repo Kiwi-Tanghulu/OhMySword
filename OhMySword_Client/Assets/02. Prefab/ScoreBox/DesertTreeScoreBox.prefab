@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4569696355334761802}
   - component: {fileID: 8922764251235675445}
   - component: {fileID: 2369773760994542469}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DesertTreeScoreBox
   m_TagString: Other_Hitbox
   m_Icon: {fileID: 0}

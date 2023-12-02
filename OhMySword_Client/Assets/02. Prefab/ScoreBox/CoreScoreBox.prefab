@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2922909425580639742}
   - component: {fileID: 8468766753083539141}
   - component: {fileID: 2050098162283254074}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CoreScoreBox
   m_TagString: Other_Hitbox
   m_Icon: {fileID: 0}

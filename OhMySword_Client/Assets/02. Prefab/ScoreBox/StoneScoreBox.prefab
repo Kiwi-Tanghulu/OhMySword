@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 5973761185915637993}
   - component: {fileID: 8862173436161102251}
   - component: {fileID: 6551786150273303244}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: StoneScoreBox
   m_TagString: Other_Hitbox
   m_Icon: {fileID: 0}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    [Range(0.001f, 0.2f)]
+    [Range(0.001f,0.2f)]
     [SerializeField] private float scoreSize; // ���ھ�� ������� ����! ��) 0.01�̶�� 1���� 0.01�� Ŀ�� 100���̶�� 1�� Ŀ����
 
     [SerializeField] private float sizeUpSpeed = 1f;
@@ -44,8 +44,16 @@ public class PlayerWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Other_Hitbox") && other.transform.root.TryGetComponent<IDamageable>(out IDamageable id))
+        Debug.Log(other.name);
+        Debug.Log(other.tag);
+
+        if (other.CompareTag("Other_Hitbox"))
         {
+            IDamageable id = other.gameObject.layer == 10 ? other.transform.GetComponent<IDamageable>()
+                : other.transform.root.GetComponent<IDamageable>();
+            
+            if (id == null)
+                return;
             if (other.transform == ownerHitbox)
                 return;
             if (attacked.Contains(other))
@@ -82,8 +90,8 @@ public class PlayerWeapon : MonoBehaviour
         col.center = new Vector3(-0.2f, 0.5f + swordPivot.localScale.y, 0.45f);
         col.size = new Vector3(0.3f, 2.4f + swordPivot.localScale.y * 2, 0.6f);
         trail.widthMultiplier = ((currentScore * scoreSize) / 2) + 1;
-
-
+        
+        
     }
     public void SetScore(ushort value, bool isStart)
     {
@@ -92,7 +100,7 @@ public class PlayerWeapon : MonoBehaviour
         {
             currentScore = value;
             SetSwordSize();
-            playerAttack.SetAttackDelay(AttackDelayCalculator());
+            playerAttack.SetAttackDelay(currentScore / 500f);
         }
         else
         {
@@ -109,12 +117,12 @@ public class PlayerWeapon : MonoBehaviour
         isGrowing = true;
         while (true)
         {
-            if (checkTime >= 1f)
+            if(checkTime >= 1f)
             {
                 currentScore++;
                 checkTime = 0f;
             }
-            if (currentScore == nextScore)
+            if(currentScore == nextScore)
                 break;
 
             swordPivot.localScale = new Vector3(1f, swordPivot.localScale.y + (scoreSize * Time.deltaTime * sizeUpSpeed), 1f);
@@ -127,15 +135,5 @@ public class PlayerWeapon : MonoBehaviour
             yield return null;
         }
         isGrowing = false;
-    }
-    private float AttackDelayCalculator()
-    {
-        int delayLevel = currentScore / 500;
-
-        float percent = delayLevel * 0.00005f + 0.001f;
-
-        float currentDelay = currentScore * percent;
-        
-        return currentDelay;
     }
 }
