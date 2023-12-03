@@ -63,13 +63,13 @@ namespace Server
         public override void PublishPlayer(Player player)
         {
             base.PublishPlayer(player);
-            Console.WriteLine($"[Room] Player Joined {{ Room ID : {RoomID}, Player Count : {players.Count} }}");
+            Console.WriteLine($"{DateTime.Now.ToString("yy년 MM월 dd일 HH:mm:ss")} [Room] Player Joined {{ Room ID : {RoomID}, Player Count : {players.Count} }}");
         }
 
         public override void ReleasePlayer(Player player)
         {
             base.ReleasePlayer(player);
-            Console.WriteLine($"[Room] Player Left {{ Room ID : {RoomID}, Player Count : {players.Count} }}");
+            Console.WriteLine($"{DateTime.Now.ToString("yy년 MM월 dd일 HH:mm:ss")} [Room] Player Left {{ Room ID : {RoomID}, Player Count : {players.Count} }}");
 
             if (Capacity >= maxPlayerCount)
                 RoomManager.Instance.ReleaseRoom(this);
@@ -84,7 +84,7 @@ namespace Server
 
             S_EventStartPacket packet = new S_EventStartPacket(eventType, (ushort)Random.Range(0, 9));
             Broadcast(packet);
-            Console.WriteLine($"[Room] Event Started {{ Room ID : {RoomID}, Event ID : {eventType} }}");
+            Console.WriteLine($"{DateTime.Now.ToString("yy년 MM월 dd일 HH:mm:ss")} [Room] Event Started {{ Room ID : {RoomID}, Event ID : {eventType} }}");
         }
 
         public void CloseEvent()
@@ -97,7 +97,7 @@ namespace Server
             S_EventEndPacket packet = new S_EventEndPacket();
             Broadcast(packet);
 
-            Console.WriteLine($"[Room] Event Closed {{ Room ID : {RoomID} }}");
+            Console.WriteLine($"{DateTime.Now.ToString("yy년 MM월 dd일 HH:mm:ss")} [Room] Event Closed {{ Room ID : {RoomID} }}");
         }
 
         private void CreateEvent()

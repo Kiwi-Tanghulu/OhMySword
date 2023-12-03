@@ -14,7 +14,7 @@ namespace Server
 
         public override void OnConnected(EndPoint endPoint)
         {
-            Console.WriteLine($"[Session] Client Connected {{ Time : {DateTime.Now.ToString($"yy년 MM월 dd일 HH:mm:ss")}, Address : {endPoint} }}");
+            Console.WriteLine($"{DateTime.Now.ToString("yy년 MM월 dd일 HH:mm:ss")} [Session] Client Connected {{ Address : {endPoint} }}");
 
             UserID = NetworkManager.Instance.PublishUserID(this);
             S_LogInPacket logInPacket = new S_LogInPacket() { userID = UserID };
@@ -23,7 +23,7 @@ namespace Server
 
         public override void OnDisconnected(EndPoint endPoint)
         {
-            Console.WriteLine($"[Session] Client Disconnected {{ Time : {DateTime.Now.ToString("yy년 MM월 dd일 HH:mm:ss")}, Address : {endPoint} }}");
+            Console.WriteLine($"{DateTime.Now.ToString("yy년 MM월 dd일 HH:mm:ss")} [Session] Client Disconnected {{ Address : {endPoint} }}");
             NetworkManager.Instance.ReleaseUser(this);
         }
 

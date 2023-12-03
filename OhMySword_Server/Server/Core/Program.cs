@@ -16,11 +16,11 @@ namespace Server
 
             if (NetworkManager.Instance.Listen(IPAddress, PORT) == false)
             {
-                Console.WriteLine($"[Core] Something Problem Detected With Opening Server");
+                Console.WriteLine($"{DateTime.Now.ToString("yy년 MM월 dd일 HH:mm:ss")} [Core] Something Problem Detected With Opening Server");
                 return;
             }
 
-            Console.WriteLine($"[Core] Server Opened : {IPAddress}:{PORT}");
+            Console.WriteLine($"{DateTime.Now.ToString("yy년 MM월 dd일 HH:mm:ss")} [Core] Server Opened : {IPAddress}:{PORT}");
 
             RoomManager.Instance.FlushLoop(50);
         }
