@@ -163,11 +163,16 @@ namespace OhMySword.Player
             if(RoomManager.Instance.PlayerID != this.ObjectID)
             {
                 if(!UIManager.Instance.ChattingPanel.IsChat)
+                {
                     UIManager.Instance.ChattingPanel.Show();
+                    UIManager.Instance.ChattingPanel.Hide();
+                }
             }
-                
+            else
+            {
+                UIManager.Instance.ChattingPanel.Hide();
+            }
 
-            UIManager.Instance.ChattingPanel.Hide();
             playerChat.CreateMessageText(chat);
         }
 
