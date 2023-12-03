@@ -77,7 +77,7 @@ namespace Server
 
             GameRoom room = new GameRoom();
             PublishRoomID(room);
-            Console.WriteLine($"[Room] Room Created {{ Time : {DateTime.Now.ToString("MM.dd-HH:mm:ss")}, Room ID : {room.RoomID} }}");
+            Console.WriteLine($"[Room] Room Created {{ Time : {DateTime.Now.ToString("yy년 MM월 dd일 HH:mm:ss")}, Room ID : {room.RoomID} }}");
 
             return room;
         }
@@ -89,7 +89,7 @@ namespace Server
 
             room.AddJob(() => {
                 room.Clear();
-                Console.WriteLine($"[Room] Room Destroyed {{ Time : {DateTime.Now.ToString("MM.dd-HH:mm:ss")}, Room ID : {room.RoomID} }}");
+                Console.WriteLine($"[Room] Room Destroyed {{ Time : {DateTime.Now.ToString("yy년 MM월 dd일 HH:mm:ss")}, Room ID : {room.RoomID} }}");
                 gameRooms.Remove(room.RoomID);
             });
         }
