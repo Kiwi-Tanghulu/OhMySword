@@ -57,7 +57,7 @@ public class PlayerMove : MonoBehaviour
     public void Jump()
     {
         ragdoll.SetConrol(false);
-        ragdoll.hip.AddForce(Vector3.up *  jumpPower, ForceMode.Impulse);
+        ragdoll.Hip.AddForce(Vector3.up *  jumpPower, ForceMode.Impulse);
     }
     #endregion
 

@@ -14,7 +14,7 @@ public class PlayerFeedback : MonoBehaviour
     private BoxCollider hitboxCollider;
 
     [Header("hit")]
-    public float hitFeedbackPower = 15f;
+    public float HitFeedbackPower = 15f;
     [SerializeField] private float hitEffectPlayOffset;
     [SerializeField] private Transform hitEffectPlayPos;
 
@@ -34,12 +34,12 @@ public class PlayerFeedback : MonoBehaviour
         if(attacker != null)
         {
             Debug.Log("hit");
-            Vector3 dir = (ragdoll.hip.transform.position - attacker.GetComponent<ActiveRagdoll>().hip.transform.position).normalized;
+            Vector3 dir = (ragdoll.Hip.transform.position - attacker.GetComponent<ActiveRagdoll>().Hip.transform.position).normalized;
 
             PoolableMono hitEffect = PoolManager.Instance.Pop("HitEffect",
                 hitEffectPlayPos.position + -dir * hitEffectPlayOffset);
 
-            ragdoll.AddForceToSpine(dir * hitFeedbackPower);
+            ragdoll.AddForceToSpine(dir * HitFeedbackPower);
         }
     }
 

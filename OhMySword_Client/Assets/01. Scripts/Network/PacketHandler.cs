@@ -86,12 +86,12 @@ public class PacketHandler
             XPObject xp = RoomManager.Instance.AddObject(
                 obj.objectID, 
                 ObjectType.XPObject, 
-                player.ragdoll.hip.transform.position,
+                player.Ragdoll.Hip.transform.position,
                 obj.rotation.Vector3()
             ) as XPObject;
 
             xp.SetXP(digit);
-            xp.SetPosition(player.ragdoll.hip.transform.position + obj.position.Vector3(), false);
+            xp.SetPosition(player.Ragdoll.Hip.transform.position + obj.position.Vector3(), false);
         });
     }
 

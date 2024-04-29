@@ -8,31 +8,31 @@ using UnityEngine.Animations.Rigging;
 [System.Serializable]
 public class Foot
 {
-    public Transform obj;
-    public Transform target;
-    public TwoBoneIKConstraint ik;
-    [HideInInspector] public Vector3 targetPos;
-    [HideInInspector] public Vector3 prevTargetPos;
+    public Transform Obj;
+    public Transform Target;
+    public TwoBoneIKConstraint IK;
+    [HideInInspector] public Vector3 TargetPos;
+    [HideInInspector] public Vector3 PrevTargetPos;
     //Distance between body and feet, Only used x and z
-    [HideInInspector] public Vector3 offset;
+    [HideInInspector] public Vector3 Offset;
     //The location where the ray was fired from the body and reached the ground.
-    [HideInInspector] public Vector3 rayHitPos;
+    [HideInInspector] public Vector3 RayHitPos;
     public void SetTargetPos(Vector3 pos)
     {
-        prevTargetPos = pos;
-        targetPos = pos;
+        PrevTargetPos = pos;
+        TargetPos = pos;
     }
 }
 
 public class ActiveRagdoll : MonoBehaviour
 {
     [field: SerializeField]
-    public bool bodyLerping { get; set; } = true;
+    public bool BodyLerping { get; set; } = true;
     [field: SerializeField]
-    public bool footMove { get; set; } = true;
+    public bool EnableFootMove { get; set; } = true;
     [field: SerializeField]
     public bool Controlable { get; private set; } = true;
-    public bool isGround = true;
+    public bool IsGround = true;
     private bool beforeIsGround = true;
 
     [Space]
@@ -40,10 +40,10 @@ public class ActiveRagdoll : MonoBehaviour
     [SerializeField] private RigBuilder rigBuilder;
 
     [Space]
-    [SerializeField] public Rigidbody hip;
+    [SerializeField] public Rigidbody Hip;
     [SerializeField] private ConfigurableJoint hipJoint;
     [SerializeField] private Transform hipAncher;
-    public Transform neck;
+    public Transform Neck;
 
     [Space]
     [SerializeField] private Rigidbody spineRb;
@@ -91,20 +91,20 @@ public class ActiveRagdoll : MonoBehaviour
     {
         playerAnimation = GetComponent<PlayerAnimation>();
         playerAttack = GetComponent<PlayerAttack>();
-        aud = hip.GetComponent<AudioSource>();
+        aud = Hip.GetComponent<AudioSource>();
     }
 
     private void Start()
     {
-        leftFoot.targetPos = leftFoot.target.position;
-        leftFoot.prevTargetPos = leftFoot.targetPos;
-        leftFoot.offset = leftFoot.target.position - hip.transform.position;
-        leftFoot.offset.y = 0;
+        leftFoot.TargetPos = leftFoot.Target.position;
+        leftFoot.PrevTargetPos = leftFoot.TargetPos;
+        leftFoot.Offset = leftFoot.Target.position - Hip.transform.position;
+        leftFoot.Offset.y = 0;
 
-        rightFoot.targetPos = rightFoot.target.position;
-        rightFoot.prevTargetPos = rightFoot.targetPos;
-        rightFoot.offset = rightFoot.target.position - hip.transform.position;
-        rightFoot.offset.y = 0;
+        rightFoot.TargetPos = rightFoot.Target.position;
+        rightFoot.PrevTargetPos = rightFoot.TargetPos;
+        rightFoot.Offset = rightFoot.Target.position - Hip.transform.position;
+        rightFoot.Offset.y = 0;
 
         SetFootMiddlePos();
     }
@@ -119,22 +119,22 @@ public class ActiveRagdoll : MonoBehaviour
 
         CheckGround();
 
-        if (isGround && Controlable)
+        if (IsGround && Controlable)
         {
             SetHipConstraint(true);
             HipElasticity();
             FootMove();
         }
-        else if(!isGround)
+        else if(!IsGround)
         {
             
         }
 
         //trans frame
-        if (beforeIsGround != isGround)
+        if (beforeIsGround != IsGround)
         {
-            SetConrol(isGround);
-            hip.velocity = Vector3.zero;
+            SetConrol(IsGround);
+            Hip.velocity = Vector3.zero;
         }
     }
 
@@ -146,32 +146,32 @@ public class ActiveRagdoll : MonoBehaviour
         //rigAnimator.enabled = value;
         //rigBuilder.enabled = value;
         playerAnimation.Animationable = value;
-        playerAttack.canAttack = value;
+        playerAttack.CanAttack = value;
     }
 
     private bool CheckGround()
     {
-        beforeIsGround = isGround;
-        isGround = Physics.Raycast(hip.transform.position, Vector3.down, hipHeight + 0.5f, groundLayer);
+        beforeIsGround = IsGround;
+        IsGround = Physics.Raycast(Hip.transform.position, Vector3.down, hipHeight + 0.5f, groundLayer);
 
-        return isGround;
+        return IsGround;
     }
 
 
     public void SetVelocity(Vector3 velocity)
     {
-        hip.velocity = new Vector3(velocity.x, hip.velocity.y, velocity.z);
+        Hip.velocity = new Vector3(velocity.x, Hip.velocity.y, velocity.z);
         moveDir = velocity.normalized;
     }
 
     #region FOOT
     private void FootMove()
     {
-        if (!footMove)
+        if (!EnableFootMove)
             return;
 
-        leftFoot.target.position = leftFoot.targetPos;
-        rightFoot.target.position = rightFoot.targetPos;
+        leftFoot.Target.position = leftFoot.TargetPos;
+        rightFoot.Target.position = rightFoot.TargetPos;
 
         if (SetHipToGroundPos())
         {
@@ -179,7 +179,7 @@ public class ActiveRagdoll : MonoBehaviour
             {
                 Vector3 moveDir = (hipToGroundPos - footMiddlePos).normalized;
 
-                if (Vector3.Distance(hipToGroundPos, leftFoot.targetPos) > Vector3.Distance(hipToGroundPos, rightFoot.targetPos))
+                if (Vector3.Distance(hipToGroundPos, leftFoot.TargetPos) > Vector3.Distance(hipToGroundPos, rightFoot.TargetPos))
                     SetFootTargetPos(leftFoot, moveDir * moveDistance, false);
                 else
                     SetFootTargetPos(rightFoot, moveDir * moveDistance, false);
@@ -189,22 +189,22 @@ public class ActiveRagdoll : MonoBehaviour
     private void SetFootTargetPos(Foot foot, Vector3 offset, bool fix)
     {
         RaycastHit hit = default;
-        Physics.Raycast(hip.transform.position +  hipAncher.rotation * foot.offset + offset,
+        Physics.Raycast(Hip.transform.position +  hipAncher.rotation * foot.Offset + offset,
             Vector3.down, out hit, 10, groundLayer);
 
         
 
-        foot.rayHitPos = hit.point + Vector3.up * footToeOffset;
+        foot.RayHitPos = hit.point + Vector3.up * footToeOffset;
 
         if(fix)
         {
-            foot.targetPos = foot.rayHitPos;
-            foot.prevTargetPos = foot.targetPos;
+            foot.TargetPos = foot.RayHitPos;
+            foot.PrevTargetPos = foot.TargetPos;
         }
         else
         {
-            foot.prevTargetPos = foot.targetPos;
-            foot.targetPos = foot.rayHitPos;
+            foot.PrevTargetPos = foot.TargetPos;
+            foot.TargetPos = foot.RayHitPos;
             StartCoroutine(FootMoveAnimation(foot));
         }
 
@@ -214,8 +214,8 @@ public class ActiveRagdoll : MonoBehaviour
     private IEnumerator FootMoveAnimation(Foot foot)
     {
         float percent = 0;
-        Vector3 heightPivotVector = new Vector3((foot.targetPos - foot.prevTargetPos).x / 2f + foot.prevTargetPos.x,
-            foot.prevTargetPos.y + movePivotHeight, (foot.targetPos - foot.prevTargetPos).z / 2f + foot.prevTargetPos.z);
+        Vector3 heightPivotVector = new Vector3((foot.TargetPos - foot.PrevTargetPos).x / 2f + foot.PrevTargetPos.x,
+            foot.PrevTargetPos.y + movePivotHeight, (foot.TargetPos - foot.PrevTargetPos).z / 2f + foot.PrevTargetPos.z);
         Vector3 startToPivotLerp;
         Vector3 pivotToEndLerp;
 
@@ -227,16 +227,16 @@ public class ActiveRagdoll : MonoBehaviour
 
         while (percent <= 1)
         {
-            startToPivotLerp = Vector3.Lerp(foot.prevTargetPos, heightPivotVector, percent);
-            pivotToEndLerp = Vector3.Lerp(heightPivotVector, foot.targetPos, percent);
-            foot.target.position = Vector3.Lerp(startToPivotLerp, pivotToEndLerp, percent);
+            startToPivotLerp = Vector3.Lerp(foot.PrevTargetPos, heightPivotVector, percent);
+            pivotToEndLerp = Vector3.Lerp(heightPivotVector, foot.TargetPos, percent);
+            foot.Target.position = Vector3.Lerp(startToPivotLerp, pivotToEndLerp, percent);
 
             percent += Time.deltaTime / footMoveTime;
 
             yield return null;
         }
 
-        Transform effect = PoolManager.Instance.Pop("WalkEffect", foot.target.position + moveDir * 0.2f).transform;
+        Transform effect = PoolManager.Instance.Pop("WalkEffect", foot.Target.position + moveDir * 0.2f).transform;
         AudioManager.Instance.PlayAudio("GrassFootstep", aud, true);
         effect.LookAt(effect.position - moveDir);
 
@@ -246,12 +246,12 @@ public class ActiveRagdoll : MonoBehaviour
 
     private void SetFootMiddlePos()
     {
-        footMiddlePos = (leftFoot.targetPos - rightFoot.targetPos) / 2f + rightFoot.targetPos;
+        footMiddlePos = (leftFoot.TargetPos - rightFoot.TargetPos) / 2f + rightFoot.TargetPos;
     }
 
     private void SetFootControl(bool value)
     {
-        footMove = value;
+        EnableFootMove = value;
         SetFootRig(value);
 
         if(value)
@@ -276,8 +276,8 @@ public class ActiveRagdoll : MonoBehaviour
 
         while (percent <= 1)
         {
-            leftFoot.ik.weight = Mathf.Lerp(start, end, percent);
-            rightFoot.ik.weight = Mathf.Lerp(start, end, percent);
+            leftFoot.IK.weight = Mathf.Lerp(start, end, percent);
+            rightFoot.IK.weight = Mathf.Lerp(start, end, percent);
 
             percent += Time.deltaTime / 0.3f;
 
@@ -287,7 +287,7 @@ public class ActiveRagdoll : MonoBehaviour
 
     private IEnumerator FootAlign()
     {
-        if (Mathf.Abs(leftFoot.obj.position.y - rightFoot.obj.position.y) >= footAlignDistance)
+        if (Mathf.Abs(leftFoot.Obj.position.y - rightFoot.Obj.position.y) >= footAlignDistance)
         {
             footAlignCo = null;
             yield break;
@@ -295,19 +295,19 @@ public class ActiveRagdoll : MonoBehaviour
         
         yield return new WaitForSeconds(footAlignDelayTime);
 
-        Vector3 lStart = leftFoot.targetPos;
-        Vector3 rStart = rightFoot.targetPos;
-        float y = leftFoot.targetPos.y > rightFoot.targetPos.y ? leftFoot.targetPos.y : rightFoot.targetPos.y;
+        Vector3 lStart = leftFoot.TargetPos;
+        Vector3 rStart = rightFoot.TargetPos;
+        float y = leftFoot.TargetPos.y > rightFoot.TargetPos.y ? leftFoot.TargetPos.y : rightFoot.TargetPos.y;
         Vector3 lEnd = new Vector3(hipAncher.position.x, y, hipAncher.position.z)
-            + hipAncher.rotation * leftFoot.offset;
+            + hipAncher.rotation * leftFoot.Offset;
         Vector3 rEnd = new Vector3(hipAncher.position.x, y, hipAncher.position.z)
-            + hipAncher.rotation * rightFoot.offset;
+            + hipAncher.rotation * rightFoot.Offset;
         float percent = 0;
 
         while(percent <= 1)
         {
-            leftFoot.targetPos = Vector3.Lerp(lStart, lEnd, percent);
-            rightFoot.targetPos = Vector3.Lerp(rStart, rEnd, percent);
+            leftFoot.TargetPos = Vector3.Lerp(lStart, lEnd, percent);
+            rightFoot.TargetPos = Vector3.Lerp(rStart, rEnd, percent);
 
             percent += Time.deltaTime / footAlignTime;
 
@@ -323,7 +323,7 @@ public class ActiveRagdoll : MonoBehaviour
     #region HIP
     public bool SetHipToGroundPos()
     {
-        if (Physics.Raycast(hip.transform.position, Vector3.down, out RaycastHit hipToGround, hipHeight + 0.6f, groundLayer))
+        if (Physics.Raycast(Hip.transform.position, Vector3.down, out RaycastHit hipToGround, hipHeight + 0.6f, groundLayer))
         {
             hipToGroundPos = hipToGround.point;
 
@@ -339,25 +339,25 @@ public class ActiveRagdoll : MonoBehaviour
         {
             if (moveDir == Vector3.zero)
             {
-                hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+                Hip.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
             }
             else if (moveDir.x == 0)
-                hip.constraints = RigidbodyConstraints.FreezePositionX;
+                Hip.constraints = RigidbodyConstraints.FreezePositionX;
             else if (moveDir.z == 0)
-                hip.constraints = RigidbodyConstraints.FreezePositionZ;
+                Hip.constraints = RigidbodyConstraints.FreezePositionZ;
             else
-                hip.constraints = RigidbodyConstraints.None;
+                Hip.constraints = RigidbodyConstraints.None;
 
-            hip.constraints |= RigidbodyConstraints.FreezePositionY;
+            Hip.constraints |= RigidbodyConstraints.FreezePositionY;
 
-            hip.constraints |= RigidbodyConstraints.FreezeRotationX
+            Hip.constraints |= RigidbodyConstraints.FreezeRotationX
             | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 
             //hip.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
-            hip.constraints = RigidbodyConstraints.None;
+            Hip.constraints = RigidbodyConstraints.None;
         }
     }
 
@@ -368,12 +368,12 @@ public class ActiveRagdoll : MonoBehaviour
 
     private void HipElasticity()
     {
-        if (!bodyLerping)
+        if (!BodyLerping)
             return;
 
-        Vector3 targetPos = hip.transform.position;
+        Vector3 targetPos = Hip.transform.position;
 
-        if(Vector3.Distance(hip.transform.position, hipAncher.position) > 0.01f)
+        if(Vector3.Distance(Hip.transform.position, hipAncher.position) > 0.01f)
         {
             targetPos.y = Mathf.Lerp(targetPos.y, hipAncher.position.y, verticalHipElasticitySpeed * Time.deltaTime);
 
@@ -387,7 +387,7 @@ public class ActiveRagdoll : MonoBehaviour
             }
         }
 
-        hip.transform.position = targetPos;
+        Hip.transform.position = targetPos;
     }// body lerping
 
     private void SetBodyControl(bool value)
@@ -409,7 +409,7 @@ public class ActiveRagdoll : MonoBehaviour
 
         hipJoint.angularXDrive = xDrive;
         hipJoint.angularYZDrive = yzDrive;
-        bodyLerping = value;
+        BodyLerping = value;
         SetHipConstraint(value);
         SetSpineConstraint(value);
     }
@@ -458,8 +458,8 @@ public class ActiveRagdoll : MonoBehaviour
 
         Gizmos.DrawWireSphere(footMiddlePos, shouldMoveDistance);
         Gizmos.DrawSphere(footMiddlePos, 0.1f);
-        Gizmos.DrawSphere(leftFoot.rayHitPos, 0.1f);
-        Gizmos.DrawSphere(rightFoot.rayHitPos, 0.1f);
+        Gizmos.DrawSphere(leftFoot.RayHitPos, 0.1f);
+        Gizmos.DrawSphere(rightFoot.RayHitPos, 0.1f);
     }
 #endif
 }

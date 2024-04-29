@@ -48,8 +48,8 @@ public class ScoreBox : SyncableObject, IDamageable, IHitable
         PlayerController player = attacker as PlayerController;
         if(player != null)
         {
-            Vector3 hitDir = (player.ragdoll.hip.transform.position - transform.position).normalized;
-            PoolManager.Instance.Pop("HitEffect", new Vector3(transform.position.x, player.ragdoll.neck.position.y, 
+            Vector3 hitDir = (player.Ragdoll.Hip.transform.position - transform.position).normalized;
+            PoolManager.Instance.Pop("HitEffect", new Vector3(transform.position.x, player.Ragdoll.Neck.position.y, 
                 transform.position.z) + hitDir * hitEffectPlayOffset);
         }
     }

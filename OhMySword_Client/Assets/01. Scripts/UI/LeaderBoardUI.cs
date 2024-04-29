@@ -33,7 +33,7 @@ public class LeaderBoard : MonoBehaviour
         for (int i = 0; i < list.Count; i++)
         {
             leaderBoardScoreTexts[i].text = list[i].Score.ToString();
-            leaderBoardNameTexts[i].text = list[i].nickname;
+            leaderBoardNameTexts[i].text = list[i].Nickname;
         }
     }
 

@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class PlayerAttack : MonoBehaviour
 {
     [field: SerializeField]
-    public bool canAttack { get; set; } = true;
+    public bool CanAttack { get; set; } = true;
 
     public UnityEvent OnAttackEvent;
 
@@ -34,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
-        if (isAttack || !ragdoll.isGround || !canAttack)
+        if (isAttack || !ragdoll.IsGround || !CanAttack)
             return;
 
         OnAttackEvent?.Invoke();

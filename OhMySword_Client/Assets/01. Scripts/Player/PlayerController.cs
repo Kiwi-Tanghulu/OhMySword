@@ -20,16 +20,16 @@ namespace OhMySword.Player
         private PlayerChat playerChat;
         private PlayerInfo info;
 
-        public ActiveRagdoll ragdoll { get; private set; }
+        public ActiveRagdoll Ragdoll { get; private set; }
 
         public UnityEvent<SyncableObject> OnHitEvent;
         public UnityEvent<SyncableObject> OnDieEvent;
 
         public UnityEvent<int> SetAnimation;
 
-        public TMPro.TextMeshPro nameTag;
+        public TMPro.TextMeshPro NameTag;
 
-        public string nickname;
+        public string Nickname;
         public ushort Score => playerWeapon.GetScore();
 
         protected override void Awake()
@@ -42,26 +42,26 @@ namespace OhMySword.Player
             movement = GetComponent<PlayerMove>();
             view = GetComponent<PlayerView>();
             playerWeapon = transform.Find("Hips/Rig/Sword/Sword").GetComponent<PlayerWeapon>();
-            ragdoll = GetComponent<ActiveRagdoll>();
+            Ragdoll = GetComponent<ActiveRagdoll>();
             playerChat = GetComponent<PlayerChat>();
             info = GetComponent<PlayerInfo>();
 
-            audioPlayer = ragdoll.hip.GetComponent<AudioSource>();
+            audioPlayer = Ragdoll.Hip.GetComponent<AudioSource>();
         }
 
         public override void OnDeleted()
         {
         }
 
-        public void SetSkin(ushort skinID)
-        {
+        //public void SetSkin(ushort skinID)
+        //{
             
-        }
+        //}
 
         public void SetNickname(string nickname)
         {
-            this.nickname = nickname;  
-            nameTag.text = nickname;
+            this.Nickname = nickname;  
+            NameTag.text = nickname;
         }
 
         public void OnDamage(int damage, GameObject performer, Vector3 point)
@@ -128,7 +128,7 @@ namespace OhMySword.Player
                 {
                     if (attacker.TryGetComponent<PlayerController>(out PlayerController p))
                     {
-                        info.KilledPlayerName = p.nickname;
+                        info.KilledPlayerName = p.Nickname;
                     }
                 }
                 else
@@ -200,7 +200,6 @@ namespace OhMySword.Player
             if (IsDie)
                 return;
 
-            Debug.Log(2);
             SetAnimation?.Invoke(animationType);
         }
 

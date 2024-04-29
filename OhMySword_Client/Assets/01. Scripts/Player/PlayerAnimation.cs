@@ -54,7 +54,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void PlayEmotion(int hash)
     {
-        if (!ragdoll.isGround)
+        if (!ragdoll.IsGround)
             return;
 
         isEmotionPlay = true;

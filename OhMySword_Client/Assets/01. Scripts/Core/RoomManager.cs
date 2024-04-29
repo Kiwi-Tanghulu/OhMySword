@@ -66,7 +66,7 @@ public class RoomManager : MonoBehaviour
         PlayerController player = Instantiate(playerPrefab) as PlayerController;
         player.Init(id, playerSpawnTable[posIndex], Vector3.zero);
         player.SetNickname(nickname);
-        player.SetSkin(skinID);
+        //player.SetSkin(skinID);
         player.OnCreated();
 
         players.Add(id, player);
@@ -78,7 +78,7 @@ public class RoomManager : MonoBehaviour
         PlayerController player = Instantiate(prefabTable[ObjectType.Player]) as PlayerController;
         player.Init(objectID, position, rotation);
         player.SetNickname(nickname);
-        player.SetSkin(skinID);
+        //player.SetSkin(skinID);
         player.OnCreated();
         player.GetXP(score, true);
 
@@ -140,7 +140,7 @@ public class RoomManager : MonoBehaviour
         PlayerController sender = players[id];
         sender.DoChat(chat);
 
-        UIManager.Instance.ChattingPanel?.DoChat(sender.nickname, chat);
+        UIManager.Instance.ChattingPanel?.DoChat(sender.Nickname, chat);
     }
 
     public int GetCurrentRanking(ushort id)
