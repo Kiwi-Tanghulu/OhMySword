@@ -1,5 +1,9 @@
 # OH MY SWORD
-![Alt text](./oms_title.png)
+![Alt text](./oms_title.png)   
+* 기간 : 2023.11.01 ~ 2023.11.21
+* 인원 : 3인 (프로그래밍 3명)
+* 개발 툴, 언어 : Unity, C#
+* 플랫폼 : PC
    
 ## 팀원 소개
 |팀원|직군|작업 내용|
