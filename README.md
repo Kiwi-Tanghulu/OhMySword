@@ -1,2 +1,2 @@
-# OhMySword
-오 마이 소드
+# OH MY PARTY
+![Alt text](./oms_title.png)
